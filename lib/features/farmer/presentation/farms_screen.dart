@@ -40,12 +40,15 @@ class FarmsScreen extends ConsumerWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AgriLinkAppBar(title: l10n.farmsListTitle),
-      floatingActionButton: FloatingActionButton.extended(
-        key: const Key('new-farm'),
-        onPressed: () => _add(context),
-        icon: const Icon(Icons.add),
-        label: Text(l10n.farmsListNewFarm),
-      ),
+      // With no farms the page already has its own "New Farm" button; two would be one too many.
+      floatingActionButton: (ref.watch(myFarmsProvider).value?.isNotEmpty ?? false)
+          ? FloatingActionButton.extended(
+              key: const Key('new-farm'),
+              onPressed: () => _add(context),
+              icon: const Icon(Icons.add),
+              label: Text(l10n.farmsListNewFarm),
+            )
+          : null,
       body: AsyncValueView(
         value: ref.watch(myFarmsProvider),
         onRetry: () => ref.invalidate(myFarmsProvider),

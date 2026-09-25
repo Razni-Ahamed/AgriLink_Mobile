@@ -125,6 +125,8 @@ void main() {
       backend.issues.clear();
       final app = await openIssues(tester);
       expect(find.textContaining("You haven't reported any crop issues yet"), findsOneWidget);
+      // One button, not two.
+      expect(find.byKey(const Key('report-issue')), findsNothing);
       await tester.tap(find.widgetWithText(FilledButton, 'Report an Issue'));
       await tester.pumpAndSettle();
       expect(currentPath(app), '/issues/mine/new');

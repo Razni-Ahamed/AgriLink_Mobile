@@ -34,6 +34,8 @@ void main() {
       await pumpFarmer(tester, backend);
       expect(find.textContaining("You don't have any farms yet"), findsOneWidget);
       expect(find.widgetWithText(FilledButton, 'New Farm'), findsOneWidget);
+      // Only that one: no floating button on top of it.
+      expect(find.byKey(const Key('new-farm')), findsNothing);
     });
 
     testWidgets('a failed load can be tried again', (tester) async {

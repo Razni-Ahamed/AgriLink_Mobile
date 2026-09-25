@@ -47,11 +47,17 @@ class _MyIssuesScreenState extends ConsumerState<MyIssuesScreen> {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AgriLinkAppBar(title: l10n.issuesMineTitle),
-      floatingActionButton: FloatingActionButton.extended(
-        key: const Key('report-issue'),
-        onPressed: _report,
-        icon: const Icon(Icons.add),
-        label: Text(l10n.issuesMineReportIssue),
+      // Not on an empty list, which already has its own "Report an Issue" button.
+      floatingActionButton: ListenableBuilder(
+        listenable: _issues,
+        builder: (context, _) => _issues.items.isEmpty
+            ? const SizedBox.shrink()
+            : FloatingActionButton.extended(
+                key: const Key('report-issue'),
+                onPressed: _report,
+                icon: const Icon(Icons.add),
+                label: Text(l10n.issuesMineReportIssue),
+              ),
       ),
       body: PagedListView<CropIssue>(
         controller: _issues,
