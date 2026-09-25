@@ -761,6 +761,7 @@
   "commonPermissionsNotificationsRationale": "உங்கள் ஆர்டர்கள், கோரிக்கைகள், பயிர் சிக்கல்கள் அல்லது கணக்கு பற்றிய செய்தி இருக்கும்போது AgriLink உங்களுக்குத் தெரிவிக்க முடியும்.",
   "commonPermissionsNotNow": "இப்போது வேண்டாம்",
   "commonPermissionsContinue": "தொடரவும்",
+  "commonPermissionsTurnOn": "இயக்கு",
   "commonPhotoTakePhoto": "புகைப்படம் எடுக்கவும்",
   "commonPhotoChooseFromGallery": "கேலரியிலிருந்து தேர்ந்தெடுக்கவும்",
   "commonPhotoUnusable": "அந்தப் புகைப்படத்தைப் பயன்படுத்த முடியவில்லை. வேறொன்றை முயற்சிக்கவும்.",
@@ -774,5 +775,11 @@
   "authProfileSettingsHeading": "பயன்பாட்டு அமைப்புகள்",
   "authProfileSignOutTitle": "AgriLink-இலிருந்து வெளியேறவா?",
   "authProfileSignOutMessage": "மீண்டும் உள்நுழைய உங்கள் மின்னஞ்சலும் கடவுச்சொல்லும் தேவைப்படும்.",
-  "authProfileSecurityAutoLocked": "5 நிமிடங்கள் மாற்றம் இல்லாததால் திருத்துதல் மீண்டும் பூட்டப்பட்டது."
+  "authProfileSecurityAutoLocked": "5 நிமிடங்கள் மாற்றம் இல்லாததால் திருத்துதல் மீண்டும் பூட்டப்பட்டது.",
+  "ordersNotificationsNewOne": "உங்களுக்கு ஒரு புதிய அறிவிப்பு உள்ளது",
+  "ordersNotificationsNewMany": "உங்களுக்கு {count} புதிய அறிவிப்புகள் உள்ளன",
+  "ordersNotificationsChannelName": "AgriLink புதுப்பிப்புகள்",
+  "ordersNotificationsChannelDescription": "உங்கள் ஆர்டர்கள், கோரிக்கைகள், பயிர் சிக்கல்கள் மற்றும் கணக்கு பற்றிய செய்திகள்.",
+  "ordersNotificationsView": "காண்க",
+  "ordersNotificationsUnread": "படிக்காதது"
 }

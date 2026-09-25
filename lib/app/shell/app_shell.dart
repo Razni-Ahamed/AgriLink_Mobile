@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/session/session_controller.dart';
+import '../../features/notifications/application/notification_permission.dart';
 import '../../l10n/l10n.dart';
 import '../router/app_routes.dart';
 import '../theme/app_colors.dart';
@@ -10,7 +13,7 @@ import 'nav_config.dart';
 
 /// Wraps every signed-in page with the role's bottom navigation bar. Pages draw their own
 /// app bar (`AgriLinkAppBar`), so a detail page can have a back button and its own title.
-class AppShell extends ConsumerWidget {
+class AppShell extends ConsumerStatefulWidget {
   const AppShell({super.key, required this.location, required this.child});
 
   /// The current path, to highlight the right tab.
@@ -18,7 +21,34 @@ class AppShell extends ConsumerWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AppShell> createState() => _AppShellState();
+}
+
+class _AppShellState extends ConsumerState<AppShell> {
+  Timer? _permissionTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    // Once the user has reached their home, and it has had a moment to load, ask (once ever)
+    // whether notification pop-ups may be shown.
+    _permissionTimer = Timer(const Duration(seconds: 2), () {
+      if (mounted) {
+        unawaited(askForNotificationPermissionOnce(context, ref));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _permissionTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final child = widget.child;
+    final location = widget.location;
     final role = ref.watch(sessionControllerProvider.select((s) => s.role));
     if (role == null) {
       return child; // Signing out: the router is about to leave the shell.

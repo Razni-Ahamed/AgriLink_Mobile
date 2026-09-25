@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/session/role.dart';
 import '../../core/session/session_controller.dart';
 import '../../features/auth/application/current_user.dart';
+import '../../features/notifications/application/unread_count.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/widgets/user_avatar.dart';
 import '../router/app_routes.dart';
@@ -45,16 +46,22 @@ class AgriLinkAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-/// The bell in the app bar. Opens the notifications list.
-class NotificationBell extends StatelessWidget {
+/// The bell in the app bar, with the number of unread notifications. Opens the list.
+class NotificationBell extends ConsumerWidget {
   const NotificationBell({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final unread = ref.watch(unreadCountProvider);
     return IconButton(
       key: const Key('notification-bell'),
-      tooltip: context.l10n.commonNavNotifications,
-      icon: const Icon(Icons.notifications_outlined),
+      tooltip: unread > 0 ? l10n.commonNavUnreadNotifications(unread) : l10n.commonNavNotifications,
+      icon: Badge(
+        isLabelVisible: unread > 0,
+        label: Text(unread > 99 ? '99+' : '$unread'),
+        child: Icon(unread > 0 ? Icons.notifications : Icons.notifications_outlined),
+      ),
       onPressed: () => context.go(AppRoutes.notifications),
     );
   }

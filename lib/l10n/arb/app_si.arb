@@ -761,6 +761,7 @@
   "commonPermissionsNotificationsRationale": "ඔබගේ ඇණවුම්, ඉල්ලීම්, බෝග ගැටලු හෝ ගිණුම ගැන පුවතක් ඇති විට AgriLink හට ඔබට දැනුම් දිය හැක.",
   "commonPermissionsNotNow": "දැන් නොවේ",
   "commonPermissionsContinue": "ඉදිරියට",
+  "commonPermissionsTurnOn": "සක්‍රිය කරන්න",
   "commonPhotoTakePhoto": "ඡායාරූපයක් ගන්න",
   "commonPhotoChooseFromGallery": "ගැලරියෙන් තෝරන්න",
   "commonPhotoUnusable": "එම ඡායාරූපය භාවිත කළ නොහැකි විය. කරුණාකර වෙනත් එකක් උත්සාහ කරන්න.",
@@ -774,5 +775,11 @@
   "authProfileSettingsHeading": "යෙදුම් සැකසීම්",
   "authProfileSignOutTitle": "AgriLink වෙතින් ඉවත් වන්නද?",
   "authProfileSignOutMessage": "නැවත පිවිසීමට ඔබට ඔබගේ විද්‍යුත් තැපෑල සහ මුරපදය අවශ්‍ය වේ.",
-  "authProfileSecurityAutoLocked": "වෙනස් කිරීම් නොමැතිව මිනිත්තු 5කට පසු සංස්කරණය නැවත අගුළු දමන ලදී."
+  "authProfileSecurityAutoLocked": "වෙනස් කිරීම් නොමැතිව මිනිත්තු 5කට පසු සංස්කරණය නැවත අගුළු දමන ලදී.",
+  "ordersNotificationsNewOne": "ඔබට නව දැනුම්දීමක් ඇත",
+  "ordersNotificationsNewMany": "ඔබට නව දැනුම්දීම් {count}ක් ඇත",
+  "ordersNotificationsChannelName": "AgriLink යාවත්කාලීන",
+  "ordersNotificationsChannelDescription": "ඔබගේ ඇණවුම්, ඉල්ලීම්, බෝග ගැටලු සහ ගිණුම පිළිබඳ පුවත්.",
+  "ordersNotificationsView": "බලන්න",
+  "ordersNotificationsUnread": "නොකියවූ"
 }

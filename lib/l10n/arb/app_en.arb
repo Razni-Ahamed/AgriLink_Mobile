@@ -3448,6 +3448,10 @@
   "@commonPermissionsContinue": {
     "description": "Mobile-only key: common.permissions.continue"
   },
+  "commonPermissionsTurnOn": "Turn on",
+  "@commonPermissionsTurnOn": {
+    "description": "Mobile-only key: common.permissions.turnOn"
+  },
   "commonPhotoTakePhoto": "Take a photo",
   "@commonPhotoTakePhoto": {
     "description": "Mobile-only key: common.photo.takePhoto"
@@ -3508,5 +3512,34 @@
   "authProfileSecurityAutoLocked": "Editing was locked again after 5 minutes without changes.",
   "@authProfileSecurityAutoLocked": {
     "description": "Mobile-only key: auth.profile.security.autoLocked"
+  },
+  "ordersNotificationsNewOne": "You have a new notification",
+  "@ordersNotificationsNewOne": {
+    "description": "Mobile-only key: orders.notifications.newOne"
+  },
+  "ordersNotificationsNewMany": "You have {count} new notifications",
+  "@ordersNotificationsNewMany": {
+    "description": "Mobile-only key: orders.notifications.newMany",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersNotificationsChannelName": "AgriLink updates",
+  "@ordersNotificationsChannelName": {
+    "description": "Mobile-only key: orders.notifications.channelName"
+  },
+  "ordersNotificationsChannelDescription": "News about your orders, requests, crop issues and account.",
+  "@ordersNotificationsChannelDescription": {
+    "description": "Mobile-only key: orders.notifications.channelDescription"
+  },
+  "ordersNotificationsView": "View",
+  "@ordersNotificationsView": {
+    "description": "Mobile-only key: orders.notifications.view"
+  },
+  "ordersNotificationsUnread": "Unread",
+  "@ordersNotificationsUnread": {
+    "description": "Mobile-only key: orders.notifications.unread"
   }
 }

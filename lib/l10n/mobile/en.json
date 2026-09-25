@@ -35,7 +35,8 @@
       "notificationsTitle": "Turn on notifications",
       "notificationsRationale": "AgriLink can let you know when there is news about your orders, requests, crop issues or account.",
       "notNow": "Not now",
-      "continue": "Continue"
+      "continue": "Continue",
+      "turnOn": "Turn on"
     },
     "photo": {
       "takePhoto": "Take a photo",
@@ -62,6 +63,16 @@
       "security": {
         "autoLocked": "Editing was locked again after 5 minutes without changes."
       }
+    }
+  },
+  "orders": {
+    "notifications": {
+      "newOne": "You have a new notification",
+      "newMany": "You have {{count}} new notifications",
+      "channelName": "AgriLink updates",
+      "channelDescription": "News about your orders, requests, crop issues and account.",
+      "view": "View",
+      "unread": "Unread"
     }
   }
 }

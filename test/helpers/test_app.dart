@@ -7,6 +7,8 @@ import 'package:agrilink_mobile/core/session/session.dart';
 import 'package:agrilink_mobile/core/session/session_controller.dart';
 import 'package:agrilink_mobile/core/session/session_storage.dart';
 import 'package:agrilink_mobile/core/storage/preferences.dart';
+import 'package:agrilink_mobile/features/notifications/application/notification_presenter.dart';
+import 'package:agrilink_mobile/shared/permissions/permissions.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fake_api.dart';
+import 'fakes.dart';
 
 /// A JWT-shaped token expiring at [expiresAt] (8 hours from now by default). Unsigned: the app
 /// never checks signatures, only the expiry.
@@ -48,11 +51,13 @@ Map<String, Object?> profileJson(Role role, {String name = 'Kamal Perera'}) => {
 
 /// The running test app: the fake API, the stored session and the provider container.
 class TestApp {
-  TestApp(this.api, this.storage, this.tester);
+  TestApp(this.api, this.storage, this.tester, this.permissions, this.presenter);
 
   final FakeApi api;
   final InMemorySessionStorage storage;
   final WidgetTester tester;
+  final FakePermissions permissions;
+  final FakePresenter presenter;
 
   ProviderContainer get container =>
       ProviderScope.containerOf(tester.element(find.byType(AgriLinkApp)));
@@ -69,11 +74,21 @@ Future<TestApp> pumpAgriLink(
   String language = 'en',
   List<Override> overrides = const [],
   Size screen = const Size(390, 844),
+  FakePermissions? permissions,
+  FakePresenter? presenter,
+  Map<String, Object> preferences = const {},
 }) async {
   final fake = api ?? FakeApi();
+  final fakePermissions = permissions ?? FakePermissions();
+  final fakePresenter = presenter ?? FakePresenter();
   final storage = InMemorySessionStorage(session);
-  SharedPreferences.setMockInitialValues({PrefKeys.locale: language});
-  final preferences = await SharedPreferences.getInstance();
+  SharedPreferences.setMockInitialValues({
+    PrefKeys.locale: language,
+    // Tests of the notification prompt clear this.
+    PrefKeys.notificationPermissionAsked: true,
+    ...preferences,
+  });
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   tester.view.physicalSize = screen * 3;
   tester.view.devicePixelRatio = 3;
@@ -83,8 +98,10 @@ Future<TestApp> pumpAgriLink(
     ProviderScope(
       retry: (_, _) => null,
       overrides: [
-        sharedPreferencesProvider.overrideWithValue(preferences),
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
         sessionStorageProvider.overrideWithValue(storage),
+        permissionServiceProvider.overrideWithValue(fakePermissions),
+        notificationPresenterProvider.overrideWithValue(fakePresenter),
         apiClientProvider.overrideWith(
           (ref) => fakeApiClient(
             fake,
@@ -99,7 +116,7 @@ Future<TestApp> pumpAgriLink(
     ),
   );
   await tester.pumpAndSettle();
-  return TestApp(fake, storage, tester);
+  return TestApp(fake, storage, tester, fakePermissions, fakePresenter);
 }
 
 extension FormHelpers on WidgetTester {

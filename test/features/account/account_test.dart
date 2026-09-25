@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/fake_api.dart';
+import '../../helpers/fakes.dart';
 import '../../helpers/test_app.dart';
 
 class FakePhotoPicker implements PhotoPicker {
@@ -29,29 +30,6 @@ class FakePhotoPicker implements PhotoPicker {
         0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82,
       ]),
     );
-  }
-}
-
-class FakePermissions implements PermissionService {
-  FakePermissions(this.result);
-
-  PermissionResult result;
-  int requests = 0;
-  int settingsOpened = 0;
-
-  @override
-  Future<PermissionResult> status(AppPermission permission) async => result;
-
-  @override
-  Future<PermissionResult> request(AppPermission permission) async {
-    requests++;
-    return result;
-  }
-
-  @override
-  Future<bool> openSettings() async {
-    settingsOpened++;
-    return true;
   }
 }
 
@@ -75,7 +53,7 @@ void main() {
   setUp(() {
     api = FakeApi();
     photos = FakePhotoPicker();
-    permissions = FakePermissions(PermissionResult.granted);
+    permissions = FakePermissions();
   });
 
   Future<TestApp> openProfile(
@@ -88,10 +66,8 @@ void main() {
       tester,
       api: api,
       session: Session(token: fakeJwt(), role: role),
-      overrides: [
-        photoPickerProvider.overrideWithValue(photos),
-        permissionServiceProvider.overrideWithValue(permissions),
-      ],
+      permissions: permissions,
+      overrides: [photoPickerProvider.overrideWithValue(photos)],
     );
     await tester.tap(find.byKey(const Key('avatar-button')));
     await tester.pumpAndSettle();
@@ -239,7 +215,7 @@ void main() {
       expect(find.text('Allow camera access'), findsOneWidget);
       await tester.tap(find.text('Not now'));
       await tester.pumpAndSettle();
-      expect(permissions.requests, 0);
+      expect(permissions.requested, isEmpty);
       expect(photos.picked, isEmpty);
     });
   });

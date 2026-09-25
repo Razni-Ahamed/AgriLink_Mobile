@@ -709,6 +709,7 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'common.permissions.notificationsRationale' => l10n.commonPermissionsNotificationsRationale,
     'common.permissions.notNow' => l10n.commonPermissionsNotNow,
     'common.permissions.continue' => l10n.commonPermissionsContinue,
+    'common.permissions.turnOn' => l10n.commonPermissionsTurnOn,
     'common.photo.takePhoto' => l10n.commonPhotoTakePhoto,
     'common.photo.chooseFromGallery' => l10n.commonPhotoChooseFromGallery,
     'common.photo.unusable' => l10n.commonPhotoUnusable,
@@ -722,6 +723,11 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'auth.profile.signOutTitle' => l10n.authProfileSignOutTitle,
     'auth.profile.signOutMessage' => l10n.authProfileSignOutMessage,
     'auth.profile.security.autoLocked' => l10n.authProfileSecurityAutoLocked,
+    'orders.notifications.newOne' => l10n.ordersNotificationsNewOne,
+    'orders.notifications.channelName' => l10n.ordersNotificationsChannelName,
+    'orders.notifications.channelDescription' => l10n.ordersNotificationsChannelDescription,
+    'orders.notifications.view' => l10n.ordersNotificationsView,
+    'orders.notifications.unread' => l10n.ordersNotificationsUnread,
     _ => null,
   };
 }
