@@ -232,6 +232,7 @@ class _Details extends ConsumerWidget {
 
     return Card(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           for (var i = 0; i < items.length; i++) ...[
             if (i > 0) const Divider(indent: Gaps.md, endIndent: Gaps.md),
