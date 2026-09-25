@@ -74,5 +74,31 @@
       "view": "View",
       "unread": "Unread"
     }
+  },
+  "farms": {
+    "list": {
+      "created": "Farm created."
+    },
+    "detail": {
+      "updated": "Farm updated.",
+      "deleted": "Farm deleted.",
+      "fieldAdded": "Field added."
+    },
+    "field": {
+      "cropPlanted": "Crop planted.",
+      "noCropsYet": "No crops planted in this field yet. Plant one to get started."
+    },
+    "form": {
+      "saveError": "We couldn't save your changes. Please try again.",
+      "areaTooLarge": "Area is too large",
+      "quantityTooLarge": "Quantity is too large",
+      "selectCropType": "Select a crop type"
+    },
+    "crop": {
+      "changeStatusTitle": "Change status?",
+      "changeStatusMessage": "Change this crop from {{from}} to {{to}}?",
+      "statusUpdated": "Status updated.",
+      "statusError": "We couldn't update the status. Please try again."
+    }
   }
 }

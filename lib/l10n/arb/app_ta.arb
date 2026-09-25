@@ -781,5 +781,19 @@
   "ordersNotificationsChannelName": "AgriLink புதுப்பிப்புகள்",
   "ordersNotificationsChannelDescription": "உங்கள் ஆர்டர்கள், கோரிக்கைகள், பயிர் சிக்கல்கள் மற்றும் கணக்கு பற்றிய செய்திகள்.",
   "ordersNotificationsView": "காண்க",
-  "ordersNotificationsUnread": "படிக்காதது"
+  "ordersNotificationsUnread": "படிக்காதது",
+  "farmsListCreated": "பண்ணை உருவாக்கப்பட்டது.",
+  "farmsDetailUpdated": "பண்ணை புதுப்பிக்கப்பட்டது.",
+  "farmsDetailDeleted": "பண்ணை நீக்கப்பட்டது.",
+  "farmsDetailFieldAdded": "வயல் சேர்க்கப்பட்டது.",
+  "farmsFieldCropPlanted": "பயிர் நடப்பட்டது.",
+  "farmsFieldNoCropsYet": "இந்த வயலில் இன்னும் பயிர்கள் நடப்படவில்லை. தொடங்க ஒன்றை நடவும்.",
+  "farmsFormSaveError": "உங்கள் மாற்றங்களைச் சேமிக்க முடியவில்லை. மீண்டும் முயலவும்.",
+  "farmsFormAreaTooLarge": "பரப்பளவு மிகப் பெரியது",
+  "farmsFormQuantityTooLarge": "அளவு மிகப் பெரியது",
+  "farmsFormSelectCropType": "பயிர் வகையைத் தேர்ந்தெடுக்கவும்",
+  "farmsCropChangeStatusTitle": "நிலையை மாற்றவா?",
+  "farmsCropChangeStatusMessage": "இந்தப் பயிரை {from} நிலையிலிருந்து {to} நிலைக்கு மாற்றவா?",
+  "farmsCropStatusUpdated": "நிலை புதுப்பிக்கப்பட்டது.",
+  "farmsCropStatusError": "நிலையைப் புதுப்பிக்க முடியவில்லை. மீண்டும் முயலவும்."
 }

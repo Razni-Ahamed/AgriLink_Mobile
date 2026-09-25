@@ -781,5 +781,19 @@
   "ordersNotificationsChannelName": "AgriLink යාවත්කාලීන",
   "ordersNotificationsChannelDescription": "ඔබගේ ඇණවුම්, ඉල්ලීම්, බෝග ගැටලු සහ ගිණුම පිළිබඳ පුවත්.",
   "ordersNotificationsView": "බලන්න",
-  "ordersNotificationsUnread": "නොකියවූ"
+  "ordersNotificationsUnread": "නොකියවූ",
+  "farmsListCreated": "ගොවිපොළ සාදන ලදී.",
+  "farmsDetailUpdated": "ගොවිපොළ යාවත්කාලීන කරන ලදී.",
+  "farmsDetailDeleted": "ගොවිපොළ මකා දමන ලදී.",
+  "farmsDetailFieldAdded": "කුඹුර එක් කරන ලදී.",
+  "farmsFieldCropPlanted": "බෝගය වගා කරන ලදී.",
+  "farmsFieldNoCropsYet": "මෙම කුඹුරේ තවම බෝග වගා කර නැත. ආරම්භ කිරීමට එකක් වගා කරන්න.",
+  "farmsFormSaveError": "ඔබේ වෙනස්කම් සුරැකීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න.",
+  "farmsFormAreaTooLarge": "වර්ග ප්‍රමාණය ඉතා විශාලයි",
+  "farmsFormQuantityTooLarge": "ප්‍රමාණය ඉතා විශාලයි",
+  "farmsFormSelectCropType": "බෝග වර්ගයක් තෝරන්න",
+  "farmsCropChangeStatusTitle": "තත්ත්වය වෙනස් කරන්නද?",
+  "farmsCropChangeStatusMessage": "මෙම බෝගය {from} සිට {to} බවට වෙනස් කරන්නද?",
+  "farmsCropStatusUpdated": "තත්ත්වය යාවත්කාලීන කරන ලදී.",
+  "farmsCropStatusError": "තත්ත්වය යාවත්කාලීන කිරීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න."
 }
