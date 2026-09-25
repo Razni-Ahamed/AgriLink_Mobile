@@ -691,6 +691,10 @@ Two feature folders, split the usual way (`data/`, `application/`, `presentation
 |---|---|---|---|
 | Officer dashboard | Officer | `/officer/dashboard` | `officer/presentation/officer_dashboard_screen.dart` |
 | Approvals (Registrations and Profile changes tabs) | Officer, Admin | `/registrations/pending` | `officer/presentation/approvals_screen.dart`, `widgets/registration_card.dart`, `widgets/change_request_card.dart` |
+| Pending Issues | Officer, Admin | `/issues/pending` | `officer/presentation/review_lists.dart`, `widgets/review_issue_card.dart` |
+| My Reviews | Officer | `/issues/reviewed` | same |
+| All Issues | Admin | `/issues/all` | same |
+| Review an advisory | Officer, Admin | `<list>/:advisoryId` (e.g. `/issues/pending/21`) | `officer/presentation/review_screen.dart` |
 | Admin dashboard | Admin | `/admin` | `admin/presentation/admin_dashboard_screen.dart` |
 | Users, user detail, create user | Admin | `/admin/users`, `/admin/users/:userId`, `/admin/users/new` | `admin/presentation/users_screen.dart`, `user_detail_screen.dart`, `create_user_screen.dart`, `widgets/*_sheet.dart` |
 | Departments | Admin | `/admin/departments` | `admin/presentation/departments_screen.dart` |
@@ -711,13 +715,21 @@ The website shows the users list and the audit log as wide tables. On a phone th
 
 ### 18.3 Reviewing an advisory
 
-The review pieces reuse Phase 2's models (`CropIssue`, `Advisory`) from `features/issues/data/`. `officer/data/review_api.dart` adds the calls only an officer or admin can make: the pending, reviewed and all-issues lists, and approve and reject.
+The review pieces reuse Phase 2's models and widgets from `features/issues/` (`CropIssue`, `Advisory`, `AdvisoryView`, the badges). `officer/data/review_api.dart` adds the calls only an officer or admin can make: the pending, reviewed and all-issues lists, and approve and reject. (They live here rather than in `IssuesApi`, so nothing in `features/issues/` changes.)
 
-- `officer/application/review_rules.dart` holds the rules, mirroring `AdvisoriesController.Review` and the website's `ApproveRejectControls`. With no photo diagnosis nothing is required, not even a note. For a photo diagnosis, confirming needs a treatment when the farmer has had no advice yet (a draft), and correcting needs the right disease and a treatment.
-- `widgets/review_controls.dart` is the Approve and Reject controls. Both ask to confirm first.
-- `widgets/photo_diagnosis_panel.dart` and `widgets/agent_trace_panel.dart` show what only an officer receives. The trace starts closed and shows each step's values as labels, never raw JSON.
+The lists (Pending Issues, My Reviews, All Issues) share `ReviewIssueCard`; what its bottom line says depends on the list. Opening an issue goes to `ReviewScreen`, which stacks:
 
-The review screen puts these around Phase 2's read-only `AdvisoryView`, and the lists open it. This part is still being built, because it needs Phase 2's advisory widgets on `main`.
+1. `AdvisoryView` (Phase 2): what was reported, the photos with full-screen zoom, risk, confidence and the advice.
+2. `PhotoDiagnosisPanel`: the model's confidence, its version and why the diagnosis was held for an officer.
+3. `PreviousIssuesPanel`: other issues on the same crop. Each one with an advisory opens it.
+4. `AgentTracePanel`: how the AI reached its advice. It starts closed and shows each step's values as labels, never raw JSON.
+5. `ReviewControls` while the advisory can still be reviewed, or a "this can't be changed" note once it is decided.
+
+The rules for a decision are in `officer/application/review_rules.dart`, mirroring `AdvisoriesController.Review` and the website's `ApproveRejectControls`. With no photo diagnosis nothing is required, not even a note. For a photo diagnosis, confirming needs a treatment when the farmer has had no advice yet (a draft), and correcting needs the right disease and a treatment. Both decisions ask to confirm first.
+
+- **A decision goes back to the list and reloads it.** The list opens the review screen with `context.push` and refreshes when it answers `true`.
+- **If someone else decided first** the API answers 400 "Only advisories awaiting review can be reviewed." The screen loads the advisory again and, if it can no longer be reviewed, says so and shows the decision. Any other failure is shown as it is, and the officer keeps what they typed.
+- **The review screen has its own paths** under the list it came from (`/issues/pending/:advisoryId`, `/issues/reviewed/:advisoryId`, `/issues/all/:advisoryId`), each guarded by the list's roles. That way `features/farmer/farmer_routes.dart`, where `/advisories/:advisoryId` is registered for farmers, isn't touched.
 
 ### 18.4 Things that caught us out
 
