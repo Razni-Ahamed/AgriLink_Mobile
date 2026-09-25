@@ -5,6 +5,7 @@ import '../../app/shell/nav_config.dart';
 import '../../app/shell/placeholder_page.dart';
 import 'presentation/admin_dashboard_screen.dart';
 import 'presentation/create_user_screen.dart';
+import 'presentation/departments_screen.dart';
 import 'presentation/user_detail_screen.dart';
 import 'presentation/users_screen.dart';
 
@@ -30,11 +31,12 @@ List<RouteBase> adminRoutes(RouteGuard guard) => [
       ),
     ],
   ),
-  for (final destination in [
-    Destinations.allIssues,
-    Destinations.departments,
-    Destinations.auditLog,
-  ])
+  guard.route(
+    path: Destinations.departments.path,
+    roles: Destinations.departments.roles,
+    builder: (context, state) => const DepartmentsScreen(),
+  ),
+  for (final destination in [Destinations.allIssues, Destinations.auditLog])
     guard.route(
       path: destination.path,
       roles: destination.roles,
