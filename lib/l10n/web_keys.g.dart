@@ -734,6 +734,15 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'registrations.pending.approveConfirmTitle' => l10n.registrationsPendingApproveConfirmTitle,
     'registrations.pending.reasonRequired' => l10n.registrationsPendingReasonRequired,
     'registrations.pending.rejectHint' => l10n.registrationsPendingRejectHint,
+    'admin.users.searchHint' => l10n.adminUsersSearchHint,
+    'admin.users.filterAll' => l10n.adminUsersFilterAll,
+    'admin.users.noMatches' => l10n.adminUsersNoMatches,
+    'admin.users.detail.title' => l10n.adminUsersDetailTitle,
+    'admin.users.detail.notFound' => l10n.adminUsersDetailNotFound,
+    'admin.users.detail.adminCantDeactivate' => l10n.adminUsersDetailAdminCantDeactivate,
+    'admin.users.detail.cantChangeRole' => l10n.adminUsersDetailCantChangeRole,
+    'admin.users.detail.ownAccountPassword' => l10n.adminUsersDetailOwnAccountPassword,
+    'admin.users.detail.resetConfirmMessage' => l10n.adminUsersDetailResetConfirmMessage,
     _ => null,
   };
 }

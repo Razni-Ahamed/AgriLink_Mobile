@@ -93,5 +93,29 @@
       "reasonRequired": "කරුණාකර හේතුවක් සඳහන් කරන්න.",
       "rejectHint": "අයදුම්කරු පිවිසීමට උත්සාහ කරන විට මෙම හේතුව දකිනු ඇත."
     }
+  },
+  "admin": {
+    "users": {
+      "searchHint": "නම, ඊමේල් හෝ පරිශීලක නාමයෙන් සොයන්න",
+      "filterAll": "සියල්ල",
+      "showing": "පරිශීලකයින් {total} න් {shown} ක් පෙන්වයි",
+      "noMatches": "ඔබේ සෙවුමට හෝ පෙරහන්වලට ගැළපෙන පරිශීලකයින් නැත.",
+      "detail": {
+        "title": "පරිශීලක විස්තර",
+        "notFound": "මෙම පරිශීලකයා තවදුරටත් ලැයිස්තුවේ නැත.",
+        "joined": "එක් වූයේ {date}",
+        "deactivateConfirmTitle": "{name} අක්‍රිය කරන්නද?",
+        "deactivateConfirmMessage": "ඔබ ගිණුම නැවත සක්‍රිය කරන තුරු {name} ට පිවිසිය නොහැක.",
+        "activateConfirmTitle": "{name} සක්‍රිය කරන්නද?",
+        "activateConfirmMessage": "{name} ට නැවත පිවිසිය හැකි වේ.",
+        "adminCantDeactivate": "පරිපාලක ගිණුම් අක්‍රිය කළ නොහැක.",
+        "cantChangeRole": "මෙහි භූමිකාව වෙනස් කළ හැක්කේ නිලධාරී සහ ගැනුම්කරු ගිණුම්වලට පමණි.",
+        "ownAccountPassword": "මෙය ඔබේම ගිණුමයි. ඔබේ මුරපදය වෙනස් කිරීමට ඔබේ පැතිකඩේ ඇති මුරපදය වෙනස් කරන්න භාවිතා කරන්න.",
+        "resetConfirmTitle": "{name}ගේ මුරපදය යළි පිහිටුවන්නද?",
+        "resetConfirmMessage": "ඔවුන්ගේ වත්මන් මුරපදය වහාම ක්‍රියා නොකරයි.",
+        "roleConfirmTitle": "{name}ගේ භූමිකාව වෙනස් කරන්නද?",
+        "roleConfirmMessage": "{name} {role} බවට පත් වේ."
+      }
+    }
   }
 }

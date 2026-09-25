@@ -93,5 +93,29 @@
       "reasonRequired": "Please give a reason.",
       "rejectHint": "The applicant will see this reason when they try to sign in."
     }
+  },
+  "admin": {
+    "users": {
+      "searchHint": "Search by name, email or username",
+      "filterAll": "All",
+      "showing": "Showing {shown} of {total} users",
+      "noMatches": "No users match your search or filters.",
+      "detail": {
+        "title": "User details",
+        "notFound": "This user is no longer in the list.",
+        "joined": "Joined {date}",
+        "deactivateConfirmTitle": "Deactivate {name}?",
+        "deactivateConfirmMessage": "{name} won't be able to sign in until you activate the account again.",
+        "activateConfirmTitle": "Activate {name}?",
+        "activateConfirmMessage": "{name} will be able to sign in again.",
+        "adminCantDeactivate": "Admin accounts can't be deactivated.",
+        "cantChangeRole": "Only Officer and Buyer accounts can change role here.",
+        "ownAccountPassword": "This is your own account. To change your password, use Change password in your profile.",
+        "resetConfirmTitle": "Reset {name}'s password?",
+        "resetConfirmMessage": "Their current password stops working straight away.",
+        "roleConfirmTitle": "Change {name}'s role?",
+        "roleConfirmMessage": "{name} will become a {role}."
+      }
+    }
   }
 }

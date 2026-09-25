@@ -3595,5 +3595,128 @@
   "registrationsPendingRejectHint": "The applicant will see this reason when they try to sign in.",
   "@registrationsPendingRejectHint": {
     "description": "Mobile-only key: registrations.pending.rejectHint"
+  },
+  "adminUsersSearchHint": "Search by name, email or username",
+  "@adminUsersSearchHint": {
+    "description": "Mobile-only key: admin.users.searchHint"
+  },
+  "adminUsersFilterAll": "All",
+  "@adminUsersFilterAll": {
+    "description": "Mobile-only key: admin.users.filterAll"
+  },
+  "adminUsersShowing": "Showing {shown} of {total} users",
+  "@adminUsersShowing": {
+    "description": "Mobile-only key: admin.users.showing",
+    "placeholders": {
+      "shown": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersNoMatches": "No users match your search or filters.",
+  "@adminUsersNoMatches": {
+    "description": "Mobile-only key: admin.users.noMatches"
+  },
+  "adminUsersDetailTitle": "User details",
+  "@adminUsersDetailTitle": {
+    "description": "Mobile-only key: admin.users.detail.title"
+  },
+  "adminUsersDetailNotFound": "This user is no longer in the list.",
+  "@adminUsersDetailNotFound": {
+    "description": "Mobile-only key: admin.users.detail.notFound"
+  },
+  "adminUsersDetailJoined": "Joined {date}",
+  "@adminUsersDetailJoined": {
+    "description": "Mobile-only key: admin.users.detail.joined",
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailDeactivateConfirmTitle": "Deactivate {name}?",
+  "@adminUsersDetailDeactivateConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.deactivateConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailDeactivateConfirmMessage": "{name} won't be able to sign in until you activate the account again.",
+  "@adminUsersDetailDeactivateConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.deactivateConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailActivateConfirmTitle": "Activate {name}?",
+  "@adminUsersDetailActivateConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.activateConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailActivateConfirmMessage": "{name} will be able to sign in again.",
+  "@adminUsersDetailActivateConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.activateConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailAdminCantDeactivate": "Admin accounts can't be deactivated.",
+  "@adminUsersDetailAdminCantDeactivate": {
+    "description": "Mobile-only key: admin.users.detail.adminCantDeactivate"
+  },
+  "adminUsersDetailCantChangeRole": "Only Officer and Buyer accounts can change role here.",
+  "@adminUsersDetailCantChangeRole": {
+    "description": "Mobile-only key: admin.users.detail.cantChangeRole"
+  },
+  "adminUsersDetailOwnAccountPassword": "This is your own account. To change your password, use Change password in your profile.",
+  "@adminUsersDetailOwnAccountPassword": {
+    "description": "Mobile-only key: admin.users.detail.ownAccountPassword"
+  },
+  "adminUsersDetailResetConfirmTitle": "Reset {name}'s password?",
+  "@adminUsersDetailResetConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.resetConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailResetConfirmMessage": "Their current password stops working straight away.",
+  "@adminUsersDetailResetConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.resetConfirmMessage"
+  },
+  "adminUsersDetailRoleConfirmTitle": "Change {name}'s role?",
+  "@adminUsersDetailRoleConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.roleConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailRoleConfirmMessage": "{name} will become a {role}.",
+  "@adminUsersDetailRoleConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.roleConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "role": {
+        "type": "Object"
+      }
+    }
   }
 }

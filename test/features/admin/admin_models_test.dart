@@ -2,25 +2,7 @@ import 'package:agrilink_mobile/core/session/role.dart';
 import 'package:agrilink_mobile/features/admin/data/admin_models.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Map<String, Object?> adminUserJson({
-  int id = 2,
-  String name = 'Kamal Perera',
-  String role = 'Officer',
-  bool isActive = true,
-  String? district = 'Kandy',
-  String? department = 'Agriculture',
-}) => {
-  'userId': id,
-  'fullName': name,
-  'email': 'user$id@example.lk',
-  'username': 'user$id',
-  'profilePhotoUrl': null,
-  'role': role,
-  'district': district,
-  'department': department,
-  'isActive': isActive,
-  'createdAt': '2026-05-01T09:00:00Z',
-};
+import 'admin_fixtures.dart';
 
 void main() {
   test('AdminMetrics reads every number, and the harvest volume as a decimal', () {
