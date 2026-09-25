@@ -4,6 +4,7 @@ import '../../app/router/route_guard.dart';
 import '../../app/shell/nav_config.dart';
 import '../../app/shell/placeholder_page.dart';
 import 'presentation/admin_dashboard_screen.dart';
+import 'presentation/user_detail_screen.dart';
 import 'presentation/users_screen.dart';
 
 /// Phase 4 (admin): the dashboard, users, departments, all issues and the audit log. Replace
@@ -18,6 +19,13 @@ List<RouteBase> adminRoutes(RouteGuard guard) => [
     path: Destinations.users.path,
     roles: Destinations.users.roles,
     builder: (context, state) => const UsersScreen(),
+    routes: [
+      GoRoute(
+        path: ':userId',
+        builder: (context, state) =>
+            UserDetailScreen(userId: int.tryParse(state.pathParameters['userId']!) ?? -1),
+      ),
+    ],
   ),
   for (final destination in [
     Destinations.allIssues,

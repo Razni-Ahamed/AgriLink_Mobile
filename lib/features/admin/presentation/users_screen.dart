@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../app/router/app_routes.dart';
 import '../../../app/shell/agrilink_app_bar.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_theme.dart';
@@ -211,7 +213,11 @@ class _List extends ConsumerWidget {
           ),
           const SizedBox(height: Gaps.sm),
           for (final user in shown) ...[
-            UserCard(key: ValueKey(user.userId), user: user),
+            UserCard(
+              key: ValueKey(user.userId),
+              user: user,
+              onTap: () => context.go('${AppRoutes.adminUsers}/${user.userId}'),
+            ),
             const SizedBox(height: 12),
           ],
         ],
