@@ -25,6 +25,7 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 15. [Conventions](#15-conventions)
 16. [Known issues](#16-known-issues)
 17. [Issues and advisories (shared by the farmer and officer screens)](#17-issues-and-advisories-shared-by-the-farmer-and-officer-screens)
+18. [Officer and admin (Phase 4)](#18-officer-and-admin-phase-4)
 
 ---
 
@@ -420,6 +421,7 @@ All in `lib/shared/`. Use these rather than writing your own.
 | `showConfirmDialog` | `widgets/dialogs.dart` | "Are you sure?" (`destructive: true` for red) |
 | `showToast` | `widgets/dialogs.dart` | a short message at the bottom (`ToastTone.success` / `.error`) |
 | `StatusBadge`, `StatusBadge.status(kind, value)` | `widgets/status_badge.dart` | "Pending", "Approved"… translated and coloured |
+| `MetricCard`, `MetricGrid` | `widgets/metric_card.dart` | a number with a label and icon, two to a row (the officer and admin dashboards) |
 | `UserAvatar` | `widgets/user_avatar.dart` | a person's photo, or their role's default picture |
 | `CropIcon`, `cropCatalog`, `cropCatalogEntry`, `cropCatalogOrder`, `cropGroupLabel` | `widgets/crop_icon.dart` | the website's crop icons, groups and order; unknown crops get a generic icon |
 | `LanguageSwitcher`, `ThemeModeButton` | `widgets/` | language and theme choices |
@@ -679,3 +681,59 @@ AdvisoryView(advisory: advisory, audience: AdvisoryAudience.reviewer)
 | `/issues/mine/:issueId` | `IssueDetailScreen` |
 | `/advisories/:advisoryId` | `AdvisoryScreen` |
 
+## 18. Officer and admin (Phase 4)
+
+Two feature folders, split the usual way (`data/`, `application/`, `presentation/`). Every screen loads through providers that watch the session ([§3](#3-state-management-riverpod)), uses the shared list and state widgets, and takes its text from the website's translations, plus `officer…`, `registrations…` and `admin…` keys of its own ([§10](#10-translations)).
+
+### 18.1 What is where
+
+| Screen | Roles | Path | Files |
+|---|---|---|---|
+| Officer dashboard | Officer | `/officer/dashboard` | `officer/presentation/officer_dashboard_screen.dart` |
+| Approvals (Registrations and Profile changes tabs) | Officer, Admin | `/registrations/pending` | `officer/presentation/approvals_screen.dart`, `widgets/registration_card.dart`, `widgets/change_request_card.dart` |
+| Pending Issues | Officer, Admin | `/issues/pending` | `officer/presentation/review_lists.dart`, `widgets/review_issue_card.dart` |
+| My Reviews | Officer | `/issues/reviewed` | same |
+| All Issues | Admin | `/issues/all` | same |
+| Review an advisory | Officer, Admin | `<list>/:advisoryId` (e.g. `/issues/pending/21`) | `officer/presentation/review_screen.dart` |
+| Admin dashboard | Admin | `/admin` | `admin/presentation/admin_dashboard_screen.dart` |
+| Users, user detail, create user | Admin | `/admin/users`, `/admin/users/:userId`, `/admin/users/new` | `admin/presentation/users_screen.dart`, `user_detail_screen.dart`, `create_user_screen.dart`, `widgets/*_sheet.dart` |
+| Departments | Admin | `/admin/departments` | `admin/presentation/departments_screen.dart` |
+| Audit log | Admin | `/admin/audit-log` | `admin/presentation/audit_log_screen.dart` |
+
+Approvals is one screen for both roles. The server decides what each role receives: an officer only gets Farmer applications and profile changes from their own district, and an admin gets everyone's, including Buyer applications. The screen only words its note above the list differently.
+
+The website shows the users list and the audit log as wide tables. On a phone they are cards: a user opens a detail page, and an audit entry expands to show its before and after values.
+
+### 18.2 Rules worth knowing
+
+- **Approving a profile change asks for the approver's own password.** The API requires it (`currentPassword`), like every security action. The password is only sent, never stored or logged.
+- **Every action that changes who can sign in, or how, asks first and names the user:** approve or reject an application, activate or deactivate, change role, reset password, delete a department.
+- **Guard rails are shown, not hidden.** An admin account can't be deactivated, and you can't reset your own password here (that is Change password in the profile). The action stays on the page, greyed out, with the reason written under it.
+- **The users list is one plain response, not paged.** Search (name, email, username) and the role and status filters run on the device (`admin/application/user_filter.dart`).
+- **A department is required for an Officer, a business name for a Buyer**, in both Create user and Change role. The dropdown only validates while there are departments to pick from, so the forms also check it themselves.
+- **Never log or keep a password** an admin types (create user, reset password). The fields are cleared once the request has been sent.
+
+### 18.3 Reviewing an advisory
+
+The review pieces reuse Phase 2's models and widgets from `features/issues/` (`CropIssue`, `Advisory`, `AdvisoryView`, the badges). `officer/data/review_api.dart` adds the calls only an officer or admin can make: the pending, reviewed and all-issues lists, and approve and reject. (They live here rather than in `IssuesApi`, so nothing in `features/issues/` changes.)
+
+The lists (Pending Issues, My Reviews, All Issues) share `ReviewIssueCard`; what its bottom line says depends on the list. Opening an issue goes to `ReviewScreen`, which stacks:
+
+1. `AdvisoryView` (Phase 2): what was reported, the photos with full-screen zoom, risk, confidence and the advice.
+2. `PhotoDiagnosisPanel`: the model's confidence, its version and why the diagnosis was held for an officer.
+3. `PreviousIssuesPanel`: other issues on the same crop. Each one with an advisory opens it.
+4. `AgentTracePanel`: how the AI reached its advice. It starts closed and shows each step's values as labels, never raw JSON.
+5. `ReviewControls` while the advisory can still be reviewed, or a "this can't be changed" note once it is decided.
+
+The rules for a decision are in `officer/application/review_rules.dart`, mirroring `AdvisoriesController.Review` and the website's `ApproveRejectControls`. With no photo diagnosis nothing is required, not even a note. For a photo diagnosis, confirming needs a treatment when the farmer has had no advice yet (a draft), and correcting needs the right disease and a treatment. Both decisions ask to confirm first.
+
+- **A decision goes back to the list and reloads it.** The list opens the review screen with `context.push` and refreshes when it answers `true`.
+- **If someone else decided first** the API answers 400 "Only advisories awaiting review can be reviewed." The screen loads the advisory again and, if it can no longer be reviewed, says so and shows the decision. Any other failure is shown as it is, and the officer keeps what they typed.
+- **The review screen has its own paths** under the list it came from (`/issues/pending/:advisoryId`, `/issues/reviewed/:advisoryId`, `/issues/all/:advisoryId`), each guarded by the list's roles. That way `features/farmer/farmer_routes.dart`, where `/advisories/:advisoryId` is registered for farmers, isn't touched.
+
+### 18.4 Things that caught us out
+
+- **Don't force a server error onto a form field and then validate the form again.** A field with `serverError` (a forced error) keeps the whole form invalid until it is rebuilt without it, so the submit button silently does nothing. Show server answers in an `ErrorBanner`, or clear the error when the field changes.
+- **A screen under another page doesn't reload.** Riverpod pauses providers that only a covered page watches. After creating a user, the users list underneath reloads when you go back to it, not straight away. Invalidate the provider, as the screens do, and it is fresh on return.
+- **Put a `Material`, not a coloured `DecoratedBox`, behind an `ExpansionTile` or `ListTile`.** Otherwise the tile's ink is hidden and Flutter reports an error.
+- **Dates in tests follow the time zone.** Use mid-day times in fixtures, or don't assert the time of day.
