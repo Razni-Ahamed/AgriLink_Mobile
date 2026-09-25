@@ -2,7 +2,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/router/route_guard.dart';
 import '../../app/shell/nav_config.dart';
-import '../../app/shell/placeholder_page.dart';
+import '../officer/officer_routes.dart' show reviewRoute;
+import '../officer/presentation/review_lists.dart' show AllIssuesScreen;
 import 'presentation/admin_dashboard_screen.dart';
 import 'presentation/audit_log_screen.dart';
 import 'presentation/create_user_screen.dart';
@@ -42,10 +43,10 @@ List<RouteBase> adminRoutes(RouteGuard guard) => [
     roles: Destinations.auditLog.roles,
     builder: (context, state) => const AuditLogScreen(),
   ),
-  for (final destination in [Destinations.allIssues])
-    guard.route(
-      path: destination.path,
-      roles: destination.roles,
-      builder: (context, state) => PlaceholderPage(destination: destination),
-    ),
+  guard.route(
+    path: Destinations.allIssues.path,
+    roles: Destinations.allIssues.roles,
+    builder: (context, state) => const AllIssuesScreen(),
+    routes: [reviewRoute(Destinations.allIssues.path)],
+  ),
 ];
