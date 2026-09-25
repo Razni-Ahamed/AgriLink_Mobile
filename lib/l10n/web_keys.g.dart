@@ -729,6 +729,11 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'orders.notifications.view' => l10n.ordersNotificationsView,
     'orders.notifications.unread' => l10n.ordersNotificationsUnread,
     'officer.dashboard.reviewedTotal' => l10n.officerDashboardReviewedTotal,
+    'registrations.pending.scopedToAll' => l10n.registrationsPendingScopedToAll,
+    'registrations.pending.changes.scopedToAll' => l10n.registrationsPendingChangesScopedToAll,
+    'registrations.pending.approveConfirmTitle' => l10n.registrationsPendingApproveConfirmTitle,
+    'registrations.pending.reasonRequired' => l10n.registrationsPendingReasonRequired,
+    'registrations.pending.rejectHint' => l10n.registrationsPendingRejectHint,
     _ => null,
   };
 }

@@ -79,5 +79,19 @@
     "dashboard": {
       "reviewedTotal": "Reviewed (all-time)"
     }
+  },
+  "registrations": {
+    "pending": {
+      "scopedToAll": "Showing Farmer and Buyer applications from every district",
+      "changes": {
+        "scopedToAll": "Showing requests from every district"
+      },
+      "approveConfirmTitle": "Approve this application?",
+      "approveConfirmMessage": "{name} ({role}) will be able to sign in straight away.",
+      "approved": "{name} was approved.",
+      "rejected": "{name} was rejected.",
+      "reasonRequired": "Please give a reason.",
+      "rejectHint": "The applicant will see this reason when they try to sign in."
+    }
   }
 }

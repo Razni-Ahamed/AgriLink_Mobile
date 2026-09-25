@@ -79,5 +79,19 @@
     "dashboard": {
       "reviewedTotal": "සමාලෝචනය කළ (සම්පූර්ණ)"
     }
+  },
+  "registrations": {
+    "pending": {
+      "scopedToAll": "සෑම දිස්ත්‍රික්කයකම ගොවි සහ ගැනුම්කරු ඉල්ලුම්පත් පෙන්වයි",
+      "changes": {
+        "scopedToAll": "සෑම දිස්ත්‍රික්කයකම ඉල්ලීම් පෙන්වයි"
+      },
+      "approveConfirmTitle": "මෙම ඉල්ලුම්පත අනුමත කරන්නද?",
+      "approveConfirmMessage": "{name} ({role}) ට වහාම පිවිසිය හැකි වේ.",
+      "approved": "{name} අනුමත කරන ලදී.",
+      "rejected": "{name} ප්‍රතික්ෂේප කරන ලදී.",
+      "reasonRequired": "කරුණාකර හේතුවක් සඳහන් කරන්න.",
+      "rejectHint": "අයදුම්කරු පිවිසීමට උත්සාහ කරන විට මෙම හේතුව දකිනු ඇත."
+    }
   }
 }

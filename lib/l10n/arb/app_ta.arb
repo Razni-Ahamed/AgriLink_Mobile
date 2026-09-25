@@ -782,5 +782,13 @@
   "ordersNotificationsChannelDescription": "உங்கள் ஆர்டர்கள், கோரிக்கைகள், பயிர் சிக்கல்கள் மற்றும் கணக்கு பற்றிய செய்திகள்.",
   "ordersNotificationsView": "காண்க",
   "ordersNotificationsUnread": "படிக்காதது",
-  "officerDashboardReviewedTotal": "மதிப்பாய்வு செய்யப்பட்டவை (முழுமையாக)"
+  "officerDashboardReviewedTotal": "மதிப்பாய்வு செய்யப்பட்டவை (முழுமையாக)",
+  "registrationsPendingScopedToAll": "எல்லா மாவட்டங்களின் விவசாயி மற்றும் வாங்குபவர் விண்ணப்பங்கள் காட்டப்படுகின்றன",
+  "registrationsPendingChangesScopedToAll": "எல்லா மாவட்டங்களின் கோரிக்கைகளும் காட்டப்படுகின்றன",
+  "registrationsPendingApproveConfirmTitle": "இந்த விண்ணப்பத்தை அங்கீகரிக்கவா?",
+  "registrationsPendingApproveConfirmMessage": "{name} ({role}) உடனே உள்நுழைய முடியும்.",
+  "registrationsPendingApproved": "{name} அங்கீகரிக்கப்பட்டது.",
+  "registrationsPendingRejected": "{name} நிராகரிக்கப்பட்டது.",
+  "registrationsPendingReasonRequired": "தயவுசெய்து ஒரு காரணத்தைக் குறிப்பிடவும்.",
+  "registrationsPendingRejectHint": "விண்ணப்பதாரர் உள்நுழைய முயலும்போது இந்தக் காரணத்தைப் பார்ப்பார்."
 }

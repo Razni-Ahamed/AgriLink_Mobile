@@ -3545,5 +3545,55 @@
   "officerDashboardReviewedTotal": "Reviewed (all-time)",
   "@officerDashboardReviewedTotal": {
     "description": "Mobile-only key: officer.dashboard.reviewedTotal"
+  },
+  "registrationsPendingScopedToAll": "Showing Farmer and Buyer applications from every district",
+  "@registrationsPendingScopedToAll": {
+    "description": "Mobile-only key: registrations.pending.scopedToAll"
+  },
+  "registrationsPendingChangesScopedToAll": "Showing requests from every district",
+  "@registrationsPendingChangesScopedToAll": {
+    "description": "Mobile-only key: registrations.pending.changes.scopedToAll"
+  },
+  "registrationsPendingApproveConfirmTitle": "Approve this application?",
+  "@registrationsPendingApproveConfirmTitle": {
+    "description": "Mobile-only key: registrations.pending.approveConfirmTitle"
+  },
+  "registrationsPendingApproveConfirmMessage": "{name} ({role}) will be able to sign in straight away.",
+  "@registrationsPendingApproveConfirmMessage": {
+    "description": "Mobile-only key: registrations.pending.approveConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "role": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingApproved": "{name} was approved.",
+  "@registrationsPendingApproved": {
+    "description": "Mobile-only key: registrations.pending.approved",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingRejected": "{name} was rejected.",
+  "@registrationsPendingRejected": {
+    "description": "Mobile-only key: registrations.pending.rejected",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingReasonRequired": "Please give a reason.",
+  "@registrationsPendingReasonRequired": {
+    "description": "Mobile-only key: registrations.pending.reasonRequired"
+  },
+  "registrationsPendingRejectHint": "The applicant will see this reason when they try to sign in.",
+  "@registrationsPendingRejectHint": {
+    "description": "Mobile-only key: registrations.pending.rejectHint"
   }
 }

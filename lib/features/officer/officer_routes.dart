@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/router/route_guard.dart';
 import '../../app/shell/nav_config.dart';
 import '../../app/shell/placeholder_page.dart';
+import 'presentation/approvals_screen.dart';
 import 'presentation/officer_dashboard_screen.dart';
 
 /// Phase 4 (officer): the dashboard, issue reviews and registration approvals. The pending
@@ -14,11 +15,12 @@ List<RouteBase> officerRoutes(RouteGuard guard) => [
     roles: Destinations.officerDashboard.roles,
     builder: (context, state) => const OfficerDashboardScreen(),
   ),
-  for (final destination in [
-    Destinations.pendingIssues,
-    Destinations.reviewedIssues,
-    Destinations.approvals,
-  ])
+  guard.route(
+    path: Destinations.approvals.path,
+    roles: Destinations.approvals.roles,
+    builder: (context, state) => const ApprovalsScreen(),
+  ),
+  for (final destination in [Destinations.pendingIssues, Destinations.reviewedIssues])
     guard.route(
       path: destination.path,
       roles: destination.roles,

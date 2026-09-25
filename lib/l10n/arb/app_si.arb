@@ -782,5 +782,13 @@
   "ordersNotificationsChannelDescription": "ඔබගේ ඇණවුම්, ඉල්ලීම්, බෝග ගැටලු සහ ගිණුම පිළිබඳ පුවත්.",
   "ordersNotificationsView": "බලන්න",
   "ordersNotificationsUnread": "නොකියවූ",
-  "officerDashboardReviewedTotal": "සමාලෝචනය කළ (සම්පූර්ණ)"
+  "officerDashboardReviewedTotal": "සමාලෝචනය කළ (සම්පූර්ණ)",
+  "registrationsPendingScopedToAll": "සෑම දිස්ත්‍රික්කයකම ගොවි සහ ගැනුම්කරු ඉල්ලුම්පත් පෙන්වයි",
+  "registrationsPendingChangesScopedToAll": "සෑම දිස්ත්‍රික්කයකම ඉල්ලීම් පෙන්වයි",
+  "registrationsPendingApproveConfirmTitle": "මෙම ඉල්ලුම්පත අනුමත කරන්නද?",
+  "registrationsPendingApproveConfirmMessage": "{name} ({role}) ට වහාම පිවිසිය හැකි වේ.",
+  "registrationsPendingApproved": "{name} අනුමත කරන ලදී.",
+  "registrationsPendingRejected": "{name} ප්‍රතික්ෂේප කරන ලදී.",
+  "registrationsPendingReasonRequired": "කරුණාකර හේතුවක් සඳහන් කරන්න.",
+  "registrationsPendingRejectHint": "අයදුම්කරු පිවිසීමට උත්සාහ කරන විට මෙම හේතුව දකිනු ඇත."
 }
