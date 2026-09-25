@@ -74,5 +74,88 @@
       "view": "බලන්න",
       "unread": "නොකියවූ"
     }
+  },
+  "officer": {
+    "dashboard": {
+      "reviewedTotal": "සමාලෝචනය කළ (සම්පූර්ණ)"
+    },
+    "review": {
+      "approveConfirmTitle": "මෙම උපදෙස් අනුමත කරන්නද?",
+      "rejectConfirmTitle": "මෙම උපදෙස් ප්‍රතික්ෂේප කරන්නද?",
+      "confirmDiagnosisConfirmTitle": "මෙම රෝග විනිශ්චය තහවුරු කරන්නද?",
+      "correctDiagnosisConfirmTitle": "මෙම රෝග විනිශ්චය නිවැරදි කරන්නද?",
+      "confirmMessage": "\"{title}\": ඔබේ තීරණය ගොවියාට දැනුම් දෙනු ලැබේ. මෙය අහෝසි කළ නොහැක.",
+      "alreadyReviewed": "මෙම උපදෙස් දැනටමත් වෙනත් කෙනෙකු සමාලෝචනය කර ඇත. එය දැන් ඇති ආකාරයට පෙන්වයි.",
+      "readOnly": "මෙම උපදෙස් සමාලෝචනය කර ඇති බැවින් වෙනස් කළ නොහැක.",
+      "actionsTitle": "ඔබේ තීරණය"
+    },
+    "trace": {
+      "more": "තවත් +{count}",
+      "durationMs": "මිලි තත්. {value}",
+      "durationSeconds": "තත්. {value}",
+      "yes": "ඔව්",
+      "no": "නැත",
+      "stepsCount": "පියවර {count}"
+    }
+  },
+  "registrations": {
+    "pending": {
+      "scopedToAll": "සෑම දිස්ත්‍රික්කයකම ගොවි සහ ගැනුම්කරු ඉල්ලුම්පත් පෙන්වයි",
+      "changes": {
+        "scopedToAll": "සෑම දිස්ත්‍රික්කයකම ඉල්ලීම් පෙන්වයි"
+      },
+      "approveConfirmTitle": "මෙම ඉල්ලුම්පත අනුමත කරන්නද?",
+      "approveConfirmMessage": "{name} ({role}) ට වහාම පිවිසිය හැකි වේ.",
+      "approved": "{name} අනුමත කරන ලදී.",
+      "rejected": "{name} ප්‍රතික්ෂේප කරන ලදී.",
+      "reasonRequired": "කරුණාකර හේතුවක් සඳහන් කරන්න.",
+      "rejectHint": "අයදුම්කරු පිවිසීමට උත්සාහ කරන විට මෙම හේතුව දකිනු ඇත."
+    }
+  },
+  "admin": {
+    "users": {
+      "searchHint": "නම, ඊමේල් හෝ පරිශීලක නාමයෙන් සොයන්න",
+      "filterAll": "සියල්ල",
+      "showing": "පරිශීලකයින් {total} න් {shown} ක් පෙන්වයි",
+      "noMatches": "ඔබේ සෙවුමට හෝ පෙරහන්වලට ගැළපෙන පරිශීලකයින් නැත.",
+      "detail": {
+        "title": "පරිශීලක විස්තර",
+        "notFound": "මෙම පරිශීලකයා තවදුරටත් ලැයිස්තුවේ නැත.",
+        "joined": "එක් වූයේ {date}",
+        "deactivateConfirmTitle": "{name} අක්‍රිය කරන්නද?",
+        "deactivateConfirmMessage": "ඔබ ගිණුම නැවත සක්‍රිය කරන තුරු {name} ට පිවිසිය නොහැක.",
+        "activateConfirmTitle": "{name} සක්‍රිය කරන්නද?",
+        "activateConfirmMessage": "{name} ට නැවත පිවිසිය හැකි වේ.",
+        "adminCantDeactivate": "පරිපාලක ගිණුම් අක්‍රිය කළ නොහැක.",
+        "cantChangeRole": "මෙහි භූමිකාව වෙනස් කළ හැක්කේ නිලධාරී සහ ගැනුම්කරු ගිණුම්වලට පමණි.",
+        "ownAccountPassword": "මෙය ඔබේම ගිණුමයි. ඔබේ මුරපදය වෙනස් කිරීමට ඔබේ පැතිකඩේ ඇති මුරපදය වෙනස් කරන්න භාවිතා කරන්න.",
+        "resetConfirmTitle": "{name}ගේ මුරපදය යළි පිහිටුවන්නද?",
+        "resetConfirmMessage": "ඔවුන්ගේ වත්මන් මුරපදය වහාම ක්‍රියා නොකරයි.",
+        "roleConfirmTitle": "{name}ගේ භූමිකාව වෙනස් කරන්නද?",
+        "roleConfirmMessage": "{name} {role} බවට පත් වේ."
+      },
+      "created": {
+        "title": "ගිණුම සාදන ලදී",
+        "passwordNote": "මුරපදය ඔවුන්ට ආරක්ෂිතව දන්වන්න. එය නැවත පෙන්වන්නේ නැත.",
+        "another": "තවත් පරිශීලකයෙකු සාදන්න",
+        "backToUsers": "පරිශීලකයින් වෙත ආපසු"
+      }
+    },
+    "audit": {
+      "entityFilter": "වාර්තා වර්ගය",
+      "entity": {
+        "User": "පරිශීලක",
+        "Department": "දෙපාර්තමේන්තුව",
+        "ProfileChangeRequest": "පැතිකඩ වෙනස් කිරීම",
+        "AIAdvisory": "උපදෙස්",
+        "HarvestListing": "අස්වනු ලැයිස්තුව",
+        "Order": "ඇණවුම",
+        "PurchaseRequest": "මිලදී ගැනීමේ ඉල්ලීම"
+      },
+      "by": "{name} විසින්",
+      "before": "පෙර",
+      "after": "පසු",
+      "notRecorded": "වාර්තා කර නැත"
+    }
   }
 }

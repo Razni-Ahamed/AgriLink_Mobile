@@ -48,7 +48,10 @@ void main() {
         final app = await signedInAs(tester, entry.key);
         expect(currentPath(app), homePathFor(entry.key));
         expect(tabLabels(tester), entry.value);
-        expect(find.text('Coming soon'), findsOneWidget);
+        // The officer's and admin's homes are real screens now; the others are placeholders.
+        if (entry.key != Role.officer && entry.key != Role.admin) {
+          expect(find.text('Coming soon'), findsOneWidget);
+        }
       });
     }
   });

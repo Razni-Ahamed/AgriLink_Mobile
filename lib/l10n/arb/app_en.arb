@@ -3541,5 +3541,332 @@
   "ordersNotificationsUnread": "Unread",
   "@ordersNotificationsUnread": {
     "description": "Mobile-only key: orders.notifications.unread"
+  },
+  "officerDashboardReviewedTotal": "Reviewed (all-time)",
+  "@officerDashboardReviewedTotal": {
+    "description": "Mobile-only key: officer.dashboard.reviewedTotal"
+  },
+  "officerReviewApproveConfirmTitle": "Approve this advisory?",
+  "@officerReviewApproveConfirmTitle": {
+    "description": "Mobile-only key: officer.review.approveConfirmTitle"
+  },
+  "officerReviewRejectConfirmTitle": "Reject this advisory?",
+  "@officerReviewRejectConfirmTitle": {
+    "description": "Mobile-only key: officer.review.rejectConfirmTitle"
+  },
+  "officerReviewConfirmDiagnosisConfirmTitle": "Confirm this diagnosis?",
+  "@officerReviewConfirmDiagnosisConfirmTitle": {
+    "description": "Mobile-only key: officer.review.confirmDiagnosisConfirmTitle"
+  },
+  "officerReviewCorrectDiagnosisConfirmTitle": "Correct this diagnosis?",
+  "@officerReviewCorrectDiagnosisConfirmTitle": {
+    "description": "Mobile-only key: officer.review.correctDiagnosisConfirmTitle"
+  },
+  "officerReviewConfirmMessage": "\"{title}\": the farmer will be told your decision. This can't be undone.",
+  "@officerReviewConfirmMessage": {
+    "description": "Mobile-only key: officer.review.confirmMessage",
+    "placeholders": {
+      "title": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerReviewAlreadyReviewed": "Someone has already reviewed this advisory. It is shown as it stands now.",
+  "@officerReviewAlreadyReviewed": {
+    "description": "Mobile-only key: officer.review.alreadyReviewed"
+  },
+  "officerReviewReadOnly": "This advisory has been reviewed, so it can't be changed.",
+  "@officerReviewReadOnly": {
+    "description": "Mobile-only key: officer.review.readOnly"
+  },
+  "officerReviewActionsTitle": "Your decision",
+  "@officerReviewActionsTitle": {
+    "description": "Mobile-only key: officer.review.actionsTitle"
+  },
+  "officerTraceMore": "+{count} more",
+  "@officerTraceMore": {
+    "description": "Mobile-only key: officer.trace.more",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerTraceDurationMs": "{value} ms",
+  "@officerTraceDurationMs": {
+    "description": "Mobile-only key: officer.trace.durationMs",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerTraceDurationSeconds": "{value} s",
+  "@officerTraceDurationSeconds": {
+    "description": "Mobile-only key: officer.trace.durationSeconds",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerTraceYes": "Yes",
+  "@officerTraceYes": {
+    "description": "Mobile-only key: officer.trace.yes"
+  },
+  "officerTraceNo": "No",
+  "@officerTraceNo": {
+    "description": "Mobile-only key: officer.trace.no"
+  },
+  "officerTraceStepsCount": "{count} steps",
+  "@officerTraceStepsCount": {
+    "description": "Mobile-only key: officer.trace.stepsCount",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingScopedToAll": "Showing Farmer and Buyer applications from every district",
+  "@registrationsPendingScopedToAll": {
+    "description": "Mobile-only key: registrations.pending.scopedToAll"
+  },
+  "registrationsPendingChangesScopedToAll": "Showing requests from every district",
+  "@registrationsPendingChangesScopedToAll": {
+    "description": "Mobile-only key: registrations.pending.changes.scopedToAll"
+  },
+  "registrationsPendingApproveConfirmTitle": "Approve this application?",
+  "@registrationsPendingApproveConfirmTitle": {
+    "description": "Mobile-only key: registrations.pending.approveConfirmTitle"
+  },
+  "registrationsPendingApproveConfirmMessage": "{name} ({role}) will be able to sign in straight away.",
+  "@registrationsPendingApproveConfirmMessage": {
+    "description": "Mobile-only key: registrations.pending.approveConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "role": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingApproved": "{name} was approved.",
+  "@registrationsPendingApproved": {
+    "description": "Mobile-only key: registrations.pending.approved",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingRejected": "{name} was rejected.",
+  "@registrationsPendingRejected": {
+    "description": "Mobile-only key: registrations.pending.rejected",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingReasonRequired": "Please give a reason.",
+  "@registrationsPendingReasonRequired": {
+    "description": "Mobile-only key: registrations.pending.reasonRequired"
+  },
+  "registrationsPendingRejectHint": "The applicant will see this reason when they try to sign in.",
+  "@registrationsPendingRejectHint": {
+    "description": "Mobile-only key: registrations.pending.rejectHint"
+  },
+  "adminUsersSearchHint": "Search by name, email or username",
+  "@adminUsersSearchHint": {
+    "description": "Mobile-only key: admin.users.searchHint"
+  },
+  "adminUsersFilterAll": "All",
+  "@adminUsersFilterAll": {
+    "description": "Mobile-only key: admin.users.filterAll"
+  },
+  "adminUsersShowing": "Showing {shown} of {total} users",
+  "@adminUsersShowing": {
+    "description": "Mobile-only key: admin.users.showing",
+    "placeholders": {
+      "shown": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersNoMatches": "No users match your search or filters.",
+  "@adminUsersNoMatches": {
+    "description": "Mobile-only key: admin.users.noMatches"
+  },
+  "adminUsersDetailTitle": "User details",
+  "@adminUsersDetailTitle": {
+    "description": "Mobile-only key: admin.users.detail.title"
+  },
+  "adminUsersDetailNotFound": "This user is no longer in the list.",
+  "@adminUsersDetailNotFound": {
+    "description": "Mobile-only key: admin.users.detail.notFound"
+  },
+  "adminUsersDetailJoined": "Joined {date}",
+  "@adminUsersDetailJoined": {
+    "description": "Mobile-only key: admin.users.detail.joined",
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailDeactivateConfirmTitle": "Deactivate {name}?",
+  "@adminUsersDetailDeactivateConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.deactivateConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailDeactivateConfirmMessage": "{name} won't be able to sign in until you activate the account again.",
+  "@adminUsersDetailDeactivateConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.deactivateConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailActivateConfirmTitle": "Activate {name}?",
+  "@adminUsersDetailActivateConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.activateConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailActivateConfirmMessage": "{name} will be able to sign in again.",
+  "@adminUsersDetailActivateConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.activateConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailAdminCantDeactivate": "Admin accounts can't be deactivated.",
+  "@adminUsersDetailAdminCantDeactivate": {
+    "description": "Mobile-only key: admin.users.detail.adminCantDeactivate"
+  },
+  "adminUsersDetailCantChangeRole": "Only Officer and Buyer accounts can change role here.",
+  "@adminUsersDetailCantChangeRole": {
+    "description": "Mobile-only key: admin.users.detail.cantChangeRole"
+  },
+  "adminUsersDetailOwnAccountPassword": "This is your own account. To change your password, use Change password in your profile.",
+  "@adminUsersDetailOwnAccountPassword": {
+    "description": "Mobile-only key: admin.users.detail.ownAccountPassword"
+  },
+  "adminUsersDetailResetConfirmTitle": "Reset {name}'s password?",
+  "@adminUsersDetailResetConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.resetConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailResetConfirmMessage": "Their current password stops working straight away.",
+  "@adminUsersDetailResetConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.resetConfirmMessage"
+  },
+  "adminUsersDetailRoleConfirmTitle": "Change {name}'s role?",
+  "@adminUsersDetailRoleConfirmTitle": {
+    "description": "Mobile-only key: admin.users.detail.roleConfirmTitle",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersDetailRoleConfirmMessage": "{name} will become a {role}.",
+  "@adminUsersDetailRoleConfirmMessage": {
+    "description": "Mobile-only key: admin.users.detail.roleConfirmMessage",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "role": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminUsersCreatedTitle": "Account created",
+  "@adminUsersCreatedTitle": {
+    "description": "Mobile-only key: admin.users.created.title"
+  },
+  "adminUsersCreatedPasswordNote": "Share the password with them securely. It isn't shown again.",
+  "@adminUsersCreatedPasswordNote": {
+    "description": "Mobile-only key: admin.users.created.passwordNote"
+  },
+  "adminUsersCreatedAnother": "Create another user",
+  "@adminUsersCreatedAnother": {
+    "description": "Mobile-only key: admin.users.created.another"
+  },
+  "adminUsersCreatedBackToUsers": "Back to users",
+  "@adminUsersCreatedBackToUsers": {
+    "description": "Mobile-only key: admin.users.created.backToUsers"
+  },
+  "adminAuditEntityFilter": "Record type",
+  "@adminAuditEntityFilter": {
+    "description": "Mobile-only key: admin.audit.entityFilter"
+  },
+  "adminAuditEntityUser": "User",
+  "@adminAuditEntityUser": {
+    "description": "Mobile-only key: admin.audit.entity.User"
+  },
+  "adminAuditEntityDepartment": "Department",
+  "@adminAuditEntityDepartment": {
+    "description": "Mobile-only key: admin.audit.entity.Department"
+  },
+  "adminAuditEntityProfileChangeRequest": "Profile change",
+  "@adminAuditEntityProfileChangeRequest": {
+    "description": "Mobile-only key: admin.audit.entity.ProfileChangeRequest"
+  },
+  "adminAuditEntityAIAdvisory": "Advisory",
+  "@adminAuditEntityAIAdvisory": {
+    "description": "Mobile-only key: admin.audit.entity.AIAdvisory"
+  },
+  "adminAuditEntityHarvestListing": "Harvest listing",
+  "@adminAuditEntityHarvestListing": {
+    "description": "Mobile-only key: admin.audit.entity.HarvestListing"
+  },
+  "adminAuditEntityOrder": "Order",
+  "@adminAuditEntityOrder": {
+    "description": "Mobile-only key: admin.audit.entity.Order"
+  },
+  "adminAuditEntityPurchaseRequest": "Purchase request",
+  "@adminAuditEntityPurchaseRequest": {
+    "description": "Mobile-only key: admin.audit.entity.PurchaseRequest"
+  },
+  "adminAuditBy": "By {name}",
+  "@adminAuditBy": {
+    "description": "Mobile-only key: admin.audit.by",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminAuditBefore": "Before",
+  "@adminAuditBefore": {
+    "description": "Mobile-only key: admin.audit.before"
+  },
+  "adminAuditAfter": "After",
+  "@adminAuditAfter": {
+    "description": "Mobile-only key: admin.audit.after"
+  },
+  "adminAuditNotRecorded": "Not recorded",
+  "@adminAuditNotRecorded": {
+    "description": "Mobile-only key: admin.audit.notRecorded"
   }
 }
