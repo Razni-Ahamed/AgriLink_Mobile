@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'app/app.dart';
+import 'core/storage/preferences.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final preferences = await SharedPreferences.getInstance();
   runApp(
-    const MaterialApp(
-      title: 'AgriLink',
-      home: Scaffold(body: Center(child: Text('AgriLink'))),
+    ProviderScope(
+      overrides: [sharedPreferencesProvider.overrideWithValue(preferences)],
+      child: const AgriLinkApp(),
     ),
   );
 }
