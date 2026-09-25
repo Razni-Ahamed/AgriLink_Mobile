@@ -1,0 +1,37 @@
+name: agrilink_mobile
+description: "AgriLink Sri Lanka: the Android app for farmers, officers, buyers and admins."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+# The whole team pins Flutter 3.47.5 (Dart 3.13.4). Don't change this without agreeing as a team.
+environment:
+  sdk: ^3.13.4
+  flutter: 3.47.5
+
+dependencies:
+  dio: ^5.11.1
+  flutter:
+    sdk: flutter
+  flutter_image_compress: ^2.5.1
+  flutter_local_notifications: ^22.3.1
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.4.3
+  flutter_secure_storage: ^11.2.0
+  flutter_svg: ^2.3.0
+  go_router: ^18.0.1
+  image_picker: ^1.2.3
+  intl: ^0.20.3
+  permission_handler: ^13.0.2
+  shared_preferences: ^2.5.5
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  http_mock_adapter: ^0.6.1
+  mocktail: ^1.0.5
+
+flutter:
+  uses-material-design: true
