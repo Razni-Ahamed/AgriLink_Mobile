@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+>
+<path d="M12 21V9"/>
+<ellipse cx="9" cy="7.5" rx="1.6" ry="2.4" transform="rotate(-30 9 7.5)"/>
+<ellipse cx="15" cy="7.5" rx="1.6" ry="2.4" transform="rotate(30 15 7.5)"/>
+<ellipse cx="12" cy="4.5" rx="1.6" ry="2.4"/>
+</svg>

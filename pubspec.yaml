@@ -37,6 +37,11 @@ flutter:
   # Generates AppLocalizations from lib/l10n/arb (see l10n.yaml).
   generate: true
 
+  assets:
+    # Crop icons and default role avatars from the website (tool/import_web_icons.dart).
+    - assets/icons/crops/
+    - assets/icons/avatars/
+
   # Bundled rather than downloaded at runtime. All are SIL Open Font Licence (see assets/fonts/OFL-*.txt).
   # Fraunces, Plus Jakarta Sans and JetBrains Mono have no Sinhala or Tamil glyphs, so the theme
   # falls back to the two Noto families for those scripts.
