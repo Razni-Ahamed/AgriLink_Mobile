@@ -8,9 +8,11 @@ It connects to the same backend API as the AgriLink website, so farmers and buye
 
 ---
 
-## ⚠️ Status: setting up
+## Status: Phase 1 done, phases 2–4 next
 
-**No app code has been written yet.** Right now every team member is setting up their computer with the steps below. Coding starts only after **everyone's `flutter doctor` shows no errors** (see [Step 7](#step-7--check-everything-with-flutter-doctor)).
+**Phase 1 (Foundation) is built:** the project, theme, English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, the role-based navigation for all four roles, profile and security settings, and notifications. The sections phases 2–4 build show a "Coming soon" placeholder until then.
+
+Before you start your phase, read **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. It explains where your code goes and how to use what Phase 1 built.
 
 ---
 
@@ -18,6 +20,7 @@ It connects to the same backend API as the AgriLink website, so farmers and buye
 
 - [The plan](#the-plan)
 - [Setup from scratch (Windows)](#setup-from-scratch-windows)
+- [Running the app](#running-the-app)
 - [Troubleshooting](#troubleshooting)
 - [How we work together](#how-we-work-together)
 - [Backend API](#backend-api)
@@ -32,12 +35,12 @@ The app is built in four phases, one owner each. **Phase 1 must be merged first*
 
 | Phase | Owner | What it covers |
 |---|---|---|
-| **1. Foundation** | _TBD_ | Project setup, theme (same colours as the website), English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, navigation shell, profile screen |
-| **2. Farms & crops** | _TBD_ | Farms, fields and crops (list, add, edit), crop activity log |
-| **3. Crop issues & advice** | _TBD_ | Report an issue with camera or gallery photos, my issues, advisory details, notification pop-ups |
-| **4. Marketplace & orders** | _TBD_ | Browse harvests, my listings, purchase requests (sent and received), orders, buyer screens |
+| **1. Foundation** | Razni Ahamed M. R. | Project setup, theme (same colours as the website), English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, role-based navigation, profile and security, notifications |
+| **2. Farmer** | _TBD_ | Farms, fields, crops, activity log, reporting crop issues with camera photos, advisories |
+| **3. Marketplace & orders** | _TBD_ | Browse harvests, listings, purchase requests, orders (farmers and buyers) |
+| **4. Officer & admin** | _TBD_ | Officer dashboard, issue reviews, approvals; admin dashboard, users, departments, all issues, audit log |
 
-Version 1 focuses on **Farmers**, with buyer screens in phase 4. Officers and admins keep using the website.
+The app covers **all four roles**: farmers, buyers, agricultural officers and admins. Each one signs in on the same screen and sees only their own sections.
 
 ---
 
@@ -176,12 +179,7 @@ git clone https://github.com/Razni-Ahamed/AgriLink_Mobile.git
 cd AgriLink_Mobile
 ```
 
-Once phase 1 has added the Flutter project, you'll also run:
-
-```bash
-flutter pub get      # download the app's packages
-flutter run          # build and start the app on your emulator or phone
-```
+Then see [Running the app](#running-the-app).
 
 ### ✅ You're done when…
 
@@ -195,6 +193,39 @@ Tell the team when you've reached this point. When everyone is ready, phase 1 st
 
 ---
 
+## Running the app
+
+From the repository folder, with your emulator running or your phone connected:
+
+```bash
+flutter pub get      # download the packages and generate the translations
+flutter run          # build and start the app
+```
+
+The first build takes several minutes. Gradle downloads the Android 37 SDK platform the first time, because one of our packages needs it.
+
+**Which API the app uses.** By default it talks to the live API (`https://agrilink-api-sl.azurewebsites.net`). To use a backend running on your own computer, start that backend, then:
+
+```bash
+flutter run --dart-define=API_BASE_URL=http://10.0.2.2:5266
+```
+
+`10.0.2.2` is your computer as seen from the Android emulator. Plain `http` is allowed only in debug builds.
+
+**Checks before every commit:**
+
+```bash
+flutter analyze            # must say "No issues found!"
+flutter test               # all tests must pass
+dart format lib test tool  # 100-character lines
+```
+
+The tests use a fake API, so they never touch the live database. Build an installable APK with `flutter build apk --debug`; it appears in `build/app/outputs/flutter-apk/`.
+
+**Translations** come from the website. If its text changes, see [docs/ARCHITECTURE.md §10](docs/ARCHITECTURE.md#10-translations).
+
+---
+
 ## Troubleshooting
 
 | Problem | Fix |
@@ -204,6 +235,7 @@ Tell the team when you've reached this point. When everyone is ready, phase 1 st
 | `Android license status unknown` | Run `flutter doctor --android-licenses` and accept all ([Step 5](#step-5--accept-the-android-licences)). |
 | `Unable to locate Android SDK` | Run `flutter config --android-sdk "C:\Users\<you>\AppData\Local\Android\Sdk"` (your SDK path is shown in Android Studio's SDK Manager). |
 | Emulator is very slow or won't start | Enable virtualization (**Intel VT-x / AMD-V / SVM**) in your BIOS, and turn on **Windows Hypervisor Platform** under *Control Panel → Programs → Turn Windows features on or off*, then restart. |
+| `AppLocalizations` is missing / red in the editor | Run `flutter gen-l10n` (or `flutter pub get`). The translation code is generated, not committed. |
 | The first `flutter run` takes forever | Normal. The first build downloads Gradle and Android dependencies, which can take 5–10 minutes. Later builds are much faster. |
 | Flutter shows the wrong version | You cloned a different branch. In the Flutter folder, run `git fetch --tags` then `git checkout 3.47.5`, then `flutter --version`. |
 | Builds are very slow on Windows | Antivirus scanning can slow builds a lot. You may add your Flutter folder and project folder to Windows Security's exclusions. |

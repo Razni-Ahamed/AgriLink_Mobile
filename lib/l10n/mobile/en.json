@@ -1,0 +1,78 @@
+{
+  "common": {
+    "actions": {
+      "retry": "Try again",
+      "cancel": "Cancel",
+      "ok": "OK",
+      "confirm": "Confirm",
+      "openSettings": "Open settings"
+    },
+    "nav": {
+      "more": "More",
+      "profile": "Profile",
+      "unreadNotifications": "Notifications, {{count}} unread"
+    },
+    "errors": {
+      "network": "Can't reach the server. Check your connection and try again.",
+      "generic": "Something went wrong. Please try again.",
+      "slowServer": "The server is waking up. This can take up to 30 seconds.",
+      "sessionExpired": "Your session has ended. Please sign in again.",
+      "forbidden": "You don't have permission to do that.",
+      "notFound": "We couldn't find what you were looking for."
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "message": "This section is being built and will be available in a later update of the app."
+    },
+    "empty": {
+      "title": "Nothing here yet"
+    },
+    "permissions": {
+      "cameraTitle": "Allow camera access",
+      "cameraRationale": "AgriLink uses the camera only to take the photo you choose. Nothing is recorded in the background.",
+      "cameraDenied": "Camera access wasn't allowed, so a photo can't be taken. You can choose one from your gallery instead.",
+      "cameraBlocked": "Camera access is turned off for AgriLink. Turn it on in Settings to take photos.",
+      "notificationsTitle": "Turn on notifications",
+      "notificationsRationale": "AgriLink can let you know when there is news about your orders, requests, crop issues or account.",
+      "notNow": "Not now",
+      "continue": "Continue",
+      "turnOn": "Turn on"
+    },
+    "photo": {
+      "takePhoto": "Take a photo",
+      "chooseFromGallery": "Choose from gallery",
+      "unusable": "That photo couldn't be used. Please try another one."
+    }
+  },
+  "auth": {
+    "login": {
+      "pendingTitle": "Waiting for approval",
+      "pendingMessage": "Your account is waiting for approval. You can sign in once an officer or administrator approves it.",
+      "rejectedTitle": "Registration not approved",
+      "rejectedMessage": "Your registration was not approved.",
+      "rejectedReason": "Reason: {{reason}}"
+    },
+    "splash": {
+      "loading": "Starting AgriLink…"
+    },
+    "profile": {
+      "detailsHeading": "Account details",
+      "settingsHeading": "App settings",
+      "signOutTitle": "Log out of AgriLink?",
+      "signOutMessage": "You'll need your email and password to sign in again.",
+      "security": {
+        "autoLocked": "Editing was locked again after 5 minutes without changes."
+      }
+    }
+  },
+  "orders": {
+    "notifications": {
+      "newOne": "You have a new notification",
+      "newMany": "You have {{count}} new notifications",
+      "channelName": "AgriLink updates",
+      "channelDescription": "News about your orders, requests, crop issues and account.",
+      "view": "View",
+      "unread": "Unread"
+    }
+  }
+}

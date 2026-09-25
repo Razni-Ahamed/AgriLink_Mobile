@@ -1,0 +1,9 @@
+# flutter gen-l10n settings. The ARB files are produced by tool/import_web_translations.dart;
+# AppLocalizations is generated from them on `flutter pub get` / `flutter run` and is not committed.
+arb-dir: lib/l10n/arb
+template-arb-file: app_en.arb
+output-dir: lib/l10n/generated
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+nullable-getter: false
+untranslated-messages-file: build/untranslated_messages.json
