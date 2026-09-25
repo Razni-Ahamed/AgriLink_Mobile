@@ -8,9 +8,11 @@ It connects to the same backend API as the AgriLink website, so farmers and buye
 
 ---
 
-## Status: Phase 1 done, phases 2–4 next
+## Status: Phase 1 done, Phase 3 in review, phases 2 and 4 in progress
 
 **Phase 1 (Foundation) is built:** the project, theme, English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, the role-based navigation for all four roles, profile and security settings, and notifications. The sections phases 2–4 build show a "Coming soon" placeholder until then.
+
+**Phase 3 (Marketplace & orders) is built and in review:** browsing and filtering harvests, the listing page, the farmer's listings and new-listing form, purchase requests (sending, accepting and declining), and orders with the other party's contact details. See [docs/ARCHITECTURE.md §17](docs/ARCHITECTURE.md#17-marketplace-and-orders-phase-3).
 
 Before you start your phase, read **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. It explains where your code goes and how to use what Phase 1 built.
 
