@@ -74,5 +74,10 @@
       "view": "බලන්න",
       "unread": "නොකියවූ"
     }
+  },
+  "officer": {
+    "dashboard": {
+      "reviewedTotal": "සමාලෝචනය කළ (සම්පූර්ණ)"
+    }
   }
 }

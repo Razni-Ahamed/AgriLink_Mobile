@@ -74,5 +74,10 @@
       "view": "View",
       "unread": "Unread"
     }
+  },
+  "officer": {
+    "dashboard": {
+      "reviewedTotal": "Reviewed (all-time)"
+    }
   }
 }

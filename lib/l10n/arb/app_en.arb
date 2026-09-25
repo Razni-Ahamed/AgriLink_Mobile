@@ -3541,5 +3541,9 @@
   "ordersNotificationsUnread": "Unread",
   "@ordersNotificationsUnread": {
     "description": "Mobile-only key: orders.notifications.unread"
+  },
+  "officerDashboardReviewedTotal": "Reviewed (all-time)",
+  "@officerDashboardReviewedTotal": {
+    "description": "Mobile-only key: officer.dashboard.reviewedTotal"
   }
 }
