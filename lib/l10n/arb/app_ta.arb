@@ -782,5 +782,10 @@
   "ordersNotificationsChannelDescription": "உங்கள் ஆர்டர்கள், கோரிக்கைகள், பயிர் சிக்கல்கள் மற்றும் கணக்கு பற்றிய செய்திகள்.",
   "ordersNotificationsView": "காண்க",
   "ordersNotificationsUnread": "படிக்காதது",
-  "marketplaceFiltersTitle": "வடிகட்டிகள்"
+  "marketplaceFiltersTitle": "வடிகட்டிகள்",
+  "marketplaceDetailUnavailable": "இந்தப் பட்டியல் இனி விற்பனைக்கு இல்லை.",
+  "marketplaceDetailViewMyRequests": "எனது கோரிக்கைகளைக் காண்க",
+  "marketplaceEditFormConfirmStatusTitle": "இந்தப் பட்டியலை {status} என மாற்றவா?",
+  "marketplaceEditFormConfirmStatusBody": "வாங்குபவர்கள் இனி இதைச் சந்தையில் காண மாட்டார்கள், மேலும் நிலுவையில் உள்ள கொள்முதல் கோரிக்கைகள் மூடப்படும்.",
+  "marketplaceEditFormAdminNote": "நிர்வாகியாக நீங்கள் மற்றொரு பயனரின் பட்டியலை மாற்றுகிறீர்கள். இந்த மாற்றம் தணிக்கைப் பதிவில் பதிவு செய்யப்படும்."
 }

@@ -78,6 +78,15 @@
   "marketplace": {
     "filters": {
       "title": "Filters"
+    },
+    "detail": {
+      "unavailable": "This listing isn't for sale any more.",
+      "viewMyRequests": "View my requests"
+    },
+    "editForm": {
+      "confirmStatusTitle": "Change this listing to {{status}}?",
+      "confirmStatusBody": "Buyers won't see it in the marketplace any more, and its pending purchase requests will be closed.",
+      "adminNote": "You're changing another user's listing as an admin. The change is recorded in the audit log."
     }
   }
 }
