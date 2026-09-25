@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -73,6 +75,17 @@ class ApiClient {
 
   Future<T> delete<T>(String path, {Object? body, required T Function(Object? data) decode}) =>
       _send(() => dio.delete<Object?>(path, data: body), decode);
+
+  /// A file such as a photo, as raw bytes. Sends the bearer token like every other call, which is
+  /// the reason to use this instead of `Image.network` for images the API keeps private.
+  Future<Uint8List> getBytes(String path, {CancelToken? cancelToken}) => _send(
+    () => dio.get<Object?>(
+      path,
+      options: Options(responseType: ResponseType.bytes),
+      cancelToken: cancelToken,
+    ),
+    (data) => data is Uint8List ? data : Uint8List.fromList((data! as List<Object?>).cast<int>()),
+  );
 
   /// A page of a list endpoint that returns `{ items, page, pageSize, totalCount, totalPages }`.
   Future<Paged<T>> getPaged<T>(

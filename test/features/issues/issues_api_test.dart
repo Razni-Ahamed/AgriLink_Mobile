@@ -170,6 +170,27 @@ void main() {
     expect(advisory.issueTitle, 'Yellow leaves');
   });
 
+  test('a photo is fetched with the token, as raw bytes', () async {
+    // The fake answers with JSON text; what matters is that it arrives as bytes, unparsed.
+    fake.on('GET', '/api/issues/7/images/9', (_) => const FakeResponse(200, 'PNG'));
+
+    final bytes = await api.photoBytes('/api/issues/7/images/9');
+
+    expect(bytes, isA<Uint8List>());
+    expect(String.fromCharCodes(bytes), '"PNG"');
+    expect(fake.lastTo('GET', '/api/issues/7/images/9')!.headers['Authorization'], 'Bearer token');
+    expect(spy.seen.single.responseType, ResponseType.bytes);
+  });
+
+  test('a photo that is gone is a not-found error', () async {
+    fake.on('GET', '/api/issues/7/images/9', (_) => const FakeResponse(404));
+
+    await expectLater(
+      api.photoBytes('/api/issues/7/images/9'),
+      throwsA(isA<ApiException>().having((e) => e.kind, 'kind', ApiErrorKind.notFound)),
+    );
+  });
+
   test('a draft advisory is a 404 for a farmer, which the screen treats as "not yet"', () async {
     fake.on('GET', '/api/advisories/21', (_) => const FakeResponse(404));
 

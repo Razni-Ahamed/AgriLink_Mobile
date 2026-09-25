@@ -1,6 +1,7 @@
 import 'package:agrilink_mobile/app/router/app_router.dart';
 import 'package:agrilink_mobile/app/router/app_routes.dart';
 import 'package:agrilink_mobile/app/router/route_guard.dart';
+import 'package:agrilink_mobile/app/shell/agrilink_app_bar.dart';
 import 'package:agrilink_mobile/app/shell/app_shell.dart';
 import 'package:agrilink_mobile/app/shell/nav_config.dart';
 import 'package:agrilink_mobile/core/session/role.dart';
@@ -48,10 +49,8 @@ void main() {
         final app = await signedInAs(tester, entry.key);
         expect(currentPath(app), homePathFor(entry.key));
         expect(tabLabels(tester), entry.value);
-        // The officer's and admin's homes are real screens now; the others are placeholders.
-        if (entry.key != Role.officer && entry.key != Role.admin) {
-          expect(find.text('Coming soon'), findsOneWidget);
-        }
+        // A placeholder or a real screen: either way the home page has its own app bar.
+        expect(find.byType(AgriLinkAppBar), findsOneWidget);
       });
     }
   });

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -58,6 +60,10 @@ class IssuesApi {
   /// so a `notFound` [ApiException] here means "not available yet".
   Future<Advisory> advisory(int id) =>
       _api.get('/api/advisories/$id', decode: (data) => Advisory.fromJson(asJson(data)));
+
+  /// A photo's bytes. [url] is an [IssuePhoto.url] (`/api/issues/{id}/images/{id}`): the API
+  /// only shows a photo to the farmer who took it and the officers, so it needs the token.
+  Future<Uint8List> photoBytes(String url) => _api.getBytes(url);
 
   static CropIssue _issue(Object? data) => CropIssue.fromJson(asJson(data));
 }
