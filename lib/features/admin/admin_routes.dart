@@ -4,6 +4,7 @@ import '../../app/router/route_guard.dart';
 import '../../app/shell/nav_config.dart';
 import '../../app/shell/placeholder_page.dart';
 import 'presentation/admin_dashboard_screen.dart';
+import 'presentation/create_user_screen.dart';
 import 'presentation/user_detail_screen.dart';
 import 'presentation/users_screen.dart';
 
@@ -20,6 +21,8 @@ List<RouteBase> adminRoutes(RouteGuard guard) => [
     roles: Destinations.users.roles,
     builder: (context, state) => const UsersScreen(),
     routes: [
+      // Before ':userId', or "new" would be read as a user id.
+      GoRoute(path: 'new', builder: (context, state) => const CreateUserScreen()),
       GoRoute(
         path: ':userId',
         builder: (context, state) =>

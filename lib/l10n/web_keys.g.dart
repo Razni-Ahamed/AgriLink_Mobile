@@ -743,6 +743,10 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'admin.users.detail.cantChangeRole' => l10n.adminUsersDetailCantChangeRole,
     'admin.users.detail.ownAccountPassword' => l10n.adminUsersDetailOwnAccountPassword,
     'admin.users.detail.resetConfirmMessage' => l10n.adminUsersDetailResetConfirmMessage,
+    'admin.users.created.title' => l10n.adminUsersCreatedTitle,
+    'admin.users.created.passwordNote' => l10n.adminUsersCreatedPasswordNote,
+    'admin.users.created.another' => l10n.adminUsersCreatedAnother,
+    'admin.users.created.backToUsers' => l10n.adminUsersCreatedBackToUsers,
     _ => null,
   };
 }

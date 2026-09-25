@@ -3718,5 +3718,21 @@
         "type": "Object"
       }
     }
+  },
+  "adminUsersCreatedTitle": "Account created",
+  "@adminUsersCreatedTitle": {
+    "description": "Mobile-only key: admin.users.created.title"
+  },
+  "adminUsersCreatedPasswordNote": "Share the password with them securely. It isn't shown again.",
+  "@adminUsersCreatedPasswordNote": {
+    "description": "Mobile-only key: admin.users.created.passwordNote"
+  },
+  "adminUsersCreatedAnother": "Create another user",
+  "@adminUsersCreatedAnother": {
+    "description": "Mobile-only key: admin.users.created.another"
+  },
+  "adminUsersCreatedBackToUsers": "Back to users",
+  "@adminUsersCreatedBackToUsers": {
+    "description": "Mobile-only key: admin.users.created.backToUsers"
   }
 }

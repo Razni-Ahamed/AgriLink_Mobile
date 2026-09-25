@@ -808,5 +808,9 @@
   "adminUsersDetailResetConfirmTitle": "{name}ගේ මුරපදය යළි පිහිටුවන්නද?",
   "adminUsersDetailResetConfirmMessage": "ඔවුන්ගේ වත්මන් මුරපදය වහාම ක්‍රියා නොකරයි.",
   "adminUsersDetailRoleConfirmTitle": "{name}ගේ භූමිකාව වෙනස් කරන්නද?",
-  "adminUsersDetailRoleConfirmMessage": "{name} {role} බවට පත් වේ."
+  "adminUsersDetailRoleConfirmMessage": "{name} {role} බවට පත් වේ.",
+  "adminUsersCreatedTitle": "ගිණුම සාදන ලදී",
+  "adminUsersCreatedPasswordNote": "මුරපදය ඔවුන්ට ආරක්ෂිතව දන්වන්න. එය නැවත පෙන්වන්නේ නැත.",
+  "adminUsersCreatedAnother": "තවත් පරිශීලකයෙකු සාදන්න",
+  "adminUsersCreatedBackToUsers": "පරිශීලකයින් වෙත ආපසු"
 }

@@ -115,6 +115,12 @@
         "resetConfirmMessage": "Their current password stops working straight away.",
         "roleConfirmTitle": "Change {name}'s role?",
         "roleConfirmMessage": "{name} will become a {role}."
+      },
+      "created": {
+        "title": "Account created",
+        "passwordNote": "Share the password with them securely. It isn't shown again.",
+        "another": "Create another user",
+        "backToUsers": "Back to users"
       }
     }
   }

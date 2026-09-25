@@ -808,5 +808,9 @@
   "adminUsersDetailResetConfirmTitle": "{name} கடவுச்சொல்லை மீட்டமைக்கவா?",
   "adminUsersDetailResetConfirmMessage": "அவர்களின் தற்போதைய கடவுச்சொல் உடனே செயலிழக்கும்.",
   "adminUsersDetailRoleConfirmTitle": "{name} பங்கை மாற்றவா?",
-  "adminUsersDetailRoleConfirmMessage": "{name} {role} ஆவார்."
+  "adminUsersDetailRoleConfirmMessage": "{name} {role} ஆவார்.",
+  "adminUsersCreatedTitle": "கணக்கு உருவாக்கப்பட்டது",
+  "adminUsersCreatedPasswordNote": "கடவுச்சொல்லை அவர்களுக்குப் பாதுகாப்பாகத் தெரிவிக்கவும். அது மீண்டும் காட்டப்படாது.",
+  "adminUsersCreatedAnother": "மற்றொரு பயனரை உருவாக்கு",
+  "adminUsersCreatedBackToUsers": "பயனர்களுக்குத் திரும்பு"
 }

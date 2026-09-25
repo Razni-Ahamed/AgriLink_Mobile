@@ -50,6 +50,12 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
     final users = ref.watch(adminUsersProvider);
     return Scaffold(
       appBar: AgriLinkAppBar(title: l10n.ordersAdminUsersTitle),
+      floatingActionButton: FloatingActionButton.extended(
+        key: const Key('create-user'),
+        onPressed: () => context.go('${AppRoutes.adminUsers}/new'),
+        icon: const Icon(Icons.person_add_alt_1_outlined),
+        label: Text(l10n.ordersAdminCreateUser),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           ref.invalidate(adminUsersProvider);
@@ -190,7 +196,7 @@ class _List extends ConsumerWidget {
     final format = ref.watch(formattersProvider);
     return ListView(
       physics: const AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 88),
       children: [
         filters,
         const SizedBox(height: Gaps.md),
