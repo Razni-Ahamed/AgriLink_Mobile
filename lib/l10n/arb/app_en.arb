@@ -3546,6 +3546,87 @@
   "@officerDashboardReviewedTotal": {
     "description": "Mobile-only key: officer.dashboard.reviewedTotal"
   },
+  "officerReviewApproveConfirmTitle": "Approve this advisory?",
+  "@officerReviewApproveConfirmTitle": {
+    "description": "Mobile-only key: officer.review.approveConfirmTitle"
+  },
+  "officerReviewRejectConfirmTitle": "Reject this advisory?",
+  "@officerReviewRejectConfirmTitle": {
+    "description": "Mobile-only key: officer.review.rejectConfirmTitle"
+  },
+  "officerReviewConfirmDiagnosisConfirmTitle": "Confirm this diagnosis?",
+  "@officerReviewConfirmDiagnosisConfirmTitle": {
+    "description": "Mobile-only key: officer.review.confirmDiagnosisConfirmTitle"
+  },
+  "officerReviewCorrectDiagnosisConfirmTitle": "Correct this diagnosis?",
+  "@officerReviewCorrectDiagnosisConfirmTitle": {
+    "description": "Mobile-only key: officer.review.correctDiagnosisConfirmTitle"
+  },
+  "officerReviewConfirmMessage": "\"{title}\": the farmer will be told your decision. This can't be undone.",
+  "@officerReviewConfirmMessage": {
+    "description": "Mobile-only key: officer.review.confirmMessage",
+    "placeholders": {
+      "title": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerReviewAlreadyReviewed": "Someone has already reviewed this advisory. It is shown as it stands now.",
+  "@officerReviewAlreadyReviewed": {
+    "description": "Mobile-only key: officer.review.alreadyReviewed"
+  },
+  "officerReviewReadOnly": "This advisory has been reviewed, so it can't be changed.",
+  "@officerReviewReadOnly": {
+    "description": "Mobile-only key: officer.review.readOnly"
+  },
+  "officerReviewActionsTitle": "Your decision",
+  "@officerReviewActionsTitle": {
+    "description": "Mobile-only key: officer.review.actionsTitle"
+  },
+  "officerTraceMore": "+{count} more",
+  "@officerTraceMore": {
+    "description": "Mobile-only key: officer.trace.more",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerTraceDurationMs": "{value} ms",
+  "@officerTraceDurationMs": {
+    "description": "Mobile-only key: officer.trace.durationMs",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerTraceDurationSeconds": "{value} s",
+  "@officerTraceDurationSeconds": {
+    "description": "Mobile-only key: officer.trace.durationSeconds",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "officerTraceYes": "Yes",
+  "@officerTraceYes": {
+    "description": "Mobile-only key: officer.trace.yes"
+  },
+  "officerTraceNo": "No",
+  "@officerTraceNo": {
+    "description": "Mobile-only key: officer.trace.no"
+  },
+  "officerTraceStepsCount": "{count} steps",
+  "@officerTraceStepsCount": {
+    "description": "Mobile-only key: officer.trace.stepsCount",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
   "registrationsPendingScopedToAll": "Showing Farmer and Buyer applications from every district",
   "@registrationsPendingScopedToAll": {
     "description": "Mobile-only key: registrations.pending.scopedToAll"

@@ -78,6 +78,24 @@
   "officer": {
     "dashboard": {
       "reviewedTotal": "மதிப்பாய்வு செய்யப்பட்டவை (முழுமையாக)"
+    },
+    "review": {
+      "approveConfirmTitle": "இந்த ஆலோசனையை அங்கீகரிக்கவா?",
+      "rejectConfirmTitle": "இந்த ஆலோசனையை நிராகரிக்கவா?",
+      "confirmDiagnosisConfirmTitle": "இந்த நோய் கண்டறிதலை உறுதிப்படுத்தவா?",
+      "correctDiagnosisConfirmTitle": "இந்த நோய் கண்டறிதலைத் திருத்தவா?",
+      "confirmMessage": "\"{title}\": உங்கள் முடிவு விவசாயிக்குத் தெரிவிக்கப்படும். இதைத் திரும்பப் பெற முடியாது.",
+      "alreadyReviewed": "இந்த ஆலோசனையை ஏற்கனவே ஒருவர் மதிப்பாய்வு செய்துவிட்டார். இப்போது உள்ளபடி காட்டப்படுகிறது.",
+      "readOnly": "இந்த ஆலோசனை மதிப்பாய்வு செய்யப்பட்டுவிட்டதால் மாற்ற முடியாது.",
+      "actionsTitle": "உங்கள் முடிவு"
+    },
+    "trace": {
+      "more": "மேலும் +{count}",
+      "durationMs": "{value} மி.வி",
+      "durationSeconds": "{value} வி",
+      "yes": "ஆம்",
+      "no": "இல்லை",
+      "stepsCount": "{count} படிகள்"
     }
   },
   "registrations": {

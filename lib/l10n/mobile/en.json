@@ -78,6 +78,24 @@
   "officer": {
     "dashboard": {
       "reviewedTotal": "Reviewed (all-time)"
+    },
+    "review": {
+      "approveConfirmTitle": "Approve this advisory?",
+      "rejectConfirmTitle": "Reject this advisory?",
+      "confirmDiagnosisConfirmTitle": "Confirm this diagnosis?",
+      "correctDiagnosisConfirmTitle": "Correct this diagnosis?",
+      "confirmMessage": "\"{title}\": the farmer will be told your decision. This can't be undone.",
+      "alreadyReviewed": "Someone has already reviewed this advisory. It is shown as it stands now.",
+      "readOnly": "This advisory has been reviewed, so it can't be changed.",
+      "actionsTitle": "Your decision"
+    },
+    "trace": {
+      "more": "+{count} more",
+      "durationMs": "{value} ms",
+      "durationSeconds": "{value} s",
+      "yes": "Yes",
+      "no": "No",
+      "stepsCount": "{count} steps"
     }
   },
   "registrations": {
