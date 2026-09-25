@@ -40,10 +40,7 @@ void main() {
   test('API dates without an offset are read as UTC', () {
     expect(parseApiDate('2026-09-25T10:00:00').isUtc, isTrue);
     expect(parseApiDate('2026-09-25T10:00:00'), DateTime.utc(2026, 9, 25, 10));
-    expect(
-      parseApiDate('2026-09-25T15:30:00+05:30'),
-      DateTime.utc(2026, 9, 25, 10),
-    );
+    expect(parseApiDate('2026-09-25T15:30:00+05:30'), DateTime.utc(2026, 9, 25, 10));
     expect(parseApiDateOrNull(null), isNull);
   });
 
@@ -81,11 +78,7 @@ void main() {
     });
 
     test('sends no Authorization header when signed out', () async {
-      api.on(
-        'GET',
-        '/api/districts',
-        (_) => const FakeResponse(200, ['Colombo']),
-      );
+      api.on('GET', '/api/districts', (_) => const FakeResponse(200, ['Colombo']));
       final client = fakeApiClient(api);
       final districts = await client.get(
         '/api/districts',
@@ -106,13 +99,7 @@ void main() {
 
       await expectLater(
         client.get('/api/users/me', decode: (d) => d),
-        throwsA(
-          isA<ApiException>().having(
-            (e) => e.kind,
-            'kind',
-            ApiErrorKind.unauthorized,
-          ),
-        ),
+        throwsA(isA<ApiException>().having((e) => e.kind, 'kind', ApiErrorKind.unauthorized)),
       );
       expect(rejected, 'old-token');
     });
@@ -132,56 +119,30 @@ void main() {
 
       final error = await client
           .post('/api/auth/login', body: {'email': 'a@b.lk'}, decode: (d) => d)
-          .then<ApiException?>(
-            (_) => null,
-            onError: (Object e) => e as ApiException,
-          );
+          .then<ApiException?>((_) => null, onError: (Object e) => e as ApiException);
       expect(error!.kind, ApiErrorKind.forbidden);
       expect(error.serverMessage, 'Your registration was not approved.');
       expect(error.bodyField('reason'), 'Plot number could not be verified.');
 
       await expectLater(
         client.get('/api/districts', decode: (d) => d),
-        throwsA(
-          isA<ApiException>().having(
-            (e) => e.isConnectivity,
-            'isConnectivity',
-            isTrue,
-          ),
-        ),
+        throwsA(isA<ApiException>().having((e) => e.isConnectivity, 'isConnectivity', isTrue)),
       );
     });
 
     test('a response of the wrong shape becomes an ApiException', () async {
-      api.on(
-        'GET',
-        '/api/users/me',
-        (_) => const FakeResponse(200, ['not', 'an', 'object']),
-      );
+      api.on('GET', '/api/users/me', (_) => const FakeResponse(200, ['not', 'an', 'object']));
       final client = fakeApiClient(api);
       await expectLater(
         client.get('/api/users/me', decode: asJson),
-        throwsA(
-          isA<ApiException>().having(
-            (e) => e.kind,
-            'kind',
-            ApiErrorKind.unknown,
-          ),
-        ),
+        throwsA(isA<ApiException>().having((e) => e.kind, 'kind', ApiErrorKind.unknown)),
       );
     });
 
     test('ignoreBody accepts an empty 204', () async {
-      api.on(
-        'PUT',
-        '/api/notifications/read-all',
-        (_) => const FakeResponse(204),
-      );
+      api.on('PUT', '/api/notifications/read-all', (_) => const FakeResponse(204));
       final client = fakeApiClient(api);
-      await client.put(
-        '/api/notifications/read-all',
-        decode: ApiClient.ignoreBody,
-      );
+      await client.put('/api/notifications/read-all', decode: ApiClient.ignoreBody);
     });
   });
 }

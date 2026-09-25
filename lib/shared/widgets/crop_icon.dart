@@ -43,15 +43,14 @@ int cropCatalogOrder(String cropType) {
   return index == -1 ? cropCatalog.length : index;
 }
 
-String cropGroupLabel(AppLocalizations l10n, CropGroup group) =>
-    switch (group) {
-      CropGroup.plantation => l10n.commonCropGroupsPlantation,
-      CropGroup.cereals => l10n.commonCropGroupsCereals,
-      CropGroup.roots => l10n.commonCropGroupsRoots,
-      CropGroup.vegetables => l10n.commonCropGroupsVegetables,
-      CropGroup.fruit => l10n.commonCropGroupsFruit,
-      CropGroup.other => l10n.commonCropGroupsOther,
-    };
+String cropGroupLabel(AppLocalizations l10n, CropGroup group) => switch (group) {
+  CropGroup.plantation => l10n.commonCropGroupsPlantation,
+  CropGroup.cereals => l10n.commonCropGroupsCereals,
+  CropGroup.roots => l10n.commonCropGroupsRoots,
+  CropGroup.vegetables => l10n.commonCropGroupsVegetables,
+  CropGroup.fruit => l10n.commonCropGroupsFruit,
+  CropGroup.other => l10n.commonCropGroupsOther,
+};
 
 /// The website's icon for a crop, drawn in [color] (the forest green by default).
 ///

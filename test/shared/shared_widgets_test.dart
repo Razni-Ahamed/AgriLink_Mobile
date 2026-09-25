@@ -40,15 +40,10 @@ void main() {
 
     test('turns JSX attributes into SVG attributes', () {
       expect(
-        jsxToSvg(
-          '<path strokeWidth={2} strokeLinecap="round" className={x} d="M1 1" />',
-        ),
+        jsxToSvg('<path strokeWidth={2} strokeLinecap="round" className={x} d="M1 1" />'),
         '<path stroke-width="2" stroke-linecap="round" d="M1 1"/>',
       );
-      expect(
-        () => jsxToSvg('<path d={points.join()} />'),
-        throwsFormatException,
-      );
+      expect(() => jsxToSvg('<path d={points.join()} />'), throwsFormatException);
     });
   });
 
@@ -61,16 +56,11 @@ void main() {
     expect(safePhotoUrl(null), isNull);
   });
 
-  testWidgets('the password checklist ticks rules as they are met', (
-    tester,
-  ) async {
+  testWidgets('the password checklist ticks rules as they are met', (tester) async {
     await tester.pumpApp(const PasswordChecklist(password: 'abcdefghijkl'));
     final semantics = tester.getSemantics(find.text('At least 12 characters'));
     expect(semantics.label, contains('met'));
-    expect(
-      tester.getSemantics(find.text('Contains a number')).label,
-      contains('not met'),
-    );
+    expect(tester.getSemantics(find.text('Contains a number')).label, contains('not met'));
   });
 
   testWidgets('status badges translate API values', (tester) async {
@@ -87,9 +77,7 @@ void main() {
     expect(toneForStatus('Rejected'), BadgeTone.danger);
   });
 
-  testWidgets('avatars and crop icons render from the bundled assets', (
-    tester,
-  ) async {
+  testWidgets('avatars and crop icons render from the bundled assets', (tester) async {
     await tester.pumpApp(
       const Row(
         children: [
@@ -108,15 +96,11 @@ void main() {
     String? picked;
     await tester.pumpApp(
       StatefulBuilder(
-        builder: (context, setState) => DistrictPicker(
-          value: picked,
-          onChanged: (value) => setState(() => picked = value),
-        ),
+        builder: (context, setState) =>
+            DistrictPicker(value: picked, onChanged: (value) => setState(() => picked = value)),
       ),
       overrides: [
-        districtsProvider.overrideWith(
-          (ref) async => ['Ampara', 'Colombo', 'Kandy'],
-        ),
+        districtsProvider.overrideWith((ref) async => ['Ampara', 'Colombo', 'Kandy']),
       ],
     );
     await tester.pumpAndSettle();
@@ -138,11 +122,8 @@ void main() {
     await tester.pumpApp(
       Builder(
         builder: (context) => TextButton(
-          onPressed: () async => result = await showConfirmDialog(
-            context,
-            title: 'Remove photo?',
-            destructive: true,
-          ),
+          onPressed: () async =>
+              result = await showConfirmDialog(context, title: 'Remove photo?', destructive: true),
           child: const Text('open'),
         ),
       ),

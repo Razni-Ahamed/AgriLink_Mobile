@@ -71,6 +71,4 @@ class InMemorySessionStorage implements SessionStorage {
   Future<void> clear() async => session = null;
 }
 
-final sessionStorageProvider = Provider<SessionStorage>(
-  (ref) => SecureSessionStorage(),
-);
+final sessionStorageProvider = Provider<SessionStorage>((ref) => SecureSessionStorage());

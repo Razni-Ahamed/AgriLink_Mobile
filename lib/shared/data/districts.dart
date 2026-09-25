@@ -7,8 +7,5 @@ import '../../core/api/api_client.dart';
 final districtsProvider = FutureProvider<List<String>>((ref) {
   return ref
       .watch(apiClientProvider)
-      .get(
-        '/api/districts',
-        decode: (data) => [for (final item in data! as List) '$item'],
-      );
+      .get('/api/districts', decode: (data) => [for (final item in data! as List) '$item']);
 });

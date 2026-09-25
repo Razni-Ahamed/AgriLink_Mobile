@@ -1,6 +1,10 @@
 # Lint rules for the whole team. `flutter analyze` must report zero issues before a commit.
 include: package:flutter_lints/flutter.yaml
 
+# `dart format` line length for the whole team (the website uses about the same).
+formatter:
+  page_width: 100
+
 analyzer:
   language:
     strict-casts: true

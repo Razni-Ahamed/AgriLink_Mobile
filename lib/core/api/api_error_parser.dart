@@ -4,10 +4,7 @@ import 'api_exception.dart';
 /// What a form shows for a failed request: messages under specific fields, and messages for
 /// a general error box.
 class ParsedApiError {
-  const ParsedApiError({
-    this.fieldErrors = const {},
-    this.generalErrors = const [],
-  });
+  const ParsedApiError({this.fieldErrors = const {}, this.generalErrors = const []});
 
   /// The form's field name → the message to show under it.
   final Map<String, String> fieldErrors;
@@ -105,8 +102,9 @@ ParsedApiError parseApiError(
           final message = switch (code) {
             _duplicateUserNameCode => l10n.commonValidationUsernameTaken,
             _duplicateEmailCode => conflictMessage,
-            final String c when _identityCodeMessages.containsKey(c) =>
-              _identityCodeMessages[c]!(l10n),
+            final String c when _identityCodeMessages.containsKey(c) => _identityCodeMessages[c]!(
+              l10n,
+            ),
             _ => (item['description'] as String?) ?? genericMessage,
           };
           general.add(message);
@@ -122,9 +120,7 @@ ParsedApiError parseApiError(
       final general = <String>[];
       for (final entry in errors.entries) {
         final messages = entry.value;
-        final message = messages is List && messages.isNotEmpty
-            ? '${messages.first}'
-            : '$messages';
+        final message = messages is List && messages.isNotEmpty ? '${messages.first}' : '$messages';
         final formField = serverFieldNames[entry.key];
         if (formField != null) {
           fields[formField] = message;
@@ -148,8 +144,7 @@ bool _hasErrorCode(Object? body, String code) {
     return false;
   }
   final errors = body['errors'];
-  return errors is List &&
-      errors.any((item) => item is Map && item['code'] == code);
+  return errors is List && errors.any((item) => item is Map && item['code'] == code);
 }
 
 /// A one-line message for any error, for screens that show an error with a retry button

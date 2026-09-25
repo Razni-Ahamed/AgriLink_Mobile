@@ -44,11 +44,7 @@ class ApiClient {
     required T Function(Object? data) decode,
     CancelToken? cancelToken,
   }) => _send(
-    () => dio.get<Object?>(
-      path,
-      queryParameters: _clean(query),
-      cancelToken: cancelToken,
-    ),
+    () => dio.get<Object?>(path, queryParameters: _clean(query), cancelToken: cancelToken),
     decode,
   );
 
@@ -68,17 +64,11 @@ class ApiClient {
     decode,
   );
 
-  Future<T> put<T>(
-    String path, {
-    Object? body,
-    required T Function(Object? data) decode,
-  }) => _send(() => dio.put<Object?>(path, data: body), decode);
+  Future<T> put<T>(String path, {Object? body, required T Function(Object? data) decode}) =>
+      _send(() => dio.put<Object?>(path, data: body), decode);
 
-  Future<T> delete<T>(
-    String path, {
-    Object? body,
-    required T Function(Object? data) decode,
-  }) => _send(() => dio.delete<Object?>(path, data: body), decode);
+  Future<T> delete<T>(String path, {Object? body, required T Function(Object? data) decode}) =>
+      _send(() => dio.delete<Object?>(path, data: body), decode);
 
   /// A page of a list endpoint that returns `{ items, page, pageSize, totalCount, totalPages }`.
   Future<Paged<T>> getPaged<T>(
@@ -123,9 +113,7 @@ class ApiClient {
   }
 
   static Map<String, Object?>? _clean(Map<String, Object?>? query) =>
-      query == null
-      ? null
-      : ({...query}..removeWhere((_, value) => value == null));
+      query == null ? null : ({...query}..removeWhere((_, value) => value == null));
 }
 
 /// Builds the configured Dio. [readToken] and [onUnauthorized] connect it to the session; a

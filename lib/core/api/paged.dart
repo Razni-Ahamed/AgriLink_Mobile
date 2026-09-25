@@ -20,9 +20,7 @@ class Paged<T> {
 
   factory Paged.fromJson(Json json, T Function(Json item) fromItem) {
     return Paged(
-      items: [
-        for (final item in asJsonList(json['items'], 'items')) fromItem(item),
-      ],
+      items: [for (final item in asJsonList(json['items'], 'items')) fromItem(item)],
       page: (json['page'] as num?)?.toInt() ?? 1,
       pageSize: (json['pageSize'] as num?)?.toInt() ?? 0,
       totalCount: (json['totalCount'] as num?)?.toInt() ?? 0,

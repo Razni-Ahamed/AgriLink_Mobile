@@ -161,16 +161,15 @@ class FormValidators {
   final AppLocalizations l10n;
 
   /// Runs each validator in turn and returns the first error.
-  FormFieldValidator<String> all(List<FormFieldValidator<String>> validators) =>
-      (value) {
-        for (final validator in validators) {
-          final error = validator(value);
-          if (error != null) {
-            return error;
-          }
-        }
-        return null;
-      };
+  FormFieldValidator<String> all(List<FormFieldValidator<String>> validators) => (value) {
+    for (final validator in validators) {
+      final error = validator(value);
+      if (error != null) {
+        return error;
+      }
+    }
+    return null;
+  };
 
   /// Fails when the trimmed value is shorter than [min] (1 means "not empty").
   FormFieldValidator<String> required(String message, {int min = 1}) =>
@@ -186,28 +185,23 @@ class FormValidators {
 
   FormFieldValidator<String> email() => all([
     required(l10n.commonValidationEmailInvalid),
-    (value) =>
-        isValidEmail(value ?? '') ? null : l10n.commonValidationEmailInvalid,
+    (value) => isValidEmail(value ?? '') ? null : l10n.commonValidationEmailInvalid,
     maxLength(FieldLimits.email, l10n.commonValidationEmailTooLong),
   ]);
 
   /// For sign-in, where any stored password is accepted: only "not empty".
-  FormFieldValidator<String> passwordEntered() =>
-      required(l10n.commonValidationPasswordRequired);
+  FormFieldValidator<String> passwordEntered() => required(l10n.commonValidationPasswordRequired);
 
   /// For a new password: the full policy.
   FormFieldValidator<String> newPassword() =>
       (value) => firstFailedPasswordRule(value ?? '')?.message(l10n);
 
-  FormFieldValidator<String> confirmPassword(String Function() password) =>
-      (value) {
-        if ((value ?? '').isEmpty) {
-          return l10n.commonValidationConfirmPasswordRequired;
-        }
-        return value == password()
-            ? null
-            : l10n.commonValidationConfirmPasswordMismatch;
-      };
+  FormFieldValidator<String> confirmPassword(String Function() password) => (value) {
+    if ((value ?? '').isEmpty) {
+      return l10n.commonValidationConfirmPasswordRequired;
+    }
+    return value == password() ? null : l10n.commonValidationConfirmPasswordMismatch;
+  };
 
   FormFieldValidator<String> username() => (value) {
     final problem = usernameProblem(normalizeUsername(value ?? ''));
@@ -224,9 +218,7 @@ class FormValidators {
     if ((value ?? '').trim().isEmpty) {
       return l10n.commonValidationNicRequired;
     }
-    return isValidNic(normalizeNic(value!))
-        ? null
-        : l10n.commonValidationNicInvalid;
+    return isValidNic(normalizeNic(value!)) ? null : l10n.commonValidationNicInvalid;
   };
 
   /// A 10-digit phone number, with the field's own messages (phone or business phone).

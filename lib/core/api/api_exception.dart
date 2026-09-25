@@ -79,8 +79,7 @@ class ApiException implements Exception {
   final Object? data;
 
   /// True when the request never got an answer: show "Can't reach the server" with a retry.
-  bool get isConnectivity =>
-      kind == ApiErrorKind.network || kind == ApiErrorKind.timeout;
+  bool get isConnectivity => kind == ApiErrorKind.network || kind == ApiErrorKind.timeout;
 
   /// The server's own `{ message }`, if it sent one. It is in English.
   String? get serverMessage {
@@ -99,6 +98,5 @@ class ApiException implements Exception {
   }
 
   @override
-  String toString() =>
-      'ApiException($kind, status: $statusCode, message: $serverMessage)';
+  String toString() => 'ApiException($kind, status: $statusCode, message: $serverMessage)';
 }

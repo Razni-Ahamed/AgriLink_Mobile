@@ -46,59 +46,51 @@ void main() {
       expect(requested, [1, 2, 3]);
     });
 
-    test(
-      'keeps loaded items after a later page fails, and retries that page',
-      () async {
-        var failPage2 = true;
-        final controller = PagedListController<int>(
-          loadPage: (page) async {
-            if (page == 2 && failPage2) {
-              throw const ApiException(ApiErrorKind.network);
-            }
-            return pageOf(page);
-          },
-        );
-        addTearDown(controller.dispose);
+    test('keeps loaded items after a later page fails, and retries that page', () async {
+      var failPage2 = true;
+      final controller = PagedListController<int>(
+        loadPage: (page) async {
+          if (page == 2 && failPage2) {
+            throw const ApiException(ApiErrorKind.network);
+          }
+          return pageOf(page);
+        },
+      );
+      addTearDown(controller.dispose);
 
-        await controller.loadFirstPage();
-        await controller.loadMore();
-        expect(controller.error, isA<ApiException>());
-        expect(controller.items.length, 10);
+      await controller.loadFirstPage();
+      await controller.loadMore();
+      expect(controller.error, isA<ApiException>());
+      expect(controller.items.length, 10);
 
-        failPage2 = false;
-        await controller.retry();
-        expect(controller.error, isNull);
-        expect(controller.items.length, 20);
-      },
-    );
+      failPage2 = false;
+      await controller.retry();
+      expect(controller.error, isNull);
+      expect(controller.items.length, 20);
+    });
 
-    test(
-      'refresh replaces the list and ignores a slower older response',
-      () async {
-        final slow = Completer<Paged<int>>();
-        var calls = 0;
-        final controller = PagedListController<int>(
-          loadPage: (page) {
-            calls++;
-            return calls == 1 ? slow.future : Future.value(pageOf(1, total: 3));
-          },
-        );
-        addTearDown(controller.dispose);
+    test('refresh replaces the list and ignores a slower older response', () async {
+      final slow = Completer<Paged<int>>();
+      var calls = 0;
+      final controller = PagedListController<int>(
+        loadPage: (page) {
+          calls++;
+          return calls == 1 ? slow.future : Future.value(pageOf(1, total: 3));
+        },
+      );
+      addTearDown(controller.dispose);
 
-        unawaited(controller.loadFirstPage());
-        await controller.refresh();
-        slow.complete(pageOf(1));
-        await Future<void>.delayed(Duration.zero);
+      unawaited(controller.loadFirstPage());
+      await controller.refresh();
+      slow.complete(pageOf(1));
+      await Future<void>.delayed(Duration.zero);
 
-        expect(controller.items, [0, 1, 2]);
-        expect(controller.hasMore, isFalse);
-      },
-    );
+      expect(controller.items, [0, 1, 2]);
+      expect(controller.hasMore, isFalse);
+    });
 
     test('updateWhere changes items in place', () async {
-      final controller = PagedListController<int>(
-        loadPage: (page) async => pageOf(page, total: 3),
-      );
+      final controller = PagedListController<int>(loadPage: (page) async => pageOf(page, total: 3));
       addTearDown(controller.dispose);
       await controller.loadFirstPage();
       controller.updateWhere((n) => n == 1, (n) => 100);
@@ -106,9 +98,7 @@ void main() {
     });
   });
 
-  testWidgets('PagedListView shows items, then loads more on scroll', (
-    tester,
-  ) async {
+  testWidgets('PagedListView shows items, then loads more on scroll', (tester) async {
     final controller = PagedListController<int>(
       loadPage: (page) async => pageOf(page, pageSize: 20, total: 45),
     );
@@ -117,8 +107,7 @@ void main() {
     await tester.pumpApp(
       PagedListView<int>(
         controller: controller,
-        itemBuilder: (context, item, index) =>
-            SizedBox(height: 60, child: Text('Item $item')),
+        itemBuilder: (context, item, index) => SizedBox(height: 60, child: Text('Item $item')),
       ),
     );
     await tester.pumpAndSettle();
@@ -130,9 +119,7 @@ void main() {
     expect(controller.hasMore, isFalse);
   });
 
-  testWidgets('PagedListView shows an error with a retry on the first page', (
-    tester,
-  ) async {
+  testWidgets('PagedListView shows an error with a retry on the first page', (tester) async {
     var fail = true;
     final controller = PagedListController<int>(
       loadPage: (page) async {
@@ -160,9 +147,7 @@ void main() {
   });
 
   testWidgets('PagedListView shows the empty state', (tester) async {
-    final controller = PagedListController<int>(
-      loadPage: (page) async => pageOf(page, total: 0),
-    );
+    final controller = PagedListController<int>(loadPage: (page) async => pageOf(page, total: 0));
     addTearDown(controller.dispose);
     await tester.pumpApp(
       PagedListView<int>(

@@ -9,17 +9,13 @@ Json asJson(Object? value, [String what = 'response']) {
   if (value is Map) {
     return value.cast<String, dynamic>();
   }
-  throw FormatException(
-    'Expected a JSON object for $what, got ${value.runtimeType}',
-  );
+  throw FormatException('Expected a JSON object for $what, got ${value.runtimeType}');
 }
 
 /// [value] as a list of JSON objects.
 List<Json> asJsonList(Object? value, [String what = 'response']) {
   if (value is! List) {
-    throw FormatException(
-      'Expected a JSON list for $what, got ${value.runtimeType}',
-    );
+    throw FormatException('Expected a JSON list for $what, got ${value.runtimeType}');
   }
   return [for (final item in value) asJson(item, what)];
 }

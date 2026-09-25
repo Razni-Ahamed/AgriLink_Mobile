@@ -14,16 +14,10 @@ void main() {
     final si = lookupAppLocalizations(const Locale('si'));
 
     test('translate API status values and fall back to the raw value', () {
-      expect(
-        statusLabel(en, StatusKind.issue, 'AwaitingReview'),
-        'Awaiting review',
-      );
+      expect(statusLabel(en, StatusKind.issue, 'AwaitingReview'), 'Awaiting review');
       expect(statusLabel(en, StatusKind.severity, 'High'), 'High');
       expect(statusLabel(en, StatusKind.order, 'Teleported'), 'Teleported');
-      expect(
-        statusLabel(si, StatusKind.issue, 'Pending'),
-        si.commonStatusIssuePending,
-      );
+      expect(statusLabel(si, StatusKind.issue, 'Pending'), si.commonStatusIssuePending);
     });
 
     test('translate crop names with spaces, and roles', () {
@@ -34,9 +28,7 @@ void main() {
     });
   });
 
-  testWidgets('the language switcher changes and remembers the language', (
-    tester,
-  ) async {
+  testWidgets('the language switcher changes and remembers the language', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final preferences = await SharedPreferences.getInstance();
 
@@ -51,10 +43,7 @@ void main() {
             home: Scaffold(
               body: Builder(
                 builder: (context) => Column(
-                  children: [
-                    Text(context.l10n.authLoginSubmit),
-                    const LanguageSwitcher(),
-                  ],
+                  children: [Text(context.l10n.authLoginSubmit), const LanguageSwitcher()],
                 ),
               ),
             ),

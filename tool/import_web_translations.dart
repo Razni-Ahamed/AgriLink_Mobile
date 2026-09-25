@@ -35,8 +35,7 @@ const List<String> webNamespaces = [
   'registrations',
 ];
 
-const String defaultWebLocales =
-    '../AgriLink_SriLanka/frontend/src/i18n/locales';
+const String defaultWebLocales = '../AgriLink_SriLanka/frontend/src/i18n/locales';
 const String mobileDir = 'lib/l10n/mobile';
 const String arbDir = 'lib/l10n/arb';
 const String lookupFile = 'lib/l10n/web_keys.g.dart';
@@ -56,32 +55,23 @@ class Entry {
   final bool mobileOnly;
 }
 
-final RegExp _i18nextPlaceholder = RegExp(
-  r'\{\{\s*([A-Za-z_][A-Za-z0-9_]*)\s*\}\}',
-);
+final RegExp _i18nextPlaceholder = RegExp(r'\{\{\s*([A-Za-z_][A-Za-z0-9_]*)\s*\}\}');
 final RegExp _arbPlaceholder = RegExp(r'\{([A-Za-z_][A-Za-z0-9_]*)\}');
 
 /// `auth.login.submit` → `authLoginSubmit`. Any character that can't be in a Dart identifier
 /// (a space, a dash) splits a word: `common.cropTypes.Green Gram` → `commonCropTypesGreenGram`.
 String arbKeyFor(String webKey) {
-  final words = webKey
-      .split(RegExp('[^A-Za-z0-9]+'))
-      .where((word) => word.isNotEmpty)
-      .toList();
+  final words = webKey.split(RegExp('[^A-Za-z0-9]+')).where((word) => word.isNotEmpty).toList();
   if (words.isEmpty) {
     throw TranslationException('Cannot build a key from "$webKey"');
   }
-  final buffer = StringBuffer(
-    words.first[0].toLowerCase() + words.first.substring(1),
-  );
+  final buffer = StringBuffer(words.first[0].toLowerCase() + words.first.substring(1));
   for (final word in words.skip(1)) {
     buffer.write(word[0].toUpperCase() + word.substring(1));
   }
   final key = buffer.toString();
   if (!RegExp(r'^[a-z][A-Za-z0-9]*$').hasMatch(key)) {
-    throw TranslationException(
-      '"$webKey" gives "$key", which is not a valid Dart identifier',
-    );
+    throw TranslationException('"$webKey" gives "$key", which is not a valid Dart identifier');
   }
   return key;
 }
@@ -89,20 +79,13 @@ String arbKeyFor(String webKey) {
 /// `Hello {{name}}` → `Hello {name}`. Throws on a brace that isn't part of a placeholder,
 /// because ARB would read it as ICU syntax.
 String convertValue(String value, String webKey) {
-  final converted = value.replaceAllMapped(
-    _i18nextPlaceholder,
-    (m) => '{${m[1]}}',
-  );
+  final converted = value.replaceAllMapped(_i18nextPlaceholder, (m) => '{${m[1]}}');
   final leftover = converted.replaceAll(_arbPlaceholder, '');
   if (leftover.contains('{') || leftover.contains('}')) {
-    throw TranslationException(
-      '"$webKey" has a brace that is not a {{placeholder}}: $value',
-    );
+    throw TranslationException('"$webKey" has a brace that is not a {{placeholder}}: $value');
   }
   if (value.contains(r'$t(')) {
-    throw TranslationException(
-      '"$webKey" uses a nested \$t() reference, which ARB cannot express',
-    );
+    throw TranslationException('"$webKey" uses a nested \$t() reference, which ARB cannot express');
   }
   return converted;
 }
@@ -149,8 +132,7 @@ Map<String, Map<String, Object>> buildArbs({
 }) {
   warnings ??= [];
   final template = <Entry>[
-    for (final e in web[templateLanguage]!.entries)
-      Entry(e.key, e.value, mobileOnly: false),
+    for (final e in web[templateLanguage]!.entries) Entry(e.key, e.value, mobileOnly: false),
     for (final e in (mobile[templateLanguage] ?? {}).entries)
       Entry(e.key, e.value, mobileOnly: true),
   ];
@@ -167,9 +149,7 @@ Map<String, Map<String, Object>> buildArbs({
     final arbKey = arbKeyFor(entry.webKey);
     final clash = arbKeys[arbKey];
     if (clash != null) {
-      throw TranslationException(
-        '"$clash" and "${entry.webKey}" both become "$arbKey"',
-      );
+      throw TranslationException('"$clash" and "${entry.webKey}" both become "$arbKey"');
     }
     arbKeys[arbKey] = entry.webKey;
   }
@@ -193,9 +173,7 @@ Map<String, Map<String, Object>> buildArbs({
       }
       if (raw == null) {
         if (language != templateLanguage) {
-          warnings.add(
-            '$language is missing "${entry.webKey}"; English will be shown.',
-          );
+          warnings.add('$language is missing "${entry.webKey}"; English will be shown.');
         }
         continue;
       }
@@ -212,21 +190,17 @@ Map<String, Map<String, Object>> buildArbs({
       arb[arbKey] = value;
       if (language == templateLanguage) {
         arb['@$arbKey'] = {
-          'description':
-              '${entry.mobileOnly ? 'Mobile-only' : 'Website'} key: ${entry.webKey}',
+          'description': '${entry.mobileOnly ? 'Mobile-only' : 'Website'} key: ${entry.webKey}',
           if (expected.isNotEmpty)
             'placeholders': {
-              for (final name in placeholdersIn(templateValue))
-                name: {'type': 'Object'},
+              for (final name in placeholdersIn(templateValue)) name: {'type': 'Object'},
             },
         };
       }
     }
     for (final extra in (web[language] ?? {}).keys) {
       if (!web[templateLanguage]!.containsKey(extra)) {
-        warnings.add(
-          '$language has "$extra", which English does not; it was skipped.',
-        );
+        warnings.add('$language has "$extra", which English does not; it was skipped.');
       }
     }
     arbs[language] = arb;
@@ -238,25 +212,15 @@ Map<String, Map<String, Object>> buildArbs({
 /// AppLocalizations getter, for strings chosen at runtime (status values, crop names).
 String buildLookupSource(Map<String, Object> templateArb) {
   final buffer = StringBuffer()
-    ..writeln(
-      '// GENERATED by tool/import_web_translations.dart. Do not edit by hand.',
-    )
+    ..writeln('// GENERATED by tool/import_web_translations.dart. Do not edit by hand.')
     ..writeln()
     ..writeln("import 'generated/app_localizations.dart';")
     ..writeln()
-    ..writeln(
-      '/// The translation of a website key such as `common.status.issue.Pending`, or null',
-    )
-    ..writeln(
-      '/// when there is no such key. Only strings without placeholders are included.',
-    )
+    ..writeln('/// The translation of a website key such as `common.status.issue.Pending`, or null')
+    ..writeln('/// when there is no such key. Only strings without placeholders are included.')
     ..writeln('///')
-    ..writeln(
-      '/// Use it for text picked by a value from the API. For fixed text, call the getter',
-    )
-    ..writeln(
-      '/// directly (`context.l10n.commonStatusIssuePending`) so a typo fails to compile.',
-    )
+    ..writeln('/// Use it for text picked by a value from the API. For fixed text, call the getter')
+    ..writeln('/// directly (`context.l10n.commonStatusIssuePending`) so a typo fails to compile.')
     ..writeln('String? translateWebKey(AppLocalizations l10n, String key) {')
     ..writeln('  return switch (key) {');
   for (final entry in templateArb.entries) {
@@ -268,9 +232,7 @@ String buildLookupSource(Map<String, Object> templateArb) {
       continue;
     }
     final webKey = (meta['description']! as String).split('key: ').last;
-    buffer.writeln(
-      "    '${webKey.replaceAll("'", r"\'")}' => l10n.${entry.key},",
-    );
+    buffer.writeln("    '${webKey.replaceAll("'", r"\'")}' => l10n.${entry.key},");
   }
   buffer
     ..writeln('    _ => null,')
@@ -328,15 +290,11 @@ void main(List<String> args) {
     Directory(arbDir).createSync(recursive: true);
     const encoder = JsonEncoder.withIndent('  ');
     for (final language in languages) {
-      File('$arbDir/app_$language.arb')
-          .writeAsStringSync('${encoder.convert(arbs[language])}\n');
+      File('$arbDir/app_$language.arb').writeAsStringSync('${encoder.convert(arbs[language])}\n');
     }
-    File(lookupFile)
-        .writeAsStringSync(buildLookupSource(arbs[templateLanguage]!));
+    File(lookupFile).writeAsStringSync(buildLookupSource(arbs[templateLanguage]!));
 
-    final count = arbs[templateLanguage]!.keys
-        .where((k) => !k.startsWith('@'))
-        .length;
+    final count = arbs[templateLanguage]!.keys.where((k) => !k.startsWith('@')).length;
     stdout.writeln(
       'Wrote $count strings to $arbDir/app_{${languages.join(',')}}.arb and $lookupFile',
     );

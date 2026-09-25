@@ -50,8 +50,7 @@ class ErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final offline =
-        error is ApiException && (error as ApiException).isConnectivity;
+    final offline = error is ApiException && (error as ApiException).isConnectivity;
     return _CenteredMessage(
       icon: offline ? Icons.cloud_off_outlined : Icons.error_outline,
       iconColor: context.colors.danger,
@@ -126,19 +125,13 @@ class _CenteredMessage extends StatelessWidget {
                 children: [
                   Icon(icon, size: 48, color: iconColor),
                   const SizedBox(height: 16),
-                  Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: textTheme.titleMedium,
-                  ),
+                  Text(title, textAlign: TextAlign.center, style: textTheme.titleMedium),
                   if (message != null) ...[
                     const SizedBox(height: 8),
                     Text(
                       message!,
                       textAlign: TextAlign.center,
-                      style: textTheme.bodyMedium?.copyWith(
-                        color: context.colors.textSecondary,
-                      ),
+                      style: textTheme.bodyMedium?.copyWith(color: context.colors.textSecondary),
                     ),
                   ],
                   if (action != null) ...[const SizedBox(height: 20), action!],

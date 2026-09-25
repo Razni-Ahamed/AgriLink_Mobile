@@ -19,11 +19,7 @@ class FakeApi implements HttpClientAdapter {
   final List<RecordedRequest> requests = [];
 
   /// Registers a handler. [path] matches the request path exactly (without the query).
-  void on(
-    String method,
-    String path,
-    FakeResponse Function(RecordedRequest request) handler,
-  ) {
+  void on(String method, String path, FakeResponse Function(RecordedRequest request) handler) {
     _routes.insert(0, _Route(method, path, handler));
   }
 
@@ -61,10 +57,7 @@ class FakeApi implements HttpClientAdapter {
         try {
           response = route.handler(request);
         } on _Offline {
-          throw DioException.connectionError(
-            requestOptions: options,
-            reason: 'offline',
-          );
+          throw DioException.connectionError(requestOptions: options, reason: 'offline');
         }
         return ResponseBody.fromString(
           response.body == null ? '' : jsonEncode(response.body),
@@ -76,9 +69,7 @@ class FakeApi implements HttpClientAdapter {
       }
     }
     return ResponseBody.fromString(
-      jsonEncode({
-        'message': 'No fake for ${options.method} ${options.uri.path}',
-      }),
+      jsonEncode({'message': 'No fake for ${options.method} ${options.uri.path}'}),
       404,
       headers: {
         Headers.contentTypeHeader: [Headers.jsonContentType],

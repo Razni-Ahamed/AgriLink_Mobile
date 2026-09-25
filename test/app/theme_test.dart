@@ -26,10 +26,7 @@ void main() {
     test('falls back to the Noto fonts for Sinhala and Tamil', () {
       final style = AppTheme.light.textTheme.bodyMedium!;
       expect(style.fontFamily, 'PlusJakartaSans');
-      expect(
-        style.fontFamilyFallback,
-        containsAll(['NotoSansSinhala', 'NotoSansTamil']),
-      );
+      expect(style.fontFamilyFallback, containsAll(['NotoSansSinhala', 'NotoSansTamil']));
       expect(AppTheme.light.textTheme.headlineSmall!.fontFamily, 'Fraunces');
     });
   });

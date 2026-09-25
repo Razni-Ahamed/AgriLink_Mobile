@@ -61,8 +61,7 @@ class AppColors extends ThemeExtension<AppColors> {
   Color get borderStrong => textSecondary.withValues(alpha: 0.45);
 
   /// A light wash of a state colour, for badge and banner backgrounds.
-  Color tint(Color color) =>
-      Color.alphaBlend(color.withValues(alpha: 0.14), surface);
+  Color tint(Color color) => Color.alphaBlend(color.withValues(alpha: 0.14), surface);
 
   static const AppColors light = AppColors(
     forest: Color(0xFF1F4D36),

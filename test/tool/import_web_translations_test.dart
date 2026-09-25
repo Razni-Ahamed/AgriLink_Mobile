@@ -9,46 +9,25 @@ void main() {
   group('arbKeyFor', () {
     test('joins the namespace and path in camelCase', () {
       expect(arbKeyFor('auth.login.submit'), 'authLoginSubmit');
-      expect(
-        arbKeyFor('common.passwordChecklist.length'),
-        'commonPasswordChecklistLength',
-      );
-      expect(
-        arbKeyFor('common.status.issue.AwaitingReview'),
-        'commonStatusIssueAwaitingReview',
-      );
+      expect(arbKeyFor('common.passwordChecklist.length'), 'commonPasswordChecklistLength');
+      expect(arbKeyFor('common.status.issue.AwaitingReview'), 'commonStatusIssueAwaitingReview');
     });
 
     test('splits words on characters a Dart name cannot have', () {
-      expect(
-        arbKeyFor('common.cropTypes.Green Gram'),
-        'commonCropTypesGreenGram',
-      );
-      expect(
-        arbKeyFor('common.cropTypes.Passion Fruit'),
-        'commonCropTypesPassionFruit',
-      );
+      expect(arbKeyFor('common.cropTypes.Green Gram'), 'commonCropTypesGreenGram');
+      expect(arbKeyFor('common.cropTypes.Passion Fruit'), 'commonCropTypesPassionFruit');
     });
   });
 
   group('convertValue', () {
     test('turns i18next placeholders into ARB placeholders', () {
-      expect(
-        convertValue('Page {{page}} of {{ totalPages }}', 'k'),
-        'Page {page} of {totalPages}',
-      );
+      expect(convertValue('Page {{page}} of {{ totalPages }}', 'k'), 'Page {page} of {totalPages}');
       expect(convertValue('No placeholders', 'k'), 'No placeholders');
     });
 
     test('rejects a stray brace and nested references', () {
-      expect(
-        () => convertValue('Use { carefully', 'k'),
-        throwsA(isA<TranslationException>()),
-      );
-      expect(
-        () => convertValue(r'See $t(other)', 'k'),
-        throwsA(isA<TranslationException>()),
-      );
+      expect(() => convertValue('Use { carefully', 'k'), throwsA(isA<TranslationException>()));
+      expect(() => convertValue(r'See $t(other)', 'k'), throwsA(isA<TranslationException>()));
     });
   });
 
@@ -59,22 +38,13 @@ void main() {
         'nested': {'deep': 'x'},
       },
     }, 'auth');
-    expect(flat, {
-      'auth.login.submit': 'Sign in',
-      'auth.login.nested.deep': 'x',
-    });
+    expect(flat, {'auth.login.submit': 'Sign in', 'auth.login.nested.deep': 'x'});
   });
 
   group('buildArbs', () {
     Map<String, Map<String, String>> web() => {
-      'en': {
-        'auth.login.submit': 'Sign in',
-        'common.pageOf': 'Page {{page}} of {{total}}',
-      },
-      'si': {
-        'auth.login.submit': 'පිවිසෙන්න',
-        'common.pageOf': '{{total}} න් {{page}} පිටුව',
-      },
+      'en': {'auth.login.submit': 'Sign in', 'common.pageOf': 'Page {{page}} of {{total}}'},
+      'si': {'auth.login.submit': 'පිවිසෙන්න', 'common.pageOf': '{{total}} න් {{page}} පිටුව'},
       'ta': {'auth.login.submit': 'உள்நுழைக'},
     };
     Map<String, Map<String, String>> mobile() => {
@@ -99,14 +69,9 @@ void main() {
         },
       });
       expect(en['commonActionsRetry'], 'Try again');
-      expect(en['@commonActionsRetry'], {
-        'description': 'Mobile-only key: common.actions.retry',
-      });
+      expect(en['@commonActionsRetry'], {'description': 'Mobile-only key: common.actions.retry'});
       final keys = en.keys.toList();
-      expect(
-        keys.indexOf('@@x-mobile-only'),
-        lessThan(keys.indexOf('commonActionsRetry')),
-      );
+      expect(keys.indexOf('@@x-mobile-only'), lessThan(keys.indexOf('commonActionsRetry')));
 
       // Word order differs in Sinhala; the placeholders still match.
       expect(arbs['si']!['commonPageOf'], '{total} න් {page} පිටුව');
@@ -114,10 +79,7 @@ void main() {
       expect(arbs['si']!.containsKey('@authLoginSubmit'), isFalse);
 
       expect(arbs['ta']!.containsKey('commonPageOf'), isFalse);
-      expect(
-        warnings,
-        contains('ta is missing "common.pageOf"; English will be shown.'),
-      );
+      expect(warnings, contains('ta is missing "common.pageOf"; English will be shown.'));
     });
 
     test('rejects a translation whose placeholders differ from English', () {
@@ -125,39 +87,26 @@ void main() {
       expect(
         () => buildArbs(web: broken, mobile: mobile()),
         throwsA(
-          isA<TranslationException>().having(
-            (e) => e.message,
-            'message',
-            contains('placeholders'),
-          ),
+          isA<TranslationException>().having((e) => e.message, 'message', contains('placeholders')),
         ),
       );
     });
 
     test('rejects a mobile key that repeats a website key', () {
       final clash = mobile()..['en'] = {'auth.login.submit': 'Log in'};
-      expect(
-        () => buildArbs(web: web(), mobile: clash),
-        throwsA(isA<TranslationException>()),
-      );
+      expect(() => buildArbs(web: web(), mobile: clash), throwsA(isA<TranslationException>()));
     });
 
     test('rejects two keys that flatten to the same name', () {
       final clash = web()..['en'] = {'a.bC': 'one', 'aB.c': 'two'};
-      expect(
-        () => buildArbs(web: clash, mobile: {}),
-        throwsA(isA<TranslationException>()),
-      );
+      expect(() => buildArbs(web: clash, mobile: {}), throwsA(isA<TranslationException>()));
     });
   });
 
   test('buildLookupSource maps placeholder-free keys to getters', () {
     final arbs = buildArbs(
       web: {
-        'en': {
-          'auth.login.submit': 'Sign in',
-          'common.pageOf': 'Page {{page}}',
-        },
+        'en': {'auth.login.submit': 'Sign in', 'common.pageOf': 'Page {{page}}'},
         'si': {},
         'ta': {},
       },
@@ -179,18 +128,10 @@ void main() {
       final en = read('en');
       expect(messageKeys(en).length, greaterThanOrEqualTo(734));
       for (final namespace in webNamespaces) {
-        expect(
-          messageKeys(en).any((k) => k.startsWith(namespace)),
-          isTrue,
-          reason: namespace,
-        );
+        expect(messageKeys(en).any((k) => k.startsWith(namespace)), isTrue, reason: namespace);
       }
       for (final language in ['si', 'ta']) {
-        expect(
-          messageKeys(read(language)).toSet(),
-          messageKeys(en).toSet(),
-          reason: language,
-        );
+        expect(messageKeys(read(language)).toSet(), messageKeys(en).toSet(), reason: language);
       }
     });
 

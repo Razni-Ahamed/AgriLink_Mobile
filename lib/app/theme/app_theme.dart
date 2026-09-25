@@ -46,15 +46,9 @@ abstract final class AppTheme {
       onSurfaceVariant: c.textSecondary,
       surfaceContainerLowest: c.surface,
       surfaceContainerLow: c.surface,
-      surfaceContainer: Color.alphaBlend(
-        c.canvas.withValues(alpha: 0.5),
-        c.surface,
-      ),
+      surfaceContainer: Color.alphaBlend(c.canvas.withValues(alpha: 0.5), c.surface),
       surfaceContainerHigh: c.canvas,
-      surfaceContainerHighest: Color.alphaBlend(
-        c.textPrimary.withValues(alpha: 0.06),
-        c.canvas,
-      ),
+      surfaceContainerHighest: Color.alphaBlend(c.textPrimary.withValues(alpha: 0.06), c.canvas),
       outline: c.borderStrong,
       outlineVariant: c.border,
       shadow: Colors.black,
@@ -65,22 +59,17 @@ abstract final class AppTheme {
       surfaceTint: Colors.transparent,
     );
 
-    final base = isDark
-        ? Typography.material2021().white
-        : Typography.material2021().black;
+    final base = isDark ? Typography.material2021().white : Typography.material2021().black;
     final textTheme = buildTextTheme(base, c.textPrimary, c.textSecondary);
-    final rounded = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(kRadius),
-    );
+    final rounded = RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius));
     // 48 dp minimum touch target for every button.
     const buttonSize = Size(64, 48);
     const buttonPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 12);
 
-    OutlineInputBorder inputBorder(Color color, [double width = 1]) =>
-        OutlineInputBorder(
-          borderRadius: BorderRadius.circular(kRadius),
-          borderSide: BorderSide(color: color, width: width),
-        );
+    OutlineInputBorder inputBorder(Color color, [double width = 1]) => OutlineInputBorder(
+      borderRadius: BorderRadius.circular(kRadius),
+      borderSide: BorderSide(color: color, width: width),
+    );
 
     return ThemeData(
       useMaterial3: true,
@@ -153,10 +142,7 @@ abstract final class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: c.surface,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 14,
-        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         border: inputBorder(c.borderStrong),
         enabledBorder: inputBorder(c.borderStrong),
         focusedBorder: inputBorder(c.forest, 2),
@@ -169,9 +155,7 @@ abstract final class AppTheme {
         errorMaxLines: 3,
       ),
       chipTheme: ChipThemeData(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
         side: BorderSide(color: c.border),
         backgroundColor: c.surface,
         selectedColor: c.tint(c.forest),
@@ -194,28 +178,20 @@ abstract final class AppTheme {
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         iconTheme: WidgetStateProperty.resolveWith(
           (states) => IconThemeData(
-            color: states.contains(WidgetState.selected)
-                ? c.forest
-                : c.textSecondary,
+            color: states.contains(WidgetState.selected) ? c.forest : c.textSecondary,
           ),
         ),
         labelTextStyle: WidgetStateProperty.resolveWith(
           (states) => textTheme.labelSmall?.copyWith(
-            color: states.contains(WidgetState.selected)
-                ? c.forest
-                : c.textSecondary,
-            fontWeight: states.contains(WidgetState.selected)
-                ? FontWeight.w700
-                : FontWeight.w500,
+            color: states.contains(WidgetState.selected) ? c.forest : c.textSecondary,
+            fontWeight: states.contains(WidgetState.selected) ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
       ),
       listTileTheme: ListTileThemeData(
         iconColor: c.textSecondary,
         minVerticalPadding: 12,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: c.surface,
@@ -223,18 +199,14 @@ abstract final class AppTheme {
         modalBarrierColor: c.overlay,
         showDragHandle: true,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(kRadius + 8),
-          ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(kRadius + 8)),
         ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: c.surface,
         surfaceTintColor: Colors.transparent,
         barrierColor: c.overlay,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius + 4),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius + 4)),
         titleTextStyle: textTheme.titleLarge,
       ),
       snackBarTheme: SnackBarThemeData(
@@ -242,15 +214,10 @@ abstract final class AppTheme {
         backgroundColor: c.textPrimary,
         contentTextStyle: textTheme.bodyMedium?.copyWith(color: c.canvas),
         actionTextColor: isDark ? AppColors.light.harvest : c.harvest,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: c.forest),
-      badgeTheme: BadgeThemeData(
-        backgroundColor: c.terracotta,
-        textColor: c.surface,
-      ),
+      badgeTheme: BadgeThemeData(backgroundColor: c.terracotta, textColor: c.surface),
     );
   }
 }

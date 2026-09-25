@@ -29,20 +29,15 @@ enum AppLanguage {
 
 /// The chosen language. English until the user picks another (like the website), then
 /// remembered between launches.
-final languageProvider = NotifierProvider<LanguageController, AppLanguage>(
-  LanguageController.new,
-);
+final languageProvider = NotifierProvider<LanguageController, AppLanguage>(LanguageController.new);
 
 class LanguageController extends Notifier<AppLanguage> {
   @override
-  AppLanguage build() => AppLanguage.fromCode(
-    ref.watch(sharedPreferencesProvider).getString(PrefKeys.locale),
-  );
+  AppLanguage build() =>
+      AppLanguage.fromCode(ref.watch(sharedPreferencesProvider).getString(PrefKeys.locale));
 
   Future<void> setLanguage(AppLanguage language) async {
     state = language;
-    await ref
-        .read(sharedPreferencesProvider)
-        .setString(PrefKeys.locale, language.name);
+    await ref.read(sharedPreferencesProvider).setString(PrefKeys.locale, language.name);
   }
 }

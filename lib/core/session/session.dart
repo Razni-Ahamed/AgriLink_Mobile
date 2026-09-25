@@ -17,9 +17,7 @@ class Session {
       return null;
     }
     try {
-      final payload = jsonDecode(
-        utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))),
-      );
+      final payload = jsonDecode(utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))));
       final exp = payload is Map ? payload['exp'] : null;
       return exp is num
           ? DateTime.fromMillisecondsSinceEpoch(exp.toInt() * 1000, isUtc: true)
@@ -35,8 +33,7 @@ class Session {
   }
 
   @override
-  bool operator ==(Object other) =>
-      other is Session && other.token == token && other.role == role;
+  bool operator ==(Object other) => other is Session && other.token == token && other.role == role;
 
   @override
   int get hashCode => Object.hash(token, role);

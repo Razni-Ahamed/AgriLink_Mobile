@@ -18,21 +18,15 @@ void main() {
 
   test('a 409 is the email clash unless the body says the username', () {
     expect(
-      parse(
-        ApiException.fromStatus(409, {
-          'message': 'An account with this email already exists.',
-        }),
-      ).generalErrors,
+      parse(ApiException.fromStatus(409, {'message': 'An account with this email already exists.'}))
+          .generalErrors,
       ['An account with this email already exists.'],
     );
     expect(
       parse(
         ApiException.fromStatus(409, {
           'errors': [
-            {
-              'code': 'DuplicateUserName',
-              'description': 'That username is taken.',
-            },
+            {'code': 'DuplicateUserName', 'description': 'That username is taken.'},
           ],
         }),
       ).generalErrors,
@@ -40,29 +34,23 @@ void main() {
     );
   });
 
-  test(
-    'Identity error codes are translated, unknown ones use the description',
-    () {
-      final parsed = parse(
-        ApiException.fromStatus(400, {
-          'errors': [
-            {
-              'code': 'PasswordRequiresDigit',
-              'description': 'Passwords must have a digit.',
-            },
-            {'code': 'DuplicateEmail', 'description': 'Email taken.'},
-            {'code': 'SomethingNew', 'description': 'A new rule failed.'},
-          ],
-        }),
-      );
-      expect(parsed.generalErrors, [
-        l10n.commonValidationPasswordDigit,
-        l10n.authRegisterEmailExists,
-        'A new rule failed.',
-      ]);
-      expect(parsed.fieldErrors, isEmpty);
-    },
-  );
+  test('Identity error codes are translated, unknown ones use the description', () {
+    final parsed = parse(
+      ApiException.fromStatus(400, {
+        'errors': [
+          {'code': 'PasswordRequiresDigit', 'description': 'Passwords must have a digit.'},
+          {'code': 'DuplicateEmail', 'description': 'Email taken.'},
+          {'code': 'SomethingNew', 'description': 'A new rule failed.'},
+        ],
+      }),
+    );
+    expect(parsed.generalErrors, [
+      l10n.commonValidationPasswordDigit,
+      l10n.authRegisterEmailExists,
+      'A new rule failed.',
+    ]);
+    expect(parsed.fieldErrors, isEmpty);
+  });
 
   test('validation problem details go under the matching form fields', () {
     final parsed = parse(
@@ -70,9 +58,7 @@ void main() {
         'title': 'One or more validation errors occurred.',
         'errors': {
           'Email': ['The Email field is not a valid e-mail address.'],
-          'NIC': [
-            'The field NIC must be a string with a maximum length of 20.',
-          ],
+          'NIC': ['The field NIC must be a string with a maximum length of 20.'],
           'Unknown': ['Something else.'],
         },
       }),
@@ -86,19 +72,14 @@ void main() {
 
   test('a business rule message is shown as it is', () {
     expect(
-      parse(
-        ApiException.fromStatus(400, {
-          'message': 'Enter your field or plot number.',
-        }),
-      ).generalErrors,
+      parse(ApiException.fromStatus(400, {'message': 'Enter your field or plot number.'}))
+          .generalErrors,
       ['Enter your field or plot number.'],
     );
   });
 
   test('anything else falls back to the generic message', () {
-    expect(parse(ApiException.fromStatus(500)).generalErrors, [
-      l10n.authRegisterError,
-    ]);
+    expect(parse(ApiException.fromStatus(500)).generalErrors, [l10n.authRegisterError]);
     expect(parse(StateError('bug')).generalErrors, [l10n.authRegisterError]);
     expect(
       parseApiError(
@@ -111,19 +92,10 @@ void main() {
   });
 
   test('describeError gives one line for screens with a retry button', () {
+    expect(describeError(const ApiException(ApiErrorKind.network), l10n), l10n.commonErrorsNetwork);
+    expect(describeError(ApiException.fromStatus(404), l10n), l10n.commonErrorsNotFound);
     expect(
-      describeError(const ApiException(ApiErrorKind.network), l10n),
-      l10n.commonErrorsNetwork,
-    );
-    expect(
-      describeError(ApiException.fromStatus(404), l10n),
-      l10n.commonErrorsNotFound,
-    );
-    expect(
-      describeError(
-        ApiException.fromStatus(404, {'message': 'Farm not found.'}),
-        l10n,
-      ),
+      describeError(ApiException.fromStatus(404, {'message': 'Farm not found.'}), l10n),
       'Farm not found.',
     );
     expect(describeError(Exception('x'), l10n), l10n.commonErrorsGeneric);

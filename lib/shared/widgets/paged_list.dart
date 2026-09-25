@@ -48,8 +48,7 @@ class PagedListController<T> extends ChangeNotifier {
   bool get isEmpty => _page > 0 && _items.isEmpty;
 
   /// Loads page 1 if nothing has been loaded yet.
-  Future<void> loadFirstPage() =>
-      _page == 0 && !_loading ? _load(1) : Future.value();
+  Future<void> loadFirstPage() => _page == 0 && !_loading ? _load(1) : Future.value();
 
   /// Starts again from page 1, e.g. on pull-to-refresh. The old items stay visible until the
   /// new page arrives.
@@ -89,9 +88,7 @@ class PagedListController<T> extends ChangeNotifier {
       if (generation != _generation || _disposed) {
         return;
       }
-      _items = replace || page == 1
-          ? result.items
-          : [..._items, ...result.items];
+      _items = replace || page == 1 ? result.items : [..._items, ...result.items];
       _page = result.page < page ? page : result.page;
       _hasMore = result.hasMore && result.items.isNotEmpty;
     } on Object catch (error) {
@@ -217,9 +214,7 @@ class _Footer extends StatelessWidget {
     }
     if (controller.hasMore) {
       // Covers a first page too short to scroll: ask for more once it is drawn.
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => controller.loadMore(),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) => controller.loadMore());
       return const Padding(
         padding: EdgeInsets.all(16),
         child: Center(child: CircularProgressIndicator()),

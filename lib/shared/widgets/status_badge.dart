@@ -35,12 +35,7 @@ BadgeTone toneForStatus(String value) => switch (value) {
 /// StatusBadge(label: 'New', tone: BadgeTone.info)
 /// ```
 class StatusBadge extends StatelessWidget {
-  const StatusBadge({
-    super.key,
-    required this.label,
-    this.tone = BadgeTone.neutral,
-    this.icon,
-  });
+  const StatusBadge({super.key, required this.label, this.tone = BadgeTone.neutral, this.icon});
 
   final String label;
   final BadgeTone tone;
@@ -49,10 +44,8 @@ class StatusBadge extends StatelessWidget {
   /// A translated API status with its usual tone.
   static Widget status(StatusKind kind, String value, {Key? key}) => Builder(
     key: key,
-    builder: (context) => StatusBadge(
-      label: statusLabel(context.l10n, kind, value),
-      tone: toneForStatus(value),
-    ),
+    builder: (context) =>
+        StatusBadge(label: statusLabel(context.l10n, kind, value), tone: toneForStatus(value)),
   );
 
   @override
@@ -77,10 +70,7 @@ class StatusBadge extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (icon != null) ...[
-              Icon(icon, size: 14, color: textColor),
-              const SizedBox(width: 4),
-            ],
+            if (icon != null) ...[Icon(icon, size: 14, color: textColor), const SizedBox(width: 4)],
             Flexible(
               child: Text(
                 label,

@@ -42,8 +42,7 @@ class DistrictPicker extends ConsumerWidget {
             context: context,
             isScrollControlled: true,
             useSafeArea: true,
-            builder: (_) =>
-                _DistrictSheet(districts: list, selected: field.value),
+            builder: (_) => _DistrictSheet(districts: list, selected: field.value),
           );
           if (picked != null) {
             field.didChange(picked);
@@ -57,10 +56,7 @@ class DistrictPicker extends ConsumerWidget {
           helper = l10n.commonActionsLoading;
           suffix = const Padding(
             padding: EdgeInsets.all(14),
-            child: SizedBox.square(
-              dimension: 20,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            ),
+            child: SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
           );
         } else if (districts.hasError) {
           helper = describeError(districts.error!, l10n);

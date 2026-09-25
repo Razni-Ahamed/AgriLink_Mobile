@@ -19,10 +19,7 @@ extension PumpApp on WidgetTester {
     await pumpWidget(
       ProviderScope(
         retry: (_, _) => null,
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(preferences),
-          ...overrides,
-        ],
+        overrides: [sharedPreferencesProvider.overrideWithValue(preferences), ...overrides],
         child: MaterialApp(
           theme: AppTheme.light,
           locale: locale,

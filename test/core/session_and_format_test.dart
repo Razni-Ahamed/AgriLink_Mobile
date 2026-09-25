@@ -14,8 +14,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 /// A JWT-shaped token that expires at [expiresAt]. Not signed; the app never checks signatures.
 String fakeJwt(DateTime expiresAt) {
-  String part(Object json) =>
-      base64Url.encode(utf8.encode(jsonEncode(json))).replaceAll('=', '');
+  String part(Object json) => base64Url.encode(utf8.encode(jsonEncode(json))).replaceAll('=', '');
   return '${part({'alg': 'HS256'})}.${part({'exp': expiresAt.millisecondsSinceEpoch ~/ 1000})}.sig';
 }
 
@@ -56,10 +55,7 @@ void main() {
         role: Role.officer,
       );
       final container = containerWith(InMemorySessionStorage(session));
-      expect(
-        container.read(sessionControllerProvider).status,
-        SessionStatus.restoring,
-      );
+      expect(container.read(sessionControllerProvider).status, SessionStatus.restoring);
 
       await container.read(sessionControllerProvider.notifier).restore();
       final state = container.read(sessionControllerProvider);
@@ -108,10 +104,7 @@ void main() {
 
       await controller.signOut();
       expect(storage.session, isNull);
-      expect(
-        container.read(sessionControllerProvider).signOutReason,
-        SignOutReason.userRequested,
-      );
+      expect(container.read(sessionControllerProvider).signOutReason, SignOutReason.userRequested);
     });
   });
 

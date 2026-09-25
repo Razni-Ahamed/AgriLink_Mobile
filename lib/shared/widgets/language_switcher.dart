@@ -21,11 +21,7 @@ class LanguageSwitcher extends ConsumerWidget {
           for (final language in AppLanguage.values)
             ButtonSegment(
               value: language,
-              label: Text(
-                language.nativeName,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+              label: Text(language.nativeName, maxLines: 1, overflow: TextOverflow.ellipsis),
             ),
         ],
         selected: {current},

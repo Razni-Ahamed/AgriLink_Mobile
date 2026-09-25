@@ -56,8 +56,7 @@ class UserAvatar extends StatelessWidget {
                   height: size,
                   fit: BoxFit.cover,
                   errorBuilder: (_, _, _) => fallback,
-                  loadingBuilder: (context, child, progress) =>
-                      progress == null ? child : fallback,
+                  loadingBuilder: (context, child, progress) => progress == null ? child : fallback,
                 ),
               ),
       ),

@@ -92,10 +92,7 @@ void main() {
       expect(v.nic()('12345'), l10n.commonValidationNicInvalid);
       expect(v.nic()('851234567v'), isNull);
       expect(v.username()('Admin'), l10n.commonValidationUsernameReserved);
-      expect(
-        v.newPassword()('short'),
-        'Password must be at least 12 characters',
-      );
+      expect(v.newPassword()('short'), 'Password must be at least 12 characters');
       expect(v.newPassword()('Gardening2026!'), isNull);
     });
 
