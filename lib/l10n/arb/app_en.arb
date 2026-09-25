@@ -3570,5 +3570,13 @@
   "marketplaceEditFormAdminNote": "You're changing another user's listing as an admin. The change is recorded in the audit log.",
   "@marketplaceEditFormAdminNote": {
     "description": "Mobile-only key: marketplace.editForm.adminNote"
+  },
+  "marketplaceStatusFilterAll": "All",
+  "@marketplaceStatusFilterAll": {
+    "description": "Mobile-only key: marketplace.statusFilter.all"
+  },
+  "marketplaceStatusFilterEmpty": "Nothing with this status right now.",
+  "@marketplaceStatusFilterEmpty": {
+    "description": "Mobile-only key: marketplace.statusFilter.empty"
   }
 }

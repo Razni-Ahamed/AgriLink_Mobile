@@ -7,6 +7,7 @@ import '../../core/session/role.dart';
 import 'marketplace_paths.dart';
 import 'presentation/browse_harvests_screen.dart';
 import 'presentation/harvest_detail_screen.dart';
+import 'presentation/my_listings_screen.dart';
 
 /// Phase 3 (marketplace and orders, for farmers and buyers): browsing harvests, listings,
 /// purchase requests and orders. Replace each `PlaceholderPage` with the real screen.
@@ -16,8 +17,12 @@ List<RouteBase> marketplaceRoutes(RouteGuard guard) => [
     roles: Destinations.marketplace.roles,
     builder: (context, state) => const BrowseHarvestsScreen(),
   ),
+  guard.route(
+    path: Destinations.myListings.path,
+    roles: Destinations.myListings.roles,
+    builder: (context, state) => const MyListingsScreen(),
+  ),
   for (final destination in [
-    Destinations.myListings,
     Destinations.incomingRequests,
     Destinations.sentRequests,
     Destinations.orders,

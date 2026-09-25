@@ -11,6 +11,8 @@ class FarmerCrop {
     required this.variety,
     required this.fieldName,
     required this.farmName,
+    required this.district,
+    required this.expectedQuantity,
   });
 
   factory FarmerCrop.fromJson(Json json) => FarmerCrop(
@@ -19,6 +21,8 @@ class FarmerCrop {
     variety: json['variety'] as String? ?? '',
     fieldName: json['fieldName'] as String? ?? '',
     farmName: json['farmName'] as String? ?? '',
+    district: json['district'] as String? ?? '',
+    expectedQuantity: (json['expectedQuantity'] as num?)?.toDouble() ?? 0,
   );
 
   final int id;
@@ -26,4 +30,10 @@ class FarmerCrop {
   final String variety;
   final String fieldName;
   final String farmName;
+
+  /// The farm's district: the listing's location starts as this.
+  final String district;
+
+  /// What the farmer expected to harvest, in kilograms.
+  final double expectedQuantity;
 }
