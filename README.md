@@ -8,9 +8,11 @@ It connects to the same backend API as the AgriLink website, so farmers and buye
 
 ---
 
-## Status: Phase 1 done, phases 2–4 next
+## Status: Phase 1 done, Phase 2 built and in review, phases 3–4 next
 
 **Phase 1 (Foundation) is built:** the project, theme, English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, the role-based navigation for all four roles, profile and security settings, and notifications. The sections phases 2–4 build show a "Coming soon" placeholder until then.
+
+**Phase 2 (Farmer) is built and waiting for review:** farms, fields and crops (add, edit, delete a farm, add fields, plant crops, change a crop's status), reporting a crop issue with a camera or gallery photo, My Issues, and the advisory screens. It does not include a crop activity log, because the API has no endpoint for one.
 
 Before you start your phase, read **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. It explains where your code goes and how to use what Phase 1 built.
 

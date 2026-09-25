@@ -24,6 +24,7 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 14. [Testing](#14-testing)
 15. [Conventions](#15-conventions)
 16. [Known issues](#16-known-issues)
+17. [Issues and advisories (shared by the farmer and officer screens)](#17-issues-and-advisories-shared-by-the-farmer-and-officer-screens)
 
 ---
 
@@ -82,7 +83,8 @@ lib/
     auth/                   login, registration, splash, session restore, current user
     account/                profile, edit profile, security settings
     notifications/          list, unread count polling, pop-ups
-    farmer/                 Phase 2 (farmer_routes.dart has the placeholders)
+    farmer/                 Phase 2: farms, fields, crops, My Issues, reporting, the farmer's advisory
+    issues/                 Phase 2: the issue and advisory data layer and read-only widgets (shared with Phase 4)
     marketplace/            Phase 3 (marketplace_routes.dart)
     officer/                Phase 4 (officer_routes.dart)
     admin/                  Phase 4 (admin_routes.dart)
@@ -627,3 +629,53 @@ For live testing on the emulator, sign in with test accounts on the **developmen
 - `compileSdk` is **37** (`android/app/build.gradle.kts`) because `permission_handler_android` needs it; Flutter's default is 36. Gradle downloads the Android 37 platform the first time you build.
 - The build warns that `flutter_image_compress_common` applies the Kotlin Gradle Plugin, which future Flutter versions will reject. It works with Flutter 3.47.5. Check for a newer version of the package if the team ever upgrades Flutter.
 - The first request after the API has been idle can take 10–30 s. The login and splash screens say so after 5 s; other screens just show their spinner.
+
+---
+
+## 17. Issues and advisories (shared by the farmer and officer screens)
+
+Phase 2 built the farmer's screens and, in `lib/features/issues/`, the data layer and read-only widgets that Phase 4's officer and admin screens reuse. Nothing in `features/issues/` assumes a farmer.
+
+### 17.1 What's there
+
+| File | What it is |
+|---|---|
+| `data/issue_enums.dart` | `IssueSeverity`, `RiskLevel`, `IssueStatus`, `AdvisoryStatus`. The API sends them as strings; `apiName` is that string (also what `statusLabel` takes) and `fromApi` throws on an unknown value. |
+| `data/crop_issue.dart` | `CropIssue` (the API's `CropIssueResponse`) and `CreateCropIssueRequest`. `reporterName` is filled in only on the officer and admin lists. |
+| `data/advisory.dart` | `Advisory` (the API's `AdvisoryResponse`) with **every** field. The ones only officers and admins receive (`previousIssues`, `agentTrace`, `photoDiagnosis` details such as `diseaseOptions`) are nullable, and are `null` in a farmer's response. |
+| `data/issues_api.dart` | `IssuesApi`: `mine`, `create`, `createWithPhoto`, `advisory`, `photoBytes`. Add the officer calls (`pending`, `reviewed`, all issues, approve and reject) here. |
+| `application/advisories.dart` | `advisoryProvider(id)` and `issuePhotoProvider(url)`, both cleared on sign-out. |
+| `presentation/widgets/` | `AdvisoryView`, `IssuePhotoGallery`, `AuthenticatedImage`, and the badges (`SeverityBadge`, `IssueStatusBadge`, `AdvisoryStatusBadge`, `RiskBadge`). |
+
+### 17.2 Building the officer's review screen
+
+Put the approve and reject controls **around** `AdvisoryView`; don't copy it:
+
+```dart
+AdvisoryView(advisory: advisory, audience: AdvisoryAudience.reviewer)
+```
+
+`AdvisoryAudience.farmer` shows the farmer's preliminary notice and hides the AI's recommendation when an officer rejected it and wrote their own treatment (as the website's `AdvisoryPanel` does); `reviewer` shows everything. The officer-only parts (`previousIssues`, `agentTrace`, the disease options for a correction) are on the `Advisory` model but have no widgets yet.
+
+### 17.3 Things to know
+
+- **`/advisories/:advisoryId` is registered once**, in `features/farmer/farmer_routes.dart`, for farmers only. To open it for officers and admins, add their roles there and choose the screen from the signed-in role in the builder, so the path isn't registered twice. Open it with `context.push` so Back returns to where the user came from.
+- **A draft advisory is a 404 for a farmer.** The farmer's `AdvisoryScreen` treats that as "still being reviewed", not as an error. A `Preliminary` advisory has been released, but an officer hasn't confirmed it.
+- **Photos need the token.** `GET /api/issues/{id}/images/{id}` only answers the farmer who took the photo and the officers, so `Image.network` can't load it. `AuthenticatedImage` fetches the bytes with `ApiClient.getBytes`, which sends the bearer token.
+- **Reporting an issue is slow.** `POST /api/issues/with-photo` runs the photo model and a weather lookup before it answers, on top of the API's cold start. `IssuesApi.submitTimeout` is 120 s, passed as `ApiClient.post(receiveTimeout: ...)` for just those two calls. After a timeout the issue may still have been created, so the form says so instead of inviting a blind retry.
+- **The API has no "by id" call** for a farm, a field or an issue. The farmer screens pick them out of the list (`farmProvider`, `fieldProvider`), or, for an issue, page through `GET /api/issues/mine` (`myIssueProvider`).
+- **There is no crop activity log** in the API, so the app has none.
+
+### 17.4 The farmer's pages
+
+| Path | Screen |
+|---|---|
+| `/farms` | `FarmsScreen`: the farms, add a farm |
+| `/farms/:farmId` | `FarmDetailScreen`: edit, delete, fields, add a field |
+| `/farms/:farmId/fields/:fieldId` | `FieldDetailScreen`: the field's crops, plant a crop |
+| `/farms/:farmId/fields/:fieldId/crops/:cropId` | `CropDetailScreen`: details, change status, report an issue |
+| `/issues/mine` | `MyIssuesScreen`: a paged list |
+| `/issues/mine/new?cropId=` | `ReportIssueScreen` |
+| `/issues/mine/:issueId` | `IssueDetailScreen` |
+| `/advisories/:advisoryId` | `AdvisoryScreen` |
+

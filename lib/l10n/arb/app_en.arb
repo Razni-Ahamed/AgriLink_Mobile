@@ -3868,5 +3868,122 @@
   "adminAuditNotRecorded": "Not recorded",
   "@adminAuditNotRecorded": {
     "description": "Mobile-only key: admin.audit.notRecorded"
+  },
+  "farmsListCreated": "Farm created.",
+  "@farmsListCreated": {
+    "description": "Mobile-only key: farms.list.created"
+  },
+  "farmsDetailUpdated": "Farm updated.",
+  "@farmsDetailUpdated": {
+    "description": "Mobile-only key: farms.detail.updated"
+  },
+  "farmsDetailDeleted": "Farm deleted.",
+  "@farmsDetailDeleted": {
+    "description": "Mobile-only key: farms.detail.deleted"
+  },
+  "farmsDetailFieldAdded": "Field added.",
+  "@farmsDetailFieldAdded": {
+    "description": "Mobile-only key: farms.detail.fieldAdded"
+  },
+  "farmsFieldCropPlanted": "Crop planted.",
+  "@farmsFieldCropPlanted": {
+    "description": "Mobile-only key: farms.field.cropPlanted"
+  },
+  "farmsFieldNoCropsYet": "No crops planted in this field yet. Plant one to get started.",
+  "@farmsFieldNoCropsYet": {
+    "description": "Mobile-only key: farms.field.noCropsYet"
+  },
+  "farmsFormSaveError": "We couldn't save your changes. Please try again.",
+  "@farmsFormSaveError": {
+    "description": "Mobile-only key: farms.form.saveError"
+  },
+  "farmsFormAreaTooLarge": "Area is too large",
+  "@farmsFormAreaTooLarge": {
+    "description": "Mobile-only key: farms.form.areaTooLarge"
+  },
+  "farmsFormQuantityTooLarge": "Quantity is too large",
+  "@farmsFormQuantityTooLarge": {
+    "description": "Mobile-only key: farms.form.quantityTooLarge"
+  },
+  "farmsFormSelectCropType": "Select a crop type",
+  "@farmsFormSelectCropType": {
+    "description": "Mobile-only key: farms.form.selectCropType"
+  },
+  "farmsCropChangeStatusTitle": "Change status?",
+  "@farmsCropChangeStatusTitle": {
+    "description": "Mobile-only key: farms.crop.changeStatusTitle"
+  },
+  "farmsCropChangeStatusMessage": "Change this crop from {from} to {to}?",
+  "@farmsCropChangeStatusMessage": {
+    "description": "Mobile-only key: farms.crop.changeStatusMessage",
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsCropStatusUpdated": "Status updated.",
+  "@farmsCropStatusUpdated": {
+    "description": "Mobile-only key: farms.crop.statusUpdated"
+  },
+  "farmsCropStatusError": "We couldn't update the status. Please try again.",
+  "@farmsCropStatusError": {
+    "description": "Mobile-only key: farms.crop.statusError"
+  },
+  "issuesDetailTitle": "Issue details",
+  "@issuesDetailTitle": {
+    "description": "Mobile-only key: issues.detail.title"
+  },
+  "issuesDetailNotFound": "We couldn't find this issue.",
+  "@issuesDetailNotFound": {
+    "description": "Mobile-only key: issues.detail.notFound"
+  },
+  "issuesDetailReportedOn": "Reported on {date}",
+  "@issuesDetailReportedOn": {
+    "description": "Mobile-only key: issues.detail.reportedOn",
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "issuesDetailBeingReviewed": "An officer is reviewing your issue. Pull down to refresh and check again later.",
+  "@issuesDetailBeingReviewed": {
+    "description": "Mobile-only key: issues.detail.beingReviewed"
+  },
+  "issuesDetailViewAdvisory": "View advice",
+  "@issuesDetailViewAdvisory": {
+    "description": "Mobile-only key: issues.detail.viewAdvisory"
+  },
+  "issuesNewAnalysing": "Analysing your crop…",
+  "@issuesNewAnalysing": {
+    "description": "Mobile-only key: issues.new.analysing"
+  },
+  "issuesNewAnalysingHint": "This can take up to a minute. Please keep the app open.",
+  "@issuesNewAnalysingHint": {
+    "description": "Mobile-only key: issues.new.analysingHint"
+  },
+  "issuesNewCropRequired": "Choose the crop with the problem",
+  "@issuesNewCropRequired": {
+    "description": "Mobile-only key: issues.new.cropRequired"
+  },
+  "issuesNewSelectCrop": "Select a crop",
+  "@issuesNewSelectCrop": {
+    "description": "Mobile-only key: issues.new.selectCrop"
+  },
+  "issuesNewTimeout": "The report took too long. It may still have gone through, so check My Issues before you try again.",
+  "@issuesNewTimeout": {
+    "description": "Mobile-only key: issues.new.timeout"
+  },
+  "issuesAdvisoryEnlargePhoto": "Enlarge photo",
+  "@issuesAdvisoryEnlargePhoto": {
+    "description": "Mobile-only key: issues.advisory.enlargePhoto"
+  },
+  "issuesAdvisoryOfficerNote": "Officer's note",
+  "@issuesAdvisoryOfficerNote": {
+    "description": "Mobile-only key: issues.advisory.officerNote"
   }
 }
