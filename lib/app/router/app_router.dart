@@ -4,12 +4,22 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/session/role.dart';
 import '../../core/session/session_controller.dart';
+import '../../features/account/account_routes.dart';
+import '../../features/admin/admin_routes.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/pending_approval_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
-import '../shell/coming_soon_screen.dart';
+import '../../features/farmer/farmer_routes.dart';
+import '../../features/marketplace/marketplace_routes.dart';
+import '../../features/notifications/notifications_routes.dart';
+import '../../features/officer/officer_routes.dart';
+import '../shell/app_shell.dart';
+import '../shell/more_screen.dart';
+import '../shell/nav_config.dart';
+import '../shell/not_found_screen.dart';
 import 'app_routes.dart';
+import 'route_guard.dart';
 
 /// Where the router sends the user for [location], or null to stay. Runs on every navigation
 /// and whenever the session changes.
@@ -35,12 +45,14 @@ String? redirectFor(SessionState session, String location) {
 final routerProvider = Provider<GoRouter>((ref) {
   final sessionChanges = ValueNotifier<int>(0);
   ref.listen(sessionControllerProvider, (_, _) => sessionChanges.value++);
+  final guard = RouteGuard(() => ref.read(sessionControllerProvider).role);
 
   final router = GoRouter(
     initialLocation: AppRoutes.splash,
     refreshListenable: sessionChanges,
     redirect: (context, state) =>
         redirectFor(ref.read(sessionControllerProvider), state.matchedLocation),
+    errorBuilder: (context, state) => const NotFoundScreen(),
     routes: [
       GoRoute(path: AppRoutes.splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: AppRoutes.login, builder: (context, state) => const LoginScreen()),
@@ -55,13 +67,24 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.registerPending,
         builder: (context, state) => const PendingApprovalScreen(),
       ),
-      for (final role in Role.values)
-        GoRoute(
-          path: homePathFor(role),
-          builder: (context, state) => const Scaffold(
-            body: SafeArea(child: ComingSoonScreen(icon: Icons.home_outlined)),
+      // Every signed-in page, inside the role's bottom navigation. Each feature adds its own
+      // routes, guarded by role, in its own file.
+      ShellRoute(
+        builder: (context, state, child) => AppShell(location: state.uri.path, child: child),
+        routes: [
+          ...farmerRoutes(guard),
+          ...marketplaceRoutes(guard),
+          ...officerRoutes(guard),
+          ...adminRoutes(guard),
+          ...notificationsRoutes(guard),
+          ...accountRoutes(guard),
+          guard.route(
+            path: AppRoutes.more,
+            roles: Destinations.more.roles,
+            builder: (context, state) => const MoreScreen(),
           ),
-        ),
+        ],
+      ),
     ],
   );
   ref.onDispose(() {
