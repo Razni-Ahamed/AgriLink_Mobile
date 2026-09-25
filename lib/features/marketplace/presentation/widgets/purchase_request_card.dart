@@ -11,6 +11,7 @@ import '../../../../shared/widgets/crop_icon.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../../data/marketplace_enums.dart';
 import '../../data/purchase_request.dart';
+import 'header_badge.dart';
 
 /// One purchase request, like the website's PurchaseRequestCard. With [onAccept] and
 /// [onDecline] (the farmer's incoming requests) a pending request shows the two buttons;
@@ -77,8 +78,9 @@ class PurchaseRequestCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(width: Gaps.sm),
-                  // Long labels (in Sinhala and Tamil too) wrap instead of pushing past the edge.
-                  Flexible(child: StatusBadge.status(StatusKind.request, request.status.apiName)),
+                  HeaderBadge(
+                    child: StatusBadge.status(StatusKind.request, request.status.apiName),
+                  ),
                 ],
               ),
               const SizedBox(height: Gaps.sm + 4),

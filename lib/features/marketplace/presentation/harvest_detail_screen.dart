@@ -21,6 +21,7 @@ import '../application/marketplace_providers.dart';
 import '../data/harvest_listing.dart';
 import '../data/marketplace_enums.dart';
 import 'widgets/edit_listing_sheet.dart';
+import 'widgets/header_badge.dart';
 import 'widgets/purchase_request_sheet.dart';
 
 /// One listing, like the website's HarvestDetailPage. What the viewer can do depends on who
@@ -114,8 +115,7 @@ class _ListingDetail extends ConsumerWidget {
               ),
             ),
             const SizedBox(width: Gaps.sm),
-            // Long labels (in Sinhala and Tamil too) wrap instead of pushing past the edge.
-            Flexible(child: StatusBadge.status(StatusKind.harvest, listing.status.apiName)),
+            HeaderBadge(child: StatusBadge.status(StatusKind.harvest, listing.status.apiName)),
           ],
         ),
         const SizedBox(height: Gaps.lg),

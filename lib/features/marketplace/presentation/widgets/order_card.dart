@@ -11,6 +11,7 @@ import '../../../../l10n/labels.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../../../../shared/widgets/user_avatar.dart';
 import '../../data/order.dart';
+import 'header_badge.dart';
 
 /// One order in the list, like the website's OrderCard: its number and status, the person on
 /// the other side, the crop, quantity, total and date.
@@ -51,7 +52,7 @@ class OrderCard extends ConsumerWidget {
                     child: Text(l10n.ordersCardOrderNumber(order.id), style: text.titleLarge),
                   ),
                   const SizedBox(width: Gaps.sm),
-                  Flexible(child: StatusBadge.status(StatusKind.order, order.status.apiName)),
+                  HeaderBadge(child: StatusBadge.status(StatusKind.order, order.status.apiName)),
                 ],
               ),
               const SizedBox(height: Gaps.sm),

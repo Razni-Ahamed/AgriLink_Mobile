@@ -21,6 +21,7 @@ import '../application/marketplace_errors.dart';
 import '../application/marketplace_providers.dart';
 import '../data/marketplace_api.dart';
 import '../data/order.dart';
+import 'widgets/header_badge.dart';
 
 /// One order, like the website's OrderDetailPage: the summary, the other party's contact
 /// details (tap to call or email), and, while it is still confirmed, completing or cancelling it.
@@ -156,7 +157,7 @@ class _OrderDetailState extends ConsumerState<_OrderDetail> {
               ),
             ),
             const SizedBox(width: Gaps.sm),
-            Flexible(child: StatusBadge.status(StatusKind.order, order.status.apiName)),
+            HeaderBadge(child: StatusBadge.status(StatusKind.order, order.status.apiName)),
           ],
         ),
         const SizedBox(height: Gaps.md),

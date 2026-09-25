@@ -243,6 +243,7 @@ class _NewListingFormState extends ConsumerState<_NewListingForm> {
                   (text ?? '').trim().isEmpty ? l10n.commonValidationLocationRequired : null,
               serverError: _fieldErrors['location'],
             ),
+            const SizedBox(height: Gaps.sm),
             _Summary(
               quantity: parsePositiveNumber(_quantity.text),
               pricePerUnit: parsePositiveNumber(_price.text),

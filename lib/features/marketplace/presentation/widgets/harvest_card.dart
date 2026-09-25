@@ -10,6 +10,7 @@ import '../../../../l10n/labels.dart';
 import '../../../../shared/widgets/crop_icon.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../../data/harvest_listing.dart';
+import 'header_badge.dart';
 
 /// One listing in a list, like the website's HarvestCard: the crop, where and when it was
 /// harvested, the price and how much is left. [onTap] opens the listing.
@@ -67,8 +68,9 @@ class HarvestCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(width: Gaps.sm),
-                  // Long labels (in Sinhala and Tamil too) wrap instead of pushing past the edge.
-                  Flexible(child: StatusBadge.status(StatusKind.harvest, listing.status.apiName)),
+                  HeaderBadge(
+                    child: StatusBadge.status(StatusKind.harvest, listing.status.apiName),
+                  ),
                 ],
               ),
               const SizedBox(height: Gaps.sm + 4),
