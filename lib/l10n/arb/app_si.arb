@@ -742,6 +742,8 @@
   "commonActionsConfirm": "තහවුරු කරන්න",
   "commonActionsOpenSettings": "සැකසීම් විවෘත කරන්න",
   "commonNavMore": "තවත්",
+  "commonNavProfile": "පැතිකඩ",
+  "commonNavUnreadNotifications": "දැනුම්දීම්, නොකියවූ {count}",
   "commonErrorsNetwork": "සර්වරයට සම්බන්ධ විය නොහැක. ඔබගේ අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කර නැවත උත්සාහ කරන්න.",
   "commonErrorsGeneric": "යම් දෝෂයක් සිදු විය. නැවත උත්සාහ කරන්න.",
   "commonErrorsSlowServer": "සර්වරය සක්‍රිය වෙමින් පවතී. මෙයට තත්පර 30ක් දක්වා ගත විය හැක.",
@@ -750,5 +752,11 @@
   "commonErrorsNotFound": "ඔබ සොයන දෙය සොයාගත නොහැකි විය.",
   "commonComingSoonTitle": "ළඟදීම",
   "commonComingSoonMessage": "මෙම කොටස සකස් කරමින් පවතින අතර යෙදුමේ ඉදිරි යාවත්කාලීනයකදී ලබා ගත හැක.",
-  "commonEmptyTitle": "තවම මෙහි කිසිවක් නැත"
+  "commonEmptyTitle": "තවම මෙහි කිසිවක් නැත",
+  "authLoginPendingTitle": "අනුමැතිය බලාපොරොත්තුවෙන්",
+  "authLoginPendingMessage": "ඔබගේ ගිණුම අනුමැතිය බලාපොරොත්තුවෙන් පවතී. නිලධාරියෙකු හෝ පරිපාලකයෙකු එය අනුමත කළ පසු ඔබට පිවිසිය හැක.",
+  "authLoginRejectedTitle": "ලියාපදිංචිය අනුමත නොකෙරිණි",
+  "authLoginRejectedMessage": "ඔබගේ ලියාපදිංචිය අනුමත කර නොමැත.",
+  "authLoginRejectedReason": "හේතුව: {reason}",
+  "authSplashLoading": "AgriLink ආරම්භ වෙමින්…"
 }

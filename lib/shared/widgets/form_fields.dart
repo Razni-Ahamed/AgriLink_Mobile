@@ -81,9 +81,7 @@ class AppTextField extends StatelessWidget {
       forceErrorText: serverError,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
-      textInputAction: maxLines == 1
-          ? textInputAction
-          : TextInputAction.newline,
+      textInputAction: maxLines == 1 ? textInputAction : TextInputAction.newline,
       textCapitalization: textCapitalization,
       autofillHints: autofillHints,
       autocorrect: autocorrect,
@@ -157,24 +155,15 @@ class _PasswordFieldState extends State<PasswordField> {
       keyboardType: TextInputType.visiblePassword,
       textInputAction: widget.textInputAction,
       autofillHints: [
-        if (widget.isNewPassword)
-          AutofillHints.newPassword
-        else
-          AutofillHints.password,
+        if (widget.isNewPassword) AutofillHints.newPassword else AutofillHints.password,
       ],
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onFieldSubmitted,
       decoration: InputDecoration(
         labelText: widget.label,
         suffixIcon: IconButton(
-          tooltip: _obscured
-              ? l10n.commonActionsShowPassword
-              : l10n.commonActionsHidePassword,
-          icon: Icon(
-            _obscured
-                ? Icons.visibility_outlined
-                : Icons.visibility_off_outlined,
-          ),
+          tooltip: _obscured ? l10n.commonActionsShowPassword : l10n.commonActionsHidePassword,
+          icon: Icon(_obscured ? Icons.visibility_outlined : Icons.visibility_off_outlined),
           onPressed: () => setState(() => _obscured = !_obscured),
         ),
       ),
@@ -209,9 +198,7 @@ class PasswordChecklist extends StatelessWidget {
                 checked: password.isNotEmpty,
                 style: style,
                 metColor: colors.success,
-                unmetColor: password.isEmpty
-                    ? colors.textSecondary
-                    : colors.danger,
+                unmetColor: password.isEmpty ? colors.textSecondary : colors.danger,
               ),
             ),
         ],
@@ -251,11 +238,7 @@ class _ChecklistRow extends StatelessWidget {
       excludeSemantics: true,
       child: Row(
         children: [
-          Icon(
-            met ? Icons.check_circle : Icons.radio_button_unchecked,
-            size: 16,
-            color: color,
-          ),
+          Icon(met ? Icons.check_circle : Icons.radio_button_unchecked, size: 16, color: color),
           const SizedBox(width: 8),
           Expanded(
             child: Text(label, style: style?.copyWith(color: color)),
@@ -416,22 +399,13 @@ class LoadingButton extends StatelessWidget {
               padding: const EdgeInsets.only(right: 12),
               child: SizedBox.square(
                 dimension: 18,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: foreground,
-                ),
+                child: CircularProgressIndicator(strokeWidth: 2, color: foreground),
               ),
             )
           else if (icon != null)
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Icon(icon, size: 20),
-            ),
+            Padding(padding: const EdgeInsets.only(right: 8), child: Icon(icon, size: 20)),
           Flexible(
-            child: Text(
-              loading ? (loadingLabel ?? label) : label,
-              textAlign: TextAlign.center,
-            ),
+            child: Text(loading ? (loadingLabel ?? label) : label, textAlign: TextAlign.center),
           ),
         ],
       ),
@@ -441,10 +415,13 @@ class LoadingButton extends StatelessWidget {
 
 /// The red box for errors that don't belong to one field. Read out when it appears.
 class ErrorBanner extends StatelessWidget {
-  const ErrorBanner({super.key, required this.messages, this.title});
+  const ErrorBanner({super.key, required this.messages, this.title, this.action});
 
   final List<String> messages;
   final String? title;
+
+  /// E.g. a "Try again" button for a connection problem.
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -456,18 +433,14 @@ class ErrorBanner extends StatelessWidget {
       icon: Icons.error_outline,
       title: title,
       messages: messages,
+      action: action,
     );
   }
 }
 
 /// A neutral or success notice in the same shape as [ErrorBanner].
 class InfoBanner extends StatelessWidget {
-  const InfoBanner({
-    super.key,
-    required this.message,
-    this.title,
-    this.success = false,
-  });
+  const InfoBanner({super.key, required this.message, this.title, this.success = false});
 
   final String message;
   final String? title;
@@ -490,12 +463,14 @@ class _Banner extends StatelessWidget {
     required this.icon,
     required this.messages,
     this.title,
+    this.action,
   });
 
   final Color color;
   final IconData icon;
   final List<String> messages;
   final String? title;
+  final Widget? action;
 
   @override
   Widget build(BuildContext context) {
@@ -523,18 +498,14 @@ class _Banner extends StatelessWidget {
                     if (title != null)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 2),
-                        child: Text(
-                          title!,
-                          style: textTheme.titleSmall?.copyWith(color: color),
-                        ),
+                        child: Text(title!, style: textTheme.titleSmall?.copyWith(color: color)),
                       ),
                     for (final message in messages)
                       Text(
                         message,
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: context.colors.textPrimary,
-                        ),
+                        style: textTheme.bodyMedium?.copyWith(color: context.colors.textPrimary),
                       ),
+                    if (action != null) Align(alignment: Alignment.centerLeft, child: action),
                   ],
                 ),
               ),

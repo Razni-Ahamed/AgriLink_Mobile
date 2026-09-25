@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../l10n/l10n.dart';
 import '../l10n/locale_controller.dart';
+import 'router/app_router.dart';
 import 'theme/app_theme.dart';
 import 'theme/theme_mode_controller.dart';
 
@@ -11,7 +12,7 @@ class AgriLinkApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return MaterialApp.router(
       onGenerateTitle: (context) => context.l10n.commonAppName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
@@ -20,7 +21,7 @@ class AgriLinkApp extends ConsumerWidget {
       locale: ref.watch(languageProvider).locale,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      home: const Scaffold(body: Center(child: Text('AgriLink'))),
+      routerConfig: ref.watch(routerProvider),
     );
   }
 }

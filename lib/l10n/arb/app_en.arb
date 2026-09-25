@@ -3367,6 +3367,19 @@
   "@commonNavMore": {
     "description": "Mobile-only key: common.nav.more"
   },
+  "commonNavProfile": "Profile",
+  "@commonNavProfile": {
+    "description": "Mobile-only key: common.nav.profile"
+  },
+  "commonNavUnreadNotifications": "Notifications, {count} unread",
+  "@commonNavUnreadNotifications": {
+    "description": "Mobile-only key: common.nav.unreadNotifications",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
   "commonErrorsNetwork": "Can't reach the server. Check your connection and try again.",
   "@commonErrorsNetwork": {
     "description": "Mobile-only key: common.errors.network"
@@ -3402,5 +3415,34 @@
   "commonEmptyTitle": "Nothing here yet",
   "@commonEmptyTitle": {
     "description": "Mobile-only key: common.empty.title"
+  },
+  "authLoginPendingTitle": "Waiting for approval",
+  "@authLoginPendingTitle": {
+    "description": "Mobile-only key: auth.login.pendingTitle"
+  },
+  "authLoginPendingMessage": "Your account is waiting for approval. You can sign in once an officer or administrator approves it.",
+  "@authLoginPendingMessage": {
+    "description": "Mobile-only key: auth.login.pendingMessage"
+  },
+  "authLoginRejectedTitle": "Registration not approved",
+  "@authLoginRejectedTitle": {
+    "description": "Mobile-only key: auth.login.rejectedTitle"
+  },
+  "authLoginRejectedMessage": "Your registration was not approved.",
+  "@authLoginRejectedMessage": {
+    "description": "Mobile-only key: auth.login.rejectedMessage"
+  },
+  "authLoginRejectedReason": "Reason: {reason}",
+  "@authLoginRejectedReason": {
+    "description": "Mobile-only key: auth.login.rejectedReason",
+    "placeholders": {
+      "reason": {
+        "type": "Object"
+      }
+    }
+  },
+  "authSplashLoading": "Starting AgriLink…",
+  "@authSplashLoading": {
+    "description": "Mobile-only key: auth.splash.loading"
   }
 }

@@ -26,8 +26,7 @@ class SessionState {
   const SessionState.restoring() : this._(SessionStatus.restoring, null, null);
   const SessionState.signedOut([SignOutReason? reason])
     : this._(SessionStatus.signedOut, null, reason);
-  const SessionState.signedIn(Session session)
-    : this._(SessionStatus.signedIn, session, null);
+  const SessionState.signedIn(Session session) : this._(SessionStatus.signedIn, session, null);
 
   final SessionStatus status;
   final Session? session;
@@ -43,8 +42,24 @@ class SessionState {
 ///
 /// It knows nothing about screens or the profile: `features/auth` builds sign-in, the current
 /// user and sign-out on top of it.
-final sessionControllerProvider =
-    NotifierProvider<SessionController, SessionState>(SessionController.new);
+final sessionControllerProvider = NotifierProvider<SessionController, SessionState>(
+  SessionController.new,
+);
+
+/// The current token, or null when signed out.
+///
+/// Any provider that loads or caches the signed-in user's data must `ref.watch` this, so it
+/// is thrown away on sign-out and never shown to the next person who signs in on the phone:
+///
+/// ```dart
+/// final myFarmsProvider = FutureProvider((ref) {
+///   ref.watch(sessionTokenProvider);
+///   return ref.watch(farmsApiProvider).mine();
+/// });
+/// ```
+final sessionTokenProvider = Provider<String?>(
+  (ref) => ref.watch(sessionControllerProvider.select((s) => s.token)),
+);
 
 class SessionController extends Notifier<SessionState> {
   SessionStorage get _storage => ref.read(sessionStorageProvider);
@@ -72,9 +87,7 @@ class SessionController extends Notifier<SessionState> {
     state = SessionState.signedIn(session);
   }
 
-  Future<void> signOut([
-    SignOutReason reason = SignOutReason.userRequested,
-  ]) async {
+  Future<void> signOut([SignOutReason reason = SignOutReason.userRequested]) async {
     await _storage.clear();
     state = SessionState.signedOut(reason);
   }
@@ -90,8 +103,7 @@ class SessionController extends Notifier<SessionState> {
 
   /// Once the login screen has shown why the user was signed out.
   void clearSignOutReason() {
-    if (state.status == SessionStatus.signedOut &&
-        state.signOutReason != null) {
+    if (state.status == SessionStatus.signedOut && state.signOutReason != null) {
       state = const SessionState.signedOut();
     }
   }

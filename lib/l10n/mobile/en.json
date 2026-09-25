@@ -8,7 +8,9 @@
       "openSettings": "Open settings"
     },
     "nav": {
-      "more": "More"
+      "more": "More",
+      "profile": "Profile",
+      "unreadNotifications": "Notifications, {{count}} unread"
     },
     "errors": {
       "network": "Can't reach the server. Check your connection and try again.",
@@ -24,6 +26,18 @@
     },
     "empty": {
       "title": "Nothing here yet"
+    }
+  },
+  "auth": {
+    "login": {
+      "pendingTitle": "Waiting for approval",
+      "pendingMessage": "Your account is waiting for approval. You can sign in once an officer or administrator approves it.",
+      "rejectedTitle": "Registration not approved",
+      "rejectedMessage": "Your registration was not approved.",
+      "rejectedReason": "Reason: {{reason}}"
+    },
+    "splash": {
+      "loading": "Starting AgriLink…"
     }
   }
 }

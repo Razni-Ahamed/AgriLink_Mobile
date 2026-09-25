@@ -63,8 +63,7 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'common.fields.businessName' => l10n.commonFieldsBusinessName,
     'common.fields.fieldPlotNumber' => l10n.commonFieldsFieldPlotNumber,
     'common.fields.phoneNumber' => l10n.commonFieldsPhoneNumber,
-    'common.fields.businessRegistrationNumber' =>
-      l10n.commonFieldsBusinessRegistrationNumber,
+    'common.fields.businessRegistrationNumber' => l10n.commonFieldsBusinessRegistrationNumber,
     'common.fields.businessPhone' => l10n.commonFieldsBusinessPhone,
     'common.fields.legalBusinessName' => l10n.commonFieldsLegalBusinessName,
     'common.fields.confirmPassword' => l10n.commonFieldsConfirmPassword,
@@ -92,104 +91,73 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'common.status.order.Completed' => l10n.commonStatusOrderCompleted,
     'common.status.order.Cancelled' => l10n.commonStatusOrderCancelled,
     'common.status.issue.Pending' => l10n.commonStatusIssuePending,
-    'common.status.issue.AwaitingReview' =>
-      l10n.commonStatusIssueAwaitingReview,
+    'common.status.issue.AwaitingReview' => l10n.commonStatusIssueAwaitingReview,
     'common.status.issue.Resolved' => l10n.commonStatusIssueResolved,
     'common.status.issue.Rejected' => l10n.commonStatusIssueRejected,
     'common.status.advisory.Draft' => l10n.commonStatusAdvisoryDraft,
     'common.status.advisory.Approved' => l10n.commonStatusAdvisoryApproved,
     'common.status.advisory.Rejected' => l10n.commonStatusAdvisoryRejected,
-    'common.status.advisory.Preliminary' =>
-      l10n.commonStatusAdvisoryPreliminary,
+    'common.status.advisory.Preliminary' => l10n.commonStatusAdvisoryPreliminary,
     'common.roles.Farmer' => l10n.commonRolesFarmer,
     'common.roles.Officer' => l10n.commonRolesOfficer,
     'common.roles.Buyer' => l10n.commonRolesBuyer,
     'common.roles.Admin' => l10n.commonRolesAdmin,
     'common.validation.nameRequired' => l10n.commonValidationNameRequired,
-    'common.validation.fullNameRequired' =>
-      l10n.commonValidationFullNameRequired,
+    'common.validation.fullNameRequired' => l10n.commonValidationFullNameRequired,
     'common.validation.emailInvalid' => l10n.commonValidationEmailInvalid,
-    'common.validation.passwordRequired' =>
-      l10n.commonValidationPasswordRequired,
+    'common.validation.passwordRequired' => l10n.commonValidationPasswordRequired,
     'common.validation.passwordMin' => l10n.commonValidationPasswordMin,
     'common.validation.passwordMin12' => l10n.commonValidationPasswordMin12,
-    'common.validation.passwordUppercase' =>
-      l10n.commonValidationPasswordUppercase,
-    'common.validation.passwordLowercase' =>
-      l10n.commonValidationPasswordLowercase,
+    'common.validation.passwordUppercase' => l10n.commonValidationPasswordUppercase,
+    'common.validation.passwordLowercase' => l10n.commonValidationPasswordLowercase,
     'common.validation.passwordDigit' => l10n.commonValidationPasswordDigit,
     'common.validation.passwordSymbol' => l10n.commonValidationPasswordSymbol,
-    'common.validation.passwordsMustMatch' =>
-      l10n.commonValidationPasswordsMustMatch,
-    'common.validation.districtRequired' =>
-      l10n.commonValidationDistrictRequired,
+    'common.validation.passwordsMustMatch' => l10n.commonValidationPasswordsMustMatch,
+    'common.validation.districtRequired' => l10n.commonValidationDistrictRequired,
     'common.validation.nicRequired' => l10n.commonValidationNicRequired,
     'common.validation.areaMin' => l10n.commonValidationAreaMin,
     'common.validation.quantityMin' => l10n.commonValidationQuantityMin,
     'common.validation.priceMin' => l10n.commonValidationPriceMin,
-    'common.validation.cropTypeRequired' =>
-      l10n.commonValidationCropTypeRequired,
+    'common.validation.cropTypeRequired' => l10n.commonValidationCropTypeRequired,
     'common.validation.cropIdRequired' => l10n.commonValidationCropIdRequired,
-    'common.validation.plantingDateRequired' =>
-      l10n.commonValidationPlantingDateRequired,
+    'common.validation.plantingDateRequired' => l10n.commonValidationPlantingDateRequired,
     'common.validation.expectedHarvestDateRequired' =>
       l10n.commonValidationExpectedHarvestDateRequired,
-    'common.validation.harvestAfterPlanting' =>
-      l10n.commonValidationHarvestAfterPlanting,
-    'common.validation.harvestDateRequired' =>
-      l10n.commonValidationHarvestDateRequired,
-    'common.validation.locationRequired' =>
-      l10n.commonValidationLocationRequired,
-    'common.validation.departmentRequiredOfficer' =>
-      l10n.commonValidationDepartmentRequiredOfficer,
-    'common.validation.businessNameRequiredBuyer' =>
-      l10n.commonValidationBusinessNameRequiredBuyer,
+    'common.validation.harvestAfterPlanting' => l10n.commonValidationHarvestAfterPlanting,
+    'common.validation.harvestDateRequired' => l10n.commonValidationHarvestDateRequired,
+    'common.validation.locationRequired' => l10n.commonValidationLocationRequired,
+    'common.validation.departmentRequiredOfficer' => l10n.commonValidationDepartmentRequiredOfficer,
+    'common.validation.businessNameRequiredBuyer' => l10n.commonValidationBusinessNameRequiredBuyer,
     'common.validation.cropRequired' => l10n.commonValidationCropRequired,
-    'common.validation.fieldPlotNumberRequired' =>
-      l10n.commonValidationFieldPlotNumberRequired,
-    'common.validation.phoneNumberRequired' =>
-      l10n.commonValidationPhoneNumberRequired,
+    'common.validation.fieldPlotNumberRequired' => l10n.commonValidationFieldPlotNumberRequired,
+    'common.validation.phoneNumberRequired' => l10n.commonValidationPhoneNumberRequired,
     'common.validation.businessRegistrationNumberRequired' =>
       l10n.commonValidationBusinessRegistrationNumberRequired,
-    'common.validation.businessPhoneRequired' =>
-      l10n.commonValidationBusinessPhoneRequired,
-    'common.validation.legalBusinessNameRequired' =>
-      l10n.commonValidationLegalBusinessNameRequired,
+    'common.validation.businessPhoneRequired' => l10n.commonValidationBusinessPhoneRequired,
+    'common.validation.legalBusinessNameRequired' => l10n.commonValidationLegalBusinessNameRequired,
     'common.validation.nameTooLong' => l10n.commonValidationNameTooLong,
     'common.validation.emailTooLong' => l10n.commonValidationEmailTooLong,
-    'common.validation.confirmPasswordRequired' =>
-      l10n.commonValidationConfirmPasswordRequired,
-    'common.validation.confirmPasswordMismatch' =>
-      l10n.commonValidationConfirmPasswordMismatch,
+    'common.validation.confirmPasswordRequired' => l10n.commonValidationConfirmPasswordRequired,
+    'common.validation.confirmPasswordMismatch' => l10n.commonValidationConfirmPasswordMismatch,
     'common.validation.nicInvalid' => l10n.commonValidationNicInvalid,
-    'common.validation.phoneNumberInvalid' =>
-      l10n.commonValidationPhoneNumberInvalid,
-    'common.validation.businessPhoneInvalid' =>
-      l10n.commonValidationBusinessPhoneInvalid,
-    'common.validation.fieldPlotNumberTooLong' =>
-      l10n.commonValidationFieldPlotNumberTooLong,
+    'common.validation.phoneNumberInvalid' => l10n.commonValidationPhoneNumberInvalid,
+    'common.validation.businessPhoneInvalid' => l10n.commonValidationBusinessPhoneInvalid,
+    'common.validation.fieldPlotNumberTooLong' => l10n.commonValidationFieldPlotNumberTooLong,
     'common.validation.businessRegistrationNumberTooLong' =>
       l10n.commonValidationBusinessRegistrationNumberTooLong,
-    'common.validation.legalBusinessNameTooLong' =>
-      l10n.commonValidationLegalBusinessNameTooLong,
+    'common.validation.legalBusinessNameTooLong' => l10n.commonValidationLegalBusinessNameTooLong,
     'common.validation.usernameTaken' => l10n.commonValidationUsernameTaken,
-    'common.validation.usernameTooShort' =>
-      l10n.commonValidationUsernameTooShort,
+    'common.validation.usernameTooShort' => l10n.commonValidationUsernameTooShort,
     'common.validation.usernameTooLong' => l10n.commonValidationUsernameTooLong,
     'common.validation.usernameInvalid' => l10n.commonValidationUsernameInvalid,
-    'common.validation.usernameReserved' =>
-      l10n.commonValidationUsernameReserved,
-    'common.passwordChecklist.ariaLabel' =>
-      l10n.commonPasswordChecklistAriaLabel,
+    'common.validation.usernameReserved' => l10n.commonValidationUsernameReserved,
+    'common.passwordChecklist.ariaLabel' => l10n.commonPasswordChecklistAriaLabel,
     'common.passwordChecklist.met' => l10n.commonPasswordChecklistMet,
     'common.passwordChecklist.notMet' => l10n.commonPasswordChecklistNotMet,
-    'common.passwordChecklist.notChecked' =>
-      l10n.commonPasswordChecklistNotChecked,
+    'common.passwordChecklist.notChecked' => l10n.commonPasswordChecklistNotChecked,
     'common.passwordChecklist.length' => l10n.commonPasswordChecklistLength,
-    'common.passwordChecklist.lowercase' =>
-      l10n.commonPasswordChecklistLowercase,
-    'common.passwordChecklist.uppercase' =>
-      l10n.commonPasswordChecklistUppercase,
+    'common.passwordChecklist.lowercase' => l10n.commonPasswordChecklistLowercase,
+    'common.passwordChecklist.uppercase' => l10n.commonPasswordChecklistUppercase,
     'common.passwordChecklist.digit' => l10n.commonPasswordChecklistDigit,
     'common.passwordChecklist.symbol' => l10n.commonPasswordChecklistSymbol,
     'common.severity.Low' => l10n.commonSeverityLow,
@@ -279,11 +247,9 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'auth.adminLogin.backToLogin' => l10n.authAdminLoginBackToLogin,
     'auth.changePassword.title' => l10n.authChangePasswordTitle,
     'auth.changePassword.subtitle' => l10n.authChangePasswordSubtitle,
-    'auth.changePassword.currentPassword' =>
-      l10n.authChangePasswordCurrentPassword,
+    'auth.changePassword.currentPassword' => l10n.authChangePasswordCurrentPassword,
     'auth.changePassword.newPassword' => l10n.authChangePasswordNewPassword,
-    'auth.changePassword.confirmNewPassword' =>
-      l10n.authChangePasswordConfirmNewPassword,
+    'auth.changePassword.confirmNewPassword' => l10n.authChangePasswordConfirmNewPassword,
     'auth.changePassword.submit' => l10n.authChangePasswordSubmit,
     'auth.changePassword.submitting' => l10n.authChangePasswordSubmitting,
     'auth.changePassword.success' => l10n.authChangePasswordSuccess,
@@ -293,45 +259,30 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'auth.profile.tabs.general' => l10n.authProfileTabsGeneral,
     'auth.profile.tabs.security' => l10n.authProfileTabsSecurity,
     'auth.profile.loading' => l10n.authProfileLoading,
-    'auth.profile.security.passwordHeading' =>
-      l10n.authProfileSecurityPasswordHeading,
-    'auth.profile.security.editSecurityDetails' =>
-      l10n.authProfileSecurityEditSecurityDetails,
-    'auth.profile.security.unlockPrompt' =>
-      l10n.authProfileSecurityUnlockPrompt,
+    'auth.profile.security.passwordHeading' => l10n.authProfileSecurityPasswordHeading,
+    'auth.profile.security.editSecurityDetails' => l10n.authProfileSecurityEditSecurityDetails,
+    'auth.profile.security.unlockPrompt' => l10n.authProfileSecurityUnlockPrompt,
     'auth.profile.security.unlock' => l10n.authProfileSecurityUnlock,
     'auth.profile.security.doneEditing' => l10n.authProfileSecurityDoneEditing,
-    'auth.profile.security.wrongPassword' =>
-      l10n.authProfileSecurityWrongPassword,
+    'auth.profile.security.wrongPassword' => l10n.authProfileSecurityWrongPassword,
     'auth.profile.security.save' => l10n.authProfileSecuritySave,
-    'auth.profile.security.submitForApproval' =>
-      l10n.authProfileSecuritySubmitForApproval,
+    'auth.profile.security.submitForApproval' => l10n.authProfileSecuritySubmitForApproval,
     'auth.profile.security.saved' => l10n.authProfileSecuritySaved,
     'auth.profile.security.saveError' => l10n.authProfileSecuritySaveError,
-    'auth.profile.security.requestSubmitted' =>
-      l10n.authProfileSecurityRequestSubmitted,
-    'auth.profile.security.phoneUpdated' =>
-      l10n.authProfileSecurityPhoneUpdated,
-    'auth.profile.security.pendingApproval' =>
-      l10n.authProfileSecurityPendingApproval,
+    'auth.profile.security.requestSubmitted' => l10n.authProfileSecurityRequestSubmitted,
+    'auth.profile.security.phoneUpdated' => l10n.authProfileSecurityPhoneUpdated,
+    'auth.profile.security.pendingApproval' => l10n.authProfileSecurityPendingApproval,
     'auth.profile.security.withdraw' => l10n.authProfileSecurityWithdraw,
     'auth.profile.security.withdrawn' => l10n.authProfileSecurityWithdrawn,
-    'auth.profile.security.withdrawError' =>
-      l10n.authProfileSecurityWithdrawError,
-    'auth.profile.security.approvalNote' =>
-      l10n.authProfileSecurityApprovalNote,
+    'auth.profile.security.withdrawError' => l10n.authProfileSecurityWithdrawError,
+    'auth.profile.security.approvalNote' => l10n.authProfileSecurityApprovalNote,
     'auth.profile.general.displayName' => l10n.authProfileGeneralDisplayName,
     'auth.profile.general.notSet' => l10n.authProfileGeneralNotSet,
-    'auth.profile.general.displayNameFallback' =>
-      l10n.authProfileGeneralDisplayNameFallback,
-    'auth.profile.general.usernameChangeNow' =>
-      l10n.authProfileGeneralUsernameChangeNow,
-    'auth.profile.general.noteSecuritySettings' =>
-      l10n.authProfileGeneralNoteSecuritySettings,
-    'auth.profile.general.noteRequiresApproval' =>
-      l10n.authProfileGeneralNoteRequiresApproval,
-    'auth.profile.general.noteContactAdmin' =>
-      l10n.authProfileGeneralNoteContactAdmin,
+    'auth.profile.general.displayNameFallback' => l10n.authProfileGeneralDisplayNameFallback,
+    'auth.profile.general.usernameChangeNow' => l10n.authProfileGeneralUsernameChangeNow,
+    'auth.profile.general.noteSecuritySettings' => l10n.authProfileGeneralNoteSecuritySettings,
+    'auth.profile.general.noteRequiresApproval' => l10n.authProfileGeneralNoteRequiresApproval,
+    'auth.profile.general.noteContactAdmin' => l10n.authProfileGeneralNoteContactAdmin,
     'auth.profile.edit.editProfile' => l10n.authProfileEditEditProfile,
     'auth.profile.edit.updateProfile' => l10n.authProfileEditUpdateProfile,
     'auth.profile.edit.updating' => l10n.authProfileEditUpdating,
@@ -341,22 +292,17 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'auth.profile.edit.removePhoto' => l10n.authProfileEditRemovePhoto,
     'auth.profile.edit.photoHint' => l10n.authProfileEditPhotoHint,
     'auth.profile.edit.photoPreview' => l10n.authProfileEditPhotoPreview,
-    'auth.profile.edit.photoWillBeRemoved' =>
-      l10n.authProfileEditPhotoWillBeRemoved,
+    'auth.profile.edit.photoWillBeRemoved' => l10n.authProfileEditPhotoWillBeRemoved,
     'auth.profile.edit.photoTooLarge' => l10n.authProfileEditPhotoTooLarge,
     'auth.profile.edit.photoWrongType' => l10n.authProfileEditPhotoWrongType,
     'auth.profile.edit.keepCurrent' => l10n.authProfileEditKeepCurrent,
     'auth.profile.edit.displayNameHint' => l10n.authProfileEditDisplayNameHint,
     'auth.profile.edit.useFullName' => l10n.authProfileEditUseFullName,
     'auth.profile.edit.usingFullName' => l10n.authProfileEditUsingFullName,
-    'auth.profile.edit.usernameEvery30Days' =>
-      l10n.authProfileEditUsernameEvery30Days,
-    'auth.profile.edit.displayNameTooLong' =>
-      l10n.authProfileEditDisplayNameTooLong,
-    'auth.profile.edit.displayNameInvalid' =>
-      l10n.authProfileEditDisplayNameInvalid,
-    'auth.profile.edit.businessNameTooLong' =>
-      l10n.authProfileEditBusinessNameTooLong,
+    'auth.profile.edit.usernameEvery30Days' => l10n.authProfileEditUsernameEvery30Days,
+    'auth.profile.edit.displayNameTooLong' => l10n.authProfileEditDisplayNameTooLong,
+    'auth.profile.edit.displayNameInvalid' => l10n.authProfileEditDisplayNameInvalid,
+    'auth.profile.edit.businessNameTooLong' => l10n.authProfileEditBusinessNameTooLong,
     'auth.profile.edit.success' => l10n.authProfileEditSuccess,
     'auth.profile.edit.error' => l10n.authProfileEditError,
     'auth.profile.edit.noChanges' => l10n.authProfileEditNoChanges,
@@ -486,48 +432,36 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'issues.advisory.rejected' => l10n.issuesAdvisoryRejected,
     'issues.advisory.rejectError' => l10n.issuesAdvisoryRejectError,
     'issues.advisory.reviewNoteLabel' => l10n.issuesAdvisoryReviewNoteLabel,
-    'issues.advisory.reviewNotePlaceholder' =>
-      l10n.issuesAdvisoryReviewNotePlaceholder,
+    'issues.advisory.reviewNotePlaceholder' => l10n.issuesAdvisoryReviewNotePlaceholder,
     'issues.advisory.preliminaryTitle' => l10n.issuesAdvisoryPreliminaryTitle,
     'issues.advisory.preliminaryBody' => l10n.issuesAdvisoryPreliminaryBody,
     'issues.advisory.officerAdvice' => l10n.issuesAdvisoryOfficerAdvice,
     'issues.advisory.photos' => l10n.issuesAdvisoryPhotos,
     'issues.advisory.photoAlt' => l10n.issuesAdvisoryPhotoAlt,
     'issues.advisory.photoUnavailable' => l10n.issuesAdvisoryPhotoUnavailable,
-    'issues.advisory.review.confirmDiagnosis' =>
-      l10n.issuesAdvisoryReviewConfirmDiagnosis,
-    'issues.advisory.review.correctDiagnosis' =>
-      l10n.issuesAdvisoryReviewCorrectDiagnosis,
+    'issues.advisory.review.confirmDiagnosis' => l10n.issuesAdvisoryReviewConfirmDiagnosis,
+    'issues.advisory.review.correctDiagnosis' => l10n.issuesAdvisoryReviewCorrectDiagnosis,
     'issues.advisory.review.treatmentLabelRequired' =>
       l10n.issuesAdvisoryReviewTreatmentLabelRequired,
     'issues.advisory.review.treatmentLabelOptional' =>
       l10n.issuesAdvisoryReviewTreatmentLabelOptional,
-    'issues.advisory.review.treatmentPlaceholder' =>
-      l10n.issuesAdvisoryReviewTreatmentPlaceholder,
-    'issues.advisory.review.correctDiseaseLabel' =>
-      l10n.issuesAdvisoryReviewCorrectDiseaseLabel,
+    'issues.advisory.review.treatmentPlaceholder' => l10n.issuesAdvisoryReviewTreatmentPlaceholder,
+    'issues.advisory.review.correctDiseaseLabel' => l10n.issuesAdvisoryReviewCorrectDiseaseLabel,
     'issues.advisory.review.correctDiseasePlaceholder' =>
       l10n.issuesAdvisoryReviewCorrectDiseasePlaceholder,
-    'issues.advisory.review.treatmentRequired' =>
-      l10n.issuesAdvisoryReviewTreatmentRequired,
-    'issues.advisory.review.diseaseRequired' =>
-      l10n.issuesAdvisoryReviewDiseaseRequired,
-    'issues.advisory.review.useCorrectToChange' =>
-      l10n.issuesAdvisoryReviewUseCorrectToChange,
+    'issues.advisory.review.treatmentRequired' => l10n.issuesAdvisoryReviewTreatmentRequired,
+    'issues.advisory.review.diseaseRequired' => l10n.issuesAdvisoryReviewDiseaseRequired,
+    'issues.advisory.review.useCorrectToChange' => l10n.issuesAdvisoryReviewUseCorrectToChange,
     'issues.advisory.review.confirmed' => l10n.issuesAdvisoryReviewConfirmed,
     'issues.advisory.review.corrected' => l10n.issuesAdvisoryReviewCorrected,
-    'issues.advisory.review.suggestedTitle' =>
-      l10n.issuesAdvisoryReviewSuggestedTitle,
-    'issues.advisory.review.suggestedHint' =>
-      l10n.issuesAdvisoryReviewSuggestedHint,
-    'issues.advisory.review.useSuggested' =>
-      l10n.issuesAdvisoryReviewUseSuggested,
+    'issues.advisory.review.suggestedTitle' => l10n.issuesAdvisoryReviewSuggestedTitle,
+    'issues.advisory.review.suggestedHint' => l10n.issuesAdvisoryReviewSuggestedHint,
+    'issues.advisory.review.useSuggested' => l10n.issuesAdvisoryReviewUseSuggested,
     'issues.previousIssues.empty' => l10n.issuesPreviousIssuesEmpty,
     'issues.agentTrace.title' => l10n.issuesAgentTraceTitle,
     'issues.agentTrace.noOutput' => l10n.issuesAgentTraceNoOutput,
     'issues.agentTrace.showInput' => l10n.issuesAgentTraceShowInput,
-    'issues.agentTrace.status.Completed' =>
-      l10n.issuesAgentTraceStatusCompleted,
+    'issues.agentTrace.status.Completed' => l10n.issuesAgentTraceStatusCompleted,
     'issues.agentTrace.status.Running' => l10n.issuesAgentTraceStatusRunning,
     'issues.agentTrace.status.Failed' => l10n.issuesAgentTraceStatusFailed,
     'issues.reviewed.title' => l10n.issuesReviewedTitle,
@@ -538,33 +472,26 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'issues.reviewed.outcome.Rejected' => l10n.issuesReviewedOutcomeRejected,
     'issues.photoReview.title' => l10n.issuesPhotoReviewTitle,
     'issues.photoReview.reasonsTitle' => l10n.issuesPhotoReviewReasonsTitle,
-    'issues.photoReview.adviceAlreadySent' =>
-      l10n.issuesPhotoReviewAdviceAlreadySent,
-    'issues.photoReview.reasons.UnknownDisease' =>
-      l10n.issuesPhotoReviewReasonsUnknownDisease,
-    'issues.photoReview.reasons.SeriousDisease' =>
-      l10n.issuesPhotoReviewReasonsSeriousDisease,
+    'issues.photoReview.adviceAlreadySent' => l10n.issuesPhotoReviewAdviceAlreadySent,
+    'issues.photoReview.reasons.UnknownDisease' => l10n.issuesPhotoReviewReasonsUnknownDisease,
+    'issues.photoReview.reasons.SeriousDisease' => l10n.issuesPhotoReviewReasonsSeriousDisease,
     'issues.photoReview.reasons.NoApprovedTreatment' =>
       l10n.issuesPhotoReviewReasonsNoApprovedTreatment,
     'issues.photoReview.reasons.ModelNeverAutoReleases' =>
       l10n.issuesPhotoReviewReasonsModelNeverAutoReleases,
-    'issues.photoReview.reasons.LowConfidence' =>
-      l10n.issuesPhotoReviewReasonsLowConfidence,
+    'issues.photoReview.reasons.LowConfidence' => l10n.issuesPhotoReviewReasonsLowConfidence,
     'issues.photoReview.reasons.DescriptionMismatch' =>
       l10n.issuesPhotoReviewReasonsDescriptionMismatch,
     'issues.photoReview.reasons.AutoReleaseDisabled' =>
       l10n.issuesPhotoReviewReasonsAutoReleaseDisabled,
-    'issues.photoReview.reasons.TriageFailed' =>
-      l10n.issuesPhotoReviewReasonsTriageFailed,
+    'issues.photoReview.reasons.TriageFailed' => l10n.issuesPhotoReviewReasonsTriageFailed,
     'marketplace.browse.title' => l10n.marketplaceBrowseTitle,
     'marketplace.browse.subtitle' => l10n.marketplaceBrowseSubtitle,
     'marketplace.browse.empty' => l10n.marketplaceBrowseEmpty,
     'marketplace.filters.cropType' => l10n.marketplaceFiltersCropType,
-    'marketplace.filters.cropTypePlaceholder' =>
-      l10n.marketplaceFiltersCropTypePlaceholder,
+    'marketplace.filters.cropTypePlaceholder' => l10n.marketplaceFiltersCropTypePlaceholder,
     'marketplace.filters.district' => l10n.marketplaceFiltersDistrict,
-    'marketplace.filters.districtPlaceholder' =>
-      l10n.marketplaceFiltersDistrictPlaceholder,
+    'marketplace.filters.districtPlaceholder' => l10n.marketplaceFiltersDistrictPlaceholder,
     'marketplace.filters.minPrice' => l10n.marketplaceFiltersMinPrice,
     'marketplace.filters.maxPrice' => l10n.marketplaceFiltersMaxPrice,
     'marketplace.filters.allCropTypes' => l10n.marketplaceFiltersAllCropTypes,
@@ -576,11 +503,9 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'marketplace.detail.district' => l10n.marketplaceDetailDistrict,
     'marketplace.detail.harvestDate' => l10n.marketplaceDetailHarvestDate,
     'marketplace.detail.location' => l10n.marketplaceDetailLocation,
-    'marketplace.detail.availableQuantity' =>
-      l10n.marketplaceDetailAvailableQuantity,
+    'marketplace.detail.availableQuantity' => l10n.marketplaceDetailAvailableQuantity,
     'marketplace.detail.pricePerUnit' => l10n.marketplaceDetailPricePerUnit,
-    'marketplace.detail.requestPurchase' =>
-      l10n.marketplaceDetailRequestPurchase,
+    'marketplace.detail.requestPurchase' => l10n.marketplaceDetailRequestPurchase,
     'marketplace.detail.requestSent' => l10n.marketplaceDetailRequestSent,
     'marketplace.listings.title' => l10n.marketplaceListingsTitle,
     'marketplace.listings.newListing' => l10n.marketplaceListingsNewListing,
@@ -592,19 +517,15 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'marketplace.listings.emptyHint' => l10n.marketplaceListingsEmptyHint,
     'marketplace.listingForm.cropId' => l10n.marketplaceListingFormCropId,
     'marketplace.listingForm.quantity' => l10n.marketplaceListingFormQuantity,
-    'marketplace.listingForm.harvestDate' =>
-      l10n.marketplaceListingFormHarvestDate,
-    'marketplace.listingForm.pricePerUnit' =>
-      l10n.marketplaceListingFormPricePerUnit,
+    'marketplace.listingForm.harvestDate' => l10n.marketplaceListingFormHarvestDate,
+    'marketplace.listingForm.pricePerUnit' => l10n.marketplaceListingFormPricePerUnit,
     'marketplace.listingForm.location' => l10n.marketplaceListingFormLocation,
     'marketplace.listingForm.publish' => l10n.marketplaceListingFormPublish,
-    'marketplace.listingForm.publishing' =>
-      l10n.marketplaceListingFormPublishing,
+    'marketplace.listingForm.publishing' => l10n.marketplaceListingFormPublishing,
     'marketplace.listingForm.crop' => l10n.marketplaceListingFormCrop,
     'marketplace.listingForm.noCrops' => l10n.marketplaceListingFormNoCrops,
     'marketplace.listingForm.goToFarms' => l10n.marketplaceListingFormGoToFarms,
-    'marketplace.listingForm.estimatedTotal' =>
-      l10n.marketplaceListingFormEstimatedTotal,
+    'marketplace.listingForm.estimatedTotal' => l10n.marketplaceListingFormEstimatedTotal,
     'marketplace.requests.title' => l10n.marketplaceRequestsTitle,
     'marketplace.requests.empty' => l10n.marketplaceRequestsEmpty,
     'marketplace.requests.accepted' => l10n.marketplaceRequestsAccepted,
@@ -618,18 +539,15 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'marketplace.requestForm.sending' => l10n.marketplaceRequestFormSending,
     'marketplace.sentRequests.title' => l10n.marketplaceSentRequestsTitle,
     'marketplace.sentRequests.empty' => l10n.marketplaceSentRequestsEmpty,
-    'marketplace.sentRequests.emptyHint' =>
-      l10n.marketplaceSentRequestsEmptyHint,
-    'marketplace.sentRequests.browseMarketplace' =>
-      l10n.marketplaceSentRequestsBrowseMarketplace,
+    'marketplace.sentRequests.emptyHint' => l10n.marketplaceSentRequestsEmptyHint,
+    'marketplace.sentRequests.browseMarketplace' => l10n.marketplaceSentRequestsBrowseMarketplace,
     'marketplace.editForm.editListing' => l10n.marketplaceEditFormEditListing,
     'marketplace.editForm.save' => l10n.marketplaceEditFormSave,
     'marketplace.editForm.saving' => l10n.marketplaceEditFormSaving,
     'marketplace.editForm.saved' => l10n.marketplaceEditFormSaved,
     'marketplace.editForm.saveError' => l10n.marketplaceEditFormSaveError,
     'officer.dashboard.title' => l10n.officerDashboardTitle,
-    'officer.dashboard.pendingInDistrict' =>
-      l10n.officerDashboardPendingInDistrict,
+    'officer.dashboard.pendingInDistrict' => l10n.officerDashboardPendingInDistrict,
     'officer.dashboard.reviewedToday' => l10n.officerDashboardReviewedToday,
     'officer.dashboard.approvedTotal' => l10n.officerDashboardApprovedTotal,
     'officer.dashboard.rejectedTotal' => l10n.officerDashboardRejectedTotal,
@@ -725,77 +643,55 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'orders.departments.create' => l10n.ordersDepartmentsCreate,
     'orders.departments.rename' => l10n.ordersDepartmentsRename,
     'orders.departments.saveChanges' => l10n.ordersDepartmentsSaveChanges,
-    'orders.departments.selectDepartment' =>
-      l10n.ordersDepartmentsSelectDepartment,
-    'orders.departments.noneYetForCreateUser' =>
-      l10n.ordersDepartmentsNoneYetForCreateUser,
+    'orders.departments.selectDepartment' => l10n.ordersDepartmentsSelectDepartment,
+    'orders.departments.noneYetForCreateUser' => l10n.ordersDepartmentsNoneYetForCreateUser,
     'orders.departments.empty' => l10n.ordersDepartmentsEmpty,
     'orders.departments.loadError' => l10n.ordersDepartmentsLoadError,
     'orders.departments.duplicateError' => l10n.ordersDepartmentsDuplicateError,
     'orders.departments.saveError' => l10n.ordersDepartmentsSaveError,
-    'orders.departments.deleteInUseError' =>
-      l10n.ordersDepartmentsDeleteInUseError,
-    'orders.departments.confirmDeleteTitle' =>
-      l10n.ordersDepartmentsConfirmDeleteTitle,
+    'orders.departments.deleteInUseError' => l10n.ordersDepartmentsDeleteInUseError,
+    'orders.departments.confirmDeleteTitle' => l10n.ordersDepartmentsConfirmDeleteTitle,
     'registrations.pending.pageTitle' => l10n.registrationsPendingPageTitle,
-    'registrations.pending.tabs.registrations' =>
-      l10n.registrationsPendingTabsRegistrations,
-    'registrations.pending.tabs.profileChanges' =>
-      l10n.registrationsPendingTabsProfileChanges,
+    'registrations.pending.tabs.registrations' => l10n.registrationsPendingTabsRegistrations,
+    'registrations.pending.tabs.profileChanges' => l10n.registrationsPendingTabsProfileChanges,
     'registrations.pending.empty' => l10n.registrationsPendingEmpty,
     'registrations.pending.farmerLabel' => l10n.registrationsPendingFarmerLabel,
     'registrations.pending.buyerLabel' => l10n.registrationsPendingBuyerLabel,
     'registrations.pending.approve' => l10n.registrationsPendingApprove,
     'registrations.pending.reject' => l10n.registrationsPendingReject,
-    'registrations.pending.rejectPrompt' =>
-      l10n.registrationsPendingRejectPrompt,
-    'registrations.pending.rejectPlaceholder' =>
-      l10n.registrationsPendingRejectPlaceholder,
-    'registrations.pending.rejectSubmit' =>
-      l10n.registrationsPendingRejectSubmit,
+    'registrations.pending.rejectPrompt' => l10n.registrationsPendingRejectPrompt,
+    'registrations.pending.rejectPlaceholder' => l10n.registrationsPendingRejectPlaceholder,
+    'registrations.pending.rejectSubmit' => l10n.registrationsPendingRejectSubmit,
     'registrations.pending.cancel' => l10n.registrationsPendingCancel,
-    'registrations.pending.changes.empty' =>
-      l10n.registrationsPendingChangesEmpty,
+    'registrations.pending.changes.empty' => l10n.registrationsPendingChangesEmpty,
     'registrations.pending.changes.fieldLabel.FullName' =>
       l10n.registrationsPendingChangesFieldLabelFullName,
-    'registrations.pending.changes.fieldLabel.NIC' =>
-      l10n.registrationsPendingChangesFieldLabelNIC,
+    'registrations.pending.changes.fieldLabel.NIC' => l10n.registrationsPendingChangesFieldLabelNIC,
     'registrations.pending.changes.fieldLabel.Email' =>
       l10n.registrationsPendingChangesFieldLabelEmail,
-    'registrations.pending.changes.approve' =>
-      l10n.registrationsPendingChangesApprove,
-    'registrations.pending.changes.reject' =>
-      l10n.registrationsPendingChangesReject,
-    'registrations.pending.changes.approveTitle' =>
-      l10n.registrationsPendingChangesApproveTitle,
-    'registrations.pending.changes.approvePrompt' =>
-      l10n.registrationsPendingChangesApprovePrompt,
+    'registrations.pending.changes.approve' => l10n.registrationsPendingChangesApprove,
+    'registrations.pending.changes.reject' => l10n.registrationsPendingChangesReject,
+    'registrations.pending.changes.approveTitle' => l10n.registrationsPendingChangesApproveTitle,
+    'registrations.pending.changes.approvePrompt' => l10n.registrationsPendingChangesApprovePrompt,
     'registrations.pending.changes.approveConfirm' =>
       l10n.registrationsPendingChangesApproveConfirm,
-    'registrations.pending.changes.approveError' =>
-      l10n.registrationsPendingChangesApproveError,
-    'registrations.pending.changes.approved' =>
-      l10n.registrationsPendingChangesApproved,
-    'registrations.pending.changes.wrongPassword' =>
-      l10n.registrationsPendingChangesWrongPassword,
-    'registrations.pending.changes.rejectPrompt' =>
-      l10n.registrationsPendingChangesRejectPrompt,
+    'registrations.pending.changes.approveError' => l10n.registrationsPendingChangesApproveError,
+    'registrations.pending.changes.approved' => l10n.registrationsPendingChangesApproved,
+    'registrations.pending.changes.wrongPassword' => l10n.registrationsPendingChangesWrongPassword,
+    'registrations.pending.changes.rejectPrompt' => l10n.registrationsPendingChangesRejectPrompt,
     'registrations.pending.changes.rejectPlaceholder' =>
       l10n.registrationsPendingChangesRejectPlaceholder,
-    'registrations.pending.changes.rejectSubmit' =>
-      l10n.registrationsPendingChangesRejectSubmit,
-    'registrations.pending.changes.rejectError' =>
-      l10n.registrationsPendingChangesRejectError,
-    'registrations.pending.changes.rejected' =>
-      l10n.registrationsPendingChangesRejected,
-    'registrations.pending.changes.cancel' =>
-      l10n.registrationsPendingChangesCancel,
+    'registrations.pending.changes.rejectSubmit' => l10n.registrationsPendingChangesRejectSubmit,
+    'registrations.pending.changes.rejectError' => l10n.registrationsPendingChangesRejectError,
+    'registrations.pending.changes.rejected' => l10n.registrationsPendingChangesRejected,
+    'registrations.pending.changes.cancel' => l10n.registrationsPendingChangesCancel,
     'common.actions.retry' => l10n.commonActionsRetry,
     'common.actions.cancel' => l10n.commonActionsCancel,
     'common.actions.ok' => l10n.commonActionsOk,
     'common.actions.confirm' => l10n.commonActionsConfirm,
     'common.actions.openSettings' => l10n.commonActionsOpenSettings,
     'common.nav.more' => l10n.commonNavMore,
+    'common.nav.profile' => l10n.commonNavProfile,
     'common.errors.network' => l10n.commonErrorsNetwork,
     'common.errors.generic' => l10n.commonErrorsGeneric,
     'common.errors.slowServer' => l10n.commonErrorsSlowServer,
@@ -805,6 +701,11 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'common.comingSoon.title' => l10n.commonComingSoonTitle,
     'common.comingSoon.message' => l10n.commonComingSoonMessage,
     'common.empty.title' => l10n.commonEmptyTitle,
+    'auth.login.pendingTitle' => l10n.authLoginPendingTitle,
+    'auth.login.pendingMessage' => l10n.authLoginPendingMessage,
+    'auth.login.rejectedTitle' => l10n.authLoginRejectedTitle,
+    'auth.login.rejectedMessage' => l10n.authLoginRejectedMessage,
+    'auth.splash.loading' => l10n.authSplashLoading,
     _ => null,
   };
 }
