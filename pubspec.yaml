@@ -35,6 +35,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  # Generates AppLocalizations from lib/l10n/arb (see l10n.yaml).
+  generate: true
 
   # Bundled rather than downloaded at runtime. All are SIL Open Font Licence (see assets/fonts/OFL-*.txt).
   # Fraunces, Plus Jakarta Sans and JetBrains Mono have no Sinhala or Tamil glyphs, so the theme

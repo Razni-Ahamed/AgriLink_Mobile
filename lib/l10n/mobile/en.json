@@ -1,0 +1,29 @@
+{
+  "common": {
+    "actions": {
+      "retry": "Try again",
+      "cancel": "Cancel",
+      "ok": "OK",
+      "confirm": "Confirm",
+      "openSettings": "Open settings"
+    },
+    "nav": {
+      "more": "More"
+    },
+    "errors": {
+      "network": "Can't reach the server. Check your connection and try again.",
+      "generic": "Something went wrong. Please try again.",
+      "slowServer": "The server is waking up. This can take up to 30 seconds.",
+      "sessionExpired": "Your session has ended. Please sign in again.",
+      "forbidden": "You don't have permission to do that.",
+      "notFound": "We couldn't find what you were looking for."
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "message": "This section is being built and will be available in a later update of the app."
+    },
+    "empty": {
+      "title": "Nothing here yet"
+    }
+  }
+}
