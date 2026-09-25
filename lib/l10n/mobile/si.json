@@ -74,5 +74,10 @@
       "view": "බලන්න",
       "unread": "නොකියවූ"
     }
+  },
+  "marketplace": {
+    "filters": {
+      "title": "පෙරහන්"
+    }
   }
 }

@@ -781,5 +781,6 @@
   "ordersNotificationsChannelName": "AgriLink යාවත්කාලීන",
   "ordersNotificationsChannelDescription": "ඔබගේ ඇණවුම්, ඉල්ලීම්, බෝග ගැටලු සහ ගිණුම පිළිබඳ පුවත්.",
   "ordersNotificationsView": "බලන්න",
-  "ordersNotificationsUnread": "නොකියවූ"
+  "ordersNotificationsUnread": "නොකියවූ",
+  "marketplaceFiltersTitle": "පෙරහන්"
 }

@@ -781,5 +781,6 @@
   "ordersNotificationsChannelName": "AgriLink புதுப்பிப்புகள்",
   "ordersNotificationsChannelDescription": "உங்கள் ஆர்டர்கள், கோரிக்கைகள், பயிர் சிக்கல்கள் மற்றும் கணக்கு பற்றிய செய்திகள்.",
   "ordersNotificationsView": "காண்க",
-  "ordersNotificationsUnread": "படிக்காதது"
+  "ordersNotificationsUnread": "படிக்காதது",
+  "marketplaceFiltersTitle": "வடிகட்டிகள்"
 }

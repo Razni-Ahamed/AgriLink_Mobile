@@ -74,5 +74,10 @@
       "view": "View",
       "unread": "Unread"
     }
+  },
+  "marketplace": {
+    "filters": {
+      "title": "Filters"
+    }
   }
 }

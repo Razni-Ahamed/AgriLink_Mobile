@@ -3541,5 +3541,9 @@
   "ordersNotificationsUnread": "Unread",
   "@ordersNotificationsUnread": {
     "description": "Mobile-only key: orders.notifications.unread"
+  },
+  "marketplaceFiltersTitle": "Filters",
+  "@marketplaceFiltersTitle": {
+    "description": "Mobile-only key: marketplace.filters.title"
   }
 }

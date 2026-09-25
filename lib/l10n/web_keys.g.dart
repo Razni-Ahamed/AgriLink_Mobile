@@ -728,6 +728,7 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'orders.notifications.channelDescription' => l10n.ordersNotificationsChannelDescription,
     'orders.notifications.view' => l10n.ordersNotificationsView,
     'orders.notifications.unread' => l10n.ordersNotificationsUnread,
+    'marketplace.filters.title' => l10n.marketplaceFiltersTitle,
     _ => null,
   };
 }

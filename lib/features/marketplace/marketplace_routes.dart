@@ -3,12 +3,17 @@ import 'package:go_router/go_router.dart';
 import '../../app/router/route_guard.dart';
 import '../../app/shell/nav_config.dart';
 import '../../app/shell/placeholder_page.dart';
+import 'presentation/browse_harvests_screen.dart';
 
 /// Phase 3 (marketplace and orders, for farmers and buyers): browsing harvests, listings,
 /// purchase requests and orders. Replace each `PlaceholderPage` with the real screen.
 List<RouteBase> marketplaceRoutes(RouteGuard guard) => [
+  guard.route(
+    path: Destinations.marketplace.path,
+    roles: Destinations.marketplace.roles,
+    builder: (context, state) => const BrowseHarvestsScreen(),
+  ),
   for (final destination in [
-    Destinations.marketplace,
     Destinations.myListings,
     Destinations.incomingRequests,
     Destinations.sentRequests,
