@@ -122,6 +122,22 @@
         "another": "மற்றொரு பயனரை உருவாக்கு",
         "backToUsers": "பயனர்களுக்குத் திரும்பு"
       }
+    },
+    "audit": {
+      "entityFilter": "பதிவு வகை",
+      "entity": {
+        "User": "பயனர்",
+        "Department": "துறை",
+        "ProfileChangeRequest": "சுயவிவர மாற்றம்",
+        "AIAdvisory": "ஆலோசனை",
+        "HarvestListing": "அறுவடைப் பட்டியல்",
+        "Order": "ஆர்டர்",
+        "PurchaseRequest": "கொள்முதல் கோரிக்கை"
+      },
+      "by": "{name} மூலம்",
+      "before": "முன்",
+      "after": "பின்",
+      "notRecorded": "பதிவு செய்யப்படவில்லை"
     }
   }
 }

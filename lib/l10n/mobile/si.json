@@ -122,6 +122,22 @@
         "another": "තවත් පරිශීලකයෙකු සාදන්න",
         "backToUsers": "පරිශීලකයින් වෙත ආපසු"
       }
+    },
+    "audit": {
+      "entityFilter": "වාර්තා වර්ගය",
+      "entity": {
+        "User": "පරිශීලක",
+        "Department": "දෙපාර්තමේන්තුව",
+        "ProfileChangeRequest": "පැතිකඩ වෙනස් කිරීම",
+        "AIAdvisory": "උපදෙස්",
+        "HarvestListing": "අස්වනු ලැයිස්තුව",
+        "Order": "ඇණවුම",
+        "PurchaseRequest": "මිලදී ගැනීමේ ඉල්ලීම"
+      },
+      "by": "{name} විසින්",
+      "before": "පෙර",
+      "after": "පසු",
+      "notRecorded": "වාර්තා කර නැත"
     }
   }
 }

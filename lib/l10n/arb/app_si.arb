@@ -812,5 +812,17 @@
   "adminUsersCreatedTitle": "ගිණුම සාදන ලදී",
   "adminUsersCreatedPasswordNote": "මුරපදය ඔවුන්ට ආරක්ෂිතව දන්වන්න. එය නැවත පෙන්වන්නේ නැත.",
   "adminUsersCreatedAnother": "තවත් පරිශීලකයෙකු සාදන්න",
-  "adminUsersCreatedBackToUsers": "පරිශීලකයින් වෙත ආපසු"
+  "adminUsersCreatedBackToUsers": "පරිශීලකයින් වෙත ආපසු",
+  "adminAuditEntityFilter": "වාර්තා වර්ගය",
+  "adminAuditEntityUser": "පරිශීලක",
+  "adminAuditEntityDepartment": "දෙපාර්තමේන්තුව",
+  "adminAuditEntityProfileChangeRequest": "පැතිකඩ වෙනස් කිරීම",
+  "adminAuditEntityAIAdvisory": "උපදෙස්",
+  "adminAuditEntityHarvestListing": "අස්වනු ලැයිස්තුව",
+  "adminAuditEntityOrder": "ඇණවුම",
+  "adminAuditEntityPurchaseRequest": "මිලදී ගැනීමේ ඉල්ලීම",
+  "adminAuditBy": "{name} විසින්",
+  "adminAuditBefore": "පෙර",
+  "adminAuditAfter": "පසු",
+  "adminAuditNotRecorded": "වාර්තා කර නැත"
 }

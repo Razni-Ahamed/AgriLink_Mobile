@@ -11,7 +11,7 @@ import '../../helpers/test_app.dart';
 Map<String, Object?> departmentJson(int id, String name) => {
   'departmentId': id,
   'name': name,
-  'createdAt': '2026-03-0${id}T00:00:00Z',
+  'createdAt': '2026-03-0${id}T12:00:00Z',
 };
 
 void main() {

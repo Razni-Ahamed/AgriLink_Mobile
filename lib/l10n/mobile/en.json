@@ -122,6 +122,22 @@
         "another": "Create another user",
         "backToUsers": "Back to users"
       }
+    },
+    "audit": {
+      "entityFilter": "Record type",
+      "entity": {
+        "User": "User",
+        "Department": "Department",
+        "ProfileChangeRequest": "Profile change",
+        "AIAdvisory": "Advisory",
+        "HarvestListing": "Harvest listing",
+        "Order": "Order",
+        "PurchaseRequest": "Purchase request"
+      },
+      "by": "By {name}",
+      "before": "Before",
+      "after": "After",
+      "notRecorded": "Not recorded"
     }
   }
 }

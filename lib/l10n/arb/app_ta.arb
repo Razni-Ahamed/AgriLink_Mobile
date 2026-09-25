@@ -812,5 +812,17 @@
   "adminUsersCreatedTitle": "கணக்கு உருவாக்கப்பட்டது",
   "adminUsersCreatedPasswordNote": "கடவுச்சொல்லை அவர்களுக்குப் பாதுகாப்பாகத் தெரிவிக்கவும். அது மீண்டும் காட்டப்படாது.",
   "adminUsersCreatedAnother": "மற்றொரு பயனரை உருவாக்கு",
-  "adminUsersCreatedBackToUsers": "பயனர்களுக்குத் திரும்பு"
+  "adminUsersCreatedBackToUsers": "பயனர்களுக்குத் திரும்பு",
+  "adminAuditEntityFilter": "பதிவு வகை",
+  "adminAuditEntityUser": "பயனர்",
+  "adminAuditEntityDepartment": "துறை",
+  "adminAuditEntityProfileChangeRequest": "சுயவிவர மாற்றம்",
+  "adminAuditEntityAIAdvisory": "ஆலோசனை",
+  "adminAuditEntityHarvestListing": "அறுவடைப் பட்டியல்",
+  "adminAuditEntityOrder": "ஆர்டர்",
+  "adminAuditEntityPurchaseRequest": "கொள்முதல் கோரிக்கை",
+  "adminAuditBy": "{name} மூலம்",
+  "adminAuditBefore": "முன்",
+  "adminAuditAfter": "பின்",
+  "adminAuditNotRecorded": "பதிவு செய்யப்படவில்லை"
 }

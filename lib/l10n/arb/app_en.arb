@@ -3734,5 +3734,58 @@
   "adminUsersCreatedBackToUsers": "Back to users",
   "@adminUsersCreatedBackToUsers": {
     "description": "Mobile-only key: admin.users.created.backToUsers"
+  },
+  "adminAuditEntityFilter": "Record type",
+  "@adminAuditEntityFilter": {
+    "description": "Mobile-only key: admin.audit.entityFilter"
+  },
+  "adminAuditEntityUser": "User",
+  "@adminAuditEntityUser": {
+    "description": "Mobile-only key: admin.audit.entity.User"
+  },
+  "adminAuditEntityDepartment": "Department",
+  "@adminAuditEntityDepartment": {
+    "description": "Mobile-only key: admin.audit.entity.Department"
+  },
+  "adminAuditEntityProfileChangeRequest": "Profile change",
+  "@adminAuditEntityProfileChangeRequest": {
+    "description": "Mobile-only key: admin.audit.entity.ProfileChangeRequest"
+  },
+  "adminAuditEntityAIAdvisory": "Advisory",
+  "@adminAuditEntityAIAdvisory": {
+    "description": "Mobile-only key: admin.audit.entity.AIAdvisory"
+  },
+  "adminAuditEntityHarvestListing": "Harvest listing",
+  "@adminAuditEntityHarvestListing": {
+    "description": "Mobile-only key: admin.audit.entity.HarvestListing"
+  },
+  "adminAuditEntityOrder": "Order",
+  "@adminAuditEntityOrder": {
+    "description": "Mobile-only key: admin.audit.entity.Order"
+  },
+  "adminAuditEntityPurchaseRequest": "Purchase request",
+  "@adminAuditEntityPurchaseRequest": {
+    "description": "Mobile-only key: admin.audit.entity.PurchaseRequest"
+  },
+  "adminAuditBy": "By {name}",
+  "@adminAuditBy": {
+    "description": "Mobile-only key: admin.audit.by",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "adminAuditBefore": "Before",
+  "@adminAuditBefore": {
+    "description": "Mobile-only key: admin.audit.before"
+  },
+  "adminAuditAfter": "After",
+  "@adminAuditAfter": {
+    "description": "Mobile-only key: admin.audit.after"
+  },
+  "adminAuditNotRecorded": "Not recorded",
+  "@adminAuditNotRecorded": {
+    "description": "Mobile-only key: admin.audit.notRecorded"
   }
 }
