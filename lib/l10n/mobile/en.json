@@ -91,6 +91,13 @@
     "statusFilter": {
       "all": "All",
       "empty": "Nothing with this status right now."
+    },
+    "requests": {
+      "acceptConfirmTitle": "Accept this request?",
+      "acceptConfirmBody": "Sell {{quantity}} of {{crop}} to {{buyer}} for {{total}}. This creates an order and takes the quantity off your listing.",
+      "declineConfirmTitle": "Decline this request?",
+      "declineConfirmBody": "{{buyer}} asked for {{quantity}} of {{crop}} ({{total}}). They will see that you declined.",
+      "declined": "Request declined."
     }
   }
 }

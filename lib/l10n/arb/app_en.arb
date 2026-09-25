@@ -3578,5 +3578,53 @@
   "marketplaceStatusFilterEmpty": "Nothing with this status right now.",
   "@marketplaceStatusFilterEmpty": {
     "description": "Mobile-only key: marketplace.statusFilter.empty"
+  },
+  "marketplaceRequestsAcceptConfirmTitle": "Accept this request?",
+  "@marketplaceRequestsAcceptConfirmTitle": {
+    "description": "Mobile-only key: marketplace.requests.acceptConfirmTitle"
+  },
+  "marketplaceRequestsAcceptConfirmBody": "Sell {quantity} of {crop} to {buyer} for {total}. This creates an order and takes the quantity off your listing.",
+  "@marketplaceRequestsAcceptConfirmBody": {
+    "description": "Mobile-only key: marketplace.requests.acceptConfirmBody",
+    "placeholders": {
+      "quantity": {
+        "type": "Object"
+      },
+      "crop": {
+        "type": "Object"
+      },
+      "buyer": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplaceRequestsDeclineConfirmTitle": "Decline this request?",
+  "@marketplaceRequestsDeclineConfirmTitle": {
+    "description": "Mobile-only key: marketplace.requests.declineConfirmTitle"
+  },
+  "marketplaceRequestsDeclineConfirmBody": "{buyer} asked for {quantity} of {crop} ({total}). They will see that you declined.",
+  "@marketplaceRequestsDeclineConfirmBody": {
+    "description": "Mobile-only key: marketplace.requests.declineConfirmBody",
+    "placeholders": {
+      "buyer": {
+        "type": "Object"
+      },
+      "quantity": {
+        "type": "Object"
+      },
+      "crop": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplaceRequestsDeclined": "Request declined.",
+  "@marketplaceRequestsDeclined": {
+    "description": "Mobile-only key: marketplace.requests.declined"
   }
 }

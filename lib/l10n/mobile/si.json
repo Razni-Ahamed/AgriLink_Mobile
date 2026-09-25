@@ -91,6 +91,13 @@
     "statusFilter": {
       "all": "සියල්ල",
       "empty": "දැනට මෙම තත්ත්වය සහිත කිසිවක් නැත."
+    },
+    "requests": {
+      "acceptConfirmTitle": "මෙම ඉල්ලීම පිළිගන්නද?",
+      "acceptConfirmBody": "{{crop}} {{quantity}} ක් {{total}} කට {{buyer}} වෙත විකුණන්න. මෙය ඇණවුමක් සාදන අතර එම ප්‍රමාණය ඔබේ ලැයිස්තුගත කිරීමෙන් අඩු කරයි.",
+      "declineConfirmTitle": "මෙම ඉල්ලීම ප්‍රතික්ෂේප කරන්නද?",
+      "declineConfirmBody": "{{buyer}} {{crop}} {{quantity}} ක් ඉල්ලා ඇත ({{total}}). ඔබ ප්‍රතික්ෂේප කළ බව ඔවුන්ට පෙනෙනු ඇත.",
+      "declined": "ඉල්ලීම ප්‍රතික්ෂේප කරන ලදී."
     }
   }
 }

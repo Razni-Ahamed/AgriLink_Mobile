@@ -789,5 +789,10 @@
   "marketplaceEditFormConfirmStatusBody": "ගැනුම්කරුවන්ට එය තවදුරටත් වෙළඳපොළේ නොපෙනෙන අතර, එහි පොරොත්තු මිලදී ගැනීමේ ඉල්ලීම් වසා දමනු ලැබේ.",
   "marketplaceEditFormAdminNote": "ඔබ පරිපාලකයෙකු ලෙස වෙනත් පරිශීලකයෙකුගේ ලැයිස්තුගත කිරීමක් වෙනස් කරයි. මෙම වෙනස විගණන ලොගයේ සටහන් වේ.",
   "marketplaceStatusFilterAll": "සියල්ල",
-  "marketplaceStatusFilterEmpty": "දැනට මෙම තත්ත්වය සහිත කිසිවක් නැත."
+  "marketplaceStatusFilterEmpty": "දැනට මෙම තත්ත්වය සහිත කිසිවක් නැත.",
+  "marketplaceRequestsAcceptConfirmTitle": "මෙම ඉල්ලීම පිළිගන්නද?",
+  "marketplaceRequestsAcceptConfirmBody": "{crop} {quantity} ක් {total} කට {buyer} වෙත විකුණන්න. මෙය ඇණවුමක් සාදන අතර එම ප්‍රමාණය ඔබේ ලැයිස්තුගත කිරීමෙන් අඩු කරයි.",
+  "marketplaceRequestsDeclineConfirmTitle": "මෙම ඉල්ලීම ප්‍රතික්ෂේප කරන්නද?",
+  "marketplaceRequestsDeclineConfirmBody": "{buyer} {crop} {quantity} ක් ඉල්ලා ඇත ({total}). ඔබ ප්‍රතික්ෂේප කළ බව ඔවුන්ට පෙනෙනු ඇත.",
+  "marketplaceRequestsDeclined": "ඉල්ලීම ප්‍රතික්ෂේප කරන ලදී."
 }

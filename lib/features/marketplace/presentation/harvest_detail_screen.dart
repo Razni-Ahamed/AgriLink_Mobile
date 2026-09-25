@@ -114,7 +114,8 @@ class _ListingDetail extends ConsumerWidget {
               ),
             ),
             const SizedBox(width: Gaps.sm),
-            StatusBadge.status(StatusKind.harvest, listing.status.apiName),
+            // Long labels (in Sinhala and Tamil too) wrap instead of pushing past the edge.
+            Flexible(child: StatusBadge.status(StatusKind.harvest, listing.status.apiName)),
           ],
         ),
         const SizedBox(height: Gaps.lg),

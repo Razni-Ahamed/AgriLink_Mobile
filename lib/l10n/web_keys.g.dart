@@ -735,6 +735,9 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'marketplace.editForm.adminNote' => l10n.marketplaceEditFormAdminNote,
     'marketplace.statusFilter.all' => l10n.marketplaceStatusFilterAll,
     'marketplace.statusFilter.empty' => l10n.marketplaceStatusFilterEmpty,
+    'marketplace.requests.acceptConfirmTitle' => l10n.marketplaceRequestsAcceptConfirmTitle,
+    'marketplace.requests.declineConfirmTitle' => l10n.marketplaceRequestsDeclineConfirmTitle,
+    'marketplace.requests.declined' => l10n.marketplaceRequestsDeclined,
     _ => null,
   };
 }

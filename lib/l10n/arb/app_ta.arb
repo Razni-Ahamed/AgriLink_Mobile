@@ -789,5 +789,10 @@
   "marketplaceEditFormConfirmStatusBody": "வாங்குபவர்கள் இனி இதைச் சந்தையில் காண மாட்டார்கள், மேலும் நிலுவையில் உள்ள கொள்முதல் கோரிக்கைகள் மூடப்படும்.",
   "marketplaceEditFormAdminNote": "நிர்வாகியாக நீங்கள் மற்றொரு பயனரின் பட்டியலை மாற்றுகிறீர்கள். இந்த மாற்றம் தணிக்கைப் பதிவில் பதிவு செய்யப்படும்.",
   "marketplaceStatusFilterAll": "அனைத்தும்",
-  "marketplaceStatusFilterEmpty": "தற்போது இந்த நிலையில் எதுவும் இல்லை."
+  "marketplaceStatusFilterEmpty": "தற்போது இந்த நிலையில் எதுவும் இல்லை.",
+  "marketplaceRequestsAcceptConfirmTitle": "இந்தக் கோரிக்கையை ஏற்கவா?",
+  "marketplaceRequestsAcceptConfirmBody": "{crop} {quantity} ஐ {buyer} க்கு {total} க்கு விற்கவும். இது ஒரு ஆர்டரை உருவாக்கி, அந்த அளவை உங்கள் பட்டியலிலிருந்து குறைக்கும்.",
+  "marketplaceRequestsDeclineConfirmTitle": "இந்தக் கோரிக்கையை நிராகரிக்கவா?",
+  "marketplaceRequestsDeclineConfirmBody": "{buyer} {crop} {quantity} கேட்டுள்ளார் ({total}). நீங்கள் நிராகரித்ததை அவர்கள் காண்பார்கள்.",
+  "marketplaceRequestsDeclined": "கோரிக்கை நிராகரிக்கப்பட்டது."
 }
