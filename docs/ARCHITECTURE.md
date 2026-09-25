@@ -24,6 +24,7 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 14. [Testing](#14-testing)
 15. [Conventions](#15-conventions)
 16. [Known issues](#16-known-issues)
+17. [Officer and admin (Phase 4)](#17-officer-and-admin-phase-4)
 
 ---
 
@@ -418,6 +419,7 @@ All in `lib/shared/`. Use these rather than writing your own.
 | `showConfirmDialog` | `widgets/dialogs.dart` | "Are you sure?" (`destructive: true` for red) |
 | `showToast` | `widgets/dialogs.dart` | a short message at the bottom (`ToastTone.success` / `.error`) |
 | `StatusBadge`, `StatusBadge.status(kind, value)` | `widgets/status_badge.dart` | "Pending", "Approved"… translated and coloured |
+| `MetricCard`, `MetricGrid` | `widgets/metric_card.dart` | a number with a label and icon, two to a row (the officer and admin dashboards) |
 | `UserAvatar` | `widgets/user_avatar.dart` | a person's photo, or their role's default picture |
 | `CropIcon`, `cropCatalog`, `cropCatalogEntry`, `cropCatalogOrder`, `cropGroupLabel` | `widgets/crop_icon.dart` | the website's crop icons, groups and order; unknown crops get a generic icon |
 | `LanguageSwitcher`, `ThemeModeButton` | `widgets/` | language and theme choices |
@@ -627,3 +629,50 @@ For live testing on the emulator, sign in with test accounts on the **developmen
 - `compileSdk` is **37** (`android/app/build.gradle.kts`) because `permission_handler_android` needs it; Flutter's default is 36. Gradle downloads the Android 37 platform the first time you build.
 - The build warns that `flutter_image_compress_common` applies the Kotlin Gradle Plugin, which future Flutter versions will reject. It works with Flutter 3.47.5. Check for a newer version of the package if the team ever upgrades Flutter.
 - The first request after the API has been idle can take 10–30 s. The login and splash screens say so after 5 s; other screens just show their spinner.
+
+---
+
+## 17. Officer and admin (Phase 4)
+
+Two feature folders, split the usual way (`data/`, `application/`, `presentation/`). Every screen loads through providers that watch the session ([§3](#3-state-management-riverpod)), uses the shared list and state widgets, and takes its text from the website's translations, plus `officer…`, `registrations…` and `admin…` keys of its own ([§10](#10-translations)).
+
+### 17.1 What is where
+
+| Screen | Roles | Path | Files |
+|---|---|---|---|
+| Officer dashboard | Officer | `/officer/dashboard` | `officer/presentation/officer_dashboard_screen.dart` |
+| Approvals (Registrations and Profile changes tabs) | Officer, Admin | `/registrations/pending` | `officer/presentation/approvals_screen.dart`, `widgets/registration_card.dart`, `widgets/change_request_card.dart` |
+| Admin dashboard | Admin | `/admin` | `admin/presentation/admin_dashboard_screen.dart` |
+| Users, user detail, create user | Admin | `/admin/users`, `/admin/users/:userId`, `/admin/users/new` | `admin/presentation/users_screen.dart`, `user_detail_screen.dart`, `create_user_screen.dart`, `widgets/*_sheet.dart` |
+| Departments | Admin | `/admin/departments` | `admin/presentation/departments_screen.dart` |
+| Audit log | Admin | `/admin/audit-log` | `admin/presentation/audit_log_screen.dart` |
+
+Approvals is one screen for both roles. The server decides what each role receives: an officer only gets Farmer applications and profile changes from their own district, and an admin gets everyone's, including Buyer applications. The screen only words its note above the list differently.
+
+The website shows the users list and the audit log as wide tables. On a phone they are cards: a user opens a detail page, and an audit entry expands to show its before and after values.
+
+### 17.2 Rules worth knowing
+
+- **Approving a profile change asks for the approver's own password.** The API requires it (`currentPassword`), like every security action. The password is only sent, never stored or logged.
+- **Every action that changes who can sign in, or how, asks first and names the user:** approve or reject an application, activate or deactivate, change role, reset password, delete a department.
+- **Guard rails are shown, not hidden.** An admin account can't be deactivated, and you can't reset your own password here (that is Change password in the profile). The action stays on the page, greyed out, with the reason written under it.
+- **The users list is one plain response, not paged.** Search (name, email, username) and the role and status filters run on the device (`admin/application/user_filter.dart`).
+- **A department is required for an Officer, a business name for a Buyer**, in both Create user and Change role. The dropdown only validates while there are departments to pick from, so the forms also check it themselves.
+- **Never log or keep a password** an admin types (create user, reset password). The fields are cleared once the request has been sent.
+
+### 17.3 Reviewing an advisory
+
+The review pieces reuse Phase 2's models (`CropIssue`, `Advisory`) from `features/issues/data/`. `officer/data/review_api.dart` adds the calls only an officer or admin can make: the pending, reviewed and all-issues lists, and approve and reject.
+
+- `officer/application/review_rules.dart` holds the rules, mirroring `AdvisoriesController.Review` and the website's `ApproveRejectControls`. With no photo diagnosis nothing is required, not even a note. For a photo diagnosis, confirming needs a treatment when the farmer has had no advice yet (a draft), and correcting needs the right disease and a treatment.
+- `widgets/review_controls.dart` is the Approve and Reject controls. Both ask to confirm first.
+- `widgets/photo_diagnosis_panel.dart` and `widgets/agent_trace_panel.dart` show what only an officer receives. The trace starts closed and shows each step's values as labels, never raw JSON.
+
+The review screen puts these around Phase 2's read-only `AdvisoryView`, and the lists open it. This part is still being built, because it needs Phase 2's advisory widgets on `main`.
+
+### 17.4 Things that caught us out
+
+- **Don't force a server error onto a form field and then validate the form again.** A field with `serverError` (a forced error) keeps the whole form invalid until it is rebuilt without it, so the submit button silently does nothing. Show server answers in an `ErrorBanner`, or clear the error when the field changes.
+- **A screen under another page doesn't reload.** Riverpod pauses providers that only a covered page watches. After creating a user, the users list underneath reloads when you go back to it, not straight away. Invalidate the provider, as the screens do, and it is fresh on return.
+- **Put a `Material`, not a coloured `DecoratedBox`, behind an `ExpansionTile` or `ListTile`.** Otherwise the tile's ink is hidden and Flutter reports an error.
+- **Dates in tests follow the time zone.** Use mid-day times in fixtures, or don't assert the time of day.
