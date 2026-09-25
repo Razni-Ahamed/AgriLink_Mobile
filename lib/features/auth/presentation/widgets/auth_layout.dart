@@ -10,16 +10,26 @@ import '../../../../shared/widgets/theme_mode_button.dart';
 /// then a card with the AgriLink name, a title and the form. Scrolls, so it works on small
 /// screens, in landscape and with large system fonts.
 class AuthLayout extends StatelessWidget {
-  const AuthLayout({super.key, required this.title, required this.child, this.subtitle});
+  const AuthLayout({
+    super.key,
+    required this.title,
+    required this.child,
+    this.subtitle,
+    this.onBack,
+  });
 
   final String title;
   final String? subtitle;
   final Widget child;
 
+  /// Where Android's back button goes (e.g. from registration back to sign-in). Without it,
+  /// back leaves the app, which is right for the login screen itself.
+  final VoidCallback? onBack;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Scaffold(
+    final scaffold = Scaffold(
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -86,6 +96,19 @@ class AuthLayout extends StatelessWidget {
           ),
         ),
       ),
+    );
+    final onBack = this.onBack;
+    if (onBack == null) {
+      return scaffold;
+    }
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) {
+          onBack();
+        }
+      },
+      child: scaffold,
     );
   }
 }

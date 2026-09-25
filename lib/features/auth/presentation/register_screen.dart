@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -129,6 +130,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     try {
       await ref.read(authApiProvider).register(request);
       if (mounted) {
+        TextInput.finishAutofillContext();
         context.go(AppRoutes.registerPending);
       }
     } on Object catch (error) {
@@ -156,7 +158,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     return AuthLayout(
       title: l10n.authRegisterTitle,
       subtitle: l10n.authRegisterSubtitle,
+      onBack: () => context.go(AppRoutes.login),
       child: AutofillGroup(
+        // Offer to save the password only after it worked (see the success path), never
+        // just because the screen closed after a failed attempt.
+        onDisposeAction: AutofillContextAction.cancel,
         child: Form(
           key: _formKey,
           child: Column(

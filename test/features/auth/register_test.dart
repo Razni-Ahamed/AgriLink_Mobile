@@ -201,4 +201,11 @@ void main() {
     await tester.tapVisible(find.byKey(const Key('register-submit')));
     expect(find.text('Password must include a symbol'), findsOneWidget);
   });
+
+  testWidgets("Android's back button returns to sign-in", (tester) async {
+    await openRegister(tester);
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(find.text('Sign in to your account'), findsOneWidget);
+  });
 }

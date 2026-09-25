@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,7 +60,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
     try {
       await ref.read(authServiceProvider).signIn(email: _email.text, password: _password.text);
-      // Signed in: the router leaves this screen.
+      // Signed in: let the password manager save it; the router leaves this screen.
+      TextInput.finishAutofillContext();
     } on LoginFailure catch (failure) {
       if (mounted) {
         setState(() => _failure = failure);
@@ -81,6 +83,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return AuthLayout(
       title: l10n.authLoginSubtitle,
       child: AutofillGroup(
+        // Offer to save the password only after it worked (see the success path), never
+        // just because the screen closed after a failed attempt.
+        onDisposeAction: AutofillContextAction.cancel,
         child: Form(
           key: _formKey,
           child: Column(

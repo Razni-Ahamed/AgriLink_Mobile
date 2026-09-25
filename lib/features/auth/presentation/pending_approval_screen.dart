@@ -16,6 +16,7 @@ class PendingApprovalScreen extends StatelessWidget {
     final l10n = context.l10n;
     return AuthLayout(
       title: l10n.authRegisterPendingTitle,
+      onBack: () => context.go(AppRoutes.login),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

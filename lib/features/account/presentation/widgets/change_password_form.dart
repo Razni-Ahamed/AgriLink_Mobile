@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/theme/app_theme.dart';
@@ -51,6 +52,7 @@ class _ChangePasswordFormState extends ConsumerState<ChangePasswordForm> {
       await ref
           .read(sessionControllerProvider.notifier)
           .signIn(Session(token: auth.token, role: auth.role));
+      TextInput.finishAutofillContext();
       _formKey.currentState!.reset();
       for (final controller in [_current, _new, _confirm]) {
         controller.clear();
@@ -77,6 +79,9 @@ class _ChangePasswordFormState extends ConsumerState<ChangePasswordForm> {
     return Form(
       key: _formKey,
       child: AutofillGroup(
+        // Offer to save the password only after it worked (see the success path), never
+        // just because the screen closed after a failed attempt.
+        onDisposeAction: AutofillContextAction.cancel,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

@@ -388,9 +388,18 @@ class LoadingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = Theme.of(context).colorScheme.onPrimary;
+    final scheme = Theme.of(context).colorScheme;
+    final foreground = scheme.onPrimary;
     return FilledButton(
       onPressed: loading ? null : onPressed,
+      // While loading the button is disabled, but keeps its colour so the spinner shows and it
+      // reads as "working" rather than "unavailable".
+      style: loading
+          ? FilledButton.styleFrom(
+              disabledBackgroundColor: scheme.primary.withValues(alpha: 0.75),
+              disabledForegroundColor: foreground,
+            )
+          : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
