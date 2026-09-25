@@ -6,7 +6,8 @@ plugins {
 
 android {
     namespace = "lk.agrilink.mobile"
-    compileSdk = flutter.compileSdkVersion
+    // permission_handler_android needs API 37 to compile against (Flutter's default is 36).
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
