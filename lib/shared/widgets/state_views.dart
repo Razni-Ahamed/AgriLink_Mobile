@@ -170,10 +170,13 @@ class AsyncValueView<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return switch (value) {
-      AsyncData(:final value) => data(value),
-      AsyncError(:final error) => ErrorView(error: error, onRetry: onRetry),
-      _ => LoadingView(message: loadingMessage),
-    };
+    // While reloading (e.g. after a pull-to-refresh), keep showing the data already loaded.
+    if (value.hasValue) {
+      return data(value.requireValue);
+    }
+    if (value.hasError) {
+      return ErrorView(error: value.error!, onRetry: onRetry);
+    }
+    return LoadingView(message: loadingMessage);
   }
 }

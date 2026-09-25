@@ -26,6 +26,21 @@
     },
     "empty": {
       "title": "Nothing here yet"
+    },
+    "permissions": {
+      "cameraTitle": "Allow camera access",
+      "cameraRationale": "AgriLink uses the camera only to take the photo you choose. Nothing is recorded in the background.",
+      "cameraDenied": "Camera access wasn't allowed, so a photo can't be taken. You can choose one from your gallery instead.",
+      "cameraBlocked": "Camera access is turned off for AgriLink. Turn it on in Settings to take photos.",
+      "notificationsTitle": "Turn on notifications",
+      "notificationsRationale": "AgriLink can let you know when there is news about your orders, requests, crop issues or account.",
+      "notNow": "Not now",
+      "continue": "Continue"
+    },
+    "photo": {
+      "takePhoto": "Take a photo",
+      "chooseFromGallery": "Choose from gallery",
+      "unusable": "That photo couldn't be used. Please try another one."
     }
   },
   "auth": {
@@ -38,6 +53,15 @@
     },
     "splash": {
       "loading": "Starting AgriLink…"
+    },
+    "profile": {
+      "detailsHeading": "Account details",
+      "settingsHeading": "App settings",
+      "signOutTitle": "Log out of AgriLink?",
+      "signOutMessage": "You'll need your email and password to sign in again.",
+      "security": {
+        "autoLocked": "Editing was locked again after 5 minutes without changes."
+      }
     }
   }
 }

@@ -3416,6 +3416,50 @@
   "@commonEmptyTitle": {
     "description": "Mobile-only key: common.empty.title"
   },
+  "commonPermissionsCameraTitle": "Allow camera access",
+  "@commonPermissionsCameraTitle": {
+    "description": "Mobile-only key: common.permissions.cameraTitle"
+  },
+  "commonPermissionsCameraRationale": "AgriLink uses the camera only to take the photo you choose. Nothing is recorded in the background.",
+  "@commonPermissionsCameraRationale": {
+    "description": "Mobile-only key: common.permissions.cameraRationale"
+  },
+  "commonPermissionsCameraDenied": "Camera access wasn't allowed, so a photo can't be taken. You can choose one from your gallery instead.",
+  "@commonPermissionsCameraDenied": {
+    "description": "Mobile-only key: common.permissions.cameraDenied"
+  },
+  "commonPermissionsCameraBlocked": "Camera access is turned off for AgriLink. Turn it on in Settings to take photos.",
+  "@commonPermissionsCameraBlocked": {
+    "description": "Mobile-only key: common.permissions.cameraBlocked"
+  },
+  "commonPermissionsNotificationsTitle": "Turn on notifications",
+  "@commonPermissionsNotificationsTitle": {
+    "description": "Mobile-only key: common.permissions.notificationsTitle"
+  },
+  "commonPermissionsNotificationsRationale": "AgriLink can let you know when there is news about your orders, requests, crop issues or account.",
+  "@commonPermissionsNotificationsRationale": {
+    "description": "Mobile-only key: common.permissions.notificationsRationale"
+  },
+  "commonPermissionsNotNow": "Not now",
+  "@commonPermissionsNotNow": {
+    "description": "Mobile-only key: common.permissions.notNow"
+  },
+  "commonPermissionsContinue": "Continue",
+  "@commonPermissionsContinue": {
+    "description": "Mobile-only key: common.permissions.continue"
+  },
+  "commonPhotoTakePhoto": "Take a photo",
+  "@commonPhotoTakePhoto": {
+    "description": "Mobile-only key: common.photo.takePhoto"
+  },
+  "commonPhotoChooseFromGallery": "Choose from gallery",
+  "@commonPhotoChooseFromGallery": {
+    "description": "Mobile-only key: common.photo.chooseFromGallery"
+  },
+  "commonPhotoUnusable": "That photo couldn't be used. Please try another one.",
+  "@commonPhotoUnusable": {
+    "description": "Mobile-only key: common.photo.unusable"
+  },
   "authLoginPendingTitle": "Waiting for approval",
   "@authLoginPendingTitle": {
     "description": "Mobile-only key: auth.login.pendingTitle"
@@ -3444,5 +3488,25 @@
   "authSplashLoading": "Starting AgriLink…",
   "@authSplashLoading": {
     "description": "Mobile-only key: auth.splash.loading"
+  },
+  "authProfileDetailsHeading": "Account details",
+  "@authProfileDetailsHeading": {
+    "description": "Mobile-only key: auth.profile.detailsHeading"
+  },
+  "authProfileSettingsHeading": "App settings",
+  "@authProfileSettingsHeading": {
+    "description": "Mobile-only key: auth.profile.settingsHeading"
+  },
+  "authProfileSignOutTitle": "Log out of AgriLink?",
+  "@authProfileSignOutTitle": {
+    "description": "Mobile-only key: auth.profile.signOutTitle"
+  },
+  "authProfileSignOutMessage": "You'll need your email and password to sign in again.",
+  "@authProfileSignOutMessage": {
+    "description": "Mobile-only key: auth.profile.signOutMessage"
+  },
+  "authProfileSecurityAutoLocked": "Editing was locked again after 5 minutes without changes.",
+  "@authProfileSecurityAutoLocked": {
+    "description": "Mobile-only key: auth.profile.security.autoLocked"
   }
 }

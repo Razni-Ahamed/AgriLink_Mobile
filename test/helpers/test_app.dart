@@ -103,17 +103,26 @@ Future<TestApp> pumpAgriLink(
 }
 
 extension FormHelpers on WidgetTester {
+  /// Scrolls until [finder] is built and on screen. Lists build their items lazily, so an item
+  /// further down doesn't exist until the list scrolls to it.
+  Future<void> reveal(Finder finder) async {
+    if (finder.evaluate().isEmpty) {
+      await scrollUntilVisible(finder, 150);
+    }
+    await ensureVisible(finder);
+    await pumpAndSettle();
+  }
+
   /// Scrolls [finder] into view and types into it.
   Future<void> fill(Finder finder, String text) async {
-    await ensureVisible(finder);
+    await reveal(finder);
     await enterText(finder, text);
     await pump();
   }
 
   /// Scrolls [finder] into view, taps it and waits for everything to settle.
   Future<void> tapVisible(Finder finder) async {
-    await ensureVisible(finder);
-    await pumpAndSettle();
+    await reveal(finder);
     await tap(finder);
     await pumpAndSettle();
   }

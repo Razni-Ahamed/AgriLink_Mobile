@@ -65,10 +65,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(currentPath(app), AppRoutes.myListings);
     // Still highlighted as "More".
-    expect(
-      tester.getSemantics(find.byKey(const Key('nav-/more'))),
-      containsSemantics(isSelected: true),
-    );
+    expect(tester.getSemantics(find.byKey(const Key('nav-/more'))), isSemantics(isSelected: true));
   });
 
   testWidgets('the admin More list has the rest of the admin sections', (tester) async {

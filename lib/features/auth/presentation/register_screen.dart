@@ -45,9 +45,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _businessPhone = TextEditingController();
   String? _district;
 
-  late final UsernameAvailabilityChecker _usernameCheck = UsernameAvailabilityChecker(
-    ref.read(authApiProvider),
-  );
+  late final UsernameAvailabilityChecker _usernameCheck;
 
   bool _submitting = false;
   Map<String, String> _fieldErrors = {};
@@ -56,6 +54,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   @override
   void initState() {
     super.initState();
+    _usernameCheck = UsernameAvailabilityChecker(ref.read(authApiProvider));
     _password.addListener(() => setState(() {}));
   }
 
