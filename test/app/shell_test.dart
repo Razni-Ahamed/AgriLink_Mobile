@@ -1,6 +1,7 @@
 import 'package:agrilink_mobile/app/router/app_router.dart';
 import 'package:agrilink_mobile/app/router/app_routes.dart';
 import 'package:agrilink_mobile/app/router/route_guard.dart';
+import 'package:agrilink_mobile/app/shell/agrilink_app_bar.dart';
 import 'package:agrilink_mobile/app/shell/app_shell.dart';
 import 'package:agrilink_mobile/app/shell/nav_config.dart';
 import 'package:agrilink_mobile/core/session/role.dart';
@@ -48,7 +49,8 @@ void main() {
         final app = await signedInAs(tester, entry.key);
         expect(currentPath(app), homePathFor(entry.key));
         expect(tabLabels(tester), entry.value);
-        expect(find.text('Coming soon'), findsOneWidget);
+        // The home page is drawn inside the shell, whether or not its phase has built it yet.
+        expect(find.byType(AgriLinkAppBar), findsOneWidget);
       });
     }
   });
