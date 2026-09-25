@@ -48,18 +48,22 @@ class ApiClient {
     decode,
   );
 
+  /// [receiveTimeout] overrides the default wait for the server's answer, for the rare call that
+  /// legitimately takes longer (reporting an issue runs the whole analysis before it responds).
   Future<T> post<T>(
     String path, {
     Object? body,
     required T Function(Object? data) decode,
     CancelToken? cancelToken,
     ProgressCallback? onSendProgress,
+    Duration? receiveTimeout,
   }) => _send(
     () => dio.post<Object?>(
       path,
       data: body,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
+      options: receiveTimeout == null ? null : Options(receiveTimeout: receiveTimeout),
     ),
     decode,
   );
