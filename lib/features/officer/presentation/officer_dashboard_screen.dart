@@ -69,7 +69,7 @@ class _Dashboard extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: Gaps.md),
-        _Grid(
+        MetricGrid(
           children: [
             MetricCard(
               key: const Key('metric-pending'),
@@ -123,37 +123,6 @@ class _Dashboard extends ConsumerWidget {
         ),
       ],
     );
-  }
-}
-
-/// Two cards to a row on a phone. A row is as tall as its taller card, so long Sinhala and Tamil
-/// labels never overflow.
-class _Grid extends StatelessWidget {
-  const _Grid({required this.children});
-
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    final rows = <Widget>[];
-    for (var i = 0; i < children.length; i += 2) {
-      rows.add(
-        IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(child: children[i]),
-              const SizedBox(width: Gaps.sm),
-              Expanded(child: i + 1 < children.length ? children[i + 1] : const SizedBox()),
-            ],
-          ),
-        ),
-      );
-      if (i + 2 < children.length) {
-        rows.add(const SizedBox(height: Gaps.sm));
-      }
-    }
-    return Column(children: rows);
   }
 }
 
