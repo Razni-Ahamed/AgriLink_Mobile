@@ -3605,5 +3605,54 @@
   "farmsCropStatusError": "We couldn't update the status. Please try again.",
   "@farmsCropStatusError": {
     "description": "Mobile-only key: farms.crop.statusError"
+  },
+  "issuesDetailTitle": "Issue details",
+  "@issuesDetailTitle": {
+    "description": "Mobile-only key: issues.detail.title"
+  },
+  "issuesDetailNotFound": "We couldn't find this issue.",
+  "@issuesDetailNotFound": {
+    "description": "Mobile-only key: issues.detail.notFound"
+  },
+  "issuesDetailReportedOn": "Reported on {date}",
+  "@issuesDetailReportedOn": {
+    "description": "Mobile-only key: issues.detail.reportedOn",
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "issuesDetailBeingReviewed": "An officer is reviewing your issue. Pull down to refresh and check again later.",
+  "@issuesDetailBeingReviewed": {
+    "description": "Mobile-only key: issues.detail.beingReviewed"
+  },
+  "issuesDetailViewAdvisory": "View advice",
+  "@issuesDetailViewAdvisory": {
+    "description": "Mobile-only key: issues.detail.viewAdvisory"
+  },
+  "issuesNewAnalysing": "Analysing your crop…",
+  "@issuesNewAnalysing": {
+    "description": "Mobile-only key: issues.new.analysing"
+  },
+  "issuesNewAnalysingHint": "This can take up to a minute. Please keep the app open.",
+  "@issuesNewAnalysingHint": {
+    "description": "Mobile-only key: issues.new.analysingHint"
+  },
+  "issuesNewCropRequired": "Choose the crop with the problem",
+  "@issuesNewCropRequired": {
+    "description": "Mobile-only key: issues.new.cropRequired"
+  },
+  "issuesNewSelectCrop": "Select a crop",
+  "@issuesNewSelectCrop": {
+    "description": "Mobile-only key: issues.new.selectCrop"
+  },
+  "issuesAdvisoryEnlargePhoto": "Enlarge photo",
+  "@issuesAdvisoryEnlargePhoto": {
+    "description": "Mobile-only key: issues.advisory.enlargePhoto"
+  },
+  "issuesAdvisoryOfficerNote": "Officer's note",
+  "@issuesAdvisoryOfficerNote": {
+    "description": "Mobile-only key: issues.advisory.officerNote"
   }
 }

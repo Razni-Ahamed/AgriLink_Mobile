@@ -100,5 +100,24 @@
       "statusUpdated": "Status updated.",
       "statusError": "We couldn't update the status. Please try again."
     }
+  },
+  "issues": {
+    "detail": {
+      "title": "Issue details",
+      "notFound": "We couldn't find this issue.",
+      "reportedOn": "Reported on {{date}}",
+      "beingReviewed": "An officer is reviewing your issue. Pull down to refresh and check again later.",
+      "viewAdvisory": "View advice"
+    },
+    "new": {
+      "analysing": "Analysing your crop…",
+      "analysingHint": "This can take up to a minute. Please keep the app open.",
+      "cropRequired": "Choose the crop with the problem",
+      "selectCrop": "Select a crop"
+    },
+    "advisory": {
+      "enlargePhoto": "Enlarge photo",
+      "officerNote": "Officer's note"
+    }
   }
 }

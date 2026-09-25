@@ -795,5 +795,16 @@
   "farmsCropChangeStatusTitle": "තත්ත්වය වෙනස් කරන්නද?",
   "farmsCropChangeStatusMessage": "මෙම බෝගය {from} සිට {to} බවට වෙනස් කරන්නද?",
   "farmsCropStatusUpdated": "තත්ත්වය යාවත්කාලීන කරන ලදී.",
-  "farmsCropStatusError": "තත්ත්වය යාවත්කාලීන කිරීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න."
+  "farmsCropStatusError": "තත්ත්වය යාවත්කාලීන කිරීමට නොහැකි විය. කරුණාකර නැවත උත්සාහ කරන්න.",
+  "issuesDetailTitle": "ගැටලු විස්තර",
+  "issuesDetailNotFound": "මෙම ගැටලුව සොයාගත නොහැකි විය.",
+  "issuesDetailReportedOn": "{date} දින වාර්තා කරන ලදී",
+  "issuesDetailBeingReviewed": "නිලධාරියෙකු ඔබේ ගැටලුව සමාලෝචනය කරමින් සිටී. නැවුම් කිරීමට පහළට ඇද, පසුව නැවත පරීක්ෂා කරන්න.",
+  "issuesDetailViewAdvisory": "උපදෙස් බලන්න",
+  "issuesNewAnalysing": "ඔබේ බෝගය විශ්ලේෂණය කරමින්…",
+  "issuesNewAnalysingHint": "මෙයට මිනිත්තුවක් පමණ ගත විය හැක. කරුණාකර යෙදුම විවෘතව තබන්න.",
+  "issuesNewCropRequired": "ගැටලුව ඇති බෝගය තෝරන්න",
+  "issuesNewSelectCrop": "බෝගයක් තෝරන්න",
+  "issuesAdvisoryEnlargePhoto": "ඡායාරූපය විශාල කරන්න",
+  "issuesAdvisoryOfficerNote": "නිලධාරියාගේ සටහන"
 }

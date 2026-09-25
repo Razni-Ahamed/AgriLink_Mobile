@@ -795,5 +795,16 @@
   "farmsCropChangeStatusTitle": "நிலையை மாற்றவா?",
   "farmsCropChangeStatusMessage": "இந்தப் பயிரை {from} நிலையிலிருந்து {to} நிலைக்கு மாற்றவா?",
   "farmsCropStatusUpdated": "நிலை புதுப்பிக்கப்பட்டது.",
-  "farmsCropStatusError": "நிலையைப் புதுப்பிக்க முடியவில்லை. மீண்டும் முயலவும்."
+  "farmsCropStatusError": "நிலையைப் புதுப்பிக்க முடியவில்லை. மீண்டும் முயலவும்.",
+  "issuesDetailTitle": "சிக்கல் விவரங்கள்",
+  "issuesDetailNotFound": "இந்தச் சிக்கலைக் கண்டுபிடிக்க முடியவில்லை.",
+  "issuesDetailReportedOn": "{date} அன்று புகாரளிக்கப்பட்டது",
+  "issuesDetailBeingReviewed": "ஒரு அதிகாரி உங்கள் சிக்கலை மதிப்பாய்வு செய்கிறார். புதுப்பிக்க கீழே இழுத்து, பின்னர் மீண்டும் பார்க்கவும்.",
+  "issuesDetailViewAdvisory": "ஆலோசனையைப் பார்க்க",
+  "issuesNewAnalysing": "உங்கள் பயிரை ஆய்வு செய்கிறது…",
+  "issuesNewAnalysingHint": "இதற்கு ஒரு நிமிடம் வரை ஆகலாம். செயலியைத் திறந்தே வைத்திருக்கவும்.",
+  "issuesNewCropRequired": "சிக்கல் உள்ள பயிரைத் தேர்ந்தெடுக்கவும்",
+  "issuesNewSelectCrop": "பயிரைத் தேர்ந்தெடுக்கவும்",
+  "issuesAdvisoryEnlargePhoto": "படத்தைப் பெரிதாக்கு",
+  "issuesAdvisoryOfficerNote": "அதிகாரியின் குறிப்பு"
 }

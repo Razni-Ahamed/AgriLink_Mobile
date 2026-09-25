@@ -741,6 +741,16 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'farms.crop.changeStatusTitle' => l10n.farmsCropChangeStatusTitle,
     'farms.crop.statusUpdated' => l10n.farmsCropStatusUpdated,
     'farms.crop.statusError' => l10n.farmsCropStatusError,
+    'issues.detail.title' => l10n.issuesDetailTitle,
+    'issues.detail.notFound' => l10n.issuesDetailNotFound,
+    'issues.detail.beingReviewed' => l10n.issuesDetailBeingReviewed,
+    'issues.detail.viewAdvisory' => l10n.issuesDetailViewAdvisory,
+    'issues.new.analysing' => l10n.issuesNewAnalysing,
+    'issues.new.analysingHint' => l10n.issuesNewAnalysingHint,
+    'issues.new.cropRequired' => l10n.issuesNewCropRequired,
+    'issues.new.selectCrop' => l10n.issuesNewSelectCrop,
+    'issues.advisory.enlargePhoto' => l10n.issuesAdvisoryEnlargePhoto,
+    'issues.advisory.officerNote' => l10n.issuesAdvisoryOfficerNote,
     _ => null,
   };
 }
