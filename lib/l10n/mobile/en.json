@@ -73,6 +73,13 @@
       "channelDescription": "News about your orders, requests, crop issues and account.",
       "view": "View",
       "unread": "Unread"
+    },
+    "detail": {
+      "completeConfirm": "Mark this order as completed? Do this once the harvest has been delivered.",
+      "keepOrder": "Keep order",
+      "call": "Call {{name}}",
+      "emailTo": "Email {{name}}",
+      "cannotOpen": "No app on this phone can open this."
     }
   },
   "marketplace": {

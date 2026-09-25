@@ -3542,6 +3542,36 @@
   "@ordersNotificationsUnread": {
     "description": "Mobile-only key: orders.notifications.unread"
   },
+  "ordersDetailCompleteConfirm": "Mark this order as completed? Do this once the harvest has been delivered.",
+  "@ordersDetailCompleteConfirm": {
+    "description": "Mobile-only key: orders.detail.completeConfirm"
+  },
+  "ordersDetailKeepOrder": "Keep order",
+  "@ordersDetailKeepOrder": {
+    "description": "Mobile-only key: orders.detail.keepOrder"
+  },
+  "ordersDetailCall": "Call {name}",
+  "@ordersDetailCall": {
+    "description": "Mobile-only key: orders.detail.call",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersDetailEmailTo": "Email {name}",
+  "@ordersDetailEmailTo": {
+    "description": "Mobile-only key: orders.detail.emailTo",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersDetailCannotOpen": "No app on this phone can open this.",
+  "@ordersDetailCannotOpen": {
+    "description": "Mobile-only key: orders.detail.cannotOpen"
+  },
   "marketplaceFiltersTitle": "Filters",
   "@marketplaceFiltersTitle": {
     "description": "Mobile-only key: marketplace.filters.title"
