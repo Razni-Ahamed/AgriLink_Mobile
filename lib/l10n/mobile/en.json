@@ -113,7 +113,8 @@
       "analysing": "Analysing your crop…",
       "analysingHint": "This can take up to a minute. Please keep the app open.",
       "cropRequired": "Choose the crop with the problem",
-      "selectCrop": "Select a crop"
+      "selectCrop": "Select a crop",
+      "timeout": "The report took too long. It may still have gone through, so check My Issues before you try again."
     },
     "advisory": {
       "enlargePhoto": "Enlarge photo",

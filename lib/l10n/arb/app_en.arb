@@ -3647,6 +3647,10 @@
   "@issuesNewSelectCrop": {
     "description": "Mobile-only key: issues.new.selectCrop"
   },
+  "issuesNewTimeout": "The report took too long. It may still have gone through, so check My Issues before you try again.",
+  "@issuesNewTimeout": {
+    "description": "Mobile-only key: issues.new.timeout"
+  },
   "issuesAdvisoryEnlargePhoto": "Enlarge photo",
   "@issuesAdvisoryEnlargePhoto": {
     "description": "Mobile-only key: issues.advisory.enlargePhoto"

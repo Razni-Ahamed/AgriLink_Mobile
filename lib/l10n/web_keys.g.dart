@@ -749,6 +749,7 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'issues.new.analysingHint' => l10n.issuesNewAnalysingHint,
     'issues.new.cropRequired' => l10n.issuesNewCropRequired,
     'issues.new.selectCrop' => l10n.issuesNewSelectCrop,
+    'issues.new.timeout' => l10n.issuesNewTimeout,
     'issues.advisory.enlargePhoto' => l10n.issuesAdvisoryEnlargePhoto,
     'issues.advisory.officerNote' => l10n.issuesAdvisoryOfficerNote,
     _ => null,
