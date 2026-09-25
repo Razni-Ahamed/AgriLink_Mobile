@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/shell/agrilink_app_bar.dart';
 import '../../../app/theme/app_colors.dart';
@@ -15,6 +16,7 @@ import '../../../shared/widgets/state_views.dart';
 import '../application/farms.dart';
 import '../data/crop.dart';
 import '../data/crops_api.dart';
+import '../farmer_paths.dart';
 
 /// One crop: its details, and its status, which is the only thing that can change once a crop
 /// is planted. Changing it asks first, since the API can't remove or edit a crop.
@@ -163,6 +165,14 @@ class _CropDetailScreenState extends ConsumerState<CropDetailScreen> {
                     : (_) => _changeStatus(crop, status),
               ),
           ],
+        ),
+        const SizedBox(height: Gaps.xl),
+        // Pushed, so Back returns to this crop rather than to "My Issues".
+        FilledButton.tonalIcon(
+          key: const Key('report-crop-issue'),
+          onPressed: () => context.push(FarmerPaths.newIssue(cropId: crop.id)),
+          icon: const Icon(Icons.warning_amber_outlined),
+          label: Text(l10n.farmsCropReportIssue),
         ),
       ],
     );
