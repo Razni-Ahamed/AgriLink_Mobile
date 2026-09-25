@@ -541,8 +541,13 @@ void main() {
           language: language,
           screen: const Size(320, 640),
         );
-        void noOverflow(String where) =>
-            expect(tester.takeException(), isNull, reason: '$language: $where');
+        void noOverflow(String where) {
+          final error = tester.takeException();
+          final detail = error is FlutterError
+              ? error.diagnostics.map((node) => node.toString()).take(12).join(' | ')
+              : '';
+          expect(error, isNull, reason: '$language: $where $detail');
+        }
 
         noOverflow('farms list');
         await tester.tap(find.byKey(const Key('new-farm')));

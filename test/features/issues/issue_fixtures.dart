@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 /// JSON the API returns for issues and advisories, for tests.
 Map<String, Object?> issueJson({
   int id = 7,
@@ -6,6 +9,10 @@ Map<String, Object?> issueJson({
   int? advisoryId = 21,
   String? advisoryStatus = 'Draft',
   bool hasPhoto = true,
+  String title = 'Yellow leaves',
+  String description = 'The lower leaves are turning yellow.',
+  String createdAt = '2026-09-20T08:30:00',
+  String? reviewNote,
 }) => {
   'issueId': id,
   'cropId': 3,
@@ -13,14 +20,14 @@ Map<String, Object?> issueJson({
   'variety': 'MI 5',
   'district': 'Kandy',
   'reporterName': '',
-  'title': 'Yellow leaves',
-  'description': 'The lower leaves are turning yellow.',
+  'title': title,
+  'description': description,
   'severity': severity,
   'status': status,
-  'createdAt': '2026-09-20T08:30:00',
+  'createdAt': createdAt,
   'advisoryId': advisoryId,
   'reviewedAt': null,
-  'reviewNote': null,
+  'reviewNote': reviewNote,
   'advisoryStatus': advisoryStatus,
   'hasPhoto': hasPhoto,
 };
@@ -57,3 +64,8 @@ Map<String, Object?> farmerAdvisoryJson({
   'photos': <Object?>[],
   ...extra,
 };
+
+/// A 1×1 PNG, so `Image.memory` has something real to decode.
+final Uint8List tinyPng = base64Decode(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+);

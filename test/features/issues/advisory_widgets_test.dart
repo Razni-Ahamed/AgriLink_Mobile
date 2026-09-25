@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:agrilink_mobile/core/api/api_exception.dart';
 import 'package:agrilink_mobile/features/issues/application/advisories.dart';
 import 'package:agrilink_mobile/features/issues/data/advisory.dart';
@@ -13,11 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/pump_app.dart';
 import 'issue_fixtures.dart';
-
-/// A 1×1 PNG, so `Image.memory` has something real to decode.
-final Uint8List tinyPng = base64Decode(
-  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
-);
 
 Advisory advisory({String status = 'Approved', Map<String, Object?> extra = const {}}) =>
     Advisory.fromJson(farmerAdvisoryJson(status: status, extra: extra));
