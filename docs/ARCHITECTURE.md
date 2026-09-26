@@ -24,7 +24,9 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 14. [Testing](#14-testing)
 15. [Conventions](#15-conventions)
 16. [Known issues](#16-known-issues)
-17. [Marketplace and orders (Phase 3)](#17-marketplace-and-orders-phase-3)
+17. [Issues and advisories (shared by the farmer and officer screens)](#17-issues-and-advisories-shared-by-the-farmer-and-officer-screens)
+18. [Officer and admin (Phase 4)](#18-officer-and-admin-phase-4)
+19. [Marketplace and orders (Phase 3)](#19-marketplace-and-orders-phase-3)
 
 ---
 
@@ -83,7 +85,8 @@ lib/
     auth/                   login, registration, splash, session restore, current user
     account/                profile, edit profile, security settings
     notifications/          list, unread count polling, pop-ups
-    farmer/                 Phase 2 (farmer_routes.dart has the placeholders)
+    farmer/                 Phase 2: farms, fields, crops, My Issues, reporting, the farmer's advisory
+    issues/                 Phase 2: the issue and advisory data layer and read-only widgets (shared with Phase 4)
     marketplace/            Phase 3 (marketplace_routes.dart)
     officer/                Phase 4 (officer_routes.dart)
     admin/                  Phase 4 (admin_routes.dart)
@@ -419,6 +422,7 @@ All in `lib/shared/`. Use these rather than writing your own.
 | `showConfirmDialog` | `widgets/dialogs.dart` | "Are you sure?" (`destructive: true` for red) |
 | `showToast` | `widgets/dialogs.dart` | a short message at the bottom (`ToastTone.success` / `.error`) |
 | `StatusBadge`, `StatusBadge.status(kind, value)` | `widgets/status_badge.dart` | "Pending", "Approved"… translated and coloured |
+| `MetricCard`, `MetricGrid` | `widgets/metric_card.dart` | a number with a label and icon, two to a row (the officer and admin dashboards) |
 | `UserAvatar` | `widgets/user_avatar.dart` | a person's photo, or their role's default picture |
 | `CropIcon`, `cropCatalog`, `cropCatalogEntry`, `cropCatalogOrder`, `cropGroupLabel` | `widgets/crop_icon.dart` | the website's crop icons, groups and order; unknown crops get a generic icon |
 | `LanguageSwitcher`, `ThemeModeButton` | `widgets/` | language and theme choices |
@@ -631,11 +635,115 @@ For live testing on the emulator, sign in with test accounts on the **developmen
 
 ---
 
-## 17. Marketplace and orders (Phase 3)
+## 17. Issues and advisories (shared by the farmer and officer screens)
+
+Phase 2 built the farmer's screens and, in `lib/features/issues/`, the data layer and read-only widgets that Phase 4's officer and admin screens reuse. Nothing in `features/issues/` assumes a farmer.
+
+### 17.1 What's there
+
+| File | What it is |
+|---|---|
+| `data/issue_enums.dart` | `IssueSeverity`, `RiskLevel`, `IssueStatus`, `AdvisoryStatus`. The API sends them as strings; `apiName` is that string (also what `statusLabel` takes) and `fromApi` throws on an unknown value. |
+| `data/crop_issue.dart` | `CropIssue` (the API's `CropIssueResponse`) and `CreateCropIssueRequest`. `reporterName` is filled in only on the officer and admin lists. |
+| `data/advisory.dart` | `Advisory` (the API's `AdvisoryResponse`) with **every** field. The ones only officers and admins receive (`previousIssues`, `agentTrace`, `photoDiagnosis` details such as `diseaseOptions`) are nullable, and are `null` in a farmer's response. |
+| `data/issues_api.dart` | `IssuesApi`: `mine`, `create`, `createWithPhoto`, `advisory`, `photoBytes`. Add the officer calls (`pending`, `reviewed`, all issues, approve and reject) here. |
+| `application/advisories.dart` | `advisoryProvider(id)` and `issuePhotoProvider(url)`, both cleared on sign-out. |
+| `presentation/widgets/` | `AdvisoryView`, `IssuePhotoGallery`, `AuthenticatedImage`, and the badges (`SeverityBadge`, `IssueStatusBadge`, `AdvisoryStatusBadge`, `RiskBadge`). |
+
+### 17.2 Building the officer's review screen
+
+Put the approve and reject controls **around** `AdvisoryView`; don't copy it:
+
+```dart
+AdvisoryView(advisory: advisory, audience: AdvisoryAudience.reviewer)
+```
+
+`AdvisoryAudience.farmer` shows the farmer's preliminary notice and hides the AI's recommendation when an officer rejected it and wrote their own treatment (as the website's `AdvisoryPanel` does); `reviewer` shows everything. The officer-only parts (`previousIssues`, `agentTrace`, the disease options for a correction) are on the `Advisory` model but have no widgets yet.
+
+### 17.3 Things to know
+
+- **`/advisories/:advisoryId` is registered once**, in `features/farmer/farmer_routes.dart`, for farmers only. To open it for officers and admins, add their roles there and choose the screen from the signed-in role in the builder, so the path isn't registered twice. Open it with `context.push` so Back returns to where the user came from.
+- **A draft advisory is a 404 for a farmer.** The farmer's `AdvisoryScreen` treats that as "still being reviewed", not as an error. A `Preliminary` advisory has been released, but an officer hasn't confirmed it.
+- **Photos need the token.** `GET /api/issues/{id}/images/{id}` only answers the farmer who took the photo and the officers, so `Image.network` can't load it. `AuthenticatedImage` fetches the bytes with `ApiClient.getBytes`, which sends the bearer token.
+- **Reporting an issue is slow.** `POST /api/issues/with-photo` runs the photo model and a weather lookup before it answers, on top of the API's cold start. `IssuesApi.submitTimeout` is 120 s, passed as `ApiClient.post(receiveTimeout: ...)` for just those two calls. After a timeout the issue may still have been created, so the form says so instead of inviting a blind retry.
+- **The API has no "by id" call** for a farm, a field or an issue. The farmer screens pick them out of the list (`farmProvider`, `fieldProvider`), or, for an issue, page through `GET /api/issues/mine` (`myIssueProvider`).
+- **There is no crop activity log** in the API, so the app has none.
+
+### 17.4 The farmer's pages
+
+| Path | Screen |
+|---|---|
+| `/farms` | `FarmsScreen`: the farms, add a farm |
+| `/farms/:farmId` | `FarmDetailScreen`: edit, delete, fields, add a field |
+| `/farms/:farmId/fields/:fieldId` | `FieldDetailScreen`: the field's crops, plant a crop |
+| `/farms/:farmId/fields/:fieldId/crops/:cropId` | `CropDetailScreen`: details, change status, report an issue |
+| `/issues/mine` | `MyIssuesScreen`: a paged list |
+| `/issues/mine/new?cropId=` | `ReportIssueScreen` |
+| `/issues/mine/:issueId` | `IssueDetailScreen` |
+| `/advisories/:advisoryId` | `AdvisoryScreen` |
+
+## 18. Officer and admin (Phase 4)
+
+Two feature folders, split the usual way (`data/`, `application/`, `presentation/`). Every screen loads through providers that watch the session ([§3](#3-state-management-riverpod)), uses the shared list and state widgets, and takes its text from the website's translations, plus `officer…`, `registrations…` and `admin…` keys of its own ([§10](#10-translations)).
+
+### 18.1 What is where
+
+| Screen | Roles | Path | Files |
+|---|---|---|---|
+| Officer dashboard | Officer | `/officer/dashboard` | `officer/presentation/officer_dashboard_screen.dart` |
+| Approvals (Registrations and Profile changes tabs) | Officer, Admin | `/registrations/pending` | `officer/presentation/approvals_screen.dart`, `widgets/registration_card.dart`, `widgets/change_request_card.dart` |
+| Pending Issues | Officer, Admin | `/issues/pending` | `officer/presentation/review_lists.dart`, `widgets/review_issue_card.dart` |
+| My Reviews | Officer | `/issues/reviewed` | same |
+| All Issues | Admin | `/issues/all` | same |
+| Review an advisory | Officer, Admin | `<list>/:advisoryId` (e.g. `/issues/pending/21`) | `officer/presentation/review_screen.dart` |
+| Admin dashboard | Admin | `/admin` | `admin/presentation/admin_dashboard_screen.dart` |
+| Users, user detail, create user | Admin | `/admin/users`, `/admin/users/:userId`, `/admin/users/new` | `admin/presentation/users_screen.dart`, `user_detail_screen.dart`, `create_user_screen.dart`, `widgets/*_sheet.dart` |
+| Departments | Admin | `/admin/departments` | `admin/presentation/departments_screen.dart` |
+| Audit log | Admin | `/admin/audit-log` | `admin/presentation/audit_log_screen.dart` |
+
+Approvals is one screen for both roles. The server decides what each role receives: an officer only gets Farmer applications and profile changes from their own district, and an admin gets everyone's, including Buyer applications. The screen only words its note above the list differently.
+
+The website shows the users list and the audit log as wide tables. On a phone they are cards: a user opens a detail page, and an audit entry expands to show its before and after values.
+
+### 18.2 Rules worth knowing
+
+- **Approving a profile change asks for the approver's own password.** The API requires it (`currentPassword`), like every security action. The password is only sent, never stored or logged.
+- **Every action that changes who can sign in, or how, asks first and names the user:** approve or reject an application, activate or deactivate, change role, reset password, delete a department.
+- **Guard rails are shown, not hidden.** An admin account can't be deactivated, and you can't reset your own password here (that is Change password in the profile). The action stays on the page, greyed out, with the reason written under it.
+- **The users list is one plain response, not paged.** Search (name, email, username) and the role and status filters run on the device (`admin/application/user_filter.dart`).
+- **A department is required for an Officer, a business name for a Buyer**, in both Create user and Change role. The dropdown only validates while there are departments to pick from, so the forms also check it themselves.
+- **Never log or keep a password** an admin types (create user, reset password). The fields are cleared once the request has been sent.
+
+### 18.3 Reviewing an advisory
+
+The review pieces reuse Phase 2's models and widgets from `features/issues/` (`CropIssue`, `Advisory`, `AdvisoryView`, the badges). `officer/data/review_api.dart` adds the calls only an officer or admin can make: the pending, reviewed and all-issues lists, and approve and reject. (They live here rather than in `IssuesApi`, so nothing in `features/issues/` changes.)
+
+The lists (Pending Issues, My Reviews, All Issues) share `ReviewIssueCard`; what its bottom line says depends on the list. Opening an issue goes to `ReviewScreen`, which stacks:
+
+1. `AdvisoryView` (Phase 2): what was reported, the photos with full-screen zoom, risk, confidence and the advice.
+2. `PhotoDiagnosisPanel`: the model's confidence, its version and why the diagnosis was held for an officer.
+3. `PreviousIssuesPanel`: other issues on the same crop. Each one with an advisory opens it.
+4. `AgentTracePanel`: how the AI reached its advice. It starts closed and shows each step's values as labels, never raw JSON.
+5. `ReviewControls` while the advisory can still be reviewed, or a "this can't be changed" note once it is decided.
+
+The rules for a decision are in `officer/application/review_rules.dart`, mirroring `AdvisoriesController.Review` and the website's `ApproveRejectControls`. With no photo diagnosis nothing is required, not even a note. For a photo diagnosis, confirming needs a treatment when the farmer has had no advice yet (a draft), and correcting needs the right disease and a treatment. Both decisions ask to confirm first.
+
+- **A decision goes back to the list and reloads it.** The list opens the review screen with `context.push` and refreshes when it answers `true`.
+- **If someone else decided first** the API answers 400 "Only advisories awaiting review can be reviewed." The screen loads the advisory again and, if it can no longer be reviewed, says so and shows the decision. Any other failure is shown as it is, and the officer keeps what they typed.
+- **The review screen has its own paths** under the list it came from (`/issues/pending/:advisoryId`, `/issues/reviewed/:advisoryId`, `/issues/all/:advisoryId`), each guarded by the list's roles. That way `features/farmer/farmer_routes.dart`, where `/advisories/:advisoryId` is registered for farmers, isn't touched.
+
+### 18.4 Things that caught us out
+
+- **Don't force a server error onto a form field and then validate the form again.** A field with `serverError` (a forced error) keeps the whole form invalid until it is rebuilt without it, so the submit button silently does nothing. Show server answers in an `ErrorBanner`, or clear the error when the field changes.
+- **A screen under another page doesn't reload.** Riverpod pauses providers that only a covered page watches. After creating a user, the users list underneath reloads when you go back to it, not straight away. Invalidate the provider, as the screens do, and it is fresh on return.
+- **Put a `Material`, not a coloured `DecoratedBox`, behind an `ExpansionTile` or `ListTile`.** Otherwise the tile's ink is hidden and Flutter reports an error.
+- **Dates in tests follow the time zone.** Use mid-day times in fixtures, or don't assert the time of day.
+
+## 19. Marketplace and orders (Phase 3)
 
 Everything is in `features/marketplace/`, for farmers, buyers and (browsing and editing listings) admins.
 
-### 17.1 The trade flow and its screens
+### 19.1 The trade flow and its screens
 
 | Step | Who | Screen | API |
 |---|---|---|---|
@@ -649,7 +757,7 @@ Everything is in `features/marketplace/`, for farmers, buyers and (browsing and 
 
 Accepting creates the order and lowers the listing's available quantity; cancelling an order puts it back. The listing and order pages are opened with `context.push(MarketplacePaths.listing(id))` / `.order(id)`, so the back button returns to whichever list they came from.
 
-### 17.2 Code
+### 19.2 Code
 
 - `data/`: the models (`HarvestListing`, `PurchaseRequest`, `Order` with its two `OrderParty`s, `FarmerCrop`), the status enums (`HarvestStatus`, `PurchaseRequestStatus`, `OrderStatus`, `RequestAction`) and one `MarketplaceApi` for all of it. None of these endpoints is paged, so lists come back whole.
 - `application/marketplace_providers.dart`: one provider per list or item. After any trade action call `refreshTrade(ref)`: the server changes a request, a listing and an order at once, and this reloads everything that shows them.
@@ -657,7 +765,7 @@ Accepting creates the order and lowers the listing's available quantity; cancell
 - `application/marketplace_errors.dart`: `parseMarketplaceError` maps the DTOs' field names for form errors. The server's rule messages ("Requested quantity exceeds available quantity.") are shown as they are, like on the website.
 - `application/contact_launcher.dart`: tap to call and tap to email (`url_launcher`); tests override `contactLauncherProvider`.
 
-### 17.3 Things to know
+### 19.3 Things to know
 
 - **Always show the server's numbers.** Two requests accepted at the same moment can oversell a listing (a known backend limitation), and the server cancels old pending requests by itself. So every action reloads, and a request can turn **Closed** without anyone pressing a button.
 - **No links from notifications.** Users find new requests and orders in their lists, so every list has pull to refresh.

@@ -49,7 +49,7 @@ void main() {
         final app = await signedInAs(tester, entry.key);
         expect(currentPath(app), homePathFor(entry.key));
         expect(tabLabels(tester), entry.value);
-        // The home page is drawn inside the shell, whether or not its phase has built it yet.
+        // A placeholder or a real screen: either way the home page has its own app bar.
         expect(find.byType(AgriLinkAppBar), findsOneWidget);
       });
     }
