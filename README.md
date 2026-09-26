@@ -280,13 +280,13 @@ The app talks to the same API as the AgriLink website. No backend code lives in 
 
 - **Razni Ahamed M. R.**
 - **Gayathri M. G. K.**
-- **Jayaweera A. D. J.**
+- **Jayaweera A.J.D.**
 - **Fernando C. P. H. A. C.**
 
 ---
 
 ## Licence
 
-**Copyright © 2026 Razni Ahamed M. R., Gayathri M. G. K., Jayaweera A. D. J. and Fernando C. P. H. A. C. All rights reserved.**
+**Copyright © 2026 Razni Ahamed M. R., Gayathri M. G. K., Jayaweera A.J.D. and Fernando C. P. H. A. C. All rights reserved.**
 
 This is **not** open-source software. The repository is public so that it can be viewed. No permission is granted to copy, modify, distribute or publish the code or the app, or to present any part of it as your own work. That includes submitting it for any academic assessment. See [`LICENSE`](LICENSE) for the full terms.
