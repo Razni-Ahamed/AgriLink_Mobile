@@ -43,7 +43,7 @@ The app is built in four phases, one owner each. **Phase 1 must be merged first*
 |---|---|---|
 | **1. Foundation** | Razni Ahamed M. R. | Project setup, theme (same colours as the website), English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, role-based navigation, profile and security, notifications |
 | **2. Farmer** | _TBD_ | Farms, fields, crops, activity log, reporting crop issues with camera photos, advisories |
-| **3. Marketplace & orders** | _TBD_ | Browse harvests, listings, purchase requests, orders (farmers and buyers) |
+| **3. Marketplace & orders** | Jayaweera A.J.D. | Browse harvests, listings, purchase requests, orders (farmers and buyers) |
 | **4. Officer & admin** | _TBD_ | Officer dashboard, issue reviews, approvals; admin dashboard, users, departments, all issues, audit log |
 
 The app covers **all four roles**: farmers, buyers, agricultural officers and admins. Each one signs in on the same screen and sees only their own sections.
@@ -280,13 +280,13 @@ The app talks to the same API as the AgriLink website. No backend code lives in 
 
 - **Razni Ahamed M. R.**
 - **Gayathri M. G. K.**
-- **Jayaweera A. D. J.**
+- **Jayaweera A.J.D.**
 - **Fernando C. P. H. A. C.**
 
 ---
 
 ## Licence
 
-**Copyright © 2026 Razni Ahamed M. R., Gayathri M. G. K., Jayaweera A. D. J. and Fernando C. P. H. A. C. All rights reserved.**
+**Copyright © 2026 Razni Ahamed M. R., Gayathri M. G. K., Jayaweera A.J.D. and Fernando C. P. H. A. C. All rights reserved.**
 
 This is **not** open-source software. The repository is public so that it can be viewed. No permission is granted to copy, modify, distribute or publish the code or the app, or to present any part of it as your own work. That includes submitting it for any academic assessment. See [`LICENSE`](LICENSE) for the full terms.
