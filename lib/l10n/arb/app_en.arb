@@ -3542,6 +3542,121 @@
   "@ordersNotificationsUnread": {
     "description": "Mobile-only key: orders.notifications.unread"
   },
+  "ordersDetailCompleteConfirm": "Mark this order as completed? Do this once the harvest has been delivered.",
+  "@ordersDetailCompleteConfirm": {
+    "description": "Mobile-only key: orders.detail.completeConfirm"
+  },
+  "ordersDetailKeepOrder": "Keep order",
+  "@ordersDetailKeepOrder": {
+    "description": "Mobile-only key: orders.detail.keepOrder"
+  },
+  "ordersDetailCall": "Call {name}",
+  "@ordersDetailCall": {
+    "description": "Mobile-only key: orders.detail.call",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersDetailEmailTo": "Email {name}",
+  "@ordersDetailEmailTo": {
+    "description": "Mobile-only key: orders.detail.emailTo",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersDetailCannotOpen": "No app on this phone can open this.",
+  "@ordersDetailCannotOpen": {
+    "description": "Mobile-only key: orders.detail.cannotOpen"
+  },
+  "marketplaceFiltersTitle": "Filters",
+  "@marketplaceFiltersTitle": {
+    "description": "Mobile-only key: marketplace.filters.title"
+  },
+  "marketplaceDetailUnavailable": "This listing isn't for sale any more.",
+  "@marketplaceDetailUnavailable": {
+    "description": "Mobile-only key: marketplace.detail.unavailable"
+  },
+  "marketplaceDetailViewMyRequests": "View my requests",
+  "@marketplaceDetailViewMyRequests": {
+    "description": "Mobile-only key: marketplace.detail.viewMyRequests"
+  },
+  "marketplaceEditFormConfirmStatusTitle": "Change this listing to {status}?",
+  "@marketplaceEditFormConfirmStatusTitle": {
+    "description": "Mobile-only key: marketplace.editForm.confirmStatusTitle",
+    "placeholders": {
+      "status": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplaceEditFormConfirmStatusBody": "Buyers won't see it in the marketplace any more, and its pending purchase requests will be closed.",
+  "@marketplaceEditFormConfirmStatusBody": {
+    "description": "Mobile-only key: marketplace.editForm.confirmStatusBody"
+  },
+  "marketplaceEditFormAdminNote": "You're changing another user's listing as an admin. The change is recorded in the audit log.",
+  "@marketplaceEditFormAdminNote": {
+    "description": "Mobile-only key: marketplace.editForm.adminNote"
+  },
+  "marketplaceStatusFilterAll": "All",
+  "@marketplaceStatusFilterAll": {
+    "description": "Mobile-only key: marketplace.statusFilter.all"
+  },
+  "marketplaceStatusFilterEmpty": "Nothing with this status right now.",
+  "@marketplaceStatusFilterEmpty": {
+    "description": "Mobile-only key: marketplace.statusFilter.empty"
+  },
+  "marketplaceRequestsAcceptConfirmTitle": "Accept this request?",
+  "@marketplaceRequestsAcceptConfirmTitle": {
+    "description": "Mobile-only key: marketplace.requests.acceptConfirmTitle"
+  },
+  "marketplaceRequestsAcceptConfirmBody": "Sell {quantity} of {crop} to {buyer} for {total}. This creates an order and takes the quantity off your listing.",
+  "@marketplaceRequestsAcceptConfirmBody": {
+    "description": "Mobile-only key: marketplace.requests.acceptConfirmBody",
+    "placeholders": {
+      "quantity": {
+        "type": "Object"
+      },
+      "crop": {
+        "type": "Object"
+      },
+      "buyer": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplaceRequestsDeclineConfirmTitle": "Decline this request?",
+  "@marketplaceRequestsDeclineConfirmTitle": {
+    "description": "Mobile-only key: marketplace.requests.declineConfirmTitle"
+  },
+  "marketplaceRequestsDeclineConfirmBody": "{buyer} asked for {quantity} of {crop} ({total}). They will see that you declined.",
+  "@marketplaceRequestsDeclineConfirmBody": {
+    "description": "Mobile-only key: marketplace.requests.declineConfirmBody",
+    "placeholders": {
+      "buyer": {
+        "type": "Object"
+      },
+      "quantity": {
+        "type": "Object"
+      },
+      "crop": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplaceRequestsDeclined": "Request declined.",
+  "@marketplaceRequestsDeclined": {
+    "description": "Mobile-only key: marketplace.requests.declined"
+  },
   "officerDashboardReviewedTotal": "Reviewed (all-time)",
   "@officerDashboardReviewedTotal": {
     "description": "Mobile-only key: officer.dashboard.reviewedTotal"

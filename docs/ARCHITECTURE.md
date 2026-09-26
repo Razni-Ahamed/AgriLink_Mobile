@@ -26,6 +26,7 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 16. [Known issues](#16-known-issues)
 17. [Issues and advisories (shared by the farmer and officer screens)](#17-issues-and-advisories-shared-by-the-farmer-and-officer-screens)
 18. [Officer and admin (Phase 4)](#18-officer-and-admin-phase-4)
+19. [Marketplace and orders (Phase 3)](#19-marketplace-and-orders-phase-3)
 
 ---
 
@@ -737,3 +738,36 @@ The rules for a decision are in `officer/application/review_rules.dart`, mirrori
 - **A screen under another page doesn't reload.** Riverpod pauses providers that only a covered page watches. After creating a user, the users list underneath reloads when you go back to it, not straight away. Invalidate the provider, as the screens do, and it is fresh on return.
 - **Put a `Material`, not a coloured `DecoratedBox`, behind an `ExpansionTile` or `ListTile`.** Otherwise the tile's ink is hidden and Flutter reports an error.
 - **Dates in tests follow the time zone.** Use mid-day times in fixtures, or don't assert the time of day.
+
+## 19. Marketplace and orders (Phase 3)
+
+Everything is in `features/marketplace/`, for farmers, buyers and (browsing and editing listings) admins.
+
+### 19.1 The trade flow and its screens
+
+| Step | Who | Screen | API |
+|---|---|---|---|
+| List a harvest from one of their crops | Farmer | My Listings → **New Listing** | `POST /api/harvests` (crops from `GET /api/crops/mine`) |
+| Find it | Anyone signed in | Marketplace (`/marketplace/browse`) → listing (`/marketplace/:harvestId`) | `GET /api/harvests`, `GET /api/harvests/{id}` |
+| Ask to buy some of it | Buyer | Listing → **Request Purchase** | `POST /api/purchase-requests` |
+| Accept or decline | Farmer | My Requests (`/marketplace/requests`) | `POST /api/purchase-requests/{id}/respond` |
+| Follow the request | Buyer | My Requests (`/marketplace/sent-requests`) | `GET /api/purchase-requests/sent` |
+| Deliver, then complete or cancel | Either | Orders (`/orders/mine`) → order (`/orders/:orderId`) | `POST /api/orders/{id}/complete` or `/cancel` |
+| Edit or take a listing off the market | Its farmer, or an admin | Listing → **Edit Listing** (or **Edit** on My Listings) | `PUT /api/harvests/{id}` |
+
+Accepting creates the order and lowers the listing's available quantity; cancelling an order puts it back. The listing and order pages are opened with `context.push(MarketplacePaths.listing(id))` / `.order(id)`, so the back button returns to whichever list they came from.
+
+### 19.2 Code
+
+- `data/`: the models (`HarvestListing`, `PurchaseRequest`, `Order` with its two `OrderParty`s, `FarmerCrop`), the status enums (`HarvestStatus`, `PurchaseRequestStatus`, `OrderStatus`, `RequestAction`) and one `MarketplaceApi` for all of it. None of these endpoints is paged, so lists come back whole.
+- `application/marketplace_providers.dart`: one provider per list or item. After any trade action call `refreshTrade(ref)`: the server changes a request, a listing and an order at once, and this reloads everything that shows them.
+- `application/listing_rules.dart`: the on-device price filter (`PriceRange`) and `isOwnListing` (the listing's `farmerProfileId` against the current user's).
+- `application/marketplace_errors.dart`: `parseMarketplaceError` maps the DTOs' field names for form errors. The server's rule messages ("Requested quantity exceeds available quantity.") are shown as they are, like on the website.
+- `application/contact_launcher.dart`: tap to call and tap to email (`url_launcher`); tests override `contactLauncherProvider`.
+
+### 19.3 Things to know
+
+- **Always show the server's numbers.** Two requests accepted at the same moment can oversell a listing (a known backend limitation), and the server cancels old pending requests by itself. So every action reloads, and a request can turn **Closed** without anyone pressing a button.
+- **No links from notifications.** Users find new requests and orders in their lists, so every list has pull to refresh.
+- **Quantities are kilograms, prices are rupees per kilogram**, as on the website (`format.kilograms`, `format.rupees`).
+- Harvest dates are the API's `DateOnly`: send them with `apiDateOnly(date)` so the day never shifts with the time zone.
