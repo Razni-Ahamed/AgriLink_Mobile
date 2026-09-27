@@ -1,7 +1,7 @@
 import '../../core/session/role.dart';
 
 /// Every path in the app. They match the website's paths, so a link means the same thing on
-/// both. Feature screens from phases 2–4 replace the placeholders registered for these paths.
+/// both. Each feature's route file registers its screens for these paths.
 abstract final class AppRoutes {
   // Signed out.
   static const splash = '/splash';

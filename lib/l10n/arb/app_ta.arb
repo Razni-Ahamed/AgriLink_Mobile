@@ -750,8 +750,6 @@
   "commonErrorsSessionExpired": "உங்கள் அமர்வு முடிந்தது. மீண்டும் உள்நுழையவும்.",
   "commonErrorsForbidden": "இதைச் செய்ய உங்களுக்கு அனுமதி இல்லை.",
   "commonErrorsNotFound": "நீங்கள் தேடியதைக் கண்டுபிடிக்க முடியவில்லை.",
-  "commonComingSoonTitle": "விரைவில் வருகிறது",
-  "commonComingSoonMessage": "இந்தப் பகுதி உருவாக்கப்பட்டு வருகிறது, பயன்பாட்டின் அடுத்த புதுப்பிப்பில் கிடைக்கும்.",
   "commonEmptyTitle": "இங்கே இன்னும் எதுவும் இல்லை",
   "commonPermissionsCameraTitle": "கேமரா அணுகலை அனுமதிக்கவும்",
   "commonPermissionsCameraRationale": "நீங்கள் தேர்ந்தெடுக்கும் புகைப்படத்தை எடுக்க மட்டுமே AgriLink கேமராவைப் பயன்படுத்துகிறது. பின்னணியில் எதுவும் பதிவு செய்யப்படாது.",

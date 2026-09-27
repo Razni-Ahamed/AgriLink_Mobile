@@ -20,10 +20,6 @@
       "forbidden": "You don't have permission to do that.",
       "notFound": "We couldn't find what you were looking for."
     },
-    "comingSoon": {
-      "title": "Coming soon",
-      "message": "This section is being built and will be available in a later update of the app."
-    },
     "empty": {
       "title": "Nothing here yet"
     },
