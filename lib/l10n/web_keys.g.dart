@@ -684,8 +684,6 @@ String? translateWebKey(AppLocalizations l10n, String key) {
     'common.errors.sessionExpired' => l10n.commonErrorsSessionExpired,
     'common.errors.forbidden' => l10n.commonErrorsForbidden,
     'common.errors.notFound' => l10n.commonErrorsNotFound,
-    'common.comingSoon.title' => l10n.commonComingSoonTitle,
-    'common.comingSoon.message' => l10n.commonComingSoonMessage,
     'common.empty.title' => l10n.commonEmptyTitle,
     'common.permissions.cameraTitle' => l10n.commonPermissionsCameraTitle,
     'common.permissions.cameraRationale' => l10n.commonPermissionsCameraRationale,

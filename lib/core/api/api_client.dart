@@ -19,17 +19,20 @@ import 'paged.dart';
 /// Feature API classes take it from [apiClientProvider]:
 ///
 /// ```dart
-/// final farmsApiProvider = Provider((ref) => FarmsApi(ref.watch(apiClientProvider)));
+/// final issuesApiProvider = Provider((ref) => IssuesApi(ref.watch(apiClientProvider)));
 ///
-/// class FarmsApi {
-///   FarmsApi(this._api);
+/// class IssuesApi {
+///   IssuesApi(this._api);
 ///   final ApiClient _api;
 ///
-///   Future<Paged<Farm>> mine({int page = 1}) =>
-///       _api.getPaged('/api/farms/mine', page: page, item: Farm.fromJson);
+///   Future<Paged<CropIssue>> mine({int page = 1}) =>
+///       _api.getPaged('/api/issues/mine', page: page, item: CropIssue.fromJson);
 ///
-///   Future<Farm> create(CreateFarm request) =>
-///       _api.post('/api/farms', body: request.toJson(), decode: (d) => Farm.fromJson(asJson(d)));
+///   Future<CropIssue> create(CreateCropIssueRequest request) => _api.post(
+///     '/api/issues',
+///     body: request.toJson(),
+///     decode: (d) => CropIssue.fromJson(asJson(d)),
+///   );
 /// }
 /// ```
 class ApiClient {

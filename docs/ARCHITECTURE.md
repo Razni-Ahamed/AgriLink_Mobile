@@ -1,6 +1,6 @@
 # AgriLink Mobile: architecture guide
 
-This is the guide for everyone building on the app after Phase 1. Read it before you write a screen. It explains where code goes, how to call the API, how errors, lists, translations and the theme work, and how to replace your phase's placeholder screens.
+This is the guide for everyone building on the app after Phase 1. Read it before you write a screen. It explains where code goes, how to call the API, how errors, lists, translations and the theme work, and where each section's screens are registered.
 
 The website and backend (`../AgriLink_SriLanka`) are the reference: when you're not sure how something should behave, do what the website does.
 
@@ -11,7 +11,7 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 1. [The short version](#1-the-short-version)
 2. [Folder structure](#2-folder-structure)
 3. [State management (Riverpod)](#3-state-management-riverpod)
-4. [Routing, the role shell and placeholders](#4-routing-the-role-shell-and-placeholders)
+4. [Routing and the role shell](#4-routing-and-the-role-shell)
 5. [Calling the API](#5-calling-the-api)
 6. [Errors](#6-errors)
 7. [Paged lists](#7-paged-lists)
@@ -33,7 +33,7 @@ The website and backend (`../AgriLink_SriLanka`) are the reference: when you're 
 ## 1. The short version
 
 - Your phase owns one folder in `lib/features/`, plus the route file in it. Don't edit another phase's folder.
-- Replace your `PlaceholderPage`s in your route file with real screens ([§4.4](#44-replacing-a-placeholder)).
+- Register your screens in your feature's route file ([§4.4](#44-where-each-sections-routes-live)).
 - Call the API through `apiClientProvider` in your feature's `data/` folder ([§5](#5-calling-the-api)). Never use `dio` or `http` directly.
 - Every text on screen comes from `context.l10n` ([§10](#10-translations)). Every colour comes from the theme ([§9](#9-theme)).
 - Use the shared widgets ([§8](#8-shared-widgets)) for loading, errors, empty states, lists, forms and dialogs.
@@ -58,8 +58,7 @@ lib/
       nav_config.dart       every section (Destinations) and each role's tabs and "More" list
       app_shell.dart        the bottom navigation bar around every signed-in page
       agrilink_app_bar.dart the app bar with the notification bell and avatar
-      placeholder_page.dart "Coming soon" page for sections not built yet
-      more_screen.dart, not_found_screen.dart, coming_soon_screen.dart
+      more_screen.dart, not_found_screen.dart
     theme/                  colours (AppColors), fonts, the Material theme, light/dark setting
   core/                     no screens here, only the plumbing
     api/                    ApiClient, ApiException, parseApiError, Paged, JSON helpers
@@ -112,7 +111,7 @@ features/<feature>/
 
 | From | May import |
 |---|---|
-| `features/<yours>` | `core/`, `shared/`, `l10n/`, `app/theme/`, `app/router/app_routes.dart`, `app/router/route_guard.dart`, `app/shell/` (app bar, destinations, placeholder), and `features/auth/` (for the current user) |
+| `features/<yours>` | `core/`, `shared/`, `l10n/`, `app/theme/`, `app/router/app_routes.dart`, `app/router/route_guard.dart`, `app/shell/` (app bar, destinations), and `features/auth/` (for the current user) |
 | `shared/` | `core/`, `l10n/`, `app/theme/`. Never a feature. |
 | `core/` | other `core/` files and `l10n/`. No widgets from `shared/` or features. |
 
@@ -135,13 +134,13 @@ We use **Riverpod 3** (`flutter_riverpod`). The patterns:
 // features/farmer/application/farms.dart
 final myFarmsProvider = FutureProvider.autoDispose<List<Farm>>((ref) {
   ref.watch(sessionTokenProvider); // cleared when the user signs out (see below)
-  return ref.watch(farmsApiProvider).mine();
+  return ref.watch(farmsApiProvider).farms();
 });
 
 // A detail by id:
-final farmProvider = FutureProvider.autoDispose.family<Farm, int>((ref, id) {
+final cropProvider = FutureProvider.autoDispose.family<Crop, int>((ref, cropId) {
   ref.watch(sessionTokenProvider);
-  return ref.watch(farmsApiProvider).byId(id);
+  return ref.watch(cropsApiProvider).byId(cropId);
 });
 ```
 
@@ -173,7 +172,7 @@ After changing something on the server, reload what shows it: `ref.invalidate(my
 
 ---
 
-## 4. Routing, the role shell and placeholders
+## 4. Routing and the role shell
 
 ### 4.1 Paths
 
@@ -231,9 +230,9 @@ A page that isn't in the navigation but belongs to your phase (e.g. `/advisories
 
 The router's top-level redirect (`redirectFor` in `app_router.dart`) handles signed-out users and the splash screen. Don't add sign-in checks to your screens.
 
-### 4.4 Replacing a placeholder
+### 4.4 Where each section's routes live
 
-Each phase's sections are already registered, showing "Coming soon", in that phase's own route file:
+Each phase registers its sections in its own route file, which `app_router.dart` combines:
 
 | Phase | File | Sections |
 |---|---|---|
@@ -241,26 +240,7 @@ Each phase's sections are already registered, showing "Coming soon", in that pha
 | 3 Marketplace & orders | `features/marketplace/marketplace_routes.dart` | `/marketplace/browse`, `/marketplace/mine`, `/marketplace/requests`, `/marketplace/sent-requests`, `/orders/mine` |
 | 4 Officer & admin | `features/officer/officer_routes.dart`, `features/admin/admin_routes.dart` | `/officer/dashboard`, `/issues/pending`, `/issues/reviewed`, `/registrations/pending`, `/admin`, `/admin/users`, `/admin/departments`, `/admin/audit-log`, `/issues/all` |
 
-To replace one, build your screen and change only the `builder` (and add child routes):
-
-```dart
-// before
-guard.route(
-  path: Destinations.farms.path,
-  roles: Destinations.farms.roles,
-  builder: (context, state) => PlaceholderPage(destination: Destinations.farms),
-),
-
-// after
-guard.route(
-  path: Destinations.farms.path,
-  roles: Destinations.farms.roles,
-  builder: (context, state) => const FarmsScreen(),
-  routes: [ /* detail pages */ ],
-),
-```
-
-For the routes built in a loop (marketplace, officer, admin), take the destination out of the loop and give it its own `guard.route(...)` when you build its screen. The shell tests check that each role still sees its tabs; keep them passing.
+To add a page to a section, add a child route under that section's `guard.route(...)` (see [§4.3](#43-route-guards)). A new section also needs a `Destinations` entry and a place in `navigationFor()` in `app/shell/nav_config.dart`. The shell tests check that each role sees exactly its tabs; keep them passing.
 
 ---
 
@@ -284,16 +264,16 @@ class FarmsApi {
   FarmsApi(this._api);
   final ApiClient _api;
 
-  Future<Paged<Farm>> mine({int page = 1}) =>
-      _api.getPaged('/api/farms/mine', page: page, item: Farm.fromJson);
+  Future<List<Farm>> farms() => _api.get(
+    '/api/farms',
+    decode: (data) => [for (final item in asJsonList(data)) Farm.fromJson(item)],
+  );
 
-  Future<Farm> byId(int id) =>
-      _api.get('/api/farms/$id', decode: (data) => Farm.fromJson(asJson(data)));
+  Future<Farm> createFarm(FarmInput input) =>
+      _api.post('/api/farms', body: input.toJson(), decode: (data) => Farm.fromJson(asJson(data)));
 
-  Future<Farm> create(CreateFarmRequest request) =>
-      _api.post('/api/farms', body: request.toJson(), decode: (data) => Farm.fromJson(asJson(data)));
-
-  Future<void> delete(int id) => _api.delete('/api/farms/$id', decode: ApiClient.ignoreBody);
+  Future<void> deleteFarm(int farmId) =>
+      _api.delete('/api/farms/$farmId', decode: ApiClient.ignoreBody);
 }
 
 final farmsApiProvider = Provider((ref) => FarmsApi(ref.watch(apiClientProvider)));
@@ -602,7 +582,7 @@ dart format lib test tool         # before committing
 
 **Tests never call the live API.** The helpers in `test/helpers/`:
 
-- `FakeApi`: a pretend server. Register answers with `api.on('GET', '/api/farms/mine', (request) => FakeResponse(200, {...}))`. It records every request, so you can check what was sent (`api.lastTo('POST', '/api/farms')!.json`). `api.offline(method, path)` fakes a missing connection. Anything unregistered answers 404.
+- `FakeApi`: a pretend server. Register answers with `api.on('GET', '/api/farms', (request) => FakeResponse(200, [...]))`. It records every request, so you can check what was sent (`api.lastTo('POST', '/api/farms')!.json`). `api.offline(method, path)` fakes a missing connection. Anything unregistered answers 404.
 - `pumpAgriLink(tester, api: api, session: Session(token: fakeJwt(), role: Role.farmer))`: starts the **whole app** (router, shell, theme, translations) signed in as that role, on a phone-sized screen. It returns `TestApp` with the fake API, the stored session and the provider container. Options: `language: 'si'`, `screen: Size(320, 640)`, `permissions:`, `overrides:`.
 - `profileJson(role)`: a `/api/users/me` body. Register it for signed-in tests.
 - `tester.fill(finder, text)` and `tester.tapVisible(finder)`: scroll to a field or button, then type or tap.

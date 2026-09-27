@@ -3404,14 +3404,6 @@
   "@commonErrorsNotFound": {
     "description": "Mobile-only key: common.errors.notFound"
   },
-  "commonComingSoonTitle": "Coming soon",
-  "@commonComingSoonTitle": {
-    "description": "Mobile-only key: common.comingSoon.title"
-  },
-  "commonComingSoonMessage": "This section is being built and will be available in a later update of the app.",
-  "@commonComingSoonMessage": {
-    "description": "Mobile-only key: common.comingSoon.message"
-  },
   "commonEmptyTitle": "Nothing here yet",
   "@commonEmptyTitle": {
     "description": "Mobile-only key: common.empty.title"
