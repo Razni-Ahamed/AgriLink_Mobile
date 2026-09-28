@@ -45,6 +45,7 @@ class AdminUser {
     required this.role,
     required this.isActive,
     required this.createdAt,
+    this.registrationStatus = 'Approved',
     this.profilePhotoUrl,
     this.district,
     this.department,
@@ -60,6 +61,7 @@ class AdminUser {
     district: json['district'] as String?,
     department: json['department'] as String?,
     isActive: json['isActive'] == true,
+    registrationStatus: json['registrationStatus'] as String? ?? 'Approved',
     createdAt: parseApiDate(field<String>(json, 'createdAt')),
   );
 
@@ -74,9 +76,18 @@ class AdminUser {
   /// Only officers have one.
   final String? department;
   final bool isActive;
+
+  /// Pending, Approved or Rejected. An inactive account is only "deactivated" when this is
+  /// Approved; otherwise it's a sign-up still waiting for approval, or one that was turned down.
+  /// Activating either approves it.
+  final String registrationStatus;
   final DateTime createdAt;
 
   bool get isAdmin => role == Role.admin;
+
+  /// A sign-up that was never approved (still pending, or rejected), as opposed to an approved
+  /// account an admin deactivated.
+  bool get isUnapprovedApplication => registrationStatus != 'Approved';
 
   /// Only officer and buyer accounts can be re-typed here; farmers and admins can't.
   bool get canChangeRole => role == Role.officer || role == Role.buyer;
