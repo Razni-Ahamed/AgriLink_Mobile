@@ -14,21 +14,27 @@ import 'form_sheet.dart';
 
 /// Adds a field to the farm with id [farmId]. Returns the new field, or null if it was closed.
 /// (The API can add fields but not edit or delete them.)
-Future<FarmField?> showFieldFormSheet(BuildContext context, {required int farmId}) {
+/// Adds a field to [farmId], or edits [field] when one is given.
+Future<FarmField?> showFieldFormSheet(
+  BuildContext context, {
+  required int farmId,
+  FarmField? field,
+}) {
   return showFormSheet<FarmField>(
     context,
-    title: context.l10n.farmsDetailAddField,
-    form: FieldForm(farmId: farmId),
+    title: field == null ? context.l10n.farmsDetailAddField : context.l10n.farmsFieldEditField,
+    form: FieldForm(farmId: farmId, field: field),
   );
 }
 
 const _serverFieldNames = {'Name': 'name', 'Area': 'area'};
 
-/// The form for a new field: a name and an area in acres.
+/// The form for a field: a name and an area in acres. Edits [field] when one is given.
 class FieldForm extends ConsumerStatefulWidget {
-  const FieldForm({super.key, required this.farmId});
+  const FieldForm({super.key, required this.farmId, this.field});
 
   final int farmId;
+  final FarmField? field;
 
   @override
   ConsumerState<FieldForm> createState() => _FieldFormState();
@@ -36,8 +42,10 @@ class FieldForm extends ConsumerStatefulWidget {
 
 class _FieldFormState extends ConsumerState<FieldForm> {
   final _formKey = GlobalKey<FormState>();
-  final _name = TextEditingController();
-  final _area = TextEditingController();
+  late final _name = TextEditingController(text: widget.field?.name);
+  late final _area = TextEditingController(
+    text: widget.field == null ? null : plainNumber(widget.field!.area),
+  );
 
   bool _saving = false;
   Map<String, String> _fieldErrors = const {};
@@ -69,7 +77,10 @@ class _FieldFormState extends ConsumerState<FieldForm> {
       _generalErrors = const [];
     });
     try {
-      final saved = await api.addField(widget.farmId, input);
+      final editing = widget.field;
+      final saved = editing == null
+          ? await api.addField(widget.farmId, input)
+          : await api.updateField(widget.farmId, editing.id, input);
       if (!mounted) {
         return;
       }
@@ -134,7 +145,7 @@ class _FieldFormState extends ConsumerState<FieldForm> {
             const SizedBox(height: Gaps.lg),
             LoadingButton(
               key: const Key('field-submit'),
-              label: l10n.farmsDetailAddField,
+              label: widget.field == null ? l10n.farmsDetailAddField : l10n.farmsDetailSaveChanges,
               loadingLabel: l10n.commonActionsSaving,
               loading: _saving,
               onPressed: _submit,

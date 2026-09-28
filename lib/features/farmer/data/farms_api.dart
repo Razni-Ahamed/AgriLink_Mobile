@@ -25,7 +25,7 @@ class FarmsApi {
     decode: (data) => Farm.fromJson(asJson(data)),
   );
 
-  /// Fails with a 400 and a message if any field has crops planted, since crops can't be removed.
+  /// Fails with a 400 and a message if any field still has crops planted: remove those first.
   Future<void> deleteFarm(int farmId) =>
       _api.delete('/api/farms/$farmId', decode: ApiClient.ignoreBody);
 
@@ -39,6 +39,16 @@ class FarmsApi {
     body: input.toJson(),
     decode: (data) => FarmField.fromJson(asJson(data)),
   );
+
+  Future<FarmField> updateField(int farmId, int fieldId, FieldInput input) => _api.put(
+    '/api/farms/$farmId/fields/$fieldId',
+    body: input.toJson(),
+    decode: (data) => FarmField.fromJson(asJson(data)),
+  );
+
+  /// Fails with a 400 and a message while the field still has crops planted.
+  Future<void> deleteField(int farmId, int fieldId) =>
+      _api.delete('/api/farms/$farmId/fields/$fieldId', decode: ApiClient.ignoreBody);
 }
 
 final farmsApiProvider = Provider<FarmsApi>((ref) => FarmsApi(ref.watch(apiClientProvider)));

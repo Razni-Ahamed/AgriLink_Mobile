@@ -10,19 +10,36 @@ import '../../data/admin_models.dart';
 
 /// The badge saying whether an account can sign in. Written out and given an icon, so it doesn't
 /// rely on colour.
+/// Active, deactivated, or — for a sign-up that was never approved — waiting for approval or
+/// rejected. Those used to show as plain "Inactive", which hid why the person couldn't sign in.
 class ActiveBadge extends StatelessWidget {
-  const ActiveBadge({super.key, required this.isActive});
+  const ActiveBadge({super.key, required this.user});
 
-  final bool isActive;
+  final AdminUser user;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return StatusBadge(
-      label: isActive ? l10n.ordersAdminActive : l10n.ordersAdminInactive,
-      tone: isActive ? BadgeTone.success : BadgeTone.neutral,
-      icon: isActive ? Icons.check_circle_outline : Icons.pause_circle_outline,
-    );
+    if (user.isActive) {
+      return StatusBadge(
+        label: l10n.ordersAdminActive,
+        tone: BadgeTone.success,
+        icon: Icons.check_circle_outline,
+      );
+    }
+    return switch (user.registrationStatus) {
+      'Pending' => StatusBadge(
+        label: l10n.ordersAdminStatusPending,
+        tone: BadgeTone.warning,
+        icon: Icons.hourglass_empty,
+      ),
+      'Rejected' => StatusBadge(
+        label: l10n.ordersAdminStatusRejected,
+        tone: BadgeTone.danger,
+        icon: Icons.cancel_outlined,
+      ),
+      _ => StatusBadge(label: l10n.ordersAdminInactive, icon: Icons.pause_circle_outline),
+    };
   }
 }
 
@@ -89,7 +106,7 @@ class UserCard extends StatelessWidget {
                           label: roleLabel(l10n, user.role.apiName),
                           tone: BadgeTone.info,
                         ),
-                        ActiveBadge(isActive: user.isActive),
+                        ActiveBadge(user: user),
                       ],
                     ),
                     if (place != null) ...[

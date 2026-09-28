@@ -69,6 +69,10 @@
   "@commonNavPendingRegistrations": {
     "description": "Website key: common.nav.pendingRegistrations"
   },
+  "commonNavMenu": "Main menu",
+  "@commonNavMenu": {
+    "description": "Website key: common.nav.menu"
+  },
   "commonActionsSaving": "Saving…",
   "@commonActionsSaving": {
     "description": "Website key: common.actions.saving"
@@ -924,6 +928,35 @@
   "@authLoginRegisterLink": {
     "description": "Website key: auth.login.registerLink"
   },
+  "authLoginPendingTitle": "Waiting for approval",
+  "@authLoginPendingTitle": {
+    "description": "Website key: auth.login.pendingTitle"
+  },
+  "authLoginPendingMessage": "Your account is waiting for approval. You can sign in once an officer or administrator approves it.",
+  "@authLoginPendingMessage": {
+    "description": "Website key: auth.login.pendingMessage"
+  },
+  "authLoginRejectedTitle": "Registration not approved",
+  "@authLoginRejectedTitle": {
+    "description": "Website key: auth.login.rejectedTitle"
+  },
+  "authLoginRejectedMessage": "Your registration was not approved.",
+  "@authLoginRejectedMessage": {
+    "description": "Website key: auth.login.rejectedMessage"
+  },
+  "authLoginRejectedReason": "Reason: {reason}",
+  "@authLoginRejectedReason": {
+    "description": "Website key: auth.login.rejectedReason",
+    "placeholders": {
+      "reason": {
+        "type": "Object"
+      }
+    }
+  },
+  "authLoginServerError": "Something went wrong. Please try again.",
+  "@authLoginServerError": {
+    "description": "Website key: auth.login.serverError"
+  },
   "authRegisterTitle": "Create your account",
   "@authRegisterTitle": {
     "description": "Website key: auth.register.title"
@@ -1396,9 +1429,17 @@
   "@farmsFieldPlantCropSubmit": {
     "description": "Website key: farms.field.plantCropSubmit"
   },
-  "farmsFieldEmpty": "No crops planted this session yet. Newly planted crops appear here — the backend has no endpoint to list a field's crops after a page refresh (flagged to the team).",
+  "farmsFieldEmpty": "No crops planted in this field yet. Plant one to get started.",
   "@farmsFieldEmpty": {
     "description": "Website key: farms.field.empty"
+  },
+  "farmsFieldEditField": "Edit Field",
+  "@farmsFieldEditField": {
+    "description": "Website key: farms.field.editField"
+  },
+  "farmsFieldDeleteConfirm": "Delete this field? This cannot be undone.",
+  "@farmsFieldDeleteConfirm": {
+    "description": "Website key: farms.field.deleteConfirm"
   },
   "farmsCropBack": "Back to field",
   "@farmsCropBack": {
@@ -1432,6 +1473,10 @@
   "@farmsCropListForSale": {
     "description": "Website key: farms.crop.listForSale"
   },
+  "farmsCropDeleteConfirm": "Delete this crop? This cannot be undone.",
+  "@farmsCropDeleteConfirm": {
+    "description": "Website key: farms.crop.deleteConfirm"
+  },
   "farmsFormFarmName": "Farm name",
   "@farmsFormFarmName": {
     "description": "Website key: farms.form.farmName"
@@ -1463,6 +1508,10 @@
   "farmsFormExpectedQuantity": "Expected quantity (kg)",
   "@farmsFormExpectedQuantity": {
     "description": "Website key: farms.form.expectedQuantity"
+  },
+  "farmsFormDeleteError": "Could not delete this. Please try again.",
+  "@farmsFormDeleteError": {
+    "description": "Website key: farms.form.deleteError"
   },
   "homeNavLogin": "Log in",
   "@homeNavLogin": {
@@ -2965,6 +3014,27 @@
   "@ordersAdminEditUserEmailTaken": {
     "description": "Website key: orders.admin.editUserEmailTaken"
   },
+  "ordersAdminStatusPending": "Waiting for approval",
+  "@ordersAdminStatusPending": {
+    "description": "Website key: orders.admin.statusPending"
+  },
+  "ordersAdminStatusRejected": "Rejected",
+  "@ordersAdminStatusRejected": {
+    "description": "Website key: orders.admin.statusRejected"
+  },
+  "ordersAdminApprove": "Approve",
+  "@ordersAdminApprove": {
+    "description": "Website key: orders.admin.approve"
+  },
+  "ordersAdminUserApproved": "{name} was approved.",
+  "@ordersAdminUserApproved": {
+    "description": "Website key: orders.admin.userApproved",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
   "ordersAuditLogTitle": "Audit Log",
   "@ordersAuditLogTitle": {
     "description": "Website key: orders.auditLog.title"
@@ -3455,31 +3525,6 @@
   "commonPhotoUnusable": "That photo couldn't be used. Please try another one.",
   "@commonPhotoUnusable": {
     "description": "Mobile-only key: common.photo.unusable"
-  },
-  "authLoginPendingTitle": "Waiting for approval",
-  "@authLoginPendingTitle": {
-    "description": "Mobile-only key: auth.login.pendingTitle"
-  },
-  "authLoginPendingMessage": "Your account is waiting for approval. You can sign in once an officer or administrator approves it.",
-  "@authLoginPendingMessage": {
-    "description": "Mobile-only key: auth.login.pendingMessage"
-  },
-  "authLoginRejectedTitle": "Registration not approved",
-  "@authLoginRejectedTitle": {
-    "description": "Mobile-only key: auth.login.rejectedTitle"
-  },
-  "authLoginRejectedMessage": "Your registration was not approved.",
-  "@authLoginRejectedMessage": {
-    "description": "Mobile-only key: auth.login.rejectedMessage"
-  },
-  "authLoginRejectedReason": "Reason: {reason}",
-  "@authLoginRejectedReason": {
-    "description": "Mobile-only key: auth.login.rejectedReason",
-    "placeholders": {
-      "reason": {
-        "type": "Object"
-      }
-    }
   },
   "authSplashLoading": "Starting AgriLink…",
   "@authSplashLoading": {

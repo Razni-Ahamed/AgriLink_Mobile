@@ -90,15 +90,28 @@ class _UserDetailScreenState extends ConsumerState<UserDetailScreen> {
   Future<void> _toggleActive(AdminUser user) async {
     final l10n = context.l10n;
     final activate = !user.isActive;
+    // Activating a sign-up that was never approved approves it (the API does the same).
+    final approve = activate && user.isUnapprovedApplication;
     final confirmed = await showConfirmDialog(
       context,
-      title: activate
+      title: approve
+          ? l10n.registrationsPendingApproveConfirmTitle
+          : activate
           ? l10n.adminUsersDetailActivateConfirmTitle(user.fullName)
           : l10n.adminUsersDetailDeactivateConfirmTitle(user.fullName),
-      message: activate
+      message: approve
+          ? l10n.registrationsPendingApproveConfirmMessage(
+              user.fullName,
+              roleLabel(l10n, user.role.apiName),
+            )
+          : activate
           ? l10n.adminUsersDetailActivateConfirmMessage(user.fullName)
           : l10n.adminUsersDetailDeactivateConfirmMessage(user.fullName),
-      confirmLabel: activate ? l10n.ordersAdminActivate : l10n.ordersAdminDeactivate,
+      confirmLabel: approve
+          ? l10n.ordersAdminApprove
+          : activate
+          ? l10n.ordersAdminActivate
+          : l10n.ordersAdminDeactivate,
       destructive: !activate,
     );
     if (!confirmed || !mounted) {
@@ -111,7 +124,9 @@ class _UserDetailScreenState extends ConsumerState<UserDetailScreen> {
       if (mounted) {
         showToast(
           context,
-          activate
+          approve
+              ? l10n.ordersAdminUserApproved(user.fullName)
+              : activate
               ? l10n.ordersAdminUserActivated(user.fullName)
               : l10n.ordersAdminUserDeactivated(user.fullName),
           tone: ToastTone.success,
@@ -226,7 +241,7 @@ class _Detail extends ConsumerWidget {
                             label: roleLabel(l10n, user.role.apiName),
                             tone: BadgeTone.info,
                           ),
-                          ActiveBadge(isActive: user.isActive),
+                          ActiveBadge(user: user),
                         ],
                       ),
                       if (place != null) ...[
@@ -271,7 +286,11 @@ class _Detail extends ConsumerWidget {
               _Action(
                 key: const Key('action-active'),
                 icon: user.isActive ? Icons.block : Icons.check_circle_outline,
-                title: user.isActive ? l10n.ordersAdminDeactivate : l10n.ordersAdminActivate,
+                title: user.isActive
+                    ? l10n.ordersAdminDeactivate
+                    : user.isUnapprovedApplication
+                    ? l10n.ordersAdminApprove
+                    : l10n.ordersAdminActivate,
                 note: user.isAdmin ? l10n.adminUsersDetailAdminCantDeactivate : null,
                 onTap: busy || user.isAdmin ? null : onToggleActive,
               ),
