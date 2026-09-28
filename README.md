@@ -228,6 +228,20 @@ dart format lib test tool  # 100-character lines
 
 The tests use a fake API, so they never touch the live database. Build an installable APK with `flutter build apk --debug`; it appears in `build/app/outputs/flutter-apk/`.
 
+**Release builds** (the APK or app bundle you give to users) must be signed with AgriLink's release key. Every update has to use the same key as the version people already have, or Android won't install it over the top. The key never goes in git.
+
+- **First time only**, on the PC that builds releases, create the key. It asks for a password, stores the key in `%USERPROFILE%\.agrilink\`, and writes `android/key.properties` (ignored by git):
+
+  ```powershell
+  powershell -ExecutionPolicy Bypass -File tool\create_release_key.ps1
+  ```
+
+  Then **back up** `agrilink-release.jks`, `android/key.properties` and the password somewhere safe, such as a password manager. A lost key can't be recovered.
+- **On another PC**, copy the key back from the backup, and put `key.properties` in `android/` with `storeFile` changed to where the key now is.
+- **Build** with `flutter build apk --release`, or `flutter build appbundle` for Google Play. Without `android/key.properties` the release build stops with an error instead of falling back to the debug key.
+
+The app icon (a leaf) is `android/app/src/main/res/mipmap-*` and `drawable/ic_launcher_foreground.xml`; `android/app/src/main/ic_launcher-playstore.png` is the 512px version Google Play asks for.
+
 **Translations** come from the website. If its text changes, see [docs/ARCHITECTURE.md §10](docs/ARCHITECTURE.md#10-translations).
 
 ---
@@ -246,6 +260,8 @@ The tests use a fake API, so they never touch the live database. Build an instal
 | Flutter shows the wrong version | You cloned a different branch. In the Flutter folder, run `git fetch --tags` then `git checkout 3.47.5`, then `flutter --version`. |
 | Builds are very slow on Windows | Antivirus scanning can slow builds a lot. You may add your Flutter folder and project folder to Windows Security's exclusions. |
 | Flutter path contains spaces | Move Flutter to a folder with no spaces (e.g. `C:\src\flutter`) and update PATH. |
+| Gradle fails with `Unable to establish loopback connection` | Java can't create its local socket in your temp folder. Make a short folder (e.g. `C:\Users\<you>\gtmp`) and, in that terminal, run `$env:JAVA_TOOL_OPTIONS='-Djdk.net.unixdomain.tmpdir=C:\Users\<you>\gtmp'` before building. |
+| Release build stops with `No release signing key` | `android/key.properties` is missing. See **Release builds** above. |
 
 ---
 
