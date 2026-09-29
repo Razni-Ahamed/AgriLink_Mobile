@@ -226,7 +226,7 @@ flutter test               # all tests must pass
 dart format lib test tool  # 100-character lines
 ```
 
-The tests use a fake API, so they never touch the live database. Build an installable APK with `flutter build apk --debug`; it appears in `build/app/outputs/flutter-apk/`.
+The tests use a fake API, so they never touch the live database. GitHub Actions (`.github/workflows/flutter-ci.yml`) runs `flutter analyze` and `flutter test` on every push and pull request to `main`. Build an installable APK with `flutter build apk --debug`; it appears in `build/app/outputs/flutter-apk/`.
 
 **Release builds** (the APK or app bundle you give to users) must be signed with AgriLink's release key. Every update has to use the same key as the version people already have, or Android won't install it over the top. The key never goes in git.
 
