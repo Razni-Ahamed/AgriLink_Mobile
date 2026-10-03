@@ -314,6 +314,53 @@ void main() {
       expect(find.text('Seeded'), findsOneWidget);
     });
 
+    testWidgets('edits the field, starting from its current values', (tester) async {
+      final app = await openField(tester);
+      await tester.tap(find.byKey(const Key('edit-field')));
+      await tester.pumpAndSettle();
+      expect(find.text('Edit Field'), findsOneWidget);
+      expect(
+        tester.widget<TextFormField>(find.byKey(const Key('field-name'))).controller!.text,
+        'North Field',
+      );
+
+      await tester.fill(find.byKey(const Key('field-name')), 'Upper Field');
+      await tester.tapVisible(submit('field-submit'));
+
+      expect(app.api.lastTo('PUT', '/api/farms/1/fields/10')!.json['name'], 'Upper Field');
+      expect(find.text('Upper Field'), findsWidgets);
+    });
+
+    testWidgets("a field with crops can't be deleted, and the server's message is shown", (
+      tester,
+    ) async {
+      final app = await openField(tester);
+      await tester.tap(find.byKey(const Key('delete-field')));
+      await tester.pumpAndSettle();
+      expect(find.text('Delete this field? This cannot be undone.'), findsOneWidget);
+      await tester.tap(find.widgetWithText(FilledButton, 'Delete'));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text('Cannot delete a field that has crops planted. Remove its crops first.'),
+        findsOneWidget,
+      );
+      expect(currentPath(app), '/farms/1/fields/10');
+    });
+
+    testWidgets('deletes an empty field and goes back to the farm', (tester) async {
+      backend.crops.clear();
+      final app = await openField(tester);
+      await tester.tap(find.byKey(const Key('delete-field')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Delete'));
+      await tester.pumpAndSettle();
+
+      expect(app.api.lastTo('DELETE', '/api/farms/1/fields/10'), isNotNull);
+      expect(currentPath(app), '/farms/1');
+      expect(find.text('North Field'), findsNothing);
+    });
+
     testWidgets('a field with no crops says so', (tester) async {
       backend.crops.clear();
       await openField(tester);
@@ -488,6 +535,42 @@ void main() {
         tester.widget<ChoiceChip>(find.byKey(const Key('status-Growing'))).onSelected,
         isNotNull,
       );
+    });
+
+    testWidgets('deletes the crop after a confirmation and leaves the field', (tester) async {
+      final app = await openCrop(tester);
+      await tester.tapVisible(find.byKey(const Key('delete-crop')));
+      await tester.pumpAndSettle();
+      expect(find.text('Delete this crop? This cannot be undone.'), findsOneWidget);
+      await tester.tap(find.widgetWithText(FilledButton, 'Delete'));
+      await tester.pumpAndSettle();
+
+      expect(app.api.lastTo('DELETE', '/api/crops/100'), isNotNull);
+      expect(currentPath(app), '/farms/1/fields/10');
+      expect(find.text('Green Gram'), findsNothing);
+    });
+
+    testWidgets("a crop with history isn't deleted, and the server's reason is shown", (
+      tester,
+    ) async {
+      backend.api.on(
+        'DELETE',
+        '/api/crops/100',
+        (_) => const FakeResponse(400, {
+          'message': "This crop has reported issues or harvest listings, so it can't be deleted.",
+        }),
+      );
+      final app = await openCrop(tester);
+      await tester.tapVisible(find.byKey(const Key('delete-crop')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Delete'));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text("This crop has reported issues or harvest listings, so it can't be deleted."),
+        findsOneWidget,
+      );
+      expect(currentPath(app), '/farms/1/fields/10/crops/100');
     });
 
     testWidgets('the status change shows in the field’s crop list', (tester) async {

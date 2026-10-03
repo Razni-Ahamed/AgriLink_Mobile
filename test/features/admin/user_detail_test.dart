@@ -30,6 +30,14 @@ class _Backend {
         isActive: false,
         department: null,
       ),
+      adminUserJson(
+        id: 5,
+        name: 'Ruwan Jayasinghe',
+        role: 'Farmer',
+        isActive: false,
+        department: null,
+        registrationStatus: 'Rejected',
+      ),
     ];
     api
       ..on('GET', '/api/users/me', (_) => FakeResponse(200, profileJson(Role.admin)))
@@ -43,11 +51,17 @@ class _Backend {
           {'departmentId': 2, 'name': 'Irrigation', 'createdAt': '2026-01-02T00:00:00Z'},
         ]),
       );
-    for (final id in [1, 2, 3, 4]) {
+    for (final id in [1, 2, 3, 4, 5]) {
       api
         ..on('PUT', '/api/admin/users/$id/status', (request) {
           final index = users.indexWhere((u) => u['userId'] == id);
-          users[index] = {...users[index], 'isActive': request.json['isActive']};
+          final activate = request.json['isActive'] == true;
+          users[index] = {
+            ...users[index],
+            'isActive': request.json['isActive'],
+            // Like the API: activating a sign-up that was never approved approves it.
+            if (activate) 'registrationStatus': 'Approved',
+          };
           return FakeResponse(200, users[index]);
         })
         ..on('POST', '/api/admin/users/$id/password', (_) => const FakeResponse(204))
@@ -193,6 +207,24 @@ void main() {
 
       expect(api.lastTo('PUT', '/api/admin/users/4/status')!.json, {'isActive': true});
       expect(find.text('Sunil Fernando was activated.'), findsOneWidget);
+    });
+
+    testWidgets('a rejected sign-up shows as rejected and is approved rather than activated', (
+      tester,
+    ) async {
+      await open(tester, 5);
+      expect(find.text('Rejected'), findsOneWidget);
+      expect(find.text('Inactive'), findsNothing);
+
+      await tester.tap(find.byKey(const Key('action-active')));
+      await tester.pumpAndSettle();
+      expect(find.text('Approve this application?'), findsOneWidget);
+      await tester.tap(inDialog('Approve'));
+      await tester.pumpAndSettle();
+
+      expect(api.lastTo('PUT', '/api/admin/users/5/status')!.json, {'isActive': true});
+      expect(find.text('Ruwan Jayasinghe was approved.'), findsOneWidget);
+      expect(find.text('Active'), findsOneWidget);
     });
 
     testWidgets('a change someone else already made is explained and the page reloads', (

@@ -121,6 +121,30 @@ class FarmerBackend {
           this.fields.add(field);
           return FakeResponse(201, field);
         });
+      for (var fieldId = 10; fieldId <= 19; fieldId++) {
+        api
+          ..on('PUT', '/api/farms/$id/fields/$fieldId', (request) {
+            final body = request.json;
+            final index = this.fields.indexWhere((field) => field['fieldId'] == fieldId);
+            this.fields[index] = fieldJson(
+              id: fieldId,
+              farmId: id,
+              name: body['name']! as String,
+              area: body['area']! as num,
+            );
+            return FakeResponse(200, this.fields[index]);
+          })
+          ..on('DELETE', '/api/farms/$id/fields/$fieldId', (_) {
+            // Like the API: a field with crops stays.
+            if (this.crops.any((crop) => crop['fieldId'] == fieldId)) {
+              return const FakeResponse(400, {
+                'message': 'Cannot delete a field that has crops planted. Remove its crops first.',
+              });
+            }
+            this.fields.removeWhere((field) => field['fieldId'] == fieldId);
+            return const FakeResponse(204);
+          });
+      }
     }
 
     for (var id = 10; id <= 19; id++) {
@@ -192,6 +216,10 @@ class FarmerBackend {
           final index = this.crops.indexWhere((crop) => crop['cropId'] == id);
           this.crops[index] = {...this.crops[index], 'status': request.json['status']};
           return FakeResponse(200, this.crops[index]);
+        })
+        ..on('DELETE', '/api/crops/$id', (_) {
+          this.crops.removeWhere((crop) => crop['cropId'] == id);
+          return const FakeResponse(204);
         });
     }
   }

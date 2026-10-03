@@ -20,10 +20,6 @@
       "forbidden": "You don't have permission to do that.",
       "notFound": "We couldn't find what you were looking for."
     },
-    "comingSoon": {
-      "title": "Coming soon",
-      "message": "This section is being built and will be available in a later update of the app."
-    },
     "empty": {
       "title": "Nothing here yet"
     },
@@ -45,13 +41,6 @@
     }
   },
   "auth": {
-    "login": {
-      "pendingTitle": "Waiting for approval",
-      "pendingMessage": "Your account is waiting for approval. You can sign in once an officer or administrator approves it.",
-      "rejectedTitle": "Registration not approved",
-      "rejectedMessage": "Your registration was not approved.",
-      "rejectedReason": "Reason: {{reason}}"
-    },
     "splash": {
       "loading": "Starting AgriLink…"
     },
