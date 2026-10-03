@@ -32,6 +32,11 @@ class CropsApi {
     decode: (data) => Crop.fromJson(asJson(data)),
   );
 
+  /// Fails with a 400 and a message if the crop has reported issues or harvest listings: officers'
+  /// advice and buyers' orders point at it, so that history stays.
+  Future<void> delete(int cropId) =>
+      _api.delete('/api/crops/$cropId', decode: ApiClient.ignoreBody);
+
   /// Every crop the signed-in farmer has, with its field and farm. For the crop pickers.
   Future<List<FarmerCrop>> mine() => _api.get(
     '/api/crops/mine',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/router/app_routes.dart';
 import '../../../app/shell/agrilink_app_bar.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_theme.dart';
@@ -19,7 +20,8 @@ import '../data/crops_api.dart';
 import '../farmer_paths.dart';
 
 /// One crop: its details, and its status, which is the only thing that can change once a crop
-/// is planted. Changing it asks first, since the API can't remove or edit a crop.
+/// is planted. Changing it asks first. A crop planted by mistake can be deleted, unless it has
+/// reported issues or harvest listings.
 class CropDetailScreen extends ConsumerStatefulWidget {
   const CropDetailScreen({super.key, required this.fieldId, required this.cropId});
 
@@ -32,6 +34,43 @@ class CropDetailScreen extends ConsumerStatefulWidget {
 
 class _CropDetailScreenState extends ConsumerState<CropDetailScreen> {
   bool _updating = false;
+
+  Future<void> _delete(Crop crop) async {
+    final l10n = context.l10n;
+    final confirmed = await showConfirmDialog(
+      context,
+      title: l10n.commonActionsDelete,
+      message: l10n.farmsCropDeleteConfirm,
+      confirmLabel: l10n.commonActionsDelete,
+      destructive: true,
+    );
+    if (!confirmed || !mounted) {
+      return;
+    }
+    setState(() => _updating = true);
+    try {
+      await ref.read(cropsApiProvider).delete(crop.id);
+      if (!mounted) {
+        return;
+      }
+      ref
+        ..invalidate(fieldCropsProvider(crop.fieldId))
+        ..invalidate(myCropsProvider);
+      if (context.canPop()) {
+        context.pop();
+      } else {
+        context.go(AppRoutes.farms);
+      }
+    } on Object catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() => _updating = false);
+      // The server says why: the crop has reported issues or harvest listings.
+      final parsed = parseApiError(error, l10n, generic: (l) => l.farmsFormDeleteError);
+      showToast(context, parsed.summary, tone: ToastTone.error);
+    }
+  }
 
   Future<void> _refresh() async {
     try {
@@ -173,6 +212,17 @@ class _CropDetailScreenState extends ConsumerState<CropDetailScreen> {
           onPressed: () => context.push(FarmerPaths.newIssue(cropId: crop.id)),
           icon: const Icon(Icons.warning_amber_outlined),
           label: Text(l10n.farmsCropReportIssue),
+        ),
+        const SizedBox(height: Gaps.sm),
+        OutlinedButton.icon(
+          key: const Key('delete-crop'),
+          onPressed: _updating ? null : () => _delete(crop),
+          style: OutlinedButton.styleFrom(
+            foregroundColor: colors.danger,
+            side: BorderSide(color: colors.danger),
+          ),
+          icon: const Icon(Icons.delete_outline),
+          label: Text(l10n.commonActionsDelete),
         ),
       ],
     );

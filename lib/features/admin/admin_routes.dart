@@ -11,8 +11,7 @@ import 'presentation/departments_screen.dart';
 import 'presentation/user_detail_screen.dart';
 import 'presentation/users_screen.dart';
 
-/// Phase 4 (admin): the dashboard, users, departments, all issues and the audit log. Replace
-/// each `PlaceholderPage` with the real screen.
+/// Phase 4 (admin): the dashboard, users, departments, all issues and the audit log.
 List<RouteBase> adminRoutes(RouteGuard guard) => [
   guard.route(
     path: Destinations.adminDashboard.path,
