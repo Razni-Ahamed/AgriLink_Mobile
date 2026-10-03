@@ -44,7 +44,7 @@ The app is built in four phases, one owner each. **Phase 1 must be merged first*
 | **1. Foundation** | Razni Ahamed M. R. | Project setup, theme (same colours as the website), English / Sinhala / Tamil translations, API connection, login, registration, staying signed in, role-based navigation, profile and security, notifications |
 | **2. Farmer** | _TBD_ | Farms, fields, crops, activity log, reporting crop issues with camera photos, advisories |
 | **3. Marketplace & orders** | Jayaweera A.J.D. | Browse harvests, listings, purchase requests, orders (farmers and buyers) |
-| **4. Officer & admin** | _TBD_ | Officer dashboard, issue reviews, approvals; admin dashboard, users, departments, all issues, audit log |
+| **4. Officer & admin** | Fernando C. P. H. A. C. | Officer dashboard, issue reviews, approvals; admin dashboard, users, departments, all issues, audit log |
 
 The app covers **all four roles**: farmers, buyers, agricultural officers and admins. Each one signs in on the same screen and sees only their own sections.
 
