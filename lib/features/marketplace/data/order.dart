@@ -17,6 +17,7 @@ class Order {
     required this.pricePerUnit,
     required this.harvestLocation,
     this.completedAt,
+    this.unit = QuantityUnit.kg,
   });
 
   factory Order.fromJson(Json json) => Order(
@@ -44,6 +45,7 @@ class Order {
     ),
     cropType: json['cropType'] as String? ?? '',
     pricePerUnit: (json['pricePerUnit'] as num).toDouble(),
+    unit: QuantityUnit.fromApi(json['unit']),
     harvestLocation: json['harvestLocation'] as String? ?? '',
   );
 
@@ -60,6 +62,9 @@ class Order {
   final OrderParty buyer;
   final String cropType;
   final double pricePerUnit;
+
+  /// What [totalQuantity] and [pricePerUnit] are counted in: the listing's unit.
+  final QuantityUnit unit;
   final String harvestLocation;
 
   /// The person on the other side of the deal: the buyer for a farmer, the farmer for a buyer.

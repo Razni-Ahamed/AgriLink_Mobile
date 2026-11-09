@@ -5,10 +5,14 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_theme.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/format/formatters.dart';
+import '../../../../core/session/role.dart';
+import '../../../../core/session/session_controller.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/labels.dart';
 import '../../../../shared/widgets/crop_icon.dart';
 import '../../../../shared/widgets/status_badge.dart';
+import '../../../messages/presentation/start_chat_button.dart';
+import '../../application/unit_format.dart';
 import '../../data/marketplace_enums.dart';
 import '../../data/purchase_request.dart';
 import 'header_badge.dart';
@@ -24,6 +28,7 @@ class PurchaseRequestCard extends ConsumerWidget {
     this.showBuyer = false,
     this.onAccept,
     this.onDecline,
+    this.onWithdraw,
     this.responding = false,
   });
 
@@ -37,6 +42,9 @@ class PurchaseRequestCard extends ConsumerWidget {
   final VoidCallback? onAccept;
   final VoidCallback? onDecline;
 
+  /// The buyer's own pending request: shows "Withdraw request".
+  final VoidCallback? onWithdraw;
+
   /// While the farmer's answer is being sent: both buttons wait.
   final bool responding;
 
@@ -49,6 +57,13 @@ class PurchaseRequestCard extends ConsumerWidget {
     final secondary = text.bodyMedium?.copyWith(color: colors.textSecondary);
     final canRespond =
         request.status == PurchaseRequestStatus.pending && onAccept != null && onDecline != null;
+    final canWithdraw = request.status == PurchaseRequestStatus.pending && onWithdraw != null;
+    final role = ref.watch(sessionControllerProvider.select((session) => session.role));
+    // Talk it over before or after deciding; a declined or withdrawn request's chat is closed.
+    final canChat =
+        (request.status == PurchaseRequestStatus.pending ||
+            request.status == PurchaseRequestStatus.accepted) &&
+        (role == Role.farmer || role == Role.buyer);
 
     return Card(
       key: Key('request-${request.id}'),
@@ -89,11 +104,11 @@ class PurchaseRequestCard extends ConsumerWidget {
                 const SizedBox(height: Gaps.xs),
               ],
               Text(
-                format.kilograms(l10n, request.requestedQuantity),
+                format.quantity(l10n, request.requestedQuantity, request.unit),
                 style: text.titleMedium!.mono.copyWith(color: colors.forest),
               ),
               Text(
-                '${l10n.commonUnitsRupeesPerUnit(format.number(request.pricePerUnit))}'
+                '${format.pricePer(l10n, request.pricePerUnit, request.unit)}'
                 ' · ${request.district}',
                 style: text.bodyMedium!.mono.copyWith(color: colors.textSecondary),
               ),
@@ -110,6 +125,25 @@ class PurchaseRequestCard extends ConsumerWidget {
                 format.date(request.createdAt),
                 style: text.bodySmall?.copyWith(color: colors.textSecondary),
               ),
+              if (canChat) ...[
+                const SizedBox(height: Gaps.xs),
+                StartChatButton(
+                  subject: DealChat(request.id),
+                  label: role == Role.farmer
+                      ? l10n.messagesStartMessageBuyer
+                      : l10n.messagesStartMessageFarmer,
+                ),
+              ],
+              if (canWithdraw) ...[
+                const SizedBox(height: Gaps.sm),
+                TextButton.icon(
+                  key: Key('withdraw-${request.id}'),
+                  style: TextButton.styleFrom(foregroundColor: colors.danger),
+                  onPressed: responding ? null : onWithdraw,
+                  icon: const Icon(Icons.undo_outlined, size: 18),
+                  label: Text(l10n.marketplaceSentRequestsWithdraw),
+                ),
+              ],
               if (canRespond) ...[
                 const SizedBox(height: Gaps.sm + 4),
                 Row(

@@ -12,6 +12,7 @@ import '../../features/auth/presentation/register_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/farmer/farmer_routes.dart';
 import '../../features/marketplace/marketplace_routes.dart';
+import '../../features/messages/messages_routes.dart';
 import '../../features/notifications/notifications_routes.dart';
 import '../../features/officer/officer_routes.dart';
 import '../shell/app_shell.dart';
@@ -77,6 +78,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           ...officerRoutes(guard),
           ...adminRoutes(guard),
           ...notificationsRoutes(guard),
+          ...messagesRoutes(guard),
           ...accountRoutes(guard),
           guard.route(
             path: AppRoutes.more,

@@ -28,7 +28,7 @@ void main() {
     expect(find.byKey(const Key('harvest-1')), findsOneWidget);
     expect(find.byKey(const Key('harvest-2')), findsOneWidget);
     expect(find.text('All (3)'), findsOneWidget);
-    expect(find.text('0 of 500 kg available'), findsOneWidget);
+    expect(find.text('0 kg of 500 kg available'), findsOneWidget);
 
     // The chips scroll sideways; Sold is off to the right on a phone.
     await tester.tapVisible(find.text('Sold (1)'));
@@ -72,6 +72,7 @@ void main() {
       'quantity': 250.0,
       'harvestDate': apiDateOnly(DateTime.now()),
       'pricePerUnit': 110.0,
+      'unit': 'Kg',
       'location': 'Kurunegala',
     });
     expect(find.text('Listing published.'), findsOneWidget);

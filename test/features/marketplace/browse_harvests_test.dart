@@ -30,8 +30,8 @@ void main() {
     expect(find.byKey(const Key('harvest-1')), findsOneWidget);
     expect(find.byKey(const Key('harvest-2')), findsOneWidget);
     expect(find.text('RRIC 100'), findsOneWidget);
-    expect(find.text('Rs 150/unit'), findsOneWidget);
-    expect(find.text('400 kg avail.'), findsNWidgets(2));
+    expect(find.text('Rs 150/kg'), findsOneWidget);
+    expect(find.text('400 kg available'), findsNWidgets(2));
     expect(find.text('Wariyapola, Kurunegala'), findsNWidgets(2));
   });
 

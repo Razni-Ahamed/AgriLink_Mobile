@@ -19,6 +19,7 @@ class PurchaseRequest {
     required this.pricePerUnit,
     required this.buyerName,
     required this.buyerBusinessName,
+    this.unit = QuantityUnit.kg,
   });
 
   factory PurchaseRequest.fromJson(Json json) => PurchaseRequest(
@@ -32,6 +33,7 @@ class PurchaseRequest {
     cropType: json['cropType'] as String? ?? '',
     district: json['district'] as String? ?? '',
     pricePerUnit: (json['pricePerUnit'] as num).toDouble(),
+    unit: QuantityUnit.fromApi(json['unit']),
     buyerName: json['buyerName'] as String? ?? '',
     buyerBusinessName: json['buyerBusinessName'] as String? ?? '',
   );
@@ -48,6 +50,9 @@ class PurchaseRequest {
   final String cropType;
   final String district;
   final double pricePerUnit;
+
+  /// What [requestedQuantity] and [pricePerUnit] are counted in: the listing's unit.
+  final QuantityUnit unit;
   final String buyerName;
   final String buyerBusinessName;
 

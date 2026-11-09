@@ -5,13 +5,16 @@ import 'package:go_router/go_router.dart';
 import '../../core/session/role.dart';
 import '../../core/session/session_controller.dart';
 import '../../features/auth/application/current_user.dart';
+import '../../features/messages/application/chat_providers.dart';
+import '../../features/messages/messages_paths.dart';
 import '../../features/notifications/application/unread_count.dart';
 import '../../l10n/l10n.dart';
 import '../../shared/widgets/user_avatar.dart';
 import '../router/app_routes.dart';
 
-/// The app bar for every signed-in page: the title, the notification bell and the user's
-/// avatar (which opens the profile). A page opened on top of another gets a back button.
+/// The app bar for every signed-in page: the title, the chat button (farmers, buyers and
+/// officers), the notification bell and the user's avatar (which opens the profile). A page
+/// opened on top of another gets a back button.
 ///
 /// ```dart
 /// Scaffold(
@@ -38,6 +41,7 @@ class AgriLinkAppBar extends StatelessWidget implements PreferredSizeWidget {
       bottom: bottom,
       actions: [
         ...actions,
+        const ChatButton(),
         const NotificationBell(),
         const AvatarButton(),
         const SizedBox(width: 4),
@@ -63,6 +67,35 @@ class NotificationBell extends ConsumerWidget {
         child: Icon(unread > 0 ? Icons.notifications : Icons.notifications_outlined),
       ),
       onPressed: () => context.go(AppRoutes.notifications),
+    );
+  }
+}
+
+/// The chat button, with the number of unread messages. Opens the chat list. Hidden for
+/// admins, who read reported chats on the website.
+class ChatButton extends ConsumerWidget {
+  const ChatButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final role = ref.watch(sessionControllerProvider.select((session) => session.role));
+    if (!canChat(role)) {
+      return const SizedBox.shrink();
+    }
+    final l10n = context.l10n;
+    final unread = ref.watch(chatUnreadCountProvider);
+    return IconButton(
+      key: const Key('chat-button'),
+      tooltip: unread > 0
+          ? '${l10n.messagesHeaderOpen}, '
+                '${unread == 1 ? l10n.messagesHeaderUnreadOne(unread) : l10n.messagesHeaderUnreadOther(unread)}'
+          : l10n.messagesHeaderOpen,
+      icon: Badge(
+        isLabelVisible: unread > 0,
+        label: Text(unread > 99 ? '99+' : '$unread'),
+        child: Icon(unread > 0 ? Icons.forum : Icons.forum_outlined),
+      ),
+      onPressed: () => context.go(MessagesPaths.list),
     );
   }
 }

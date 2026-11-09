@@ -9,6 +9,7 @@ import '../../../../l10n/l10n.dart';
 import '../../../../l10n/labels.dart';
 import '../../../../shared/widgets/crop_icon.dart';
 import '../../../../shared/widgets/status_badge.dart';
+import '../../application/unit_format.dart';
 import '../../data/harvest_listing.dart';
 import 'header_badge.dart';
 
@@ -83,13 +84,13 @@ class HarvestCard extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      l10n.commonUnitsRupeesPerUnit(format.number(listing.pricePerUnit)),
+                      format.pricePer(l10n, listing.pricePerUnit, listing.unit),
                       style: text.titleMedium!.mono.copyWith(color: colors.forest),
                     ),
                   ),
                   Text(
-                    l10n.commonUnitsAvailableShort(
-                      format.kilograms(l10n, listing.availableQuantity),
+                    l10n.commonUnitsAvailableQuantity(
+                      format.quantity(l10n, listing.availableQuantity, listing.unit),
                     ),
                     style: text.bodyMedium!.mono.copyWith(color: colors.textSecondary),
                   ),

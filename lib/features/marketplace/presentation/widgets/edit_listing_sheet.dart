@@ -9,6 +9,7 @@ import '../../../../shared/widgets/dialogs.dart';
 import '../../../../shared/widgets/form_fields.dart';
 import '../../application/marketplace_errors.dart';
 import '../../application/marketplace_providers.dart';
+import '../../application/unit_format.dart';
 import '../../data/harvest_listing.dart';
 import '../../data/marketplace_api.dart';
 import '../../data/marketplace_enums.dart';
@@ -40,6 +41,7 @@ class _EditListingSheet extends ConsumerStatefulWidget {
 class _EditListingSheetState extends ConsumerState<_EditListingSheet> {
   final _form = GlobalKey<FormState>();
   late HarvestStatus _status = widget.listing.status;
+  late QuantityUnit _unit = widget.listing.unit;
   late final _price = TextEditingController(text: plainNumber(widget.listing.pricePerUnit));
   late final _location = TextEditingController(text: widget.listing.location);
   late DateTime _harvestDate = widget.listing.harvestDate;
@@ -90,6 +92,8 @@ class _EditListingSheetState extends ConsumerState<_EditListingSheet> {
               pricePerUnit: parsePositiveNumber(_price.text),
               location: _location.text.trim(),
               harvestDate: _harvestDate,
+              // Sent only when changed: the API refuses any unit once a buyer has asked.
+              unit: _unit == widget.listing.unit ? null : _unit,
             ),
           );
       if (!mounted) {
@@ -150,10 +154,23 @@ class _EditListingSheetState extends ConsumerState<_EditListingSheet> {
                 onChanged: (value) => setState(() => _status = value ?? _status),
               ),
               const SizedBox(height: Gaps.md),
+              DropdownButtonFormField<QuantityUnit>(
+                key: const Key('edit-unit'),
+                initialValue: _unit,
+                isExpanded: true,
+                borderRadius: BorderRadius.circular(kRadius),
+                decoration: InputDecoration(labelText: l10n.marketplaceListingFormUnit),
+                items: [
+                  for (final unit in QuantityUnit.values)
+                    DropdownMenuItem(value: unit, child: Text(unitName(l10n, unit))),
+                ],
+                onChanged: (unit) => setState(() => _unit = unit ?? _unit),
+              ),
+              const SizedBox(height: Gaps.md),
               AppTextField(
                 fieldKey: const Key('edit-price'),
                 controller: _price,
-                label: l10n.marketplaceListingFormPricePerUnit,
+                label: l10n.marketplaceListingFormPricePerUnitIn(unitPer(l10n, _unit)),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))],
                 validator: (text) =>

@@ -73,6 +73,10 @@
   "@commonNavMenu": {
     "description": "Website key: common.nav.menu"
   },
+  "commonNavMore": "More",
+  "@commonNavMore": {
+    "description": "Website key: common.nav.more"
+  },
   "commonActionsSaving": "Saving…",
   "@commonActionsSaving": {
     "description": "Website key: common.actions.saving"
@@ -133,6 +137,10 @@
   "@commonActionsHidePassword": {
     "description": "Website key: common.actions.hidePassword"
   },
+  "commonActionsRetry": "Try again",
+  "@commonActionsRetry": {
+    "description": "Website key: common.actions.retry"
+  },
   "commonPaginationNavigation": "Pagination",
   "@commonPaginationNavigation": {
     "description": "Website key: common.pagination.navigation"
@@ -156,6 +164,82 @@
         "type": "Object"
       }
     }
+  },
+  "commonListSortBy": "Sort by",
+  "@commonListSortBy": {
+    "description": "Website key: common.list.sortBy"
+  },
+  "commonListNewest": "Newest first",
+  "@commonListNewest": {
+    "description": "Website key: common.list.newest"
+  },
+  "commonListOldest": "Oldest first",
+  "@commonListOldest": {
+    "description": "Website key: common.list.oldest"
+  },
+  "commonListSeverity": "Most severe first",
+  "@commonListSeverity": {
+    "description": "Website key: common.list.severity"
+  },
+  "commonListQueue": "Review order",
+  "@commonListQueue": {
+    "description": "Website key: common.list.queue"
+  },
+  "commonListPriceAsc": "Price: low to high",
+  "@commonListPriceAsc": {
+    "description": "Website key: common.list.priceAsc"
+  },
+  "commonListPriceDesc": "Price: high to low",
+  "@commonListPriceDesc": {
+    "description": "Website key: common.list.priceDesc"
+  },
+  "commonListQuantityDesc": "Most available",
+  "@commonListQuantityDesc": {
+    "description": "Website key: common.list.quantityDesc"
+  },
+  "commonListFreshest": "Recently harvested",
+  "@commonListFreshest": {
+    "description": "Website key: common.list.freshest"
+  },
+  "commonListNameAsc": "Name (A–Z)",
+  "@commonListNameAsc": {
+    "description": "Website key: common.list.nameAsc"
+  },
+  "commonListAnyStatus": "Any status",
+  "@commonListAnyStatus": {
+    "description": "Website key: common.list.anyStatus"
+  },
+  "commonListAnyRole": "Any role",
+  "@commonListAnyRole": {
+    "description": "Website key: common.list.anyRole"
+  },
+  "commonListSearchListings": "Crop, variety, place or district",
+  "@commonListSearchListings": {
+    "description": "Website key: common.list.searchListings"
+  },
+  "commonListSearchIssues": "Title, crop, farmer or district",
+  "@commonListSearchIssues": {
+    "description": "Website key: common.list.searchIssues"
+  },
+  "commonListSearchUsers": "Name, email or username",
+  "@commonListSearchUsers": {
+    "description": "Website key: common.list.searchUsers"
+  },
+  "commonListShowing": "Showing {shown} of {total}",
+  "@commonListShowing": {
+    "description": "Website key: common.list.showing",
+    "placeholders": {
+      "shown": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonListNoMatches": "Nothing matches these filters.",
+  "@commonListNoMatches": {
+    "description": "Website key: common.list.noMatches"
   },
   "commonLanguageLabel": "Language",
   "@commonLanguageLabel": {
@@ -230,6 +314,157 @@
     "description": "Website key: common.units.availableShort",
     "placeholders": {
       "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsPerKg": "kg",
+  "@commonUnitsPerKg": {
+    "description": "Website key: common.units.per.Kg"
+  },
+  "commonUnitsPerPiece": "piece",
+  "@commonUnitsPerPiece": {
+    "description": "Website key: common.units.per.Piece"
+  },
+  "commonUnitsPerBunch": "bunch",
+  "@commonUnitsPerBunch": {
+    "description": "Website key: common.units.per.Bunch"
+  },
+  "commonUnitsPerSack": "sack",
+  "@commonUnitsPerSack": {
+    "description": "Website key: common.units.per.Sack"
+  },
+  "commonUnitsPerCrate": "crate",
+  "@commonUnitsPerCrate": {
+    "description": "Website key: common.units.per.Crate"
+  },
+  "commonUnitsNameKg": "Kilograms (kg)",
+  "@commonUnitsNameKg": {
+    "description": "Website key: common.units.name.Kg"
+  },
+  "commonUnitsNamePiece": "Pieces",
+  "@commonUnitsNamePiece": {
+    "description": "Website key: common.units.name.Piece"
+  },
+  "commonUnitsNameBunch": "Bunches",
+  "@commonUnitsNameBunch": {
+    "description": "Website key: common.units.name.Bunch"
+  },
+  "commonUnitsNameSack": "Sacks",
+  "@commonUnitsNameSack": {
+    "description": "Website key: common.units.name.Sack"
+  },
+  "commonUnitsNameCrate": "Crates",
+  "@commonUnitsNameCrate": {
+    "description": "Website key: common.units.name.Crate"
+  },
+  "commonUnitsQuantityKgOne": "{value} kg",
+  "@commonUnitsQuantityKgOne": {
+    "description": "Website key: common.units.quantity.Kg_one",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityKgOther": "{value} kg",
+  "@commonUnitsQuantityKgOther": {
+    "description": "Website key: common.units.quantity.Kg_other",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityPieceOne": "{value} piece",
+  "@commonUnitsQuantityPieceOne": {
+    "description": "Website key: common.units.quantity.Piece_one",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityPieceOther": "{value} pieces",
+  "@commonUnitsQuantityPieceOther": {
+    "description": "Website key: common.units.quantity.Piece_other",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityBunchOne": "{value} bunch",
+  "@commonUnitsQuantityBunchOne": {
+    "description": "Website key: common.units.quantity.Bunch_one",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityBunchOther": "{value} bunches",
+  "@commonUnitsQuantityBunchOther": {
+    "description": "Website key: common.units.quantity.Bunch_other",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantitySackOne": "{value} sack",
+  "@commonUnitsQuantitySackOne": {
+    "description": "Website key: common.units.quantity.Sack_one",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantitySackOther": "{value} sacks",
+  "@commonUnitsQuantitySackOther": {
+    "description": "Website key: common.units.quantity.Sack_other",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityCrateOne": "{value} crate",
+  "@commonUnitsQuantityCrateOne": {
+    "description": "Website key: common.units.quantity.Crate_one",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsQuantityCrateOther": "{value} crates",
+  "@commonUnitsQuantityCrateOther": {
+    "description": "Website key: common.units.quantity.Crate_other",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsPricePer": "Rs {value}/{unit}",
+  "@commonUnitsPricePer": {
+    "description": "Website key: common.units.pricePer",
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      },
+      "unit": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonUnitsAvailableQuantity": "{quantity} available",
+  "@commonUnitsAvailableQuantity": {
+    "description": "Website key: common.units.availableQuantity",
+    "placeholders": {
+      "quantity": {
         "type": "Object"
       }
     }
@@ -385,6 +620,10 @@
   "commonStatusRequestCancelled": "Closed – listing unavailable",
   "@commonStatusRequestCancelled": {
     "description": "Website key: common.status.request.Cancelled"
+  },
+  "commonStatusRequestWithdrawn": "Withdrawn",
+  "@commonStatusRequestWithdrawn": {
+    "description": "Website key: common.status.request.Withdrawn"
   },
   "commonStatusOrderConfirmed": "Confirmed",
   "@commonStatusOrderConfirmed": {
@@ -903,6 +1142,35 @@
   "commonProfileMenuMyProfile": "My profile",
   "@commonProfileMenuMyProfile": {
     "description": "Website key: common.profileMenu.myProfile"
+  },
+  "commonDurationDaysHours": "{days} d {hours} h",
+  "@commonDurationDaysHours": {
+    "description": "Website key: common.duration.daysHours",
+    "placeholders": {
+      "days": {
+        "type": "Object"
+      },
+      "hours": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonDurationHours": "{hours} h",
+  "@commonDurationHours": {
+    "description": "Website key: common.duration.hours",
+    "placeholders": {
+      "hours": {
+        "type": "Object"
+      }
+    }
+  },
+  "commonErrorsNotFound": "We couldn't find what you were looking for.",
+  "@commonErrorsNotFound": {
+    "description": "Website key: common.errors.notFound"
+  },
+  "commonErrorsGeneric": "Something went wrong. Please try again.",
+  "@commonErrorsGeneric": {
+    "description": "Website key: common.errors.generic"
   },
   "authLoginSubtitle": "Sign in to your account",
   "@authLoginSubtitle": {
@@ -1513,6 +1781,42 @@
   "@farmsFormDeleteError": {
     "description": "Website key: farms.form.deleteError"
   },
+  "farmsFormSaveError": "Could not save this. Please try again.",
+  "@farmsFormSaveError": {
+    "description": "Website key: farms.form.saveError"
+  },
+  "farmsOverviewOpenIssues": "Problems waiting for advice",
+  "@farmsOverviewOpenIssues": {
+    "description": "Website key: farms.overview.openIssues"
+  },
+  "farmsOverviewActiveListings": "Active listings",
+  "@farmsOverviewActiveListings": {
+    "description": "Website key: farms.overview.activeListings"
+  },
+  "farmsOverviewPendingRequests": "New buyer requests",
+  "@farmsOverviewPendingRequests": {
+    "description": "Website key: farms.overview.pendingRequests"
+  },
+  "farmsOverviewOrdersInProgress": "Orders in progress",
+  "@farmsOverviewOrdersInProgress": {
+    "description": "Website key: farms.overview.ordersInProgress"
+  },
+  "farmsOverviewLatestAdvice": "Latest advice: {title} ({crop})",
+  "@farmsOverviewLatestAdvice": {
+    "description": "Website key: farms.overview.latestAdvice",
+    "placeholders": {
+      "title": {
+        "type": "Object"
+      },
+      "crop": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsOverviewLabel": "Your work at a glance",
+  "@farmsOverviewLabel": {
+    "description": "Website key: farms.overview.label"
+  },
   "homeNavLogin": "Log in",
   "@homeNavLogin": {
     "description": "Website key: home.nav.login"
@@ -1581,6 +1885,38 @@
   "@homeRolesBuyerCta": {
     "description": "Website key: home.roles.buyer.cta"
   },
+  "homeStoryEyebrow": "A season with AgriLink",
+  "@homeStoryEyebrow": {
+    "description": "Website key: home.story.eyebrow"
+  },
+  "homeStoryTitle": "From a worry in the field to a sale at the market",
+  "@homeStoryTitle": {
+    "description": "Website key: home.story.title"
+  },
+  "homeStoryReportTitle": "Spot a problem, report it",
+  "@homeStoryReportTitle": {
+    "description": "Website key: home.story.report.title"
+  },
+  "homeStoryReportDescription": "Photograph a sick crop and report it in a minute, from your phone or computer.",
+  "@homeStoryReportDescription": {
+    "description": "Website key: home.story.report.description"
+  },
+  "homeStoryAdviceTitle": "Get advice from an officer",
+  "@homeStoryAdviceTitle": {
+    "description": "Website key: home.story.advice.title"
+  },
+  "homeStoryAdviceDescription": "An agricultural officer in your district reviews the report and tells you what to do next.",
+  "@homeStoryAdviceDescription": {
+    "description": "Website key: home.story.advice.description"
+  },
+  "homeStorySellTitle": "Sell your harvest directly",
+  "@homeStorySellTitle": {
+    "description": "Website key: home.story.sell.title"
+  },
+  "homeStorySellDescription": "List your harvest at your own price, and buyers from across the island send requests straight to you.",
+  "@homeStorySellDescription": {
+    "description": "Website key: home.story.sell.description"
+  },
   "homeMarketplaceTitle": "Fresh on the marketplace",
   "@homeMarketplaceTitle": {
     "description": "Website key: home.marketplace.title"
@@ -1637,6 +1973,62 @@
   "@homeStepsConnectDescription": {
     "description": "Website key: home.steps.connect.description"
   },
+  "homeStepsCtaTitle": "Ready to get started?",
+  "@homeStepsCtaTitle": {
+    "description": "Website key: home.steps.ctaTitle"
+  },
+  "homeStepsCtaSubtitle": "It's free, and it only takes a few minutes.",
+  "@homeStepsCtaSubtitle": {
+    "description": "Website key: home.steps.ctaSubtitle"
+  },
+  "homeStepsHaveAccount": "Already have an account?",
+  "@homeStepsHaveAccount": {
+    "description": "Website key: home.steps.haveAccount"
+  },
+  "homePhotosPaddyFarmer": "A farmer in a rice paddy, Ambanpola",
+  "@homePhotosPaddyFarmer": {
+    "description": "Website key: home.photos.paddyFarmer"
+  },
+  "homePhotosTeaHaputale": "Among the tea bushes, Haputale",
+  "@homePhotosTeaHaputale": {
+    "description": "Website key: home.photos.teaHaputale"
+  },
+  "homePhotosPaddyAerial": "Rice paddies from above",
+  "@homePhotosPaddyAerial": {
+    "description": "Website key: home.photos.paddyAerial"
+  },
+  "homePhotosFruitStall": "A fruit stall, Anuradhapura",
+  "@homePhotosFruitStall": {
+    "description": "Website key: home.photos.fruitStall"
+  },
+  "homePhotosRiceWinnowing": "Winnowing rice, Eastern Province",
+  "@homePhotosRiceWinnowing": {
+    "description": "Website key: home.photos.riceWinnowing"
+  },
+  "homePhotosTendingCrop": "Tending a vegetable plot",
+  "@homePhotosTendingCrop": {
+    "description": "Website key: home.photos.tendingCrop"
+  },
+  "homePhotosExaminingLeaves": "Looking closely at the leaves",
+  "@homePhotosExaminingLeaves": {
+    "description": "Website key: home.photos.examiningLeaves"
+  },
+  "homePhotosMarketHandover": "A sale at a vegetable stall",
+  "@homePhotosMarketHandover": {
+    "description": "Website key: home.photos.marketHandover"
+  },
+  "homePhotosFarmerGarden": "Working a vegetable garden",
+  "@homePhotosFarmerGarden": {
+    "description": "Website key: home.photos.farmerGarden"
+  },
+  "homePhotosWalkingFields": "Out in the fields",
+  "@homePhotosWalkingFields": {
+    "description": "Website key: home.photos.walkingFields"
+  },
+  "homePhotosVegetableStall": "A vegetable stall, Colombo",
+  "@homePhotosVegetableStall": {
+    "description": "Website key: home.photos.vegetableStall"
+  },
   "homeFooterTagline": "Connecting Sri Lankan farmers, officers and buyers.",
   "@homeFooterTagline": {
     "description": "Website key: home.footer.tagline"
@@ -1666,7 +2058,7 @@
   "@issuesMineTitle": {
     "description": "Website key: issues.mine.title"
   },
-  "issuesMineEmpty": "You haven't reported any crop issues yet. Report one from a crop's detail page.",
+  "issuesMineEmpty": "When a crop looks unwell, report it here and an agricultural officer will send you advice.",
   "@issuesMineEmpty": {
     "description": "Website key: issues.mine.empty"
   },
@@ -1855,6 +2247,15 @@
   "issuesPendingHasPhoto": "Photo attached",
   "@issuesPendingHasPhoto": {
     "description": "Website key: issues.pending.hasPhoto"
+  },
+  "issuesPendingOverdue": "Waiting {wait}",
+  "@issuesPendingOverdue": {
+    "description": "Website key: issues.pending.overdue",
+    "placeholders": {
+      "wait": {
+        "type": "Object"
+      }
+    }
   },
   "issuesAllTitle": "All Issues",
   "@issuesAllTitle": {
@@ -2247,6 +2648,82 @@
   "@issuesPhotoReviewReasonsTriageFailed": {
     "description": "Website key: issues.photoReview.reasons.TriageFailed"
   },
+  "issuesReviewTimingTitle": "Review times",
+  "@issuesReviewTimingTitle": {
+    "description": "Website key: issues.reviewTiming.title"
+  },
+  "issuesReviewTimingOverdueWarningOne": "1 issue has waited more than {hours} hours for an officer. The farmer is still waiting for advice.",
+  "@issuesReviewTimingOverdueWarningOne": {
+    "description": "Website key: issues.reviewTiming.overdueWarning_one",
+    "placeholders": {
+      "hours": {
+        "type": "Object"
+      }
+    }
+  },
+  "issuesReviewTimingOverdueWarningOther": "{count} issues have waited more than {hours} hours for an officer. These farmers are still waiting for advice.",
+  "@issuesReviewTimingOverdueWarningOther": {
+    "description": "Website key: issues.reviewTiming.overdueWarning_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      },
+      "hours": {
+        "type": "Object"
+      }
+    }
+  },
+  "issuesReviewTimingOverdueDistrict": "Waiting over {hours} h in my district",
+  "@issuesReviewTimingOverdueDistrict": {
+    "description": "Website key: issues.reviewTiming.overdueDistrict",
+    "placeholders": {
+      "hours": {
+        "type": "Object"
+      }
+    }
+  },
+  "issuesReviewTimingOverduePlatform": "Waiting over {hours} h (all districts)",
+  "@issuesReviewTimingOverduePlatform": {
+    "description": "Website key: issues.reviewTiming.overduePlatform",
+    "placeholders": {
+      "hours": {
+        "type": "Object"
+      }
+    }
+  },
+  "issuesReviewTimingOldestWaiting": "Longest wait right now",
+  "@issuesReviewTimingOldestWaiting": {
+    "description": "Website key: issues.reviewTiming.oldestWaiting"
+  },
+  "issuesReviewTimingNoneWaiting": "None waiting",
+  "@issuesReviewTimingNoneWaiting": {
+    "description": "Website key: issues.reviewTiming.noneWaiting"
+  },
+  "issuesReviewTimingMyAverage": "My average review time (30 days)",
+  "@issuesReviewTimingMyAverage": {
+    "description": "Website key: issues.reviewTiming.myAverage"
+  },
+  "issuesReviewTimingAverage": "Average review time (30 days)",
+  "@issuesReviewTimingAverage": {
+    "description": "Website key: issues.reviewTiming.average"
+  },
+  "issuesReviewTimingNoReviews": "No reviews yet",
+  "@issuesReviewTimingNoReviews": {
+    "description": "Website key: issues.reviewTiming.noReviews"
+  },
+  "issuesReviewTimingBasedOnOne": "Based on 1 review",
+  "@issuesReviewTimingBasedOnOne": {
+    "description": "Website key: issues.reviewTiming.basedOn_one"
+  },
+  "issuesReviewTimingBasedOnOther": "Based on {count} reviews",
+  "@issuesReviewTimingBasedOnOther": {
+    "description": "Website key: issues.reviewTiming.basedOn_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
   "marketplaceBrowseTitle": "Harvest Marketplace",
   "@marketplaceBrowseTitle": {
     "description": "Website key: marketplace.browse.title"
@@ -2294,6 +2771,19 @@
   "marketplaceFiltersClear": "Clear filters",
   "@marketplaceFiltersClear": {
     "description": "Website key: marketplace.filters.clear"
+  },
+  "marketplaceFiltersShow": "Filters",
+  "@marketplaceFiltersShow": {
+    "description": "Website key: marketplace.filters.show"
+  },
+  "marketplaceFiltersShowCount": "Filters ({count})",
+  "@marketplaceFiltersShowCount": {
+    "description": "Website key: marketplace.filters.showCount",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
   },
   "marketplaceDetailBack": "Back to marketplace",
   "@marketplaceDetailBack": {
@@ -2453,6 +2943,19 @@
   "@marketplaceListingFormEstimatedTotal": {
     "description": "Website key: marketplace.listingForm.estimatedTotal"
   },
+  "marketplaceListingFormUnit": "Sold by",
+  "@marketplaceListingFormUnit": {
+    "description": "Website key: marketplace.listingForm.unit"
+  },
+  "marketplaceListingFormPricePerUnitIn": "Price per {unit} (Rs)",
+  "@marketplaceListingFormPricePerUnitIn": {
+    "description": "Website key: marketplace.listingForm.pricePerUnitIn",
+    "placeholders": {
+      "unit": {
+        "type": "Object"
+      }
+    }
+  },
   "marketplaceRequestsTitle": "Purchase Requests",
   "@marketplaceRequestsTitle": {
     "description": "Website key: marketplace.requests.title"
@@ -2516,6 +3019,15 @@
   "@marketplaceRequestsGoToListings": {
     "description": "Website key: marketplace.requests.goToListings"
   },
+  "marketplaceRequestsQuantityRequested": "{quantity} requested",
+  "@marketplaceRequestsQuantityRequested": {
+    "description": "Website key: marketplace.requests.quantityRequested",
+    "placeholders": {
+      "quantity": {
+        "type": "Object"
+      }
+    }
+  },
   "marketplaceRequestFormQuantityLabel": "Quantity (up to {max})",
   "@marketplaceRequestFormQuantityLabel": {
     "description": "Website key: marketplace.requestForm.quantityLabel",
@@ -2549,6 +3061,30 @@
   "@marketplaceSentRequestsBrowseMarketplace": {
     "description": "Website key: marketplace.sentRequests.browseMarketplace"
   },
+  "marketplaceSentRequestsWithdraw": "Withdraw request",
+  "@marketplaceSentRequestsWithdraw": {
+    "description": "Website key: marketplace.sentRequests.withdraw"
+  },
+  "marketplaceSentRequestsWithdrawConfirmTitle": "Withdraw this request?",
+  "@marketplaceSentRequestsWithdrawConfirmTitle": {
+    "description": "Website key: marketplace.sentRequests.withdrawConfirmTitle"
+  },
+  "marketplaceSentRequestsWithdrawConfirmBody": "The farmer will be told. You can send a new request later if the listing is still open.",
+  "@marketplaceSentRequestsWithdrawConfirmBody": {
+    "description": "Website key: marketplace.sentRequests.withdrawConfirmBody"
+  },
+  "marketplaceSentRequestsKeep": "Keep request",
+  "@marketplaceSentRequestsKeep": {
+    "description": "Website key: marketplace.sentRequests.keep"
+  },
+  "marketplaceSentRequestsWithdrawn": "Request withdrawn.",
+  "@marketplaceSentRequestsWithdrawn": {
+    "description": "Website key: marketplace.sentRequests.withdrawn"
+  },
+  "marketplaceSentRequestsWithdrawError": "Could not withdraw the request.",
+  "@marketplaceSentRequestsWithdrawError": {
+    "description": "Website key: marketplace.sentRequests.withdrawError"
+  },
   "marketplaceEditFormEditListing": "Edit Listing",
   "@marketplaceEditFormEditListing": {
     "description": "Website key: marketplace.editForm.editListing"
@@ -2568,6 +3104,490 @@
   "marketplaceEditFormSaveError": "Could not update the listing.",
   "@marketplaceEditFormSaveError": {
     "description": "Website key: marketplace.editForm.saveError"
+  },
+  "marketplacePriceGuideTitle": "Recent prices for {crop}",
+  "@marketplacePriceGuideTitle": {
+    "description": "Website key: marketplace.priceGuide.title",
+    "placeholders": {
+      "crop": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideSubtitle": "What buyers agreed to pay in completed sales over the last {days} days",
+  "@marketplacePriceGuideSubtitle": {
+    "description": "Website key: marketplace.priceGuide.subtitle",
+    "placeholders": {
+      "days": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideInDistrict": "In {district}",
+  "@marketplacePriceGuideInDistrict": {
+    "description": "Website key: marketplace.priceGuide.inDistrict",
+    "placeholders": {
+      "district": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideNationwide": "All of Sri Lanka",
+  "@marketplacePriceGuideNationwide": {
+    "description": "Website key: marketplace.priceGuide.nationwide"
+  },
+  "marketplacePriceGuideAverage": "{price} on average",
+  "@marketplacePriceGuideAverage": {
+    "description": "Website key: marketplace.priceGuide.average",
+    "placeholders": {
+      "price": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideRange": "{min} to {max}",
+  "@marketplacePriceGuideRange": {
+    "description": "Website key: marketplace.priceGuide.range",
+    "placeholders": {
+      "min": {
+        "type": "Object"
+      },
+      "max": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideSalesOne": "{count} sale",
+  "@marketplacePriceGuideSalesOne": {
+    "description": "Website key: marketplace.priceGuide.sales_one",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideSalesOther": "{count} sales",
+  "@marketplacePriceGuideSalesOther": {
+    "description": "Website key: marketplace.priceGuide.sales_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideUseAverage": "Use this price",
+  "@marketplacePriceGuideUseAverage": {
+    "description": "Website key: marketplace.priceGuide.useAverage"
+  },
+  "marketplacePriceGuideNotEnough": "Not enough recent sales of {crop} to suggest a price yet. A guide appears after {min} completed sales in {days} days.",
+  "@marketplacePriceGuideNotEnough": {
+    "description": "Website key: marketplace.priceGuide.notEnough",
+    "placeholders": {
+      "crop": {
+        "type": "Object"
+      },
+      "min": {
+        "type": "Object"
+      },
+      "days": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideDistrictNotEnough": "Not enough recent sales in {district} yet.",
+  "@marketplacePriceGuideDistrictNotEnough": {
+    "description": "Website key: marketplace.priceGuide.districtNotEnough",
+    "placeholders": {
+      "district": {
+        "type": "Object"
+      }
+    }
+  },
+  "marketplacePriceGuideNationwideNotEnough": "Not enough recent sales across Sri Lanka yet.",
+  "@marketplacePriceGuideNationwideNotEnough": {
+    "description": "Website key: marketplace.priceGuide.nationwideNotEnough"
+  },
+  "marketplacePriceGuideDisclaimer": "A guide only. You choose your own price.",
+  "@marketplacePriceGuideDisclaimer": {
+    "description": "Website key: marketplace.priceGuide.disclaimer"
+  },
+  "messagesTitle": "Messages",
+  "@messagesTitle": {
+    "description": "Website key: messages.title"
+  },
+  "messagesSubtitle": "Chats about your purchase requests and crop issues",
+  "@messagesSubtitle": {
+    "description": "Website key: messages.subtitle"
+  },
+  "messagesHeaderOpen": "Messages",
+  "@messagesHeaderOpen": {
+    "description": "Website key: messages.header.open"
+  },
+  "messagesHeaderOpenReports": "Reported chats",
+  "@messagesHeaderOpenReports": {
+    "description": "Website key: messages.header.openReports"
+  },
+  "messagesHeaderUnreadOne": "{count} unread",
+  "@messagesHeaderUnreadOne": {
+    "description": "Website key: messages.header.unread_one",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesHeaderUnreadOther": "{count} unread",
+  "@messagesHeaderUnreadOther": {
+    "description": "Website key: messages.header.unread_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesHeaderOpenCountOne": "{count} open",
+  "@messagesHeaderOpenCountOne": {
+    "description": "Website key: messages.header.openCount_one",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesHeaderOpenCountOther": "{count} open",
+  "@messagesHeaderOpenCountOther": {
+    "description": "Website key: messages.header.openCount_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesListLabel": "Your chats",
+  "@messagesListLabel": {
+    "description": "Website key: messages.list.label"
+  },
+  "messagesListEmpty": "No messages yet.",
+  "@messagesListEmpty": {
+    "description": "Website key: messages.list.empty"
+  },
+  "messagesListEmptyHint": "Start a chat from a purchase request, an order, or an issue's advice page.",
+  "@messagesListEmptyHint": {
+    "description": "Website key: messages.list.emptyHint"
+  },
+  "messagesListYou": "You: {text}",
+  "@messagesListYou": {
+    "description": "Website key: messages.list.you",
+    "placeholders": {
+      "text": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesListOfficersOf": "Officers · {district}",
+  "@messagesListOfficersOf": {
+    "description": "Website key: messages.list.officersOf",
+    "placeholders": {
+      "district": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesListDealTitle": "{crop} · {quantity}",
+  "@messagesListDealTitle": {
+    "description": "Website key: messages.list.dealTitle",
+    "placeholders": {
+      "crop": {
+        "type": "Object"
+      },
+      "quantity": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesListUnreadOne": "{count} unread message",
+  "@messagesListUnreadOne": {
+    "description": "Website key: messages.list.unread_one",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesListUnreadOther": "{count} unread messages",
+  "@messagesListUnreadOther": {
+    "description": "Website key: messages.list.unread_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesListLoadError": "Your chats couldn't be loaded.",
+  "@messagesListLoadError": {
+    "description": "Website key: messages.list.loadError"
+  },
+  "messagesKindDeal": "Purchase request",
+  "@messagesKindDeal": {
+    "description": "Website key: messages.kind.Deal"
+  },
+  "messagesKindAdvice": "Crop advice",
+  "@messagesKindAdvice": {
+    "description": "Website key: messages.kind.Advice"
+  },
+  "messagesRoleFarmer": "Farmer",
+  "@messagesRoleFarmer": {
+    "description": "Website key: messages.role.Farmer"
+  },
+  "messagesRoleBuyer": "Buyer",
+  "@messagesRoleBuyer": {
+    "description": "Website key: messages.role.Buyer"
+  },
+  "messagesRoleOfficer": "Agricultural officer",
+  "@messagesRoleOfficer": {
+    "description": "Website key: messages.role.Officer"
+  },
+  "messagesThreadBack": "All chats",
+  "@messagesThreadBack": {
+    "description": "Website key: messages.thread.back"
+  },
+  "messagesThreadSelectPrompt": "Choose a chat to read it.",
+  "@messagesThreadSelectPrompt": {
+    "description": "Website key: messages.thread.selectPrompt"
+  },
+  "messagesThreadViewRequest": "View request",
+  "@messagesThreadViewRequest": {
+    "description": "Website key: messages.thread.viewRequest"
+  },
+  "messagesThreadViewOrder": "View order",
+  "@messagesThreadViewOrder": {
+    "description": "Website key: messages.thread.viewOrder"
+  },
+  "messagesThreadViewAdvice": "View advice",
+  "@messagesThreadViewAdvice": {
+    "description": "Website key: messages.thread.viewAdvice"
+  },
+  "messagesThreadNoMessages": "No messages yet. Say hello!",
+  "@messagesThreadNoMessages": {
+    "description": "Website key: messages.thread.noMessages"
+  },
+  "messagesThreadOlderHidden": "Earlier messages aren't shown.",
+  "@messagesThreadOlderHidden": {
+    "description": "Website key: messages.thread.olderHidden"
+  },
+  "messagesThreadSeen": "Seen",
+  "@messagesThreadSeen": {
+    "description": "Website key: messages.thread.seen"
+  },
+  "messagesThreadToday": "Today",
+  "@messagesThreadToday": {
+    "description": "Website key: messages.thread.today"
+  },
+  "messagesThreadYesterday": "Yesterday",
+  "@messagesThreadYesterday": {
+    "description": "Website key: messages.thread.yesterday"
+  },
+  "messagesThreadClosed": "This request was declined or withdrawn, so this chat is closed.",
+  "@messagesThreadClosed": {
+    "description": "Website key: messages.thread.closed"
+  },
+  "messagesThreadNotFound": "This chat couldn't be found, or you don't have access to it.",
+  "@messagesThreadNotFound": {
+    "description": "Website key: messages.thread.notFound"
+  },
+  "messagesThreadAdminView": "You're reading this chat because it was reported. Admins can't post in it.",
+  "@messagesThreadAdminView": {
+    "description": "Website key: messages.thread.adminView"
+  },
+  "messagesThreadOfficersOfDistrict": "Officers of {district}",
+  "@messagesThreadOfficersOfDistrict": {
+    "description": "Website key: messages.thread.officersOfDistrict",
+    "placeholders": {
+      "district": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesThreadSafety": "Keep payments and personal details inside AgriLink, and report anything that worries you.",
+  "@messagesThreadSafety": {
+    "description": "Website key: messages.thread.safety"
+  },
+  "messagesComposerLabel": "Message",
+  "@messagesComposerLabel": {
+    "description": "Website key: messages.composer.label"
+  },
+  "messagesComposerPlaceholder": "Write a message…",
+  "@messagesComposerPlaceholder": {
+    "description": "Website key: messages.composer.placeholder"
+  },
+  "messagesComposerSend": "Send",
+  "@messagesComposerSend": {
+    "description": "Website key: messages.composer.send"
+  },
+  "messagesComposerHint": "Enter to send · Shift+Enter for a new line",
+  "@messagesComposerHint": {
+    "description": "Website key: messages.composer.hint"
+  },
+  "messagesComposerRemaining": "{count} characters left",
+  "@messagesComposerRemaining": {
+    "description": "Website key: messages.composer.remaining",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesReportOpen": "Report",
+  "@messagesReportOpen": {
+    "description": "Website key: messages.report.open"
+  },
+  "messagesReportTitle": "Report this chat",
+  "@messagesReportTitle": {
+    "description": "Website key: messages.report.title"
+  },
+  "messagesReportIntro": "An administrator will read the chat and follow up. Tell them briefly what is wrong.",
+  "@messagesReportIntro": {
+    "description": "Website key: messages.report.intro"
+  },
+  "messagesReportReason": "What's wrong?",
+  "@messagesReportReason": {
+    "description": "Website key: messages.report.reason"
+  },
+  "messagesReportSubmit": "Send report",
+  "@messagesReportSubmit": {
+    "description": "Website key: messages.report.submit"
+  },
+  "messagesReportCancel": "Cancel",
+  "@messagesReportCancel": {
+    "description": "Website key: messages.report.cancel"
+  },
+  "messagesReportSent": "Thank you. An administrator will look at this chat.",
+  "@messagesReportSent": {
+    "description": "Website key: messages.report.sent"
+  },
+  "messagesReportAlready": "Reported. An administrator will look at it.",
+  "@messagesReportAlready": {
+    "description": "Website key: messages.report.already"
+  },
+  "messagesReportError": "The report couldn't be sent. Please try again.",
+  "@messagesReportError": {
+    "description": "Website key: messages.report.error"
+  },
+  "messagesStartMessageBuyer": "Message the buyer",
+  "@messagesStartMessageBuyer": {
+    "description": "Website key: messages.start.messageBuyer"
+  },
+  "messagesStartMessageFarmer": "Message the farmer",
+  "@messagesStartMessageFarmer": {
+    "description": "Website key: messages.start.messageFarmer"
+  },
+  "messagesStartAskOfficer": "Ask an officer",
+  "@messagesStartAskOfficer": {
+    "description": "Website key: messages.start.askOfficer"
+  },
+  "messagesStartError": "The chat couldn't be opened. Please try again.",
+  "@messagesStartError": {
+    "description": "Website key: messages.start.error"
+  },
+  "messagesErrorsTooFast": "You're sending messages too quickly. Wait a minute and try again.",
+  "@messagesErrorsTooFast": {
+    "description": "Website key: messages.errors.tooFast"
+  },
+  "messagesErrorsClosed": "This chat is closed.",
+  "@messagesErrorsClosed": {
+    "description": "Website key: messages.errors.closed"
+  },
+  "messagesErrorsSendFailed": "Your message wasn't sent. Please try again.",
+  "@messagesErrorsSendFailed": {
+    "description": "Website key: messages.errors.sendFailed"
+  },
+  "messagesErrorsLoadFailed": "Messages couldn't be loaded.",
+  "@messagesErrorsLoadFailed": {
+    "description": "Website key: messages.errors.loadFailed"
+  },
+  "messagesReportsTitle": "Reported chats",
+  "@messagesReportsTitle": {
+    "description": "Website key: messages.reports.title"
+  },
+  "messagesReportsSubtitle": "Chats a participant reported. Read the chat, then mark the report resolved.",
+  "@messagesReportsSubtitle": {
+    "description": "Website key: messages.reports.subtitle"
+  },
+  "messagesReportsEmpty": "No chats have been reported.",
+  "@messagesReportsEmpty": {
+    "description": "Website key: messages.reports.empty"
+  },
+  "messagesReportsOpen": "Open",
+  "@messagesReportsOpen": {
+    "description": "Website key: messages.reports.open"
+  },
+  "messagesReportsResolved": "Resolved",
+  "@messagesReportsResolved": {
+    "description": "Website key: messages.reports.resolved"
+  },
+  "messagesReportsReportedBy": "Reported by {name} on {date}",
+  "@messagesReportsReportedBy": {
+    "description": "Website key: messages.reports.reportedBy",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesReportsResolvedBy": "Resolved by {name} on {date}",
+  "@messagesReportsResolvedBy": {
+    "description": "Website key: messages.reports.resolvedBy",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "messagesReportsViewChat": "Read the chat",
+  "@messagesReportsViewChat": {
+    "description": "Website key: messages.reports.viewChat"
+  },
+  "messagesReportsResolve": "Mark resolved",
+  "@messagesReportsResolve": {
+    "description": "Website key: messages.reports.resolve"
+  },
+  "messagesReportsNote": "Note (optional)",
+  "@messagesReportsNote": {
+    "description": "Website key: messages.reports.note"
+  },
+  "messagesReportsResolvedToast": "Report marked as resolved.",
+  "@messagesReportsResolvedToast": {
+    "description": "Website key: messages.reports.resolvedToast"
+  },
+  "messagesReportsResolveError": "The report couldn't be updated.",
+  "@messagesReportsResolveError": {
+    "description": "Website key: messages.reports.resolveError"
+  },
+  "messagesReportsBack": "Reported chats",
+  "@messagesReportsBack": {
+    "description": "Website key: messages.reports.back"
+  },
+  "messagesReportsOnThisChat": "Reports on this chat",
+  "@messagesReportsOnThisChat": {
+    "description": "Website key: messages.reports.onThisChat"
+  },
+  "messagesReportsBetween": "Between {farmer} (farmer) and {other}",
+  "@messagesReportsBetween": {
+    "description": "Website key: messages.reports.between",
+    "placeholders": {
+      "farmer": {
+        "type": "Object"
+      },
+      "other": {
+        "type": "Object"
+      }
+    }
   },
   "officerDashboardTitle": "Officer Dashboard",
   "@officerDashboardTitle": {
@@ -3035,6 +4055,95 @@
       }
     }
   },
+  "ordersAdminPhotoDiagnosisTitle": "Photo models vs officers",
+  "@ordersAdminPhotoDiagnosisTitle": {
+    "description": "Website key: orders.admin.photoDiagnosis.title"
+  },
+  "ordersAdminPhotoDiagnosisSubtitle": "How often each photo model's guess matched the disease the reviewing officer confirmed. The confirmed photos are labelled training data from real Sri Lankan fields.",
+  "@ordersAdminPhotoDiagnosisSubtitle": {
+    "description": "Website key: orders.admin.photoDiagnosis.subtitle"
+  },
+  "ordersAdminPhotoDiagnosisDownloadOne": "Download {count} confirmed photo (.zip)",
+  "@ordersAdminPhotoDiagnosisDownloadOne": {
+    "description": "Website key: orders.admin.photoDiagnosis.download_one",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersAdminPhotoDiagnosisDownloadOther": "Download {count} confirmed photos (.zip)",
+  "@ordersAdminPhotoDiagnosisDownloadOther": {
+    "description": "Website key: orders.admin.photoDiagnosis.download_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersAdminPhotoDiagnosisDownloadError": "The photos could not be downloaded. Please try again.",
+  "@ordersAdminPhotoDiagnosisDownloadError": {
+    "description": "Website key: orders.admin.photoDiagnosis.downloadError"
+  },
+  "ordersAdminPhotoDiagnosisEmpty": "No photo diagnoses have been reviewed yet.",
+  "@ordersAdminPhotoDiagnosisEmpty": {
+    "description": "Website key: orders.admin.photoDiagnosis.empty"
+  },
+  "ordersAdminPhotoDiagnosisCrop": "Crop and model",
+  "@ordersAdminPhotoDiagnosisCrop": {
+    "description": "Website key: orders.admin.photoDiagnosis.crop"
+  },
+  "ordersAdminPhotoDiagnosisReviewed": "Reviewed",
+  "@ordersAdminPhotoDiagnosisReviewed": {
+    "description": "Website key: orders.admin.photoDiagnosis.reviewed"
+  },
+  "ordersAdminPhotoDiagnosisAgreed": "Officer agreed",
+  "@ordersAdminPhotoDiagnosisAgreed": {
+    "description": "Website key: orders.admin.photoDiagnosis.agreed"
+  },
+  "ordersAdminPhotoDiagnosisOther": "Not a model class",
+  "@ordersAdminPhotoDiagnosisOther": {
+    "description": "Website key: orders.admin.photoDiagnosis.other"
+  },
+  "ordersAdminPhotoDiagnosisCorrections": "Most common corrections",
+  "@ordersAdminPhotoDiagnosisCorrections": {
+    "description": "Website key: orders.admin.photoDiagnosis.corrections"
+  },
+  "ordersAdminPhotoDiagnosisNoCorrections": "None",
+  "@ordersAdminPhotoDiagnosisNoCorrections": {
+    "description": "Website key: orders.admin.photoDiagnosis.noCorrections"
+  },
+  "ordersAdminPhotoDiagnosisCorrectionOne": "{predicted} → {confirmed} (once)",
+  "@ordersAdminPhotoDiagnosisCorrectionOne": {
+    "description": "Website key: orders.admin.photoDiagnosis.correction_one",
+    "placeholders": {
+      "predicted": {
+        "type": "Object"
+      },
+      "confirmed": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersAdminPhotoDiagnosisCorrectionOther": "{predicted} → {confirmed} ({count} times)",
+  "@ordersAdminPhotoDiagnosisCorrectionOther": {
+    "description": "Website key: orders.admin.photoDiagnosis.correction_other",
+    "placeholders": {
+      "predicted": {
+        "type": "Object"
+      },
+      "confirmed": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "ordersAdminPhotoDiagnosisPrivacy": "The download contains the photos and their labels only: no farmer names or contact details. Keep it private and out of Git.",
+  "@ordersAdminPhotoDiagnosisPrivacy": {
+    "description": "Website key: orders.admin.photoDiagnosis.privacy"
+  },
   "ordersAuditLogTitle": "Audit Log",
   "@ordersAuditLogTitle": {
     "description": "Website key: orders.auditLog.title"
@@ -3412,11 +4521,67 @@
   "@registrationsPendingChangesCancel": {
     "description": "Website key: registrations.pending.changes.cancel"
   },
-  "@@x-mobile-only": "The keys below are mobile-only strings from lib/l10n/mobile/en.json.",
-  "commonActionsRetry": "Try again",
-  "@commonActionsRetry": {
-    "description": "Mobile-only key: common.actions.retry"
+  "registrationsPendingRejectedTitle": "Rejected applications",
+  "@registrationsPendingRejectedTitle": {
+    "description": "Website key: registrations.pending.rejected.title"
   },
+  "registrationsPendingRejectedDescription": "Rejected by mistake? Approve an application here to reverse the rejection.",
+  "@registrationsPendingRejectedDescription": {
+    "description": "Website key: registrations.pending.rejected.description"
+  },
+  "registrationsPendingRejectedEmpty": "No applications have been rejected.",
+  "@registrationsPendingRejectedEmpty": {
+    "description": "Website key: registrations.pending.rejected.empty"
+  },
+  "registrationsPendingRejectedRejectedOn": "Rejected {date}",
+  "@registrationsPendingRejectedRejectedOn": {
+    "description": "Website key: registrations.pending.rejected.rejectedOn",
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingRejectedReason": "Reason: {reason}",
+  "@registrationsPendingRejectedReason": {
+    "description": "Website key: registrations.pending.rejected.reason",
+    "placeholders": {
+      "reason": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingRejectedApproveAnyway": "Approve anyway",
+  "@registrationsPendingRejectedApproveAnyway": {
+    "description": "Website key: registrations.pending.rejected.approveAnyway"
+  },
+  "registrationsPendingRejectedConfirm": "Approve {name}? They'll be able to sign in, and they'll be told their application was approved.",
+  "@registrationsPendingRejectedConfirm": {
+    "description": "Website key: registrations.pending.rejected.confirm",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingRejectedConfirmYes": "Yes, approve",
+  "@registrationsPendingRejectedConfirmYes": {
+    "description": "Website key: registrations.pending.rejected.confirmYes"
+  },
+  "registrationsPendingRejectedApproved": "{name} has been approved.",
+  "@registrationsPendingRejectedApproved": {
+    "description": "Website key: registrations.pending.rejected.approved",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "registrationsPendingRejectedApproveError": "The application couldn't be approved. Please try again.",
+  "@registrationsPendingRejectedApproveError": {
+    "description": "Website key: registrations.pending.rejected.approveError"
+  },
+  "@@x-mobile-only": "The keys below are mobile-only strings from lib/l10n/mobile/en.json.",
   "commonActionsCancel": "Cancel",
   "@commonActionsCancel": {
     "description": "Mobile-only key: common.actions.cancel"
@@ -3432,10 +4597,6 @@
   "commonActionsOpenSettings": "Open settings",
   "@commonActionsOpenSettings": {
     "description": "Mobile-only key: common.actions.openSettings"
-  },
-  "commonNavMore": "More",
-  "@commonNavMore": {
-    "description": "Mobile-only key: common.nav.more"
   },
   "commonNavProfile": "Profile",
   "@commonNavProfile": {
@@ -3454,10 +4615,6 @@
   "@commonErrorsNetwork": {
     "description": "Mobile-only key: common.errors.network"
   },
-  "commonErrorsGeneric": "Something went wrong. Please try again.",
-  "@commonErrorsGeneric": {
-    "description": "Mobile-only key: common.errors.generic"
-  },
   "commonErrorsSlowServer": "The server is waking up. This can take up to 30 seconds.",
   "@commonErrorsSlowServer": {
     "description": "Mobile-only key: common.errors.slowServer"
@@ -3469,10 +4626,6 @@
   "commonErrorsForbidden": "You don't have permission to do that.",
   "@commonErrorsForbidden": {
     "description": "Mobile-only key: common.errors.forbidden"
-  },
-  "commonErrorsNotFound": "We couldn't find what you were looking for.",
-  "@commonErrorsNotFound": {
-    "description": "Mobile-only key: common.errors.notFound"
   },
   "commonEmptyTitle": "Nothing here yet",
   "@commonEmptyTitle": {
@@ -4044,10 +5197,6 @@
   "farmsFieldNoCropsYet": "No crops planted in this field yet. Plant one to get started.",
   "@farmsFieldNoCropsYet": {
     "description": "Mobile-only key: farms.field.noCropsYet"
-  },
-  "farmsFormSaveError": "We couldn't save your changes. Please try again.",
-  "@farmsFormSaveError": {
-    "description": "Mobile-only key: farms.form.saveError"
   },
   "farmsFormAreaTooLarge": "Area is too large",
   "@farmsFormAreaTooLarge": {
