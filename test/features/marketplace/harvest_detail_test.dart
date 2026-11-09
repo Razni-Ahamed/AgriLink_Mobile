@@ -28,7 +28,7 @@ void main() {
       await pumpMarketplace(tester, role: Role.buyer, api: api, path: '/marketplace/7');
 
       expect(find.text('Samba'), findsOneWidget);
-      expect(find.text('Rs 120'), findsOneWidget);
+      expect(find.text('Rs 120/kg'), findsOneWidget);
       expect(find.text('40 kg'), findsOneWidget);
       expect(find.byKey(const Key('edit-listing')), findsNothing);
 

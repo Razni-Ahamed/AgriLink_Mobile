@@ -3,7 +3,7 @@ import 'marketplace_enums.dart';
 
 /// A harvest a farmer has put up for sale: the API's `HarvestListingResponse`.
 ///
-/// Quantities are in kilograms and [pricePerUnit] is rupees per kilogram, as on the website.
+/// [quantity] and [availableQuantity] are counted in [unit], and [pricePerUnit] is rupees per [unit].
 class HarvestListing {
   const HarvestListing({
     required this.id,
@@ -19,6 +19,7 @@ class HarvestListing {
     required this.district,
     required this.status,
     required this.createdAt,
+    this.unit = QuantityUnit.kg,
   });
 
   factory HarvestListing.fromJson(Json json) => HarvestListing(
@@ -35,6 +36,7 @@ class HarvestListing {
     district: json['district'] as String? ?? '',
     status: HarvestStatus.fromApi(json['status']),
     createdAt: parseApiDate(field<String>(json, 'createdAt')),
+    unit: QuantityUnit.fromApi(json['unit']),
   );
 
   final int id;
@@ -54,6 +56,7 @@ class HarvestListing {
   final String district;
   final HarvestStatus status;
   final DateTime createdAt;
+  final QuantityUnit unit;
 
   /// A cancelled listing can be reopened only while it still has something left to sell.
   bool get canReopen => status == HarvestStatus.cancelled && availableQuantity > 0;
@@ -68,6 +71,7 @@ class CreateHarvestListingRequest {
     required this.harvestDate,
     required this.pricePerUnit,
     required this.location,
+    this.unit = QuantityUnit.kg,
   });
 
   final int cropId;
@@ -75,12 +79,14 @@ class CreateHarvestListingRequest {
   final DateTime harvestDate;
   final double pricePerUnit;
   final String location;
+  final QuantityUnit unit;
 
   Json toJson() => {
     'cropId': cropId,
     'quantity': quantity,
     'harvestDate': apiDateOnly(harvestDate),
     'pricePerUnit': pricePerUnit,
+    'unit': unit.apiName,
     'location': location,
   };
 }
@@ -93,6 +99,7 @@ class UpdateHarvestListingRequest {
     this.pricePerUnit,
     this.location,
     this.harvestDate,
+    this.unit,
   });
 
   final HarvestStatus? status;
@@ -100,8 +107,12 @@ class UpdateHarvestListingRequest {
   final String? location;
   final DateTime? harvestDate;
 
+  /// Refused by the API once a buyer has sent a request for the listing.
+  final QuantityUnit? unit;
+
   Json toJson() => {
     if (status != null) 'status': status!.apiName,
+    if (unit != null) 'unit': unit!.apiName,
     if (pricePerUnit != null) 'pricePerUnit': pricePerUnit,
     if (location != null) 'location': location,
     if (harvestDate != null) 'harvestDate': apiDateOnly(harvestDate!),

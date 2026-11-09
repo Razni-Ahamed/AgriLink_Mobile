@@ -30,6 +30,7 @@ const List<String> webNamespaces = [
   'home',
   'issues',
   'marketplace',
+  'messages',
   'officer',
   'orders',
   'registrations',

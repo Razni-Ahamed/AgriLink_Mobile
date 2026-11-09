@@ -18,6 +18,7 @@ import '../../../shared/widgets/status_badge.dart';
 import '../../auth/application/current_user.dart';
 import '../application/listing_rules.dart';
 import '../application/marketplace_providers.dart';
+import '../application/unit_format.dart';
 import '../data/harvest_listing.dart';
 import '../data/marketplace_enums.dart';
 import 'widgets/edit_listing_sheet.dart';
@@ -127,13 +128,13 @@ class _ListingDetail extends ConsumerWidget {
                 _Fact(
                   icon: Icons.sell_outlined,
                   label: l10n.marketplaceDetailPricePerUnit,
-                  value: format.rupees(l10n, listing.pricePerUnit),
+                  value: format.pricePer(l10n, listing.pricePerUnit, listing.unit),
                   emphasise: true,
                 ),
                 _Fact(
                   icon: Icons.scale_outlined,
                   label: l10n.marketplaceDetailAvailableQuantity,
-                  value: format.kilograms(l10n, listing.availableQuantity),
+                  value: format.quantity(l10n, listing.availableQuantity, listing.unit),
                   mono: true,
                 ),
                 _Fact(

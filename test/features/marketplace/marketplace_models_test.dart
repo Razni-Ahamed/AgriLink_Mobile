@@ -71,6 +71,7 @@ void main() {
         'quantity': 250.5,
         'harvestDate': '2026-09-05',
         'pricePerUnit': 95.0,
+        'unit': 'Kg',
         'location': 'Wariyapola',
       });
     });
@@ -175,6 +176,27 @@ void main() {
     test('is false for another farmer and for users with no farmer profile', () {
       expect(isOwnListing(listing, 16), isFalse);
       expect(isOwnListing(listing, null), isFalse);
+    });
+  });
+
+  group('units', () {
+    test('a listing, request and order read their unit, and default to kg without one', () {
+      expect(HarvestListing.fromJson({...listingJson(), 'unit': 'Bunch'}).unit, QuantityUnit.bunch);
+      expect(HarvestListing.fromJson(listingJson()).unit, QuantityUnit.kg);
+      expect(PurchaseRequest.fromJson({...requestJson(), 'unit': 'Sack'}).unit, QuantityUnit.sack);
+      expect(Order.fromJson({...orderJson(), 'unit': 'Piece'}).unit, QuantityUnit.piece);
+      expect(QuantityUnit.fromApi('Barrel'), QuantityUnit.kg);
+    });
+
+    test('a withdrawn request is understood', () {
+      expect(PurchaseRequestStatus.fromApi('Withdrawn'), PurchaseRequestStatus.withdrawn);
+    });
+
+    test('the update body sends a unit only when one is given', () {
+      expect(const UpdateHarvestListingRequest(unit: QuantityUnit.crate).toJson(), {
+        'unit': 'Crate',
+      });
+      expect(const UpdateHarvestListingRequest(pricePerUnit: 10).toJson(), {'pricePerUnit': 10});
     });
   });
 }

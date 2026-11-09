@@ -11,6 +11,7 @@ import '../../../l10n/l10n.dart';
 import '../../../l10n/labels.dart';
 import '../../../shared/widgets/state_views.dart';
 import '../application/marketplace_providers.dart';
+import '../application/unit_format.dart';
 import '../data/harvest_listing.dart';
 import '../data/marketplace_enums.dart';
 import '../marketplace_paths.dart';
@@ -140,8 +141,8 @@ class _OwnerFooter extends ConsumerWidget {
           Expanded(
             child: Text(
               l10n.marketplaceListingsAvailableOf(
-                format.number(listing.availableQuantity),
-                format.kilograms(l10n, listing.quantity),
+                format.quantity(l10n, listing.availableQuantity, listing.unit),
+                format.quantity(l10n, listing.quantity, listing.unit),
               ),
               style: Theme.of(context).textTheme.bodySmall!.mono
                   .copyWith(color: context.colors.textSecondary),

@@ -16,9 +16,11 @@ import '../../../shared/widgets/dialogs.dart';
 import '../../../shared/widgets/state_views.dart';
 import '../../../shared/widgets/status_badge.dart';
 import '../../../shared/widgets/user_avatar.dart';
+import '../../messages/presentation/start_chat_button.dart';
 import '../application/contact_launcher.dart';
 import '../application/marketplace_errors.dart';
 import '../application/marketplace_providers.dart';
+import '../application/unit_format.dart';
 import '../data/marketplace_api.dart';
 import '../data/order.dart';
 import 'widgets/header_badge.dart';
@@ -173,12 +175,12 @@ class _OrderDetailState extends ConsumerState<_OrderDetail> {
                 ),
                 _Line(
                   label: l10n.ordersDetailQuantity,
-                  value: format.kilograms(l10n, order.totalQuantity),
+                  value: format.quantity(l10n, order.totalQuantity, order.unit),
                   mono: true,
                 ),
                 _Line(
                   label: l10n.ordersDetailPricePerUnit,
-                  value: l10n.commonUnitsRupeesPerUnit(format.number(order.pricePerUnit)),
+                  value: format.pricePer(l10n, order.pricePerUnit, order.unit),
                   mono: true,
                 ),
                 _Line(label: l10n.ordersDetailLocation, value: order.harvestLocation),
@@ -200,6 +202,11 @@ class _OrderDetailState extends ConsumerState<_OrderDetail> {
           title: viewerIsFarmer ? l10n.ordersDetailBuyer : l10n.ordersDetailFarmer,
           role: viewerIsFarmer ? Role.buyer : Role.farmer,
           party: order.otherParty(viewerIsFarmer: viewerIsFarmer),
+        ),
+        const SizedBox(height: Gaps.xs),
+        StartChatButton(
+          subject: DealChat(order.requestId),
+          label: viewerIsFarmer ? l10n.messagesStartMessageBuyer : l10n.messagesStartMessageFarmer,
         ),
         if (order.status.canChange) ...[
           const SizedBox(height: Gaps.lg),

@@ -16,9 +16,11 @@ import '../../../../shared/widgets/form_fields.dart';
 import '../../../../shared/widgets/state_views.dart';
 import '../../application/marketplace_errors.dart';
 import '../../application/marketplace_providers.dart';
+import '../../application/unit_format.dart';
 import '../../data/farmer_crop.dart';
 import '../../data/harvest_listing.dart';
 import '../../data/marketplace_api.dart';
+import '../../data/marketplace_enums.dart';
 
 /// The farmer's "New Listing" form, like the website's HarvestListingForm: pick one of their
 /// crops, then the quantity, price, harvest date and location.
@@ -78,6 +80,7 @@ class _NewListingFormState extends ConsumerState<_NewListingForm> {
   final _price = TextEditingController();
   final _location = TextEditingController();
   FarmerCrop? _crop;
+  QuantityUnit _unit = QuantityUnit.kg;
   DateTime? _harvestDate;
   bool _publishing = false;
   Map<String, String> _fieldErrors = const {};
@@ -128,6 +131,7 @@ class _NewListingFormState extends ConsumerState<_NewListingForm> {
               quantity: parsePositiveNumber(_quantity.text)!,
               harvestDate: _harvestDate!,
               pricePerUnit: parsePositiveNumber(_price.text)!,
+              unit: _unit,
               location: _location.text.trim(),
             ),
           );
@@ -200,13 +204,26 @@ class _NewListingFormState extends ConsumerState<_NewListingForm> {
               _SelectedCrop(crop: _crop!),
             ],
             const SizedBox(height: Gaps.md),
+            DropdownButtonFormField<QuantityUnit>(
+              key: const Key('listing-unit'),
+              initialValue: _unit,
+              isExpanded: true,
+              borderRadius: BorderRadius.circular(kRadius),
+              decoration: InputDecoration(labelText: l10n.marketplaceListingFormUnit),
+              items: [
+                for (final unit in QuantityUnit.values)
+                  DropdownMenuItem(value: unit, child: Text(unitName(l10n, unit))),
+              ],
+              onChanged: (unit) => setState(() => _unit = unit ?? QuantityUnit.kg),
+            ),
+            const SizedBox(height: Gaps.md),
             AppTextField(
               fieldKey: const Key('listing-quantity'),
               controller: _quantity,
               label: l10n.marketplaceListingFormQuantity,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: numberOnly,
-              suffix: const Text('kg'),
+              suffix: Text(unitPer(l10n, _unit)),
               validator: (text) =>
                   parsePositiveNumber(text ?? '') == null ? l10n.commonValidationQuantityMin : null,
               serverError: _fieldErrors['quantity'],
@@ -215,7 +232,7 @@ class _NewListingFormState extends ConsumerState<_NewListingForm> {
             AppTextField(
               fieldKey: const Key('listing-price'),
               controller: _price,
-              label: l10n.marketplaceListingFormPricePerUnit,
+              label: l10n.marketplaceListingFormPricePerUnitIn(unitPer(l10n, _unit)),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: numberOnly,
               validator: (text) =>

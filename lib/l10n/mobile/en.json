@@ -1,24 +1,20 @@
 {
   "common": {
     "actions": {
-      "retry": "Try again",
       "cancel": "Cancel",
       "ok": "OK",
       "confirm": "Confirm",
       "openSettings": "Open settings"
     },
     "nav": {
-      "more": "More",
       "profile": "Profile",
       "unreadNotifications": "Notifications, {{count}} unread"
     },
     "errors": {
       "network": "Can't reach the server. Check your connection and try again.",
-      "generic": "Something went wrong. Please try again.",
       "slowServer": "The server is waking up. This can take up to 30 seconds.",
       "sessionExpired": "Your session has ended. Please sign in again.",
-      "forbidden": "You don't have permission to do that.",
-      "notFound": "We couldn't find what you were looking for."
+      "forbidden": "You don't have permission to do that."
     },
     "empty": {
       "title": "Nothing here yet"
@@ -193,7 +189,6 @@
       "noCropsYet": "No crops planted in this field yet. Plant one to get started."
     },
     "form": {
-      "saveError": "We couldn't save your changes. Please try again.",
       "areaTooLarge": "Area is too large",
       "quantityTooLarge": "Quantity is too large",
       "selectCropType": "Select a crop type"

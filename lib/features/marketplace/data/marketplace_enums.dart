@@ -37,12 +37,33 @@ enum PurchaseRequestStatus {
   pending('Pending'),
   accepted('Accepted'),
   declined('Declined'),
-  cancelled('Cancelled');
+  cancelled('Cancelled'),
+
+  /// The buyer took it back before the farmer answered.
+  withdrawn('Withdrawn');
 
   const PurchaseRequestStatus(this.apiName);
 
   factory PurchaseRequestStatus.fromApi(Object? raw) =>
       _parse(raw, values, (value) => value.apiName, 'purchase request status');
+
+  final String apiName;
+}
+
+/// What a listing's quantity and price are counted in, so a price reads "Rs 120/kg".
+enum QuantityUnit {
+  kg('Kg'),
+  piece('Piece'),
+  bunch('Bunch'),
+  sack('Sack'),
+  crate('Crate');
+
+  const QuantityUnit(this.apiName);
+
+  /// Lenient, unlike the statuses: a listing from before units existed has none and was priced
+  /// per kg, and a unit added to the API later should still show its numbers.
+  factory QuantityUnit.fromApi(Object? raw) =>
+      values.firstWhere((value) => value.apiName == raw, orElse: () => QuantityUnit.kg);
 
   final String apiName;
 }

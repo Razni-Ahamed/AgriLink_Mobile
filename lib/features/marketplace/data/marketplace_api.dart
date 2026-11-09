@@ -66,6 +66,10 @@ class MarketplaceApi {
     decode: _request,
   );
 
+  /// The buyer takes back their own request while the farmer hasn't answered it.
+  Future<PurchaseRequest> withdraw(int requestId) =>
+      _api.post('/api/purchase-requests/$requestId/withdraw', decode: _request);
+
   // Orders
 
   /// The signed-in user's orders, as buyer or as farmer.

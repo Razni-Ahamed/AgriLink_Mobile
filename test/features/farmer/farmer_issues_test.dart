@@ -124,7 +124,7 @@ void main() {
     testWidgets('an empty list invites the farmer to report an issue', (tester) async {
       backend.issues.clear();
       final app = await openIssues(tester);
-      expect(find.textContaining("You haven't reported any crop issues yet"), findsOneWidget);
+      expect(find.textContaining('When a crop looks unwell'), findsOneWidget);
       // One button, not two.
       expect(find.byKey(const Key('report-issue')), findsNothing);
       await tester.tap(find.widgetWithText(FilledButton, 'Report an Issue'));

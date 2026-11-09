@@ -11,6 +11,7 @@ import '../../../../shared/widgets/dialogs.dart';
 import '../../../../shared/widgets/form_fields.dart';
 import '../../application/marketplace_errors.dart';
 import '../../application/marketplace_providers.dart';
+import '../../application/unit_format.dart';
 import '../../data/harvest_listing.dart';
 import '../../data/marketplace_api.dart';
 import '../../data/purchase_request.dart';
@@ -154,7 +155,11 @@ class _PurchaseRequestSheetState extends ConsumerState<_PurchaseRequestSheet> {
                       fieldKey: const Key('request-quantity'),
                       controller: _quantity,
                       label: l10n.marketplaceRequestFormQuantityLabel(
-                        format.kilograms(l10n, widget.listing.availableQuantity),
+                        format.quantity(
+                          l10n,
+                          widget.listing.availableQuantity,
+                          widget.listing.unit,
+                        ),
                       ),
                       keyboardType: const TextInputType.numberWithOptions(decimal: true),
                       inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))],

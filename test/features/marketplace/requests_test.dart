@@ -155,6 +155,48 @@ void main() {
       expect(find.byKey(const Key('request-to-buy')), findsOneWidget);
     });
 
+    testWidgets('a pending request can be withdrawn after confirming; others cannot', (
+      tester,
+    ) async {
+      final api = marketplaceFakeApi(Role.buyer)
+        ..on(
+          'GET',
+          '/api/purchase-requests/sent',
+          (_) => FakeResponse(200, [requestJson(), requestJson(id: 24, status: 'Declined')]),
+        )
+        ..on(
+          'POST',
+          '/api/purchase-requests/21/withdraw',
+          (_) => FakeResponse(200, requestJson(status: 'Withdrawn')),
+        );
+      await pumpMarketplace(tester, role: Role.buyer, api: api, path: AppRoutes.sentRequests);
+
+      expect(find.byKey(const Key('withdraw-24')), findsNothing);
+      await tester.tapVisible(find.byKey(const Key('withdraw-21')));
+      await tester.pumpAndSettle();
+      expect(find.text('Withdraw this request?'), findsOneWidget);
+      expect(api.lastTo('POST', '/api/purchase-requests/21/withdraw'), isNull);
+
+      await tester.tap(find.widgetWithText(FilledButton, 'Withdraw request'));
+      await tester.pumpAndSettle();
+
+      expect(api.lastTo('POST', '/api/purchase-requests/21/withdraw'), isNotNull);
+      expect(find.text('Request withdrawn.'), findsOneWidget);
+    });
+
+    testWidgets('a withdrawn request is listed under its own heading', (tester) async {
+      final api = marketplaceFakeApi(Role.buyer)
+        ..on(
+          'GET',
+          '/api/purchase-requests/sent',
+          (_) => FakeResponse(200, [requestJson(status: 'Withdrawn')]),
+        );
+      await pumpMarketplace(tester, role: Role.buyer, api: api, path: AppRoutes.sentRequests);
+
+      expect(find.text('Withdrawn (1)'), findsOneWidget);
+      expect(find.byKey(const Key('withdraw-21')), findsNothing);
+    });
+
     testWidgets('with none yet, points to the marketplace', (tester) async {
       final api = marketplaceFakeApi(Role.buyer)
         ..on('GET', '/api/purchase-requests/sent', (_) => const FakeResponse(200, []));

@@ -10,6 +10,7 @@ import '../../../../l10n/l10n.dart';
 import '../../../../l10n/labels.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../../../../shared/widgets/user_avatar.dart';
+import '../../application/unit_format.dart';
 import '../../data/order.dart';
 import 'header_badge.dart';
 
@@ -85,7 +86,7 @@ class OrderCard extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      format.kilograms(l10n, order.totalQuantity),
+                      format.quantity(l10n, order.totalQuantity, order.unit),
                       style: text.bodyMedium!.mono.copyWith(color: colors.textSecondary),
                     ),
                   ),

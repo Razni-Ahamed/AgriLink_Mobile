@@ -6,6 +6,8 @@ import '../../../app/router/app_routes.dart';
 import '../../../app/shell/agrilink_app_bar.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../core/api/api_error_parser.dart';
+import '../../../core/session/role.dart';
+import '../../../core/session/session_controller.dart';
 import '../../../l10n/l10n.dart';
 import '../../../shared/widgets/dialogs.dart';
 import '../../../shared/widgets/form_fields.dart';
@@ -13,6 +15,7 @@ import '../../../shared/widgets/state_views.dart';
 import '../../issues/application/advisories.dart';
 import '../../issues/data/advisory.dart';
 import '../../issues/presentation/widgets/advisory_view.dart';
+import '../../messages/presentation/start_chat_button.dart';
 import '../application/officer_metrics.dart';
 import '../application/review_rules.dart';
 import '../data/review_api.dart';
@@ -144,6 +147,18 @@ class _Content extends StatelessWidget {
       padding: const EdgeInsets.all(Gaps.md),
       children: [
         AdvisoryView(advisory: advisory),
+        Consumer(
+          builder: (context, ref, _) =>
+              ref.watch(sessionControllerProvider.select((session) => session.role)) == Role.officer
+              ? Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: StartChatButton(
+                    subject: AdviceChat(advisory.issueId),
+                    label: l10n.messagesStartMessageFarmer,
+                  ),
+                )
+              : const SizedBox.shrink(),
+        ),
         if (advisory.photoDiagnosis != null) ...[
           const SizedBox(height: Gaps.md),
           PhotoDiagnosisPanel(advisory: advisory),

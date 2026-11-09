@@ -11,6 +11,7 @@ import '../../../shared/widgets/dialogs.dart';
 import '../../../shared/widgets/state_views.dart';
 import '../application/marketplace_errors.dart';
 import '../application/marketplace_providers.dart';
+import '../application/unit_format.dart';
 import '../data/marketplace_api.dart';
 import '../data/marketplace_enums.dart';
 import '../data/purchase_request.dart';
@@ -35,7 +36,7 @@ class _IncomingRequestsScreenState extends ConsumerState<IncomingRequestsScreen>
   Future<void> _respond(PurchaseRequest request, RequestAction action) async {
     final l10n = context.l10n;
     final format = ref.read(formattersProvider);
-    final quantity = format.kilograms(l10n, request.requestedQuantity);
+    final quantity = format.quantity(l10n, request.requestedQuantity, request.unit);
     final crop = cropLabel(l10n, request.cropType);
     final buyer = requestBuyerName(request);
     final total = format.rupees(l10n, request.total);

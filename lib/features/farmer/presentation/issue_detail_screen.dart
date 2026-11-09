@@ -18,6 +18,7 @@ import '../../issues/data/crop_issue.dart';
 import '../../issues/data/issue_enums.dart';
 import '../../issues/presentation/widgets/issue_badges.dart';
 import '../../issues/presentation/widgets/issue_photo_gallery.dart';
+import '../../messages/presentation/start_chat_button.dart';
 import '../application/my_issues.dart';
 import '../farmer_paths.dart';
 
@@ -121,6 +122,14 @@ class _IssueContent extends ConsumerWidget {
             if (issue.advisoryStatus == AdvisoryStatus.preliminary)
               const AdvisoryStatusBadge(AdvisoryStatus.preliminary),
           ],
+        ),
+        // Works while the issue is still waiting for review, as on the website.
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: StartChatButton(
+            subject: AdviceChat(issue.id),
+            label: l10n.messagesStartAskOfficer,
+          ),
         ),
         const SizedBox(height: Gaps.sm),
         Text(
