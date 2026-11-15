@@ -9,25 +9,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('AppTheme', () {
-    test('uses the website tokens for primary, secondary and backgrounds', () {
+    test('uses the Canopy and Daylight tokens from the website', () {
       final light = AppTheme.light;
-      expect(light.colorScheme.primary, const Color(0xFF1F4D36));
-      expect(light.colorScheme.secondary, const Color(0xFFD9A441));
-      expect(light.scaffoldBackgroundColor, const Color(0xFFFAF7F0));
+      expect(light.colorScheme.primary, const Color(0xFF1F5A3F));
+      expect(light.colorScheme.secondary, const Color(0xFF8A5D00));
+      expect(light.scaffoldBackgroundColor, const Color(0xFFEEF2E8));
       expect(light.extension<AppColors>(), AppColors.light);
 
       final dark = AppTheme.dark;
-      expect(dark.colorScheme.primary, const Color(0xFF7CBE8C));
-      expect(dark.colorScheme.onSecondary, const Color(0xFF10170F));
-      expect(dark.scaffoldBackgroundColor, const Color(0xFF0F1512));
+      expect(dark.colorScheme.primary, const Color(0xFFB5CDA0));
+      expect(dark.colorScheme.onSecondary, const Color(0xFF0B201A));
+      expect(dark.scaffoldBackgroundColor, const Color(0xFF0B201A));
       expect(dark.extension<AppColors>(), AppColors.dark);
     });
 
     test('falls back to the Noto fonts for Sinhala and Tamil', () {
       final style = AppTheme.light.textTheme.bodyMedium!;
-      expect(style.fontFamily, 'PlusJakartaSans');
+      expect(style.fontFamily, 'Yaldevi');
       expect(style.fontFamilyFallback, containsAll(['NotoSansSinhala', 'NotoSansTamil']));
-      expect(AppTheme.light.textTheme.headlineSmall!.fontFamily, 'Fraunces');
+      expect(AppTheme.light.textTheme.headlineSmall!.fontFamily, 'AbhayaLibre');
     });
   });
 

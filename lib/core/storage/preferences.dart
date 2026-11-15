@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Non-secret settings that survive a restart: the language and the theme mode.
+/// Non-secret settings that survive a restart: the language, the theme mode and the animations.
 ///
 /// Loaded once in `main()` and injected with `overrideWithValue`, so every reader gets it
 /// synchronously. Tests use `SharedPreferences.setMockInitialValues` and override it the same way.
@@ -15,4 +15,5 @@ abstract final class PrefKeys {
   static const String themeMode = 'agrilink.themeMode';
   static const String locale = 'agrilink.locale';
   static const String notificationPermissionAsked = 'agrilink.notificationPermissionAsked';
+  static const String motion = 'agrilink.motion';
 }

@@ -418,29 +418,48 @@ Prices and quantities: `format.rupees(l10n, 1250.5)` → "Rs 1,250.5". Use `.mon
 
 ## 9. Theme
 
-The colours are the website's "Organic Bento" tokens from `frontend/src/index.css`, in light and dark.
+The design is the website's "Canopy": real Sri Lankan photos underneath, liquid glass for the
+frame (the tab bar, strips on photos), solid surfaces for lists and forms. The colours are the
+website's tokens from `frontend/src/index.css`: Daylight (light) and Canopy (dark).
 
 | Token (`context.colors.…`) | Light | Dark | Use |
 |---|---|---|---|
-| `forest` | `#1f4d36` | `#7cbe8c` | primary: main buttons, active tab, links |
-| `forestLight` | `#4a7c59` | `#9ed4aa` | softer green |
-| `harvest` | `#d9a441` | `#e8bd60` | gold accent; put `ink` text on it |
-| `terracotta` | `#c4623b` | `#dd7d55` | warm accent, the unread badge |
-| `ink` | `#1f4d36` | `#10170f` | text on gold |
-| `canvas` | `#faf7f0` | `#0f1512` | page background |
-| `surface` | `#fffdf9` | `#17201a` | cards, sheets, app bars |
-| `textPrimary` / `textSecondary` | `#26201a` / `#6b6259` | `#e9e4d9` / `#a49c8e` | text |
-| `success` / `danger` / `info` | `#3e7a4f` / `#b84c3c` / `#3e7a82` | `#74c489` / `#e8806c` / `#66b3bb` | states |
+| `forest` | `#1f5a3f` | `#b5cda0` | primary: main buttons, active tab, links |
+| `forestLight` | `#2b7351` | `#c9dcb8` | softer green |
+| `harvest` | `#8a5d00` | `#efc062` | gold accent |
+| `terracotta` | `#a8532f` | `#e9a27a` | warm accent, the unread badge |
+| `ink` | `#0f2a21` | `#0b201a` | text on gold |
+| `canvas` | `#eef2e8` | `#0b201a` | page background |
+| `surface` | `#ffffff` | `#133429` | cards, sheets, app bars |
+| `textPrimary` / `textSecondary` | `#0f2a21` / `#4c5f56` | `#eaf0e7` / `#a9bbaf` | text |
+| `success` / `danger` / `info` | `#2f6e3b` / `#b2412b` / `#2f6c7a` | `#9ed58b` / `#f08a73` / `#8cc7d3` | states |
 
 Helpers: `colors.border`, `colors.borderStrong`, `colors.tint(color)` (a light wash for badge and banner backgrounds).
 
 - **Never write a colour in a screen.** Use `Theme.of(context).colorScheme` (primary = forest, secondary = harvest, error = danger…) or `context.colors`. Then dark mode works with no extra code.
-- Spacing: `Gaps.xs/sm/md/lg/xl` (4/8/16/24/32). Corners: `kRadius` (16).
-- Fonts: **Fraunces** for headings (`headline*`, `titleLarge`), **Plus Jakarta Sans** for everything else, **JetBrains Mono** for numbers (`style.mono`). Sinhala and Tamil fall back to the bundled **Noto Sans Sinhala / Tamil**, so they look the same on every phone.
+- Spacing: `Gaps.xs/sm/md/lg/xl` (4/8/16/24/32). Corners: `kRadius` (22) for cards, `kFieldRadius` (14) for inputs, `kSheetRadius` (28) for sheets; buttons and chips are pills.
+- Fonts: **Abhaya Libre** for headings (`headline*`, `titleLarge`), **Yaldevi** for everything else, **JetBrains Mono** for numbers (`style.mono`). Sinhala and Tamil fall back to the bundled **Noto Sans Sinhala / Tamil**, so they look the same on every phone.
 - Buttons, inputs, cards, sheets and dialogs are already styled by the theme. Use plain `FilledButton`, `OutlinedButton`, `Card`, `TextFormField`… without styling them.
 - Touch targets are at least 48 dp; keep custom tappable things that size. Give every `IconButton` a `tooltip` (it's the screen reader label).
 
 The light/dark/system choice is in the profile (and on the login screen) and is remembered.
+
+### Canopy pieces (`lib/shared/canopy/`, `lib/shared/media/crop_photos.dart`)
+
+| Piece | What it is |
+|---|---|
+| `PhotoBanner`, `BannerGlass` | the top of a page: a photo with the title on a dark scrim, and a glass strip on it |
+| `GlassSurface` | liquid glass (blur, sheen, rims); solid with Lite or Off motion |
+| `SeasonVine`, `SeasonProgress` | a crop's season as a vine grown to today |
+| `Odometer` | a number that rolls into place |
+| `AnimatedCheck`, `StageList` | a tick that draws itself; steps of slow work (the report progress) |
+| `cropPhotoAsset`, `Scenes` | the bundled crop and scene photos (the website's, credits in its `cropPhotos.ts`) |
+| `motionLevel(context, ref)`, `Motion` | how much to animate, and the shared durations and curves |
+
+Motion follows the profile's **Animations** setting (Automatic / Full / Lite / Off, the same as the
+website's). Automatic is Off when Android's "Remove animations" is on. Every animation goes through
+`motionLevel`, so Off really is still; Lite drops the blur, which is the costly part on cheap phones.
+A listing's photo is a `Hero` (`harvestPhotoTag`) shared by its card and its page.
 
 ---
 

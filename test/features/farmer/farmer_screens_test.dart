@@ -54,6 +54,8 @@ void main() {
       backend.farms.add(farmJson(id: 2, name: 'Hill Farm'));
       await tester.fling(find.byKey(const Key('farms-list')), const Offset(0, 300), 1000);
       await tester.pumpAndSettle();
+      // The new farm is last, below the greeting and the crops: scroll down to it.
+      await tester.reveal(find.text('Hill Farm'));
       expect(find.text('Hill Farm'), findsOneWidget);
     });
   });
@@ -149,7 +151,7 @@ void main() {
   group('farm detail', () {
     Future<TestApp> openFarm(WidgetTester tester) async {
       final app = await pumpFarmer(tester, backend);
-      await tester.tap(find.text('Green Acres'));
+      await tester.tapVisible(find.text('Green Acres'));
       await tester.pumpAndSettle();
       expect(currentPath(app), '/farms/1');
       return app;
@@ -284,7 +286,7 @@ void main() {
   group('field detail and planting a crop', () {
     Future<TestApp> openField(WidgetTester tester) async {
       final app = await pumpFarmer(tester, backend);
-      await tester.tap(find.text('Green Acres'));
+      await tester.tapVisible(find.text('Green Acres'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('North Field'));
       await tester.pumpAndSettle();
@@ -469,7 +471,7 @@ void main() {
   group('crop detail', () {
     Future<TestApp> openCrop(WidgetTester tester) async {
       final app = await pumpFarmer(tester, backend);
-      await tester.tap(find.text('Green Acres'));
+      await tester.tapVisible(find.text('Green Acres'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('North Field'));
       await tester.pumpAndSettle();

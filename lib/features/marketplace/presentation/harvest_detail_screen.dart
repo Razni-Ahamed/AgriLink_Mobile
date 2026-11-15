@@ -11,7 +11,7 @@ import '../../../core/session/role.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/labels.dart';
-import '../../../shared/widgets/crop_icon.dart';
+import '../../../shared/media/crop_photos.dart';
 import '../../../shared/widgets/form_fields.dart';
 import '../../../shared/widgets/state_views.dart';
 import '../../../shared/widgets/status_badge.dart';
@@ -22,6 +22,7 @@ import '../application/unit_format.dart';
 import '../data/harvest_listing.dart';
 import '../data/marketplace_enums.dart';
 import 'widgets/edit_listing_sheet.dart';
+import 'widgets/harvest_card.dart';
 import 'widgets/header_badge.dart';
 import 'widgets/purchase_request_sheet.dart';
 
@@ -85,24 +86,44 @@ class _ListingDetail extends ConsumerWidget {
     final isAdmin = role == Role.admin;
     final canBuy = role == Role.buyer && listing.status == HarvestStatus.active;
 
-    return ListView(
+    // What this viewer can do, pinned under the details so it stays in reach below the photo.
+    final actions = [
+      if (canBuy)
+        FilledButton.icon(
+          key: const Key('request-to-buy'),
+          onPressed: () => showPurchaseRequestSheet(context, listing),
+          icon: const Icon(Icons.shopping_cart_outlined),
+          label: Text(l10n.marketplaceDetailRequestPurchase),
+        )
+      else if (role == Role.buyer)
+        InfoBanner(message: l10n.marketplaceDetailUnavailable),
+      if (isOwner || isAdmin)
+        OutlinedButton.icon(
+          key: const Key('edit-listing'),
+          onPressed: () => showEditListingSheet(context, listing, asAdmin: isAdmin),
+          icon: const Icon(Icons.edit_outlined),
+          label: Text(l10n.marketplaceEditFormEditListing),
+        ),
+    ];
+
+    final details = ListView(
       physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(Gaps.md),
       children: [
+        Hero(
+          tag: harvestPhotoTag(listing.id),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(28),
+            child: SizedBox(
+              height: 240,
+              child: Image.asset(cropPhotoAsset(listing.cropType), fit: BoxFit.cover),
+            ),
+          ),
+        ),
+        const SizedBox(height: Gaps.md),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: colors.tint(colors.forest),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: CropIcon(listing.cropType, size: 32),
-              ),
-            ),
-            const SizedBox(width: Gaps.md),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,23 +178,31 @@ class _ListingDetail extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(height: Gaps.lg),
-        if (canBuy)
-          FilledButton.icon(
-            key: const Key('request-to-buy'),
-            onPressed: () => showPurchaseRequestSheet(context, listing),
-            icon: const Icon(Icons.shopping_cart_outlined),
-            label: Text(l10n.marketplaceDetailRequestPurchase),
-          )
-        else if (role == Role.buyer)
-          InfoBanner(message: l10n.marketplaceDetailUnavailable),
-        if (isOwner || isAdmin)
-          OutlinedButton.icon(
-            key: const Key('edit-listing'),
-            onPressed: () => showEditListingSheet(context, listing, asAdmin: isAdmin),
-            icon: const Icon(Icons.edit_outlined),
-            label: Text(l10n.marketplaceEditFormEditListing),
+      ],
+    );
+    if (actions.isEmpty) {
+      return details;
+    }
+    return Column(
+      children: [
+        Expanded(child: details),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: colors.surface,
+            border: Border(top: BorderSide(color: colors.border)),
           ),
+          child: SafeArea(
+            top: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(Gaps.md, Gaps.sm + 4, Gaps.md, Gaps.sm + 4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                spacing: Gaps.sm,
+                children: actions,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

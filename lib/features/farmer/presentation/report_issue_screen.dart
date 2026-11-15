@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +12,9 @@ import '../../../app/theme/app_theme.dart';
 import '../../../core/api/api_exception.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/labels.dart';
+import '../../../shared/canopy/animated_check.dart';
+import '../../../shared/canopy/motion.dart';
+import '../../../shared/media/crop_photos.dart';
 import '../../../shared/media/photo_picker.dart';
 import '../../../shared/widgets/dialogs.dart';
 import '../../../shared/widgets/form_fields.dart';
@@ -323,7 +327,16 @@ class _ReportFormState extends ConsumerState<_ReportForm> {
               ),
             ),
           ),
-          if (_submitting) const Positioned.fill(child: _AnalysingOverlay()),
+          if (_submitting)
+            Positioned.fill(
+              child: _AnalysingOverlay(
+                photo: photo,
+                cropType: widget.crops
+                    .where((crop) => crop.id == _cropId)
+                    .map((crop) => crop.cropType)
+                    .firstOrNull,
+              ),
+            ),
         ],
       ),
     );
@@ -331,44 +344,193 @@ class _ReportFormState extends ConsumerState<_ReportForm> {
 }
 
 /// Covers the form while the API analyses the report. That can take a minute or more (it runs
-/// the photo model and a weather lookup, after any cold start), so it says so, and it can't be
-/// tapped through, so the farmer can't send the same report twice.
-class _AnalysingOverlay extends StatelessWidget {
-  const _AnalysingOverlay();
+/// the photo model and a weather lookup, after any cold start), so it shows the work: the
+/// farmer's photo (or the crop's) with a scan line sweeping over it, and the steps ticking off.
+/// The server answers in one request and doesn't report progress, so the steps are paced to its
+/// usual time and the last stays running until the answer arrives. It can't be tapped through,
+/// so the farmer can't send the same report twice. The website's `ReportProgress`.
+class _AnalysingOverlay extends ConsumerStatefulWidget {
+  const _AnalysingOverlay({required this.photo, required this.cropType});
+
+  final PickedPhoto? photo;
+  final String? cropType;
+
+  @override
+  ConsumerState<_AnalysingOverlay> createState() => _AnalysingOverlayState();
+}
+
+class _AnalysingOverlayState extends ConsumerState<_AnalysingOverlay>
+    with SingleTickerProviderStateMixin {
+  /// When each step starts, in seconds after sending (photo step included).
+  static const _starts = [0.0, 1.5, 6.0, 14.0];
+
+  final Stopwatch _clock = Stopwatch()..start();
+  late final AnimationController _scan = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 2400),
+  );
+  Timer? _tick;
+
+  @override
+  void initState() {
+    super.initState();
+    _tick = Timer.periodic(const Duration(milliseconds: 250), (_) => setState(() {}));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final moving = motionLevel(context, ref) != MotionLevel.off;
+    if (moving && !_scan.isAnimating) {
+      unawaited(_scan.repeat());
+    } else if (!moving) {
+      _scan.stop();
+    }
+  }
+
+  @override
+  void dispose() {
+    _tick?.cancel();
+    _scan.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final colors = context.colors;
     final textTheme = Theme.of(context).textTheme;
+    final photo = widget.photo;
+    final cropType = widget.cropType;
+    final steps = [
+      l10n.issuesNewProgressSend,
+      if (photo != null) l10n.issuesNewProgressPhoto,
+      l10n.issuesNewProgressCompare,
+      l10n.issuesNewProgressAdvice,
+    ];
+    final starts = photo != null ? _starts : [_starts[0], _starts[2], _starts[3]];
+    final elapsed = _clock.elapsedMilliseconds / 1000;
+    final running = starts.where((start) => elapsed >= start).length - 1;
+    final current = running.clamp(0, steps.length - 1);
+
     return ColoredBox(
       key: const Key('analysing'),
-      color: context.colors.surface.withValues(alpha: 0.96),
+      color: colors.surface.withValues(alpha: 0.97),
       child: Semantics(
         liveRegion: true,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(Gaps.lg),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const CircularProgressIndicator(),
-                const SizedBox(height: Gaps.lg),
-                Text(
-                  l10n.issuesNewAnalysing,
-                  textAlign: TextAlign.center,
-                  style: textTheme.titleMedium,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(Gaps.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(l10n.issuesNewAnalysing, style: textTheme.headlineSmall),
+              const SizedBox(height: Gaps.md),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: SizedBox(
+                  height: 220,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      if (photo != null)
+                        Image.memory(photo.bytes, fit: BoxFit.cover)
+                      else if (cropType != null)
+                        Image.asset(cropPhotoAsset(cropType), fit: BoxFit.cover)
+                      else
+                        ColoredBox(color: colors.forest),
+                      AnimatedBuilder(
+                        animation: _scan,
+                        builder: (context, _) => _scan.isAnimating
+                            ? CustomPaint(painter: _ScanPainter(_scan.value))
+                            : const SizedBox.shrink(),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(16),
+                        child: CustomPaint(painter: _CornersPainter()),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: Gaps.sm),
-                Text(
-                  l10n.issuesNewAnalysingHint,
-                  textAlign: TextAlign.center,
-                  style: textTheme.bodyMedium?.copyWith(color: context.colors.textSecondary),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(height: Gaps.md),
+              StageList(steps: steps, current: current),
+              const SizedBox(height: Gaps.sm),
+              Text(
+                l10n.issuesNewAnalysingHint,
+                style: textTheme.bodySmall?.copyWith(color: colors.textSecondary),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+}
+
+/// A soft bright band sweeping down the photo and back, like a scanner.
+class _ScanPainter extends CustomPainter {
+  _ScanPainter(this.t);
+
+  final double t;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final y = size.height * (0.5 - 0.5 * math.cos(t * 2 * math.pi));
+    final band = Rect.fromLTWH(0, y - 36, size.width, 72);
+    canvas.drawRect(
+      band,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0x00B5CDA0), Color(0x55B5CDA0), Color(0x00B5CDA0)],
+        ).createShader(band),
+    );
+    canvas.drawLine(
+      Offset(0, y),
+      Offset(size.width, y),
+      Paint()
+        ..color = const Color(0xCCE8F5D8)
+        ..strokeWidth = 1.6,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_ScanPainter old) => old.t != t;
+}
+
+/// Viewfinder corners over the photo.
+class _CornersPainter extends CustomPainter {
+  const _CornersPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const arm = 18.0;
+    final w = size.width;
+    final h = size.height;
+    final path = Path()
+      ..moveTo(0, arm)
+      ..lineTo(0, 0)
+      ..lineTo(arm, 0)
+      ..moveTo(w - arm, 0)
+      ..lineTo(w, 0)
+      ..lineTo(w, arm)
+      ..moveTo(w, h - arm)
+      ..lineTo(w, h)
+      ..lineTo(w - arm, h)
+      ..moveTo(arm, h)
+      ..lineTo(0, h)
+      ..lineTo(0, h - arm);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = Colors.white
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3
+        ..strokeCap = StrokeCap.round,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_CornersPainter old) => false;
 }

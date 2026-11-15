@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_theme.dart';
 import '../../../../l10n/l10n.dart';
+import '../../../../shared/canopy/glass.dart';
+import '../../../../shared/media/crop_photos.dart';
 import '../../../../shared/widgets/language_switcher.dart';
 import '../../../../shared/widgets/theme_mode_button.dart';
 
-/// The layout shared by the signed-out screens: the language and theme choices at the top,
-/// then a card with the AgriLink name, a title and the form. Scrolls, so it works on small
+/// The layout shared by the signed-out screens: a photo of Sri Lankan fields behind, the
+/// language and theme choices on glass at the top, the AgriLink name on the photo, then a
+/// solid card with a title and the form. Scrolls, so it works on small
 /// screens, in landscape and with large system fonts.
 class AuthLayout extends StatelessWidget {
   const AuthLayout({
@@ -29,72 +32,94 @@ class AuthLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colors = context.colors;
     final scaffold = Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(Gaps.md),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 460),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Row(
-                    children: [
-                      Expanded(child: LanguageSwitcher()),
-                      SizedBox(width: Gaps.sm),
-                      ThemeModeButton(),
-                    ],
-                  ),
-                  const SizedBox(height: Gaps.md),
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(Gaps.lg),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.eco, color: context.colors.forest),
-                              const SizedBox(width: Gaps.sm),
-                              Text(
-                                context.l10n.commonAppName,
-                                style: textTheme.titleMedium?.copyWith(
-                                  color: context.colors.forest,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: Gaps.sm),
-                          Semantics(
-                            header: true,
-                            child: Text(
-                              title,
-                              style: textTheme.headlineSmall?.copyWith(
-                                color: context.colors.forest,
-                              ),
-                            ),
-                          ),
-                          if (subtitle != null) ...[
-                            const SizedBox(height: Gaps.xs),
-                            Text(
-                              subtitle!,
-                              style: textTheme.bodyMedium?.copyWith(
-                                color: context.colors.textSecondary,
-                              ),
-                            ),
-                          ],
-                          const SizedBox(height: Gaps.lg),
-                          child,
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+      backgroundColor: const Color(0xFF0B201A),
+      body: Stack(
+        children: [
+          // Sri Lankan fields behind everything, darkened so white text and the card stand out.
+          Positioned.fill(
+            child: Image.asset(Scenes.fields, fit: BoxFit.cover, alignment: Alignment.topCenter),
+          ),
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0x6604100B), Color(0xB304100B), Color(0xEB04100B)],
+                  stops: [0, 0.5, 1],
+                ),
               ),
             ),
           ),
-        ),
+          SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(Gaps.md),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 460),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const GlassSurface(
+                        padding: EdgeInsets.all(6),
+                        child: Row(
+                          children: [
+                            Expanded(child: LanguageSwitcher()),
+                            SizedBox(width: Gaps.sm),
+                            ThemeModeButton(),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: Gaps.xl),
+                      // The name on the photo, like the website's sign-in scene.
+                      Row(
+                        children: [
+                          const Icon(Icons.eco, color: Color(0xFFB5CDA0), size: 28),
+                          const SizedBox(width: Gaps.sm),
+                          Text(
+                            context.l10n.commonAppName,
+                            style: textTheme.headlineMedium?.copyWith(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: Gaps.md),
+                      Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(Gaps.lg),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Semantics(
+                                header: true,
+                                child: Text(
+                                  title,
+                                  style: textTheme.headlineSmall?.copyWith(color: colors.forest),
+                                ),
+                              ),
+                              if (subtitle != null) ...[
+                                const SizedBox(height: Gaps.xs),
+                                Text(
+                                  subtitle!,
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color: colors.textSecondary,
+                                  ),
+                                ),
+                              ],
+                              const SizedBox(height: Gaps.lg),
+                              child,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
     final onBack = this.onBack;

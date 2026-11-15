@@ -42,26 +42,34 @@ flutter:
     # Crop icons and default role avatars from the website (tool/import_web_icons.dart).
     - assets/icons/crops/
     - assets/icons/avatars/
+    # Canopy photos, the same as the website's: one per crop type (free Unsplash photos, credits in
+    # lib/shared/media/crop_photos.dart) and the Sri Lankan field and market scenes.
+    - assets/photos/crops/
+    - assets/photos/scenes/
 
   # Bundled rather than downloaded at runtime. All are SIL Open Font Licence (see assets/fonts/OFL-*.txt).
-  # Fraunces, Plus Jakarta Sans and JetBrains Mono have no Sinhala or Tamil glyphs, so the theme
-  # falls back to the two Noto families for those scripts.
+  # Abhaya Libre and Yaldevi carry Latin and Sinhala (both by Mooniak, Sri Lanka), as on the website;
+  # Tamil falls back to Noto Sans Tamil. Yaldevi ships as a variable font, so these are static
+  # weights cut from it with fonttools (see assets/fonts/README.md).
   fonts:
-    - family: Fraunces
+    - family: AbhayaLibre
       fonts:
-        - asset: assets/fonts/Fraunces-Regular.ttf
-        - asset: assets/fonts/Fraunces-Medium.ttf
+        - asset: assets/fonts/AbhayaLibre-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Fraunces-SemiBold.ttf
+        - asset: assets/fonts/AbhayaLibre-SemiBold.ttf
           weight: 600
-    - family: PlusJakartaSans
+        - asset: assets/fonts/AbhayaLibre-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/AbhayaLibre-ExtraBold.ttf
+          weight: 800
+    - family: Yaldevi
       fonts:
-        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
-        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+        - asset: assets/fonts/Yaldevi-Regular.ttf
+        - asset: assets/fonts/Yaldevi-Medium.ttf
           weight: 500
-        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+        - asset: assets/fonts/Yaldevi-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+        - asset: assets/fonts/Yaldevi-Bold.ttf
           weight: 700
     - family: JetBrainsMono
       fonts:
