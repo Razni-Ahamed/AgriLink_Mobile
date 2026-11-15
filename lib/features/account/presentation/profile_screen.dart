@@ -12,6 +12,7 @@ import '../../../core/format/formatters.dart';
 import '../../../core/session/role.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/labels.dart';
+import '../../../shared/canopy/motion.dart';
 import '../../../shared/widgets/dialogs.dart';
 import '../../../shared/widgets/language_switcher.dart';
 import '../../../shared/widgets/state_views.dart';
@@ -23,7 +24,7 @@ import '../../auth/application/current_user.dart';
 import '../../auth/data/auth_models.dart';
 
 /// The signed-in user's profile: everything the account holds (with a note on where each
-/// detail can be changed), the language and theme settings, and log out.
+/// detail can be changed), the language, theme and animation settings, and log out.
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
@@ -328,6 +329,37 @@ class _Settings extends ConsumerWidget {
               selected: {mode},
               onSelectionChanged: (selection) =>
                   ref.read(themeModeProvider.notifier).setMode(selection.first),
+            ),
+            const SizedBox(height: Gaps.md),
+            Text(l10n.commonMotionLabel, style: Theme.of(context).textTheme.bodySmall),
+            const SizedBox(height: Gaps.sm),
+            // Chips rather than a segmented bar: four choices, and "Automatic" is long in every
+            // language, so they wrap instead of cutting the words short.
+            Wrap(
+              key: const Key('motion-setting'),
+              spacing: Gaps.sm,
+              runSpacing: Gaps.sm,
+              children: [
+                for (final option in MotionPreference.values)
+                  ChoiceChip(
+                    key: Key('motion-${option.name}'),
+                    label: Text(switch (option) {
+                      MotionPreference.system => l10n.commonMotionSystem,
+                      MotionPreference.full => l10n.commonMotionFull,
+                      MotionPreference.lite => l10n.commonMotionLite,
+                      MotionPreference.off => l10n.commonMotionOff,
+                    }),
+                    selected: ref.watch(motionPreferenceProvider) == option,
+                    onSelected: (_) =>
+                        ref.read(motionPreferenceProvider.notifier).setPreference(option),
+                  ),
+              ],
+            ),
+            const SizedBox(height: Gaps.xs),
+            Text(
+              l10n.commonMotionHint,
+              style: Theme.of(context).textTheme.bodySmall
+                  ?.copyWith(color: context.colors.textSecondary),
             ),
           ],
         ),

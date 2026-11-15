@@ -11,13 +11,16 @@ import '../../../core/api/api_error_parser.dart';
 import '../../../core/format/formatters.dart';
 import '../../../l10n/l10n.dart';
 import '../../../l10n/labels.dart';
-import '../../../shared/widgets/crop_icon.dart';
+import '../../../shared/canopy/photo_banner.dart';
+import '../../../shared/canopy/season_vine.dart';
+import '../../../shared/media/crop_photos.dart';
 import '../../../shared/widgets/dialogs.dart';
 import '../../../shared/widgets/state_views.dart';
 import '../application/farms.dart';
 import '../data/crop.dart';
 import '../data/crops_api.dart';
 import '../farmer_paths.dart';
+import 'widgets/today_widgets.dart';
 
 /// One crop: its details, and its status, which is the only thing that can change once a crop
 /// is planted. Changing it asks first. A crop planted by mistake can be deleted, unless it has
@@ -145,29 +148,17 @@ class _CropDetailScreenState extends ConsumerState<CropDetailScreen> {
     return ListView(
       padding: const EdgeInsets.all(Gaps.md),
       children: [
-        Row(
-          children: [
-            DecoratedBox(
-              decoration: BoxDecoration(color: colors.tint(colors.forest), shape: BoxShape.circle),
-              child: SizedBox.square(
-                dimension: 56,
-                child: Center(child: CropIcon(crop.cropType, size: 32)),
-              ),
-            ),
-            const SizedBox(width: Gaps.md),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(cropLabel(l10n, crop.cropType), style: textTheme.headlineSmall),
-                  Text(
-                    crop.variety.isEmpty ? l10n.farmsCropNoVariety : crop.variety,
-                    style: textTheme.bodyMedium?.copyWith(color: colors.textSecondary),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        // The crop's photo with its name, and (while it grows) the season on glass.
+        PhotoBanner(
+          photo: cropPhotoAsset(crop.cropType),
+          title: cropLabel(l10n, crop.cropType),
+          subtitle: crop.variety.isEmpty ? l10n.farmsCropNoVariety : crop.variety,
+          child: crop.status == CropStatus.harvested
+              ? null
+              : SeasonGlass(
+                  name: cropLabel(l10n, crop.cropType),
+                  season: SeasonProgress.of(crop.plantingDate, crop.expectedHarvestDate),
+                ),
         ),
         const SizedBox(height: Gaps.lg),
         Card(

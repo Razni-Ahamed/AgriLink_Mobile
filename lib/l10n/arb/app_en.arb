@@ -141,6 +141,14 @@
   "@commonActionsRetry": {
     "description": "Website key: common.actions.retry"
   },
+  "commonActionsIncrease": "More",
+  "@commonActionsIncrease": {
+    "description": "Website key: common.actions.increase"
+  },
+  "commonActionsDecrease": "Less",
+  "@commonActionsDecrease": {
+    "description": "Website key: common.actions.decrease"
+  },
   "commonPaginationNavigation": "Pagination",
   "@commonPaginationNavigation": {
     "description": "Website key: common.pagination.navigation"
@@ -272,6 +280,30 @@
   "commonThemeSystem": "System",
   "@commonThemeSystem": {
     "description": "Website key: common.theme.system"
+  },
+  "commonMotionLabel": "Animations",
+  "@commonMotionLabel": {
+    "description": "Website key: common.motion.label"
+  },
+  "commonMotionSystem": "Automatic",
+  "@commonMotionSystem": {
+    "description": "Website key: common.motion.system"
+  },
+  "commonMotionFull": "Full",
+  "@commonMotionFull": {
+    "description": "Website key: common.motion.full"
+  },
+  "commonMotionLite": "Lite",
+  "@commonMotionLite": {
+    "description": "Website key: common.motion.lite"
+  },
+  "commonMotionOff": "Off",
+  "@commonMotionOff": {
+    "description": "Website key: common.motion.off"
+  },
+  "commonMotionHint": "Lite turns off the glass and background effects for slower phones. Automatic follows your device's settings.",
+  "@commonMotionHint": {
+    "description": "Website key: common.motion.hint"
   },
   "commonUnitsAcres": "{value} acres",
   "@commonUnitsAcres": {
@@ -1172,6 +1204,114 @@
   "@commonErrorsGeneric": {
     "description": "Website key: common.errors.generic"
   },
+  "commonAnswersYes": "Yes",
+  "@commonAnswersYes": {
+    "description": "Website key: common.answers.yes"
+  },
+  "commonAnswersNo": "No",
+  "@commonAnswersNo": {
+    "description": "Website key: common.answers.no"
+  },
+  "commonDistrictsAmpara": "Ampara",
+  "@commonDistrictsAmpara": {
+    "description": "Website key: common.districts.Ampara"
+  },
+  "commonDistrictsAnuradhapura": "Anuradhapura",
+  "@commonDistrictsAnuradhapura": {
+    "description": "Website key: common.districts.Anuradhapura"
+  },
+  "commonDistrictsBadulla": "Badulla",
+  "@commonDistrictsBadulla": {
+    "description": "Website key: common.districts.Badulla"
+  },
+  "commonDistrictsBatticaloa": "Batticaloa",
+  "@commonDistrictsBatticaloa": {
+    "description": "Website key: common.districts.Batticaloa"
+  },
+  "commonDistrictsColombo": "Colombo",
+  "@commonDistrictsColombo": {
+    "description": "Website key: common.districts.Colombo"
+  },
+  "commonDistrictsGalle": "Galle",
+  "@commonDistrictsGalle": {
+    "description": "Website key: common.districts.Galle"
+  },
+  "commonDistrictsGampaha": "Gampaha",
+  "@commonDistrictsGampaha": {
+    "description": "Website key: common.districts.Gampaha"
+  },
+  "commonDistrictsHambantota": "Hambantota",
+  "@commonDistrictsHambantota": {
+    "description": "Website key: common.districts.Hambantota"
+  },
+  "commonDistrictsJaffna": "Jaffna",
+  "@commonDistrictsJaffna": {
+    "description": "Website key: common.districts.Jaffna"
+  },
+  "commonDistrictsKalutara": "Kalutara",
+  "@commonDistrictsKalutara": {
+    "description": "Website key: common.districts.Kalutara"
+  },
+  "commonDistrictsKandy": "Kandy",
+  "@commonDistrictsKandy": {
+    "description": "Website key: common.districts.Kandy"
+  },
+  "commonDistrictsKegalle": "Kegalle",
+  "@commonDistrictsKegalle": {
+    "description": "Website key: common.districts.Kegalle"
+  },
+  "commonDistrictsKilinochchi": "Kilinochchi",
+  "@commonDistrictsKilinochchi": {
+    "description": "Website key: common.districts.Kilinochchi"
+  },
+  "commonDistrictsKurunegala": "Kurunegala",
+  "@commonDistrictsKurunegala": {
+    "description": "Website key: common.districts.Kurunegala"
+  },
+  "commonDistrictsMannar": "Mannar",
+  "@commonDistrictsMannar": {
+    "description": "Website key: common.districts.Mannar"
+  },
+  "commonDistrictsMatale": "Matale",
+  "@commonDistrictsMatale": {
+    "description": "Website key: common.districts.Matale"
+  },
+  "commonDistrictsMatara": "Matara",
+  "@commonDistrictsMatara": {
+    "description": "Website key: common.districts.Matara"
+  },
+  "commonDistrictsMonaragala": "Monaragala",
+  "@commonDistrictsMonaragala": {
+    "description": "Website key: common.districts.Monaragala"
+  },
+  "commonDistrictsMullaitivu": "Mullaitivu",
+  "@commonDistrictsMullaitivu": {
+    "description": "Website key: common.districts.Mullaitivu"
+  },
+  "commonDistrictsNuwaraEliya": "Nuwara Eliya",
+  "@commonDistrictsNuwaraEliya": {
+    "description": "Website key: common.districts.NuwaraEliya"
+  },
+  "commonDistrictsPolonnaruwa": "Polonnaruwa",
+  "@commonDistrictsPolonnaruwa": {
+    "description": "Website key: common.districts.Polonnaruwa"
+  },
+  "commonDistrictsPuttalam": "Puttalam",
+  "@commonDistrictsPuttalam": {
+    "description": "Website key: common.districts.Puttalam"
+  },
+  "commonDistrictsRatnapura": "Ratnapura",
+  "@commonDistrictsRatnapura": {
+    "description": "Website key: common.districts.Ratnapura"
+  },
+  "commonDistrictsTrincomalee": "Trincomalee",
+  "@commonDistrictsTrincomalee": {
+    "description": "Website key: common.districts.Trincomalee"
+  },
+  "commonDistrictsVavuniya": "Vavuniya",
+  "@commonDistrictsVavuniya": {
+    "description": "Website key: common.districts.Vavuniya"
+  },
   "authLoginSubtitle": "Sign in to your account",
   "@authLoginSubtitle": {
     "description": "Website key: auth.login.subtitle"
@@ -1817,6 +1957,181 @@
   "@farmsOverviewLabel": {
     "description": "Website key: farms.overview.label"
   },
+  "farmsTodayMorning": "Good morning, {name}",
+  "@farmsTodayMorning": {
+    "description": "Website key: farms.today.morning",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsTodayAfternoon": "Good afternoon, {name}",
+  "@farmsTodayAfternoon": {
+    "description": "Website key: farms.today.afternoon",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsTodayEvening": "Good evening, {name}",
+  "@farmsTodayEvening": {
+    "description": "Website key: farms.today.evening",
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsTodaySubtitle": "Here is what needs you today.",
+  "@farmsTodaySubtitle": {
+    "description": "Website key: farms.today.subtitle"
+  },
+  "farmsTodayCrops": "Your crops",
+  "@farmsTodayCrops": {
+    "description": "Website key: farms.today.crops"
+  },
+  "farmsTodayCropsEmpty": "Nothing is growing yet. Open a farm and a field to plant your first crop.",
+  "@farmsTodayCropsEmpty": {
+    "description": "Website key: farms.today.cropsEmpty"
+  },
+  "farmsTodayFarms": "Your farms",
+  "@farmsTodayFarms": {
+    "description": "Website key: farms.today.farms"
+  },
+  "farmsTodayDay": "Day {day} of {total}",
+  "@farmsTodayDay": {
+    "description": "Website key: farms.today.day",
+    "placeholders": {
+      "day": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsTodayHarvestInOne": "Harvest in {count} day",
+  "@farmsTodayHarvestInOne": {
+    "description": "Website key: farms.today.harvestIn_one",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsTodayHarvestInOther": "Harvest in {count} days",
+  "@farmsTodayHarvestInOther": {
+    "description": "Website key: farms.today.harvestIn_other",
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsTodayHarvestDue": "Harvest is due",
+  "@farmsTodayHarvestDue": {
+    "description": "Website key: farms.today.harvestDue"
+  },
+  "farmsTodayVineLabel": "{crop}: day {day} of {total}",
+  "@farmsTodayVineLabel": {
+    "description": "Website key: farms.today.vineLabel",
+    "placeholders": {
+      "crop": {
+        "type": "Object"
+      },
+      "day": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsWeatherLabel": "Weather in {district}",
+  "@farmsWeatherLabel": {
+    "description": "Website key: farms.weather.label",
+    "placeholders": {
+      "district": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsWeatherRange": "Today {max}° / {min}°",
+  "@farmsWeatherRange": {
+    "description": "Website key: farms.weather.range",
+    "placeholders": {
+      "max": {
+        "type": "Object"
+      },
+      "min": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsWeatherNow": "Now",
+  "@farmsWeatherNow": {
+    "description": "Website key: farms.weather.now"
+  },
+  "farmsWeatherKindClear": "Clear",
+  "@farmsWeatherKindClear": {
+    "description": "Website key: farms.weather.kind.clear"
+  },
+  "farmsWeatherKindNight": "Clear night",
+  "@farmsWeatherKindNight": {
+    "description": "Website key: farms.weather.kind.night"
+  },
+  "farmsWeatherKindPartly": "Partly cloudy",
+  "@farmsWeatherKindPartly": {
+    "description": "Website key: farms.weather.kind.partly"
+  },
+  "farmsWeatherKindCloudy": "Cloudy",
+  "@farmsWeatherKindCloudy": {
+    "description": "Website key: farms.weather.kind.cloudy"
+  },
+  "farmsWeatherKindFog": "Misty",
+  "@farmsWeatherKindFog": {
+    "description": "Website key: farms.weather.kind.fog"
+  },
+  "farmsWeatherKindRain": "Rain",
+  "@farmsWeatherKindRain": {
+    "description": "Website key: farms.weather.kind.rain"
+  },
+  "farmsWeatherKindStorm": "Thunderstorms",
+  "@farmsWeatherKindStorm": {
+    "description": "Website key: farms.weather.kind.storm"
+  },
+  "farmsWeatherAdviceHeavyRain": "Heavy rain today (about {mm} mm). Check that your fields drain well.",
+  "@farmsWeatherAdviceHeavyRain": {
+    "description": "Website key: farms.weather.advice.heavyRain",
+    "placeholders": {
+      "mm": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsWeatherAdviceRainSoon": "Rain likely around {time}. Hold any spraying until it passes.",
+  "@farmsWeatherAdviceRainSoon": {
+    "description": "Website key: farms.weather.advice.rainSoon",
+    "placeholders": {
+      "time": {
+        "type": "Object"
+      }
+    }
+  },
+  "farmsWeatherAdviceHot": "A hot day. Water early in the morning or in the evening.",
+  "@farmsWeatherAdviceHot": {
+    "description": "Website key: farms.weather.advice.hot"
+  },
+  "farmsWeatherAdviceCalm": "No rain expected in the next few hours.",
+  "@farmsWeatherAdviceCalm": {
+    "description": "Website key: farms.weather.advice.calm"
+  },
+  "farmsWeatherUnavailable": "The weather isn't available right now.",
+  "@farmsWeatherUnavailable": {
+    "description": "Website key: farms.weather.unavailable"
+  },
   "homeNavLogin": "Log in",
   "@homeNavLogin": {
     "description": "Website key: home.nav.login"
@@ -2054,6 +2369,22 @@
       }
     }
   },
+  "homeBoardTitle": "Fresh prices",
+  "@homeBoardTitle": {
+    "description": "Website key: home.board.title"
+  },
+  "homeBoardNote": "Asking prices on active listings right now.",
+  "@homeBoardNote": {
+    "description": "Website key: home.board.note"
+  },
+  "homeBoardEmpty": "No listings yet. Check back soon.",
+  "@homeBoardEmpty": {
+    "description": "Website key: home.board.empty"
+  },
+  "homeBoardSee": "See every listing",
+  "@homeBoardSee": {
+    "description": "Website key: home.board.see"
+  },
   "issuesMineTitle": "My Issues",
   "@issuesMineTitle": {
     "description": "Website key: issues.mine.title"
@@ -2125,6 +2456,34 @@
   "issuesNewPhotoUploadUnavailable": "The photo couldn't be uploaded right now. Try again, or report without a photo.",
   "@issuesNewPhotoUploadUnavailable": {
     "description": "Website key: issues.new.photoUploadUnavailable"
+  },
+  "issuesNewProgressTitle": "Working on your report",
+  "@issuesNewProgressTitle": {
+    "description": "Website key: issues.new.progress.title"
+  },
+  "issuesNewProgressSend": "Sending your report",
+  "@issuesNewProgressSend": {
+    "description": "Website key: issues.new.progress.send"
+  },
+  "issuesNewProgressPhoto": "Looking at your photo",
+  "@issuesNewProgressPhoto": {
+    "description": "Website key: issues.new.progress.photo"
+  },
+  "issuesNewProgressCompare": "Comparing with known crop problems",
+  "@issuesNewProgressCompare": {
+    "description": "Website key: issues.new.progress.compare"
+  },
+  "issuesNewProgressAdvice": "Writing advice for an officer to check",
+  "@issuesNewProgressAdvice": {
+    "description": "Website key: issues.new.progress.advice"
+  },
+  "issuesNewProgressNote": "This usually takes about half a minute. The steps are a guide to what is happening.",
+  "@issuesNewProgressNote": {
+    "description": "Website key: issues.new.progress.note"
+  },
+  "issuesNewProgressDone": "Report sent",
+  "@issuesNewProgressDone": {
+    "description": "Website key: issues.new.progress.done"
   },
   "issuesFormTitle": "Title",
   "@issuesFormTitle": {
@@ -2824,6 +3183,30 @@
   "marketplaceDetailRequestSent": "Your request has been sent — the farmer will respond soon; you'll see it in Orders once accepted.",
   "@marketplaceDetailRequestSent": {
     "description": "Website key: marketplace.detail.requestSent"
+  },
+  "marketplaceDetailTotal": "Total",
+  "@marketplaceDetailTotal": {
+    "description": "Website key: marketplace.detail.total"
+  },
+  "marketplaceDetailQuantity": "Quantity",
+  "@marketplaceDetailQuantity": {
+    "description": "Website key: marketplace.detail.quantity"
+  },
+  "marketplaceDetailSoldBy": "Sold by",
+  "@marketplaceDetailSoldBy": {
+    "description": "Website key: marketplace.detail.soldBy"
+  },
+  "marketplaceDetailRequestNote": "The farmer will accept or decline your request.",
+  "@marketplaceDetailRequestNote": {
+    "description": "Website key: marketplace.detail.requestNote"
+  },
+  "marketplaceDetailSent": "Request sent",
+  "@marketplaceDetailSent": {
+    "description": "Website key: marketplace.detail.sent"
+  },
+  "marketplaceDetailRequest": "Ask to buy",
+  "@marketplaceDetailRequest": {
+    "description": "Website key: marketplace.detail.request"
   },
   "marketplaceListingsTitle": "My Listings",
   "@marketplaceListingsTitle": {

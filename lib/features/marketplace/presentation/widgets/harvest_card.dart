@@ -7,11 +7,14 @@ import '../../../../app/theme/app_typography.dart';
 import '../../../../core/format/formatters.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/labels.dart';
-import '../../../../shared/widgets/crop_icon.dart';
+import '../../../../shared/media/crop_photos.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../../application/unit_format.dart';
 import '../../data/harvest_listing.dart';
 import 'header_badge.dart';
+
+/// The Hero tag a listing's photo shares between its card and its page.
+String harvestPhotoTag(int listingId) => 'harvest-photo-$listingId';
 
 /// One listing in a list, like the website's HarvestCard: the crop, where and when it was
 /// harvested, the price and how much is left. [onTap] opens the listing.
@@ -36,69 +39,77 @@ class HarvestCard extends ConsumerWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(Gaps.md),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // The crop's photo; it flies up into the listing page when the card is opened.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(6, 6, 6, 0),
+              child: Hero(
+                tag: harvestPhotoTag(listing.id),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18),
+                  child: SizedBox(
+                    height: 150,
+                    child: Image.asset(cropPhotoAsset(listing.cropType), fit: BoxFit.cover),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(Gaps.md),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: colors.tint(colors.forest),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: CropIcon(listing.cropType),
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(cropLabel(l10n, listing.cropType), style: text.titleLarge),
+                            if (listing.variety.isNotEmpty)
+                              Text(
+                                listing.variety,
+                                style: text.bodyMedium?.copyWith(color: colors.textSecondary),
+                              ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: Gaps.sm),
+                      HeaderBadge(
+                        child: StatusBadge.status(StatusKind.harvest, listing.status.apiName),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: Gaps.sm + 4),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(cropLabel(l10n, listing.cropType), style: text.titleLarge),
-                        if (listing.variety.isNotEmpty)
-                          Text(
-                            listing.variety,
-                            style: text.bodyMedium?.copyWith(color: colors.textSecondary),
-                          ),
-                      ],
-                    ),
+                  const SizedBox(height: Gaps.sm + 4),
+                  _IconLine(icon: Icons.place_outlined, text: _place(listing)),
+                  const SizedBox(height: Gaps.xs),
+                  _IconLine(icon: Icons.event_outlined, text: format.date(listing.harvestDate)),
+                  const SizedBox(height: Gaps.sm + 4),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          format.pricePer(l10n, listing.pricePerUnit, listing.unit),
+                          style: text.titleMedium!.mono.copyWith(color: colors.forest),
+                        ),
+                      ),
+                      Text(
+                        l10n.commonUnitsAvailableQuantity(
+                          format.quantity(l10n, listing.availableQuantity, listing.unit),
+                        ),
+                        style: text.bodyMedium!.mono.copyWith(color: colors.textSecondary),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: Gaps.sm),
-                  HeaderBadge(
-                    child: StatusBadge.status(StatusKind.harvest, listing.status.apiName),
-                  ),
+                  ?trailing,
                 ],
               ),
-              const SizedBox(height: Gaps.sm + 4),
-              _IconLine(icon: Icons.place_outlined, text: _place(listing)),
-              const SizedBox(height: Gaps.xs),
-              _IconLine(icon: Icons.event_outlined, text: format.date(listing.harvestDate)),
-              const SizedBox(height: Gaps.sm + 4),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Text(
-                      format.pricePer(l10n, listing.pricePerUnit, listing.unit),
-                      style: text.titleMedium!.mono.copyWith(color: colors.forest),
-                    ),
-                  ),
-                  Text(
-                    l10n.commonUnitsAvailableQuantity(
-                      format.quantity(l10n, listing.availableQuantity, listing.unit),
-                    ),
-                    style: text.bodyMedium!.mono.copyWith(color: colors.textSecondary),
-                  ),
-                ],
-              ),
-              ?trailing,
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

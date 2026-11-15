@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 import 'app_typography.dart';
 
-/// Corner radius for cards, buttons, inputs and sheets.
-const double kRadius = 16;
+/// Corner radius for cards and list tiles. Bigger radius means "floats higher": fields use
+/// [kFieldRadius], sheets and dialogs [kSheetRadius], and buttons and chips are pills.
+const double kRadius = 22;
+
+/// Corner radius for text fields and dropdowns.
+const double kFieldRadius = 14;
+
+/// Corner radius for bottom sheets and dialogs.
+const double kSheetRadius = 28;
 
 /// Standard spacing steps. Use these instead of arbitrary numbers.
 abstract final class Gaps {
@@ -30,7 +37,8 @@ abstract final class AppTheme {
       primaryContainer: c.tint(c.forest),
       onPrimaryContainer: isDark ? c.forestLight : c.forest,
       secondary: c.harvest,
-      onSecondary: c.ink,
+      // Daylight's turmeric is dark, so white text on it; Canopy's is bright, so ink.
+      onSecondary: isDark ? c.ink : c.surface,
       secondaryContainer: c.tint(c.harvest),
       onSecondaryContainer: c.textPrimary,
       tertiary: c.terracotta,
@@ -61,13 +69,13 @@ abstract final class AppTheme {
 
     final base = isDark ? Typography.material2021().white : Typography.material2021().black;
     final textTheme = buildTextTheme(base, c.textPrimary, c.textSecondary);
-    final rounded = RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius));
+    const rounded = StadiumBorder();
     // 48 dp minimum touch target for every button.
     const buttonSize = Size(64, 48);
     const buttonPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 12);
 
     OutlineInputBorder inputBorder(Color color, [double width = 1]) => OutlineInputBorder(
-      borderRadius: BorderRadius.circular(kRadius),
+      borderRadius: BorderRadius.circular(kFieldRadius),
       borderSide: BorderSide(color: color, width: width),
     );
 
@@ -155,7 +163,7 @@ abstract final class AppTheme {
         errorMaxLines: 3,
       ),
       chipTheme: ChipThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
+        shape: const StadiumBorder(),
         side: BorderSide(color: c.border),
         backgroundColor: c.surface,
         selectedColor: c.tint(c.forest),
@@ -199,22 +207,23 @@ abstract final class AppTheme {
         modalBarrierColor: c.overlay,
         showDragHandle: true,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(kRadius + 8)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(kSheetRadius)),
         ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: c.surface,
         surfaceTintColor: Colors.transparent,
         barrierColor: c.overlay,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius + 4)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kSheetRadius)),
         titleTextStyle: textTheme.titleLarge,
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
         backgroundColor: c.textPrimary,
         contentTextStyle: textTheme.bodyMedium?.copyWith(color: c.canvas),
-        actionTextColor: isDark ? AppColors.light.harvest : c.harvest,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
+        // The snack bar is dark in Daylight and light in Canopy: take the other theme's turmeric.
+        actionTextColor: isDark ? AppColors.light.harvest : AppColors.dark.harvest,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: c.forest),
       badgeTheme: BadgeThemeData(backgroundColor: c.terracotta, textColor: c.surface),

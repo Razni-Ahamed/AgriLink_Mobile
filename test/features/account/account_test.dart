@@ -4,6 +4,8 @@ import 'package:agrilink_mobile/app/router/app_router.dart';
 import 'package:agrilink_mobile/app/router/app_routes.dart';
 import 'package:agrilink_mobile/core/session/role.dart';
 import 'package:agrilink_mobile/core/session/session.dart';
+import 'package:agrilink_mobile/core/storage/preferences.dart';
+import 'package:agrilink_mobile/shared/canopy/motion.dart';
 import 'package:agrilink_mobile/shared/media/photo_picker.dart';
 import 'package:agrilink_mobile/shared/permissions/permissions.dart';
 import 'package:dio/dio.dart';
@@ -107,6 +109,17 @@ void main() {
       expect(app.session.isSignedIn, isFalse);
       expect(app.storage.session, isNull);
       expect(find.text('Sign in to your account'), findsOneWidget);
+    });
+
+    testWidgets('the Animations choice is used at once and remembered', (tester) async {
+      final app = await openProfile(tester, Role.buyer);
+      expect(app.container.read(motionPreferenceProvider), MotionPreference.system);
+
+      await tester.tapVisible(find.byKey(const Key('motion-lite')));
+
+      expect(app.container.read(motionPreferenceProvider), MotionPreference.lite);
+      final prefs = app.container.read(sharedPreferencesProvider);
+      expect(prefs.getString(PrefKeys.motion), 'lite');
     });
   });
 

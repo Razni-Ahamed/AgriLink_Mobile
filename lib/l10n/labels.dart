@@ -29,3 +29,8 @@ String cropLabel(AppLocalizations l10n, String cropType) =>
 /// The translated name of a role: Farmer, Buyer, Officer or Admin.
 String roleLabel(AppLocalizations l10n, String role) =>
     translateWebKey(l10n, 'common.roles.$role') ?? role;
+
+/// The translated name of a Sri Lankan district (Kandy → මහනුවර / கண்டி). Mirrors the website's
+/// `useDistrictLabel`; a district we don't know is shown as it is.
+String districtLabel(AppLocalizations l10n, String district) =>
+    translateWebKey(l10n, 'common.districts.${district.replaceAll(' ', '')}') ?? district;

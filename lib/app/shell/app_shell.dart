@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../../core/session/session_controller.dart';
 import '../../features/notifications/application/notification_permission.dart';
 import '../../l10n/l10n.dart';
+import '../../shared/canopy/glass.dart';
+import '../../shared/canopy/motion.dart';
 import '../router/app_routes.dart';
 import '../theme/app_colors.dart';
 import 'nav_config.dart';
@@ -86,9 +88,11 @@ int selectedTabIndex(RoleNavigation navigation, String location) {
   return tab != -1 ? tab : navigation.tabs.length;
 }
 
-/// The bottom bar. Built by hand rather than with `NavigationBar` so long Sinhala and Tamil
-/// labels wrap onto two lines instead of being cut off, and grow with the system font size.
-class AppBottomNav extends StatelessWidget {
+/// The bottom bar: a floating glass pill with one highlight that slides to the selected tab with
+/// a springy, water-like motion. Built by hand rather than with `NavigationBar` so long Sinhala
+/// and Tamil labels wrap onto two lines instead of being cut off, and grow with the system font
+/// size.
+class AppBottomNav extends ConsumerWidget {
   const AppBottomNav({
     super.key,
     required this.navigation,
@@ -101,33 +105,60 @@ class AppBottomNav extends StatelessWidget {
   final ValueChanged<String> onSelected;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final colors = context.colors;
+    final level = motionLevel(context, ref);
     final items = [...navigation.tabs, if (navigation.hasMore) Destinations.more];
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: colors.surface,
-        border: Border(top: BorderSide(color: colors.border)),
-      ),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (var i = 0; i < items.length; i++)
-                Expanded(
-                  child: _NavItem(
-                    key: Key('nav-${items[i].path}'),
-                    destination: items[i],
-                    label: items[i].tabLabel(l10n),
-                    selected: i == selectedIndex,
-                    onTap: () => onSelected(items[i].path),
+    return SafeArea(
+      top: false,
+      minimum: const EdgeInsets.only(bottom: 8),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 4, 10, 0),
+        child: GlassSurface(
+          borderRadius: BorderRadius.circular(28),
+          padding: const EdgeInsets.all(5),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = constraints.maxWidth / items.length;
+              return Stack(
+                children: [
+                  if (selectedIndex >= 0 && selectedIndex < items.length)
+                    AnimatedPositioned(
+                      duration: Motion.of(level, Motion.reveal),
+                      curve: Motion.springy,
+                      left: itemWidth * selectedIndex,
+                      top: 0,
+                      bottom: 0,
+                      width: itemWidth,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: colors.forest.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(22),
+                          border: Border(
+                            top: BorderSide(color: Colors.white.withValues(alpha: 0.35)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (var i = 0; i < items.length; i++)
+                        Expanded(
+                          child: _NavItem(
+                            key: Key('nav-${items[i].path}'),
+                            destination: items[i],
+                            label: items[i].tabLabel(l10n),
+                            selected: i == selectedIndex,
+                            onTap: () => onSelected(items[i].path),
+                          ),
+                        ),
+                    ],
                   ),
-                ),
-            ],
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -162,7 +193,7 @@ class _NavItem extends StatelessWidget {
         message: label,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(22),
           child: ConstrainedBox(
             constraints: const BoxConstraints(minHeight: 56),
             child: Padding(
@@ -170,16 +201,18 @@ class _NavItem extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: selected ? colors.tint(colors.forest) : Colors.transparent,
-                      borderRadius: BorderRadius.circular(999),
-                    ),
-                    child: Icon(
-                      selected ? destination.selectedIcon : destination.icon,
-                      color: color,
+                  // The sliding highlight behind the tabs marks the selected one; the icon just
+                  // grows a little.
+                  AnimatedScale(
+                    scale: selected ? 1.1 : 1,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Motion.springy,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Icon(
+                        selected ? destination.selectedIcon : destination.icon,
+                        color: color,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),

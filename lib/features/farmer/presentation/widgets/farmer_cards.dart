@@ -7,7 +7,7 @@ import '../../../../app/theme/app_typography.dart';
 import '../../../../core/format/formatters.dart';
 import '../../../../l10n/l10n.dart';
 import '../../../../l10n/labels.dart';
-import '../../../../shared/widgets/crop_icon.dart';
+import '../../../../shared/media/crop_photos.dart';
 import '../../../../shared/widgets/status_badge.dart';
 import '../../data/crop.dart';
 import '../../data/farm.dart';
@@ -19,12 +19,16 @@ class _ListCard extends StatelessWidget {
     required this.leading,
     required this.title,
     required this.lines,
+    this.photoLeading = false,
   });
 
   final VoidCallback onTap;
   final Widget leading;
   final String title;
   final List<Widget> lines;
+
+  /// [leading] is a photo: shown as a rounded square, without the tinted circle behind icons.
+  final bool photoLeading;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +41,19 @@ class _ListCard extends StatelessWidget {
           padding: const EdgeInsets.all(Gaps.md),
           child: Row(
             children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: colors.tint(colors.forest),
-                  shape: BoxShape.circle,
+              if (photoLeading)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: SizedBox.square(dimension: 52, child: leading),
+                )
+              else
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: colors.tint(colors.forest),
+                    shape: BoxShape.circle,
+                  ),
+                  child: SizedBox.square(dimension: 44, child: Center(child: leading)),
                 ),
-                child: SizedBox.square(dimension: 44, child: Center(child: leading)),
-              ),
               const SizedBox(width: Gaps.md),
               Expanded(
                 child: Column(
@@ -81,7 +91,8 @@ class AcresText extends ConsumerWidget {
   }
 }
 
-/// One farm in the list.
+/// One farm in the list: a field photo on top (the same one the website shows for this farm),
+/// then the name, district and area. Lifts slightly while pressed.
 class FarmCard extends StatelessWidget {
   const FarmCard({super.key, required this.farm, required this.onTap});
 
@@ -91,26 +102,72 @@ class FarmCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return _ListCard(
-      onTap: onTap,
-      leading: Icon(Icons.agriculture_outlined, color: colors.forest),
-      title: farm.name,
-      lines: [
-        Row(
-          children: [
-            Icon(Icons.location_on_outlined, size: 14, color: colors.textSecondary),
-            const SizedBox(width: 2),
-            Flexible(
-              child: Text(
-                farm.district,
-                style: Theme.of(context).textTheme.bodyMedium
-                    ?.copyWith(color: colors.textSecondary),
+    final textTheme = Theme.of(context).textTheme;
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: SizedBox(
+                  height: 120,
+                  child: Image.asset(Scenes.forFarm(farm.id), fit: BoxFit.cover),
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 6),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(farm.name, style: textTheme.titleLarge),
+                          const SizedBox(height: 2),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                size: 14,
+                                color: colors.textSecondary,
+                              ),
+                              const SizedBox(width: 2),
+                              Flexible(
+                                child: Text(
+                                  districtLabel(context.l10n, farm.district),
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color: colors.textSecondary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: colors.tint(colors.forest),
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                        child: AcresText(farm.area),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-        AcresText(farm.area),
-      ],
+      ),
     );
   }
 }
@@ -146,7 +203,8 @@ class CropCard extends StatelessWidget {
     final colors = context.colors;
     return _ListCard(
       onTap: onTap,
-      leading: CropIcon(crop.cropType, size: 26),
+      photoLeading: true,
+      leading: Image.asset(cropPhotoAsset(crop.cropType), fit: BoxFit.cover),
       title: cropLabel(l10n, crop.cropType),
       lines: [
         Text(

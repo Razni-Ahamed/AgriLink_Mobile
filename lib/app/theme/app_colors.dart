@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// The "Organic Bento" colour tokens, copied from the website's `frontend/src/index.css`.
+/// The "Canopy" colour tokens, copied from the website's `frontend/src/index.css`: [light] is
+/// Daylight (white glass on rice-paper green, for reading in full sun), [dark] is Canopy (deep
+/// forest green, the brand look).
 ///
 /// Every colour in the app comes from here, either directly (`context.colors.harvest`) or
 /// through the Material [ColorScheme] built from these tokens in `app_theme.dart`. No screen
@@ -31,10 +33,10 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color forest;
   final Color forestLight;
 
-  /// Secondary gold accent. Put [ink] text on it, never [forest].
+  /// "Needs you" (turmeric): text and dots for things waiting on the user.
   final Color harvest;
 
-  /// Warm accent for highlights and warnings that aren't errors.
+  /// Warm clay accent: unread counts and highlights that aren't errors.
   final Color terracotta;
 
   /// Text on a bright accent fill such as [harvest].
@@ -64,37 +66,37 @@ class AppColors extends ThemeExtension<AppColors> {
   Color tint(Color color) => Color.alphaBlend(color.withValues(alpha: 0.14), surface);
 
   static const AppColors light = AppColors(
-    forest: Color(0xFF1F4D36),
-    forestLight: Color(0xFF4A7C59),
-    harvest: Color(0xFFD9A441),
-    terracotta: Color(0xFFC4623B),
-    ink: Color(0xFF1F4D36),
-    canvas: Color(0xFFFAF7F0),
-    surface: Color(0xFFFFFDF9),
-    overlay: Color(0x4D1F4D36), // rgb(31 77 54 / 0.3)
-    textPrimary: Color(0xFF26201A),
-    textSecondary: Color(0xFF6B6259),
-    success: Color(0xFF3E7A4F),
-    danger: Color(0xFFB84C3C),
-    info: Color(0xFF3E7A82),
+    forest: Color(0xFF1F5A3F),
+    forestLight: Color(0xFF2B7351),
+    harvest: Color(0xFF8A5D00),
+    terracotta: Color(0xFFA8532F),
+    ink: Color(0xFF0F2A21),
+    canvas: Color(0xFFEEF2E8),
+    surface: Color(0xFFFFFFFF),
+    overlay: Color(0x590F2A21), // rgb(15 42 33 / 0.35)
+    textPrimary: Color(0xFF0F2A21),
+    textSecondary: Color(0xFF4C5F56),
+    success: Color(0xFF2F6E3B),
+    danger: Color(0xFFB2412B),
+    info: Color(0xFF2F6C7A),
   );
 
-  /// "Night harvest": green-tinted charcoal surfaces and warm parchment text. The website's
-  /// index.css lists the WCAG contrast ratio of every pair; all text pairs are at least 6:1.
+  /// Canopy: deep forest green with a light sage action colour. The website's index.css lists the
+  /// WCAG contrast ratio of every pair; all text pairs are at least 5:1.
   static const AppColors dark = AppColors(
-    forest: Color(0xFF7CBE8C),
-    forestLight: Color(0xFF9ED4AA),
-    harvest: Color(0xFFE8BD60),
-    terracotta: Color(0xFFDD7D55),
-    ink: Color(0xFF10170F),
-    canvas: Color(0xFF0F1512),
-    surface: Color(0xFF17201A),
-    overlay: Color(0xA8060A08), // rgb(6 10 8 / 0.66)
-    textPrimary: Color(0xFFE9E4D9),
-    textSecondary: Color(0xFFA49C8E),
-    success: Color(0xFF74C489),
-    danger: Color(0xFFE8806C),
-    info: Color(0xFF66B3BB),
+    forest: Color(0xFFB5CDA0),
+    forestLight: Color(0xFFC9DCB8),
+    harvest: Color(0xFFEFC062),
+    terracotta: Color(0xFFE9A27A),
+    ink: Color(0xFF0B201A),
+    canvas: Color(0xFF0B201A),
+    surface: Color(0xFF133429),
+    overlay: Color(0xB3030A08), // rgb(3 10 8 / 0.7)
+    textPrimary: Color(0xFFEAF0E7),
+    textSecondary: Color(0xFFA9BBAF),
+    success: Color(0xFF9ED58B),
+    danger: Color(0xFFF08A73),
+    info: Color(0xFF8CC7D3),
   );
 
   @override

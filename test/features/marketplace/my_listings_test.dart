@@ -106,6 +106,14 @@ void main() {
   testWidgets('quick edit opens the editor for that listing', (tester) async {
     await pumpMarketplace(tester, role: Role.farmer, api: farmerApi(), path: AppRoutes.myListings);
 
+    // The cards carry photos now, so the third one starts below the fold.
+    await tester.scrollUntilVisible(
+      find.byKey(const Key('quick-edit-3')),
+      150,
+      scrollable: find
+          .descendant(of: find.byKey(const Key('my-listings')), matching: find.byType(Scrollable))
+          .first,
+    );
     await tester.tapVisible(find.byKey(const Key('quick-edit-3')));
 
     expect(find.text('Edit Listing'), findsOneWidget);
