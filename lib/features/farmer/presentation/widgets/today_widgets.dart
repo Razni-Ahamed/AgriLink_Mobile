@@ -190,6 +190,7 @@ class WeatherCard extends ConsumerWidget {
                 if (weather.hours.isNotEmpty) ...[
                   Divider(height: 20, color: white.withValues(alpha: 0.12)),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       for (final hour in weather.hours)
                         Expanded(

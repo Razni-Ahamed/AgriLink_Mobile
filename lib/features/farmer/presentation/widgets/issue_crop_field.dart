@@ -43,6 +43,7 @@ class IssueCropField extends StatelessWidget {
         Future<void> open() async {
           final picked = await showModalBottomSheet<int>(
             context: context,
+            useRootNavigator: true,
             isScrollControlled: true,
             useSafeArea: true,
             builder: (_) => _CropSheet(crops: crops, selected: field.value),

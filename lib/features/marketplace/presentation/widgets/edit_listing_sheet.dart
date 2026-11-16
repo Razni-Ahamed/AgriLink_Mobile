@@ -23,6 +23,7 @@ Future<void> showEditListingSheet(
   bool asAdmin = false,
 }) => showModalBottomSheet<void>(
   context: context,
+  useRootNavigator: true,
   isScrollControlled: true,
   useSafeArea: true,
   builder: (_) => _EditListingSheet(listing: listing, asAdmin: asAdmin),

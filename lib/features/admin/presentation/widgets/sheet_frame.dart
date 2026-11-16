@@ -7,6 +7,7 @@ import '../../../../app/theme/app_theme.dart';
 Future<T?> showFormSheet<T>(BuildContext context, {required WidgetBuilder builder}) =>
     showModalBottomSheet<T>(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       useSafeArea: true,
       builder: builder,

@@ -14,6 +14,7 @@ class NavDestination {
     required this.selectedIcon,
     required this.roles,
     this.shortLabel,
+    this.alsoContains,
   });
 
   final String path;
@@ -27,13 +28,21 @@ class NavDestination {
   final IconData selectedIcon;
   final Set<Role> roles;
 
+  /// Other pages that belong to this section although they aren't under [path] (a listing,
+  /// `/marketplace/7`, belongs to Marketplace, whose path is `/marketplace/browse`).
+  final bool Function(String location)? alsoContains;
+
   String tabLabel(AppLocalizations l10n) => (shortLabel ?? label)(l10n);
 
   /// Whether [location] is this section or a page inside it (`/farms/12` is in Farms).
-  bool contains(String location) => location == path || location.startsWith('$path/');
+  bool contains(String location) =>
+      location == path || location.startsWith('$path/') || (alsoContains?.call(location) ?? false);
 }
 
 const _allRoles = {Role.farmer, Role.buyer, Role.officer, Role.admin};
+
+/// `/marketplace/7`: one listing's page.
+bool _isListingPage(String location) => RegExp(r'^/marketplace/\d+$').hasMatch(location);
 
 /// Every section. Phases 2–4 build the screens behind these; the list itself only changes if
 /// a section is added or moved.
@@ -61,6 +70,7 @@ abstract final class Destinations {
     icon: Icons.storefront_outlined,
     selectedIcon: Icons.storefront,
     roles: {Role.farmer, Role.buyer, Role.admin},
+    alsoContains: _isListingPage,
   );
   static final myListings = NavDestination(
     path: AppRoutes.myListings,

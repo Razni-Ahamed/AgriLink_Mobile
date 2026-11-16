@@ -83,6 +83,7 @@ Future<PickedPhoto?> pickPhoto(BuildContext context, WidgetRef ref) async {
   final l10n = context.l10n;
   final source = await showModalBottomSheet<PhotoSource>(
     context: context,
+    useRootNavigator: true,
     builder: (context) => SafeArea(
       child: Column(
         mainAxisSize: MainAxisSize.min,

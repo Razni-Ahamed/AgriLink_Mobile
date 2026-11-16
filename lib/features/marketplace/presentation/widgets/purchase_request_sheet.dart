@@ -20,6 +20,7 @@ import '../../data/purchase_request.dart';
 Future<void> showPurchaseRequestSheet(BuildContext context, HarvestListing listing) =>
     showModalBottomSheet<void>(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       useSafeArea: true,
       builder: (_) => _PurchaseRequestSheet(listing: listing),

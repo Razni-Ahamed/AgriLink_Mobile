@@ -26,6 +26,7 @@ import '../../data/marketplace_enums.dart';
 /// crops, then the quantity, price, harvest date and location.
 Future<void> showNewListingSheet(BuildContext context) => showModalBottomSheet<void>(
   context: context,
+  useRootNavigator: true,
   isScrollControlled: true,
   useSafeArea: true,
   builder: (_) => const _NewListingSheet(),
