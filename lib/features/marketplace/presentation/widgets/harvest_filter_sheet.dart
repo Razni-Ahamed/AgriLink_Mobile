@@ -40,6 +40,7 @@ class HarvestFilters {
 Future<HarvestFilters?> showHarvestFilterSheet(BuildContext context, HarvestFilters current) =>
     showModalBottomSheet<HarvestFilters>(
       context: context,
+      useRootNavigator: true,
       isScrollControlled: true,
       useSafeArea: true,
       builder: (_) => _FilterSheet(initial: current),

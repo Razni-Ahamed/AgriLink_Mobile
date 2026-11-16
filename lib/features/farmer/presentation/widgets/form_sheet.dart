@@ -10,6 +10,7 @@ import '../../../../l10n/l10n.dart';
 Future<T?> showFormSheet<T>(BuildContext context, {required String title, required Widget form}) {
   return showModalBottomSheet<T>(
     context: context,
+    useRootNavigator: true,
     isScrollControlled: true,
     useSafeArea: true,
     enableDrag: false,

@@ -61,6 +61,13 @@ void main() {
         await tester.tapVisible(find.byKey(Key(key)));
       }
 
+      // Sheets open above the whole app (over the tab bar), so they stay open when a test moves
+      // to another page; close the one holding [key] first, as a person would.
+      Future<void> closeSheet(WidgetTester tester, String key) async {
+        Navigator.of(tester.element(find.byKey(Key(key)))).pop();
+        await tester.pumpAndSettle();
+      }
+
       testWidgets('the buyer screens and forms', (tester) async {
         await open(tester, Role.buyer, AppRoutes.marketplace);
         expect(find.byKey(const Key('harvest-7')), findsOneWidget);
@@ -71,6 +78,7 @@ void main() {
         final app = await open(tester, Role.buyer, '/marketplace/7');
         await tapKey(tester, 'request-to-buy');
         expect(find.byKey(const Key('request-send')), findsOneWidget);
+        await closeSheet(tester, 'request-send');
 
         app.container.read(routerProvider).go(AppRoutes.sentRequests);
         await tester.pumpAndSettle();
@@ -91,10 +99,12 @@ void main() {
         await tester.tap(find.textContaining('Samba').last);
         await tester.pumpAndSettle();
         expect(find.byKey(const Key('listing-publish')), findsOneWidget);
+        await closeSheet(tester, 'listing-publish');
 
         await open(tester, Role.farmer, '/marketplace/7');
         await tapKey(tester, 'edit-listing');
         expect(find.byKey(const Key('edit-save')), findsOneWidget);
+        await closeSheet(tester, 'edit-save');
 
         await open(tester, Role.farmer, AppRoutes.incomingRequests);
         expect(find.byKey(const Key('accept-21')), findsOneWidget);

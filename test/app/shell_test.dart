@@ -147,6 +147,14 @@ void main() {
       expect(selectedTabIndex(admin, AppRoutes.adminAuditLog), 4);
       expect(Destinations.farms.contains('/farmsomething'), isFalse);
     });
+
+    test("a listing's page is in Marketplace, though not under its path", () {
+      expect(selectedTabIndex(farmer, '/marketplace/7'), 2);
+      expect(selectedTabIndex(navigationFor(Role.buyer), '/marketplace/7'), 0);
+      // The farmer's own listings stay under More.
+      expect(selectedTabIndex(farmer, AppRoutes.myListings), 4);
+      expect(Destinations.marketplace.contains('/marketplace/7x'), isFalse);
+    });
   });
 
   test('redirectForRole sends a role without access home', () {

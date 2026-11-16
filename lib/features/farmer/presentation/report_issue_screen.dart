@@ -205,7 +205,10 @@ class _ReportFormState extends ConsumerState<_ReportForm> {
     return PopScope(
       // Leaving mid-submit would drop the result of a report that is still being analysed.
       canPop: !_submitting,
+      // Expand, so the form (and the progress over it) fill the page rather than shrinking
+      // to the form's height.
       child: Stack(
+        fit: StackFit.expand,
         children: [
           Form(
             key: _formKey,
@@ -415,7 +418,7 @@ class _AnalysingOverlayState extends ConsumerState<_AnalysingOverlay>
 
     return ColoredBox(
       key: const Key('analysing'),
-      color: colors.surface.withValues(alpha: 0.97),
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Semantics(
         liveRegion: true,
         child: SingleChildScrollView(

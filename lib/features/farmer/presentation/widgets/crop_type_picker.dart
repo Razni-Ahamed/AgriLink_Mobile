@@ -44,6 +44,7 @@ class CropTypePicker extends ConsumerWidget {
           }
           final picked = await showModalBottomSheet<String>(
             context: context,
+            useRootNavigator: true,
             isScrollControlled: true,
             useSafeArea: true,
             builder: (_) => _CropTypeSheet(cropTypes: list, selected: field.value),
